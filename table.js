@@ -86,7 +86,10 @@ const useStyles = makeStyles((theme) => ({
   },
   root: { width: '100%' },
   table: { minWidth: '100%' },
-  head: { fontSize: theme.typography.subtitle1 },
+  head: {
+    backgroundColor: theme.palette.background.paper, 
+    fontSize: theme.typography.subtitle1 
+  },
   visuallyHidden: {
     border: 0,
     clip: 'rect(0 0 0 0)',
