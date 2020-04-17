@@ -81,7 +81,6 @@ function EnhancedTableHead(props) {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxHeight: '264px',
     width: '100%',
     '&::-webkit-scrollbar': {display: 'none'}
   },
