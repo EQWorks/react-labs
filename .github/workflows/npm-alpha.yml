@@ -1,10 +1,9 @@
-name: Node.js Package
+name: Node.js Package (alpha)
 
 on:
   push:
-    tags:
-      - 'v*' # proceeds eg: v1.0
-      - '!v*-*' # skips eg: v1.2.99-beta1, v3.5.0-test, etc.
+    branches:
+      - master
 
 jobs:
   publish-npm:
@@ -16,7 +15,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: yarn install
-      - run: npm publish
+      - run: npm publish --tag alpha
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 

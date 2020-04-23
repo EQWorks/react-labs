@@ -1,7 +1,7 @@
 {
   "name": "@eqworks/react-labs",
   "private": false,
-  "version": "0.1.1-alpha",
+  "version": "0.1.4",
   "main": "dist/index.js",
   "source": "src/index.js",
   "files": [
@@ -44,8 +44,6 @@
     "lint": "eslint src stories",
     "build": "babel src --out-dir dist --copy-files",
     "prepublishOnly": "yarn eslint src/ && yarn test && yarn build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages --ci"
+    "storybook": "start-storybook -p 6006"
   }
 }
