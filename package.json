@@ -16,32 +16,33 @@
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^5.1.11",
-    "@storybook/addon-links": "^5.1.11",
-    "@storybook/addons": "^5.1.11",
-    "@storybook/react": "^5.1.11",
-    "@storybook/storybook-deployer": "^2.8.1",
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
     "babel-loader": "^8.0.6",
     "eslint": "^6.3.0",
     "eslint-plugin-react": "^7.14.3",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "peerDependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1"
   },
   "dependencies": {
-
+    "prop-types": "^15.7.2"
   },
   "scripts": {
     "test": "echo 'No test yet!'",
-    "start": "yarn storybook",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "lint": "eslint src stories",
-    "deploy-storybook": "storybook-to-ghpages --ci",
     "build": "babel src --out-dir dist --copy-files",
-    "prepublishOnly": "yarn eslint src/ && yarn test && yarn build"
+    "prepublishOnly": "yarn eslint src/ && yarn test && yarn build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }

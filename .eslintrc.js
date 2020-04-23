@@ -7,7 +7,7 @@ module.exports = {
   settings: {
     react: {
       pragma: 'React',
-      version: '16.9',
+      version: '16.13',
     },
   },
   extends: [
@@ -29,5 +29,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    indent: ['error', 2],
   },
 }
