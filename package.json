@@ -1,12 +1,13 @@
 {
   "name": "@eqworks/react-labs",
   "private": false,
-  "version": "0.1.0-alpha",
+  "version": "0.1.1-alpha",
   "main": "dist/index.js",
   "source": "src/index.js",
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "repository": "git@github.com:EQWorks/react-labs.git",
   "author": "EQ Devs <dev@eqworks.com>",
@@ -22,6 +23,7 @@
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
+    "@storybook/storybook-deployer": "^2.8.5",
     "babel-loader": "^8.0.6",
     "eslint": "^6.3.0",
     "eslint-plugin-react": "^7.14.3",
@@ -43,6 +45,7 @@
     "build": "babel src --out-dir dist --copy-files",
     "prepublishOnly": "yarn eslint src/ && yarn test && yarn build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages --ci"
   }
 }
