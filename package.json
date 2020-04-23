@@ -1,7 +1,7 @@
 {
   "name": "@eqworks/react-labs",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "main": "dist/index.js",
   "source": "src/index.js",
   "files": [
@@ -29,10 +29,10 @@
     "react-dom": "^16.13.0"
   },
   "peerDependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
     "@material-ui/core": "^4.9.11",
-    "@material-ui/icons": "^4.9.1"
+    "@material-ui/icons": "^4.9.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
