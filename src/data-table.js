@@ -23,7 +23,7 @@ const DataTable = ({ data }) => {
 
   const [dynamicData, setDynamicData] = useState(data)
   const [order, setOrder] = useState(false)
-  const tableHead = Object.getOwnPropertyNames(data[0])
+  const tableHead = Object.getOwnPropertyNames(data[0] || {})
 
   const dynamicSort = name => {
     setOrder(!order)
