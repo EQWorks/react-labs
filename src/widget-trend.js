@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+// deprecated
 const WidgetTrend = ({title, value, percentage}) => {
 
   const classes = useStyles()

@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+// deprecated
 const WidgetNumber = ({title, value, isPercentage}) => {
   const classes = useStyles()
 
