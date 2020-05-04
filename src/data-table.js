@@ -72,6 +72,7 @@ const DataTable = ({ data, isPercentage }) => {
 
 DataTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  isPercentage: false
 }
 
 DataTable.defaultProps = { data: [] }

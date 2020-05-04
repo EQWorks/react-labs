@@ -7,5 +7,5 @@ import { DataTable } from '../src'
 
 storiesOf('DataTable', module)
   .add('Default', () => (
-    <DataTable />
+    <DataTable/>
   ))
