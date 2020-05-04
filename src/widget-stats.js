@@ -30,12 +30,12 @@ const WidgetStats = ({ title, value, prev, isPercentage, children }) => {
       )
     }
     if (prev != null) {
-      const trend = Math.round(((value - prev) / prev) * 100)
+      const trend = Math.round(((value - prev) / prev) * 100).toLocaleString()
       return (
         <Typography variant='body1'>
           {trend > 0
-            ? <TrendingUpRoundedIcon style={{ color: 'red' }}/>
-            : <TrendingDownRoundedIcon style={{ color: 'green' }} />
+            ? <TrendingUpRoundedIcon style={{ paddingRight: '8px', color: 'red' }}/>
+            : <TrendingDownRoundedIcon style={{ paddingRight: '8px',color: 'green' }} />
           }
           {trend}%
           {trend > 0 ? ' increase ' : ' decrease '}
@@ -49,7 +49,7 @@ const WidgetStats = ({ title, value, prev, isPercentage, children }) => {
   return (
     <Paper className={classes.paper} variant='outlined'>
       <Typography className={classes.title} variant='subtitle2' gutterBottom>{title}</Typography>
-      <Typography variant='h5' gutterBottom>{value}{`${isPercentage ? `%` : '' }`}</Typography>
+      <Typography variant='h5' gutterBottom>{value.toLocaleString()}{`${isPercentage ? `%` : '' }`}</Typography>
       {renderTrend()}
     </Paper>
   )

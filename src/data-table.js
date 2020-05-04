@@ -53,7 +53,7 @@ const DataTable = ({ data }) => {
   const bodyList = dynamicData.map((row, i) => (
     <TableRow key={i}>
       {Object.values(row).map((column, i) => (
-        <TableCell key={i}>{column}</TableCell>
+        <TableCell key={i}>{column.toLocaleString()}</TableCell>
       ))}
     </TableRow>
   ))
