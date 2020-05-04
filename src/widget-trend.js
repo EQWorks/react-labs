@@ -28,11 +28,11 @@ const WidgetTrend = ({title, value, percentage}) => {
   return (
     <Paper className={classes.paper} variant='outlined'>
       <Typography className={classes.title} variant='subtitle2' gutterBottom>{title}</Typography>
-      <Typography variant='h5' gutterBottom>{value}</Typography>
+      <Typography variant='h5' gutterBottom>{value.toLocaleString()}</Typography>
       <Typography variant='body1'>
         {updown ? <TrendingUpRoundedIcon style={{ color: 'red' }}/>
           : <TrendingDownRoundedIcon style={{ color: 'green' }} />}
-        {percentage}
+        {percentage.toLocaleString()}
         {updown ? '% increase from yesterday'
           : '% decrease from yesterday'}
       </Typography>
