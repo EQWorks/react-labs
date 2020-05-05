@@ -21,5 +21,6 @@ const data = [
 
 storiesOf('DataTable', module)
   .add('Default', () => (
-    <DataTable data={data}/>
+    <DataTable data={data} 
+               isPercentage={true} whichColumn={3}/>
   ))
