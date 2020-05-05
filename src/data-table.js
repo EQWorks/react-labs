@@ -18,7 +18,7 @@ const nameReplacer = name => {
   return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ')
 }
 
-const DataTable = ({ data }) => {
+const DataTable = ({ data, isPercentage }) => {
   const classes = useStyles()
 
   const [dynamicData, setDynamicData] = useState(data)
@@ -53,7 +53,7 @@ const DataTable = ({ data }) => {
   const bodyList = dynamicData.map((row, i) => (
     <TableRow key={i}>
       {Object.values(row).map((column, i) => (
-        <TableCell key={i}>{column.toLocaleString()}</TableCell>
+        <TableCell key={i}>{column.toLocaleString()}{`${isPercentage ? `%` : '' }`}</TableCell>
       ))}
     </TableRow>
   ))
@@ -72,6 +72,7 @@ const DataTable = ({ data }) => {
 
 DataTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  isPercentage: false
 }
 
 DataTable.defaultProps = { data: [] }

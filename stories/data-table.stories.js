@@ -21,8 +21,5 @@ const data = [
 
 storiesOf('DataTable', module)
   .add('Default', () => (
-    <DataTable/>
-  ))
-  .add('With Data', () => (
     <DataTable data={data}/>
   ))
