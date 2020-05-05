@@ -53,7 +53,7 @@ const DataTable = ({ data, isPercentage }) => {
   const bodyList = dynamicData.map((row, i) => (
     <TableRow key={i}>
       {Object.values(row).map((column, i) => (
-        <TableCell key={i}>{column}{`${isPercentage ? `%` : '' }`}</TableCell>
+        <TableCell key={i}>{column.toLocaleString()}{`${isPercentage ? `%` : '' }`}</TableCell>
       ))}
     </TableRow>
   ))
