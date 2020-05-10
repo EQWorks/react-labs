@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   default: {
+    textTransform: "none",
     borderRadius: "36px",
     border: "1px solid",
     orderColor: theme.palette.primary.main,
   },
   active: {
+    textTransform: "none",
     borderRadius: "36px",
     border: "hidden",
     backgroundColor: theme.palette.primary.main,
