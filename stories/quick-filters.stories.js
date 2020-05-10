@@ -8,7 +8,12 @@ import categories from "../src/data/categoriesData";
 
 
 
-storiesOf("QuickFilters", module).add("Default", () => {
+storiesOf('QuickFilters', module)
+  .add('Default', () => (
+    <QuickFilters />
+  ))
+
+storiesOf("QuickFilters", module).add("with data", () => {
   const [categoriesData, setCategoriesData] = useState(categories);
 
   const filterOnClick = (label) => {

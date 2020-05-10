@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   default: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const QuickFilterItem = ({ category, filterOnClick }) => {
+const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
   const classes = useStyles();
   const { label, isActive } = category;
   console.log(label, isActive);
@@ -29,6 +29,7 @@ const QuickFilterItem = ({ category, filterOnClick }) => {
       variant="outlined"
       data-selected={isActive}
       className={!isActive ? classes.default : classes.active}
+      disabled={disabled}
       onClick={() => filterOnClick(label)}
     >
       {label}
@@ -37,14 +38,21 @@ const QuickFilterItem = ({ category, filterOnClick }) => {
 };
 
 QuickFilterItem.propTypes = {
-    category: PropTypes.object,
-    filterOnClick: PropTypes.function,
-  }
-  
+  category: PropTypes.object,
+  filterOnClick: PropTypes.function,
+  disabled: PropTypes.bool,
+};
+
 QuickFilterItem.defaultProps = {
-    label: 'Untitled',
-    isActive: false,
-  }
+  category: [
+    {
+      label: "Data missing",
+      isActive: false,
+    }
+  ],
+  filterOnClick: () => {},
+  disabled: false
+};
 
 export default QuickFilterItem;
 
