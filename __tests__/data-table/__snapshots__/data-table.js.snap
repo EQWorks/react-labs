@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DataTable/> should render successfully 1`] = `
+<div
+  className="MuiTableContainer-root makeStyles-root-1"
+>
+  <table
+    className="MuiTable-root MuiTable-stickyHeader"
+    role={null}
+  >
+    <thead
+      className="MuiTableHead-root"
+      role={null}
+    >
+      <tr
+        className="MuiTableRow-root MuiTableRow-head"
+        role={null}
+      />
+    </thead>
+    <tbody
+      className="MuiTableBody-root"
+      role={null}
+    />
+  </table>
+</div>
+`;
