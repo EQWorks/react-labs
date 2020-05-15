@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
 }));
-const DynamicButton = ({ disabled, addIcon, onWhichSide, size, children }) => {
+const DynamicButton = ({ disabled, addIcon, onWhichSide, size, children, onClick }) => {
   const classes = useStyles();
   const side = `${onWhichSide}` + "Icon";
   const iconProps = {
@@ -32,6 +32,7 @@ const DynamicButton = ({ disabled, addIcon, onWhichSide, size, children }) => {
       {...iconProps}
       disableRipple
       disableElevation
+      onClick={onClick}
     >
       {children}
     </Button>
@@ -42,6 +43,7 @@ DynamicButton.propTypes = {
   disabled: PropTypes.bool,
   addIcon: PropTypes.node,
   onWhichSide: PropTypes.string,
+  onClick: PropTypes.node,
   size: PropTypes.string,
   children: PropTypes.node,
 };
