@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {Table, TableHead, TableRow, TableBody, TableContainer, TableCell} from '@material-ui/core'
@@ -24,6 +24,11 @@ const DataTable = ({ data, isPercentage }) => {
   const [dynamicData, setDynamicData] = useState(data)
   const [order, setOrder] = useState(false)
   const tableHead = Object.getOwnPropertyNames(data[0] || {})
+
+  useEffect(() => {
+    setDynamicData(data)
+  },[data])
+  
 
   const dynamicSort = name => {
     setOrder(!order)
