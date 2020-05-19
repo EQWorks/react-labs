@@ -47,7 +47,7 @@
     "prop-types": "^15.7.2"
   },
   "scripts": {
-    "test": "yarn jest --testPathPattern=__tests__/ --silent",
+    "test": "yarn jest --testPathPattern=__tests__/",
     "lint": "eslint src stories __tests__",
     "lint:watch:fix": "esw --fix --watch src stories __tests__",
     "build": "babel src --out-dir dist --copy-files",
