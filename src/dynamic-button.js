@@ -61,7 +61,7 @@ DynamicButton.propTypes = {
   disabled: PropTypes.bool,
   addIcon: PropTypes.node,
   onWhichSide: PropTypes.string,
-  onClick: PropTypes.node,
+  onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
 };
