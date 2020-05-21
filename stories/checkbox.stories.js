@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-
-import { storiesOf } from "@storybook/react";
-
 import { StyledCheckbox } from "../src";
 
-storiesOf("Checkbox", module).add("Default", () => {
+export default {
+  component: StyledCheckbox,
+  title: 'Checkbox',
+};
+
+export const Default = () => {
   const [checked, setChecked] = useState(true);
   const checkOnChange = (e) => {
     setChecked(e.target.checked);
   };
-  return <StyledCheckbox disabled={true} checked={checked} onChange={checkOnChange}/>;
-});
+  return <StyledCheckbox disabled={false} checked={checked} onChange={checkOnChange}/>;
+};

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    fontSize: theme.typography.button,
     textTransform: "none",
     backgroundColor: theme.palette.primary.main,
     color: "white",
