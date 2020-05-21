@@ -71,10 +71,10 @@ const DataTable = ({ data, isPercentage }) => {
 }
 
 DataTable.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
-  isPercentage: false
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isPercentage: PropTypes.bool.isRequired
 }
 
-DataTable.defaultProps = { data: [] }
+DataTable.defaultProps = { data: [], isPercentage: false }
 
 export default DataTable
