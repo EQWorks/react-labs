@@ -27,7 +27,7 @@ storiesOf('Button', module)
   ))
   .add('Types', () => (
     <div>
-      {arr.map(({type}, index) => <DynamicButton key={index} type={type}>{type}</DynamicButton>)}
+      {arr.map(({type}, index) =><DynamicButton key={index} type={type}>{type}</DynamicButton>)}
     </div>
   ))
   .add('With an icon', () => (
