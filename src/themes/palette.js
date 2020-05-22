@@ -15,7 +15,6 @@ const palette = {
     secondary: "rgba(0, 0, 0, 0.54)",
     link: "#0076ff",
   },
-  disabled: 'rgba(0, 0, 0, 0.26)',
   background: {
     highlight: "#f2f2f2",
     paper: white,
