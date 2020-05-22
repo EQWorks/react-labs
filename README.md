@@ -1,4 +1,4 @@
-# react-labs
+# react-labs ![Master](https://github.com/EQWorks/react-labs/workflows/Master/badge.svg)
 
 A collection of common React components.
 

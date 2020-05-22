@@ -42,8 +42,14 @@ const WidgetTrend = ({title, value, percentage}) => {
 
 WidgetTrend.propTypes = {
   title: PropTypes.string,
-  value: PropTypes.number,
-  percentage: PropTypes.number
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  percentage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 }
 
 WidgetTrend.defaultProps = {

@@ -1,6 +1,7 @@
 const white = "#FFFFFF";
 const black = "#000000";
 const palette = {
+const palette = {
   type: "light",
   white,
   black,
@@ -22,5 +23,4 @@ const palette = {
     default: white,
   },
 };
-
 export default palette;

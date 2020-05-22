@@ -5,3 +5,5 @@ export { default as DataTable } from './data-table'
 export { default as QuickFilters } from './quick-filters'
 export { default as DynamicButton } from './dynamic-button'
 export { default as StyledCheckbox } from './styled-checkbox'
+export { default as DynamicDataTable } from './dynamic-data-table'
+

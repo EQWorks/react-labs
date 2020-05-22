@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import {Table, TableHead, TableRow, TableBody, TableContainer, TableCell} from '@material-ui/core'
@@ -18,12 +18,17 @@ const nameReplacer = name => {
   return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ')
 }
 
-const DataTable = ({ data, isPercentage }) => {
+const DynamicDataTable = ({ data, isPercentage }) => {
   const classes = useStyles()
 
   const [dynamicData, setDynamicData] = useState(data)
   const [order, setOrder] = useState(false)
   const tableHead = Object.getOwnPropertyNames(data[0] || {})
+
+  useEffect(() => {
+    setDynamicData(data)
+  },[data])
+  
 
   const dynamicSort = name => {
     setOrder(!order)
@@ -70,11 +75,11 @@ const DataTable = ({ data, isPercentage }) => {
   )
 }
 
-DataTable.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isPercentage: PropTypes.bool.isRequired
+DynamicDataTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+  isPercentage: false
 }
 
-DataTable.defaultProps = { data: [], isPercentage: false }
+DynamicDataTable.defaultProps = { data: [] }
 
-export default DataTable
+export default DynamicDataTable

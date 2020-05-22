@@ -8,6 +8,8 @@ import province from '../src/data/provinceData'
 
 storiesOf('DataTable', module)
   .add('Default', () => (
-    <DataTable data={province} 
-      isPercentage={true} whichColumn={3}/>
+    <DataTable/>
+  ))
+  .add('With Data', () => (
+    <DataTable data={province} isPercentage={true} whichColumn={3}/>
   ))
