@@ -2,6 +2,7 @@ import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles/colorManipulator";
 
 const checkMark =
   "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
@@ -11,6 +12,9 @@ const checkMark =
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(0.5),
+    "&&:hover": {
+      backgroundColor: "transparent",
+    },
   },
   icon: {
     borderRadius: 3,
@@ -18,8 +22,13 @@ const useStyles = makeStyles((theme) => ({
     height: 16,
     backgroundColor: "#f5f8fa",
     border: "1px solid  #9e9e9e",
+    "input:hover ~ &": {
+      border: "1px solid",
+      backgroundColor: fade(theme.palette.primary.light, 0.1),
+      color: theme.palette.primary.light,
+    },
     "input:disabled ~ &": {
-      background: "#9e9e9e",
+      background: "none",
       border: "1px solid  #9e9e9e",
     },
   },
@@ -38,12 +47,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StyledCheckbox = ({ checked, ...rest }) => {
+const StyledCheckbox = ({ checked, disabled, ...rest }) => {
+  console.log(checked);
   const classes = useStyles();
   return (
-    
     <Checkbox
+      disabled={disabled}
       disableRipple
+      checked={checked}
       className={classes.root}
       icon={<span className={classes.icon} />}
       checkedIcon={
