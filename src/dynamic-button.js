@@ -1,8 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import PropTypes from 'prop-types';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   primary: {
@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.white,
-    '&:hover': {
+    "&:hover": {
       backgroundColor: fade(theme.palette.primary.main, 0.8),
     },
-    '&:disabled': {
+    "&:disabled": {
       color: theme.palette.white,
       backgroundColor: theme.palette.disabled,
     },
@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    textTransform: 'none',
-    border: 'solid 1px',
-    backgroundColor: 'rgba(255,255,255,0)',
+    textTransform: "none",
+    border: "solid 1px",
+    backgroundColor: "rgba(255,255,255,0)",
     color: theme.palette.primary.main,
-    '&:hover': {
+    "&:hover": {
       backgroundColor: fade(theme.palette.primary.light, 0.1),
       color: theme.palette.primary.main,
     },
@@ -37,18 +37,17 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    textTransform: 'none',
-    backgroundColor: 'rgba(255,255,255,0)',
+    textTransform: "none",
+    backgroundColor: "rgba(255,255,255,0)",
     color: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: 'rgba(255,255,255,0)',
+    "&:hover": {
+      backgroundColor: "rgba(255,255,255,0)",
       color: fade(theme.palette.primary.main, 0.8),
     },
   },
 }));
-const DynamicButton = ({type, disabled, addIcon, onWhichSide, size, children, onClick }) => {
+const DynamicButton = ({ type, addIcon, onWhichSide, children, ...rest }) => {
   const classes = useStyles();
-  console.log(size);
   const side = `${onWhichSide}` + "Icon";
   const iconProps = {
     [side]: addIcon,
@@ -56,12 +55,10 @@ const DynamicButton = ({type, disabled, addIcon, onWhichSide, size, children, on
   return (
     <Button
       className={classes[type]}
-      disabled={disabled}
-      size={size}
-      {...iconProps}
       disableRipple
       disableElevation
-      onClick={onClick}
+      {...iconProps}
+      {...rest}
     >
       {children}
     </Button>
@@ -79,12 +76,13 @@ DynamicButton.propTypes = {
 };
 
 DynamicButton.defaultProps = {
-  type: 'primary',
+  type: "primary",
   disabled: false,
   addIcon: null,
   onWhichSide: "start",
   size: "medium",
   children: "Call to action",
+  onClick: ()=>alert('this is a default onClick message.'),
 };
 
 export default DynamicButton;
