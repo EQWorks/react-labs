@@ -47,6 +47,6 @@ storiesOf('Button', module)
   ))
   .add('disabled', () => (
     <div> 
-      {arr.map(({type}, index) => <DynamicButton key={index} type={type} disabled={true} addIcon={<CloudUploadIcon/>} onWhichSide='end' size='medium'>Click</DynamicButton>)}
+      {arr.map(({type}, index) => <DynamicButton key={index} type={type} disabled={true} addIcon={<CloudUploadIcon/>} onWhichSide='end' size='large'>Click</DynamicButton>)}
     </div>  
   ))
