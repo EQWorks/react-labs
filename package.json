@@ -35,7 +35,8 @@
     "jest": "^26.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "@storybook/theming": "^5.3.18"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.9.11",
@@ -44,7 +45,6 @@
     "react-dom": "^16.13.0"
   },
   "dependencies": {
-    "@storybook/theming": "^5.3.18",
     "prop-types": "^15.7.2",
     "styled-components": "^5.1.0"
   },
