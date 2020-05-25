@@ -20,6 +20,7 @@ const palette = {
     paper: white,
     default: white,
   },
+  disabled: "rgba(0, 0, 0, 0.26)"
 };
 
 export default palette;

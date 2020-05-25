@@ -15,11 +15,10 @@ export const Default = () => {
   const [value, setValue] = useState('firstItem');
   const checkOnChange = (e) => {
     setValue(e.target.value);
-  };
+  }
   const styledRadio = (
     <StyledRadio/>
-  );
-  const radio = <Radio /> 
+  )
   return (
     <RadioGroup value={value} onChange={checkOnChange}>
       <FormControlLabel
@@ -41,7 +40,7 @@ export const Default = () => {
         value="disabled"
         disabled
         control={styledRadio}
-        label="fourth item"
+        label="Fourth item"
       />
     </RadioGroup>
   );
