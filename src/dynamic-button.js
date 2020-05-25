@@ -1,42 +1,52 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import PropTypes from 'prop-types';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  primary: {
+    margin: theme.spacing(0.5),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     textTransform: "none",
     backgroundColor: theme.palette.primary.main,
-    color: 'white',
-    '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.white,
+    "&:hover": {
+      backgroundColor: fade(theme.palette.primary.main, 0.8),
+    },
+    "&:disabled": {
+      color: theme.palette.white,
+      backgroundColor: theme.palette.disabled,
     },
   },
-  disabled: {
+  secondary: {
+    margin: theme.spacing(0.5),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     textTransform: "none",
     border: "solid 1px",
+    backgroundColor: "rgba(255,255,255,0)",
     color: theme.palette.primary.main,
-    backgroundColor: 'none',
-    '&:hover': {
-      border: 'solid 1px',
+    "&:hover": {
       backgroundColor: fade(theme.palette.primary.light, 0.1),
+      color: theme.palette.primary.main,
     },
   },
   tertiary: {
     margin: theme.spacing(0.5),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    textTransform: 'none',
-    backgroundColor: 'rgba(255,255,255,0)',
+    textTransform: "none",
+    backgroundColor: "rgba(255,255,255,0)",
     color: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: 'rgba(255,255,255,0)',
-      color: theme.palette.primary.dark,
+    "&:hover": {
+      backgroundColor: "rgba(255,255,255,0)",
+      color: fade(theme.palette.primary.main, 0.8),
     },
   },
 }));
-const DynamicButton = ({ disabled, addIcon, onWhichSide, size, children, onClick }) => {
+const DynamicButton = ({ type, addIcon, onWhichSide, children, ...rest }) => {
   const classes = useStyles();
   const side = `${onWhichSide}` + "Icon";
   const iconProps = {
@@ -44,13 +54,11 @@ const DynamicButton = ({ disabled, addIcon, onWhichSide, size, children, onClick
   };
   return (
     <Button
-      className={disabled ? classes.disabled : classes.root}
-      disabled={disabled}
-      size={size}
-      {...iconProps}
+      className={classes[type]}
       disableRipple
       disableElevation
-      onClick={onClick}
+      {...iconProps}
+      {...rest}
     >
       {children}
     </Button>
@@ -58,20 +66,23 @@ const DynamicButton = ({ disabled, addIcon, onWhichSide, size, children, onClick
 };
 
 DynamicButton.propTypes = {
+  type: PropTypes.string,
   disabled: PropTypes.bool,
   addIcon: PropTypes.node,
   onWhichSide: PropTypes.string,
-  onClick: PropTypes.node,
+  onClick: PropTypes.func,
   size: PropTypes.string,
   children: PropTypes.node,
 };
 
 DynamicButton.defaultProps = {
+  type: "primary",
   disabled: false,
   addIcon: null,
   onWhichSide: "start",
   size: "medium",
   children: "Call to action",
+  onClick: ()=>alert('this is a default onClick message.'),
 };
 
 export default DynamicButton;
