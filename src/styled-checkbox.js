@@ -47,12 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StyledCheckbox = ({ checked, disabled, ...rest }) => {
+const StyledCheckbox = ({ checked, ...rest }) => {
   console.log(checked);
   const classes = useStyles();
   return (
     <Checkbox
-      disabled={disabled}
       disableRipple
       checked={checked}
       className={classes.root}
