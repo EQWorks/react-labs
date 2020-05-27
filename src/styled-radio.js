@@ -1,11 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    margin: theme.spacing(0.5),
     '&:hover': {
       backgroundColor: 'transparent',
     },
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StyledRadio = (props) => {
+const StyledRadio = props => {
   const classes = useStyles();
   return (
     <Radio

@@ -4,7 +4,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export default {
   component: StyledCheckbox,
-  title: "Checkbox",
+  title: "StyledCheckbox",
 };
 
 export const Default = () => {
