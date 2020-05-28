@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const WidgetStats = ({ title, value, prev, isPercentage, children }) => {
+const WidgetStats = ({ title, value, prev, isPercentage, children, comparedTo }) => {
   const classes = useStyles()
   const renderTrend = () => {
     if (children) {
@@ -39,7 +39,7 @@ const WidgetStats = ({ title, value, prev, isPercentage, children }) => {
           }
           {trend}%
           {trend > 0 ? ' increase ' : ' decrease '}
-          from before
+          {comparedTo}
         </Typography>
       )
     }
@@ -61,6 +61,7 @@ WidgetStats.propTypes = {
   prev: PropTypes.number,
   isPercentage: PropTypes.bool,
   children: PropTypes.object,
+  comparedTo: PropTypes.string,
 }
 
 WidgetStats.defaultProps = {
@@ -69,6 +70,7 @@ WidgetStats.defaultProps = {
   prev: null,
   isPercentage: false,
   children: null,
+  comparedTo: null
 }
 
 export default WidgetStats
