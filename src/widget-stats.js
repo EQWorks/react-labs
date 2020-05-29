@@ -19,38 +19,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const WidgetStats = ({ title, value, prev, isPercentage, children, comparedTo }) => {
+const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
   const classes = useStyles()
-  const renderTrend = () => {
-    if (children) {
-      return (
-        <Typography variant='body1'>
-          {children}
-        </Typography>
-      )
-    }
-    if (prev != null) {
-      const trend = Math.round(((value - prev) / prev) * 100).toLocaleString()
-      return (
-        <Typography variant='body1'>
-          {trend > 0
-            ? <TrendingUpRoundedIcon style={{ paddingRight: '8px', color: 'red' }}/>
-            : <TrendingDownRoundedIcon style={{ paddingRight: '8px',color: 'green' }} />
-          }
-          {trend}%
-          {trend > 0 ? ' increase ' : ' decrease '}
-          {comparedTo}
-        </Typography>
-      )
-    }
-    return null
-  }
+  const { isTrendPercentage, upIsGreen, comparedTo, up, down } = trendInfo
+  const trendColours = (upIsGreen) ? ['green', 'red'] : ['red', 'green']
+  const trend = (isTrendPercentage) 
+    ? Math.round(((value - prev) / prev) * 100).toLocaleString()
+    : Math.round(value - prev)
 
   return (
     <Paper className={classes.paper} variant='outlined'>
       <Typography className={classes.title} variant='subtitle2' gutterBottom>{title}</Typography>
-      <Typography variant='h5' gutterBottom>{value.toLocaleString()}{`${isPercentage ? `%` : '' }`}</Typography>
-      {renderTrend()}
+      <Typography variant='h5' gutterBottom>{value.toLocaleString()}{`${units}`}</Typography>
+      {children && <Typography variant='body1'>
+        {children}
+      </Typography>}
+      {prev && <Typography variant='body1'>
+        {trend > 0
+          ? <TrendingUpRoundedIcon style={{ paddingRight: '8px', color: trendColours[0] }}/>
+          : <TrendingDownRoundedIcon style={{ paddingRight: '8px',color: trendColours[1] }} />
+        }
+        {trend}{isTrendPercentage ? '%' : units}
+        {trend > 0 ? ` ${up} ` : ` ${down} `}
+        {comparedTo}
+      </Typography>}
     </Paper>
   )
 }
@@ -59,18 +51,24 @@ WidgetStats.propTypes = {
   title: PropTypes.string,
   value: PropTypes.number,
   prev: PropTypes.number,
-  isPercentage: PropTypes.bool,
+  trendInfo: PropTypes.object,
   children: PropTypes.object,
-  comparedTo: PropTypes.string,
+  units: PropTypes.string,
 }
 
 WidgetStats.defaultProps = {
   title: 'Untitled',
   value: 0,
   prev: null,
-  isPercentage: false,
+  trendInfo: {
+    isTrendPercentage: false,
+    upIsGreen: true,
+    comparedTo: '',
+    up: '',
+    down: ''
+  },
   children: null,
-  comparedTo: null
+  units: '',
 }
 
 export default WidgetStats
