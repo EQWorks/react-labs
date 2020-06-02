@@ -20,6 +20,7 @@ storiesOf('WidgetStats', module)
       title='Example Trend'
       value={(Math.random() * (100 - 1) + 1).toFixed(0)}
       prev={(Math.random() * (100 - 1) + 1).toFixed(0)}
+      units='cases'
       trendInfo={{
         isTrendPercentage: false,
         upIsGreen: true,
