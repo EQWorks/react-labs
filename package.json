@@ -25,6 +25,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@storybook/storybook-deployer": "^2.8.5",
+    "@storybook/theming": "^5.3.18",
     "@testing-library/jest-dom": "^5.7.0",
     "babel-jest": "^26.0.1",
     "babel-loader": "^8.0.6",
@@ -35,8 +36,7 @@
     "jest": "^26.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-test-renderer": "^16.13.1",
-    "@storybook/theming": "^5.3.18"
+    "react-test-renderer": "^16.13.1"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.9.11",
@@ -45,6 +45,7 @@
     "react-dom": "^16.13.0"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "styled-components": "^5.1.0"
   },

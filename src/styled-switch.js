@@ -1,70 +1,76 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { purple } from "@material-ui/core/colors";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import PropTypes from 'prop-types';
 
+const pxToRem = (px, oneRemPx = 17) => `${px / oneRemPx}rem`;
+const borderWidth = 1;
+const width = pxToRem(56);
+const height = pxToRem(34);
+const size = pxToRem(22);
+const gap = (34 - 22) / 2;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    overflow: "visible",
-    width: 36,
-    height: 16,
+    width,
+    height,
     padding: 0,
-    margin: theme.spacing(0.5),
-    display: "flex",
+    margin: theme.spacing(1),
+    overflow: 'unset',
   },
   switchBase: {
-    padding: 2,
-    color: theme.palette.grey[500],
-    "&$checked": {
-      transform: "translateX(18px)",
-      color: theme.palette.common.white,
-      "& + $track": {
+    padding: pxToRem(gap),
+    '&$checked': {
+      color: '#fff',
+      transform: `translateX(calc(${width} - ${size} - ${pxToRem(2 * gap)}))`,
+      '& + $track': {
+        backgroundColor: theme.palette.primary.main,
         opacity: 1,
-        backgroundColor: props => props.disabled ? theme.palette.grey[500] : theme.palette.primary.main,
-        borderColor: theme.palette.primary.main,
+        border: 'none',
       },
-      "&:hover": {
-        color: theme.palette.common.white,
+      '& $thumb': {
+        backgroundColor: '#fff',
       },
     },
-    "&:hover": {
-      color: theme.palette.primary.main,
-    },
-  },
-  thumb: {
-    width: 14,
-    height: 14,
-    boxShadow: "none",
+    '&:disabled':{
+      backgroundColor:'#fff',
+    }
   },
   track: {
-    border: `1px solid ${theme.palette.grey[500]}`,
-    borderRadius: 18 / 2,
+    borderRadius: 40,
+    border: `solid ${theme.palette.grey[400]}`,
+    borderWidth,
+    backgroundColor: theme.palette.grey[50],
     opacity: 1,
-    backgroundColor: theme.palette.common.white,
+    transition: theme.transitions.create(['background-color', 'border']),
+    boxSizing: 'border-box',
   },
-  checked: {
+  thumb: {
+    boxShadow: 'none',
+    backgroundColor: theme.palette.grey[400],
+    width: size,
+    height: size,
   },
+  checked: {},
+  disabled:{
+    backgroundColor: '#fff',
+    '&$checked': {
+      '& + $track':{
+        opacity: 0.5,
+      },
+      '& $thumb':{
+        opacity: 0.5,
+      },
+    },
+  }
 }));
 
 const StyledSwitch = (props) => {
-  const classes = useStyles(props);
+  const classes = useStyles();
   return (
-    <Switch
-      classes={{
-        root: classes.root,
-        switchBase: classes.switchBase,
-        input: classes.input,
-        thumb: classes.thumb,
-        track: classes.track,
-        checked: classes.checked,
-      }}
-      {...props}
+    <Switch 
+    classes={classes}
+    {...props}
     />
   );
 };
@@ -78,3 +84,5 @@ StyledSwitch.defaultProps = {
 }
 
 export default StyledSwitch;
+
+

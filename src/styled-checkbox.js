@@ -13,7 +13,7 @@ const checkMark =
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(0.5),
-    "&&:hover": {
+    "&:hover": {
       backgroundColor: "transparent",
     },
   },
