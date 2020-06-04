@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import StyledSwitch from "../src/styled-switch";
+import StyledCheckbox  from "../src/styled-checkbox";
 import { FormControlLabel, FormGroup } from "@material-ui/core";
 
 export default {

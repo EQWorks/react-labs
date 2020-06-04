@@ -13,7 +13,7 @@ const checkMark =
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(0.5),
-    "&:hover": {
+    "&&:hover": {
       backgroundColor: "transparent",
     },
   },
@@ -21,16 +21,21 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 3,
     width: 16,
     height: 16,
-    backgroundColor: "#f5f8fa",
-    border: "1px solid  #9e9e9e",
+    backgroundColor: theme.palette.grey[50],
+    border: "1px solid",
+    borderColor: theme.palette.grey[400],
     "input:hover ~ &": {
+      transition: 'all .2s',
       border: "1px solid",
-      backgroundColor: fade(theme.palette.primary.light, 0.1),
-      color: theme.palette.primary.light,
+      borderColor: theme.palette.locusBlue[100],
+      backgroundColor: theme.palette.hoverOnWhite,
+      color: theme.palette.hoverOnWhite,
     },
     "input:disabled ~ &": {
-      background: "none",
-      border: "1px solid  #9e9e9e",
+      opacity: 0.5,
+      pointerEvents: 'none',
+     // background: "none",
+     // border: "1px solid  #9e9e9e",
     },
   },
   checkedIcon: {
@@ -40,10 +45,17 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid  rgba(0,0,0,0)",
     backgroundColor: theme.palette.primary.main,
     backgroundImage: checkMark,
+    "input:hover ~ &": {
+      transition: 'all .2s',
+      border: "1px solid",
+      borderColor: theme.palette.hoverOnPrimary,
+      backgroundColor: theme.palette.hoverOnPrimary,
+    },
     "input:disabled ~ &": {
-      backgroundImage: checkMark,
-      background: "#9e9e9e",
-      border: "1px solid  #9e9e9e",
+      opacity: 0.5,
+      //backgroundImage: checkMark,
+      //background: "#9e9e9e",
+      //border: "1px solid  #9e9e9e",
     },
   },
 }));

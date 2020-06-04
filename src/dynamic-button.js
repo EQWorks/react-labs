@@ -11,13 +11,13 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     textTransform: "none",
     backgroundColor: theme.palette.primary.main,
-    color: theme.palette.white,
+    color: theme.palette.common.white,
     "&:hover": {
-      backgroundColor: fade(theme.palette.primary.main, 0.8),
+      backgroundColor: theme.palette.hoverOnPrimary,
     },
     "&:disabled": {
-      color: theme.palette.white,
-      backgroundColor: theme.palette.disabled,
+      color: theme.palette.common.white,
+      opacity: 0.5,
     },
   },
   secondary: {
@@ -26,10 +26,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     textTransform: "none",
     border: "solid 1px",
-    backgroundColor: "rgba(255,255,255,0)",
     color: theme.palette.primary.main,
     "&:hover": {
-      backgroundColor: fade(theme.palette.primary.light, 0.1),
+      backgroundColor: theme.palette.hoverOnWhite,
+      color: theme.palette.primary.main,
+    },
+    "&:disabled": {
+      opacity: 0.5,
+      border: "solid 1px",
       color: theme.palette.primary.main,
     },
   },
@@ -42,7 +46,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     "&:hover": {
       backgroundColor: "rgba(255,255,255,0)",
-      color: fade(theme.palette.primary.main, 0.8),
+      color: theme.palette.hoverOnPrimary,
+    },
+    "&:disabled": {
+      opacity: 0.5,
+      color: theme.palette.primary.main,
     },
   },
 }));

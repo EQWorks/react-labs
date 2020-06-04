@@ -14,20 +14,23 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50%',
     width: 16,
     height: 16,
-    boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-    backgroundColor: '#f5f8fa',
-    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+    border: '1px solid',
+    borderColor: theme.palette.grey[400],
+    backgroundColor: theme.palette.grey[50],
+    //backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
     'input:hover ~ &': {
-      backgroundColor: '#ebf1f5',
+      transition: 'all .3s',
+      backgroundColor: theme.palette.hoverOnWhite,
+      borderColor: theme.palette.locusBlue[100],
     },
     'input:disabled ~ &': {
-      boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
-      background: 'transparent',
+      opacity: 0.5,
     },
   },
   checkedIcon: {
     borderRadius: '50%',
     backgroundColor: theme.palette.primary.main,
+    borderColor: theme.palette.primary.main,
     backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
     '&:before': {
       display: 'block',
@@ -37,11 +40,11 @@ const useStyles = makeStyles(theme => ({
       content: '""',
     },
     'input:hover ~ &': {
-      backgroundColor: theme.palette.primary.light,
+      backgroundColor: theme.palette.hoverOnPrimary,
+      borderColor: theme.palette.hoverOnPrimary,
     },
     'input:disabled ~ &': {
-      backgroundColor: theme.palette.disabled,
-      
+      opacity: 0.5,
     },
   },
 }));
