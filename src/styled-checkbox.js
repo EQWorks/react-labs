@@ -2,8 +2,6 @@ import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-
 
 const checkMark =
   "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
@@ -34,8 +32,6 @@ const useStyles = makeStyles((theme) => ({
     "input:disabled ~ &": {
       opacity: 0.5,
       pointerEvents: 'none',
-     // background: "none",
-     // border: "1px solid  #9e9e9e",
     },
   },
   checkedIcon: {
@@ -53,15 +49,11 @@ const useStyles = makeStyles((theme) => ({
     },
     "input:disabled ~ &": {
       opacity: 0.5,
-      //backgroundImage: checkMark,
-      //background: "#9e9e9e",
-      //border: "1px solid  #9e9e9e",
     },
   },
 }));
 
 const StyledCheckbox = ({ checked, ...rest }) => {
-  console.log(checked);
   const classes = useStyles();
   return (
     <Checkbox

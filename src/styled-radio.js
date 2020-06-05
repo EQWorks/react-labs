@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid',
     borderColor: theme.palette.grey[400],
     backgroundColor: theme.palette.grey[50],
-    //backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
     'input:hover ~ &': {
       transition: 'all .3s',
       backgroundColor: theme.palette.hoverOnWhite,

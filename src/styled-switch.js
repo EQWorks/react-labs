@@ -69,8 +69,8 @@ const StyledSwitch = (props) => {
   const classes = useStyles();
   return (
     <Switch 
-    classes={classes}
-    {...props}
+      classes={classes}
+      {...props}
     />
   );
 };

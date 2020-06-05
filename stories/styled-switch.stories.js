@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import StyledSwitch from "../src/styled-switch";
-import StyledCheckbox  from "../src/styled-checkbox";
 import { FormControlLabel, FormGroup } from "@material-ui/core";
 
 export default {
@@ -16,7 +15,7 @@ export const Default = () => {
         control={<StyledSwitch/>}
         label="Default"
       />
-       <FormControlLabel
+      <FormControlLabel
         value="firstItem"
         control={<StyledSwitch checked={true} disabled/>}
         label="Checked + Disabled"
