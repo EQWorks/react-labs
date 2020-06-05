@@ -2,7 +2,6 @@ import React from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { fade } from "@material-ui/core/styles/colorManipulator";
 
 const checkMark =
   "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
@@ -20,16 +19,19 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 3,
     width: 16,
     height: 16,
-    backgroundColor: "#f5f8fa",
-    border: "1px solid  #9e9e9e",
+    backgroundColor: theme.palette.grey[50],
+    border: "1px solid",
+    borderColor: theme.palette.grey[400],
     "input:hover ~ &": {
+      transition: 'all .2s',
       border: "1px solid",
-      backgroundColor: fade(theme.palette.primary.light, 0.1),
-      color: theme.palette.primary.light,
+      borderColor: theme.palette.locusBlue[100],
+      backgroundColor: theme.palette.hoverOnWhite,
+      color: theme.palette.hoverOnWhite,
     },
     "input:disabled ~ &": {
-      background: "none",
-      border: "1px solid  #9e9e9e",
+      opacity: 0.5,
+      pointerEvents: 'none',
     },
   },
   checkedIcon: {
@@ -39,20 +41,22 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid  rgba(0,0,0,0)",
     backgroundColor: theme.palette.primary.main,
     backgroundImage: checkMark,
+    "input:hover ~ &": {
+      transition: 'all .2s',
+      border: "1px solid",
+      borderColor: theme.palette.hoverOnPrimary,
+      backgroundColor: theme.palette.hoverOnPrimary,
+    },
     "input:disabled ~ &": {
-      backgroundImage: checkMark,
-      background: "#9e9e9e",
-      border: "1px solid  #9e9e9e",
+      opacity: 0.5,
     },
   },
 }));
 
-const StyledCheckbox = ({ checked, disabled, ...rest }) => {
-  console.log(checked);
+const StyledCheckbox = ({ checked, ...rest }) => {
   const classes = useStyles();
   return (
     <Checkbox
-      disabled={disabled}
       disableRipple
       checked={checked}
       className={classes.root}
