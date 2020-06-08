@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useMemo, Children } from 'react'
 import PropTypes from 'prop-types'
 
-import { Table as MUITable, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
+import {
+  Table as MUITable,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { useTable } from 'react-table'
+import { useTable, useSortBy } from 'react-table'
 
 import TableColumn from './table-column'
 
@@ -42,7 +49,7 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns: _cols, data: _data })
+  } = useTable({ columns: _cols, data: _data }, useSortBy)
 
   return (
     <MUITable {...getTableProps(tableProps)}>
@@ -50,8 +57,16 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
         {headerGroups.map((headerGroup, i) => (
           <TableRow key={i} {...headerGroup.getHeaderGroupProps(headerGroupProps)}>
             {headerGroup.headers.map((column, i) => (
-              <TableCell key={i} {...column.getHeaderProps()} className={classes.head}>
+              <TableCell
+                key={i}
+                className={classes.head}
+                {...column.getHeaderProps(column.getSortByToggleProps())}
+              >
                 {column.render('Header')}
+                <TableSortLabel
+                  active={column.isSorted}
+                  direction={column.isSortedDesc ? 'desc' : 'asc'}
+                />
               </TableCell>
             ))}
           </TableRow>
