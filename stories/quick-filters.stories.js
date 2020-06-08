@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 
 import { QuickFilters } from "../src";
 
-import categories from "../src/data/categoriesData";
+import categories from "./data/categories";
 
 
 

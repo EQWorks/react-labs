@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 
 import { DataTable } from '../src'
 
-import province from '../src/data/provinceData'
+import province from './data/provinces'
 
 storiesOf('DataTable', module)
   .add('Default', () => (
