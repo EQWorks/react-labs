@@ -22,6 +22,11 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
+const getHeader = (s) => [
+  s.charAt(0).toUpperCase(),
+  s.slice(1).replace(/_/g, ' '),
+].join('')
+
 const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
   const classes = useStyles()
   const [autoCols, setAutoCols] = useState(columns || [])
@@ -30,7 +35,7 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
     if (!children && !columns) {
       setAutoCols(Object.keys(data[0] || {}).map((accessor) => ({
         accessor,
-        Header: String(accessor).toLocaleUpperCase(),
+        Header: getHeader(accessor),
       })))
     } else if (Array.isArray(columns) && columns.length > 0) {
       setAutoCols(columns)

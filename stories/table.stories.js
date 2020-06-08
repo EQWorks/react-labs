@@ -13,7 +13,7 @@ storiesOf('Table', module)
   .add('With { data }', () => (
     <Table data={provinces} />
   ))
-  .add('With { data, columns }', () => (
+  .add('With { data, columns, tableProps }', () => (
     <Table
       data={provinces}
       columns={[
