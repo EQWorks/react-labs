@@ -2,12 +2,21 @@ import React, { useState, useEffect, useMemo, Children } from 'react'
 import PropTypes from 'prop-types'
 
 import { Table as MUITable, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import { useTable } from 'react-table'
 
 import TableColumn from './table-column'
 
 
-const Table = ({ columns, data, children }) => {
+const useStyles = makeStyles(() => ({
+  head: {
+    fontSize: 'body',
+    fontWeight: 600,
+  },
+}))
+
+const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
+  const classes = useStyles()
   const [autoCols, setAutoCols] = useState(columns || [])
   const _data = useMemo(() => data, [data])
   useEffect(() => {
@@ -27,22 +36,28 @@ const Table = ({ columns, data, children }) => {
     }
   }, [columns, data, children])
   const _cols = useMemo(() => autoCols, [autoCols])
-  const { getTableProps, headerGroups, rows, prepareRow } = useTable({ columns: _cols, data: _data })
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({ columns: _cols, data: _data })
 
   return (
-    <MUITable {...getTableProps()}>
+    <MUITable {...getTableProps(tableProps)}>
       <TableHead>
         {headerGroups.map((headerGroup, i) => (
-          <TableRow key={i} {...headerGroup.getHeaderGroupProps()}>
+          <TableRow key={i} {...headerGroup.getHeaderGroupProps(headerGroupProps)}>
             {headerGroup.headers.map((column, i) => (
-              <TableCell key={i} {...column.getHeaderProps()}>
+              <TableCell key={i} {...column.getHeaderProps()} className={classes.head}>
                 {column.render('Header')}
               </TableCell>
             ))}
           </TableRow>
         ))}
       </TableHead>
-      <TableBody>
+      <TableBody {...getTableBodyProps()}>
         {rows.map((row, i) => {
           prepareRow(row)
           return (
@@ -70,11 +85,15 @@ Table.propTypes = {
   columns: childrenColumnCheck,
   children: childrenColumnCheck,
   data: PropTypes.array,
+  tableProps: PropTypes.object,
+  headerGroupProps: PropTypes.object,
 }
 Table.defaultProps = {
   columns: null,
   children: null,
   data: [],
+  tableProps: {},
+  headerGroupProps: {},
 }
 Table.Column = TableColumn
 
