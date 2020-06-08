@@ -20,7 +20,7 @@ storiesOf('Table', module)
         { Header: 'New Cases', accessor: 'new_cases' },
         { Header: 'Total Cases', accessor: 'total_cases' },
         { Header: 'Province', accessor: 'province' },
-        { Header: 'Rate', accessor: 'rate' },
+        { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
       ]}
     />
   ))
@@ -29,6 +29,6 @@ storiesOf('Table', module)
       <Table.Column Header='New Cases' accessor='new_cases' />
       <Table.Column Header='Total Cases' accessor='total_cases' />
       <Table.Column Header='Province' accessor='province' />
-      <Table.Column Header='Rate' accessor='rate'  />
+      <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
     </Table>
   ))
