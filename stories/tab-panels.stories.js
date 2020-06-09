@@ -42,7 +42,7 @@ const customTab = theme => ({
 
 storiesOf('TabPanel', module)
   .add('Default', () => <TabPanels tabLabels={labelArr} tabChildren={tabsArr} />)
-  .add('With Custom Styles', () => <TabPanels
+  .add('Example CustomStyles', () => <TabPanels
     customStyles
     customTabs={customTabs}
     customTab={customTab}
