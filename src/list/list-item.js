@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {ListItem, ListItemText, ListItemSecondaryAction, ListItemAvatar, Grid, Collapse, Avatar, IconButton, LinearProgress} from '@material-ui/core';
+import {ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  ListItemAvatar,
+  Grid,
+  Collapse,
+  Avatar,
+  IconButton,
+  LinearProgress} from '@material-ui/core';
 import {ExpandLess, ExpandMore, FiberManualRecord} from '@material-ui/icons';
 
 
@@ -39,7 +47,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DefaultListItem = ({itemSecondaryAction, onClick, selected, button, focusSelect, avatar, avatarVariant='circular', avatarSize, avatarColor, heading, details, expand, expansionDetails, timeStatus, progressBar, ...props}) => {
+const DefaultListItem = ({
+  itemSecondaryAction,
+  onClick,
+  selected,
+  button,
+  focusSelect,
+  avatar,
+  avatarVariant='circular',
+  avatarSize,
+  avatarColor,
+  heading,
+  details,
+  expand,
+  expansionDetails,
+  timeStatus,
+  progressBar,
+  ...props
+}) => {
   const classes = useStyles()
 
   const [open, setOpen] = useState(false)
