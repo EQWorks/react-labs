@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {List, Divider} from '@material-ui/core';
+import React, {useState} from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import MUIList from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
 import PropTypes from 'prop-types'
 
-import DefaultListItem from './list-item'
+import ListItem from './list-item'
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DefaultList = ({
+const List = ({
   width,
   onItemClick,
   divider,
@@ -30,40 +31,29 @@ const DefaultList = ({
   const classes = useStyles()
   const [selected, setSelected] = useState(button && focusSelect ? 0 : false)
 
-  const inputStyles = {
-    width: width
-  }
+  const inputStyles = { width }
 
   // move selected with data to parent level
   return (
-    <List className={classes.root} style={{ ...inputStyles }} disablePadding>
+    <MUIList className={classes.root} style={{ ...inputStyles }} disablePadding>
       {data.map((data, i) => (
-        <>
-          <DefaultListItem
+        <div key={i}>
+          <ListItem
             itemSecondaryAction={data.secondaryAction}
             onClick={() => {if (button) {setSelected(i)} return onItemClick(data, i)}}
             button={button}
             selected={selected === i}
             focusSelect={focusSelect}
-            avatar={data.avatar}
-            avatarVariant={data.avatarVariant}
-            avatarSize={data.avatarSize}
-            avatarColor={data.avatarColor}
-            heading={data.heading}
-            details={data.details}
-            expand={data.expand}
-            expansionDetails={data.expansionDetails}
-            timeStatus={data.timeStatus}
-            progressBar={data.progressBar}
+            {...data}
           />
           {divider && <Divider />}
-        </>
+        </div>
       ))}
-    </List>
-  );
+    </MUIList>
+  )
 }
 
-DefaultList.propTypes = {
+List.propTypes = {
   width: PropTypes.string,
   onItemClick: PropTypes.func,
   divider: PropTypes.bool,
@@ -72,8 +62,8 @@ DefaultList.propTypes = {
   data: PropTypes.array,
 }
 
-DefaultList.defaultProps = {
+List.defaultProps = {
   width: '500px',
 }
 
-export default DefaultList
+export default List
