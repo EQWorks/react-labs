@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {ListItem,
+import {
+  ListItem,
   ListItemText,
   ListItemSecondaryAction,
   ListItemAvatar,
@@ -8,8 +9,10 @@ import {ListItem,
   Collapse,
   Avatar,
   IconButton,
-  LinearProgress} from '@material-ui/core';
+  LinearProgress
+} from '@material-ui/core';
 import {ExpandLess, ExpandMore, FiberManualRecord} from '@material-ui/icons';
+import PropTypes from 'prop-types'
 
 
 const useStyles = makeStyles(theme => ({
@@ -54,7 +57,7 @@ const DefaultListItem = ({
   button,
   focusSelect,
   avatar,
-  avatarVariant='circular',
+  avatarVariant,
   avatarSize,
   avatarColor,
   heading,
@@ -63,22 +66,15 @@ const DefaultListItem = ({
   expansionDetails,
   timeStatus,
   progressBar,
-  ...props
 }) => {
   const classes = useStyles()
-
   const [open, setOpen] = useState(false)
-
-  const showDetails = () => {
-    setOpen(!open)
-  }
+  const showDetails = () => setOpen(!open)
 
   const itemHeading = (heading, progressBar) => {
     return (
       <Grid container alignItems='center' spacing={1}>
-        <Grid item xs={progressBar ? 2.5 : 12} >
-          {heading}
-        </Grid>
+        <Grid item xs={progressBar ? 2.5 : 12} >{ heading }</Grid>
         {progressBar && 
           <Grid item xs={6} >
             <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
@@ -89,36 +85,69 @@ const DefaultListItem = ({
 
   return (
     <>
-    <ListItem style={{backgroundColor: open && '#f5f5f5'}} onClick={onClick} selected={selected} button={button} disableGutters disableRipple className={selected ? classes.root : focusSelect ? classes.notSelected : classes.root }>
-      {avatar && 
+      <ListItem
+        style={{backgroundColor: open && '#f5f5f5'}}
+        onClick={onClick}
+        selected={selected}
+        button={button}
+        disableGutters
+        disableRipple
+        className={selected ? classes.root : focusSelect ? classes.notSelected : classes.root }
+      >
+        {avatar && 
         <ListItemAvatar>
-        <Avatar variant={avatarVariant} className={classes[avatarSize]} style={{backgroundColor: avatarColor}}>
-          {avatar}
-        </Avatar>
-      </ListItemAvatar>
-      }
-      <ListItemText
-        primary={itemHeading(heading, progressBar)}
-        secondary={details}
-      />
-      {itemSecondaryAction && <ListItemSecondaryAction>{itemSecondaryAction}</ListItemSecondaryAction>}
-      <Grid container xs={2} >
-        <Grid item container justify='flex-end' xs={12}>
-          {timeStatus ? <div><FiberManualRecord className={classes.complete} />&nbsp;&nbsp;{timeStatus} ago</div> : null}
+          <Avatar variant={avatarVariant} className={classes[avatarSize]} style={{backgroundColor: avatarColor}}>
+            {avatar}
+          </Avatar>
+        </ListItemAvatar>
+        }
+        <ListItemText
+          primary={itemHeading(heading, progressBar)}
+          secondary={details}
+        />
+        {itemSecondaryAction && <ListItemSecondaryAction>{itemSecondaryAction}</ListItemSecondaryAction>}
+        <Grid container xs={2} >
+          <Grid item container justify='flex-end' xs={12}>
+            {timeStatus ? <div><FiberManualRecord className={classes.complete} />&nbsp;&nbsp;{timeStatus} ago</div> : null}
+          </Grid>
+          <Grid item container justify='flex-end' xs={12} >
+            {expand
+              ? open
+                ? <IconButton disableFocusRipple disableRipple onClick={showDetails}><ExpandLess /></IconButton>
+                : <IconButton disableFocusRipple disableRipple onClick={showDetails}><ExpandMore /></IconButton>
+              : null}
+          </Grid>
         </Grid>
-        <Grid item container justify='flex-end' xs={12} >
-          {expand ? open ? <IconButton disableFocusRipple disableRipple onClick={showDetails}><ExpandLess /></IconButton> : <IconButton disableFocusRipple disableRipple onClick={showDetails}><ExpandMore /></IconButton> : null}
-        </Grid>
-      </Grid>
-    </ListItem>
-    <Collapse in={open} timeout="auto" unmountOnExit  style={{backgroundColor: '#f5f5f5'}}>
-      <ListItem>
-        {expansionDetails}
       </ListItem>
-    </Collapse>
+      <Collapse in={open} timeout="auto" unmountOnExit  style={{backgroundColor: '#f5f5f5'}}>
+        <ListItem>
+          {expansionDetails}
+        </ListItem>
+      </Collapse>
     </>
   )
 }
 
+DefaultListItem.propTypes = {
+  itemSecondaryAction: PropTypes.any,
+  onClick: PropTypes.func,
+  selected: PropTypes.bool,
+  button: PropTypes.bool,
+  focusSelect: PropTypes.bool,
+  avatar: PropTypes.bool,
+  avatarVariant: PropTypes.string,
+  avatarSize: PropTypes.string,
+  avatarColor: PropTypes.string,
+  heading: PropTypes.string,
+  details: PropTypes.string,
+  expand: PropTypes.bool,
+  expansionDetails: PropTypes.any,
+  timeStatus: PropTypes.string,
+  progressBar: PropTypes.number,
+}
+
+DefaultListItem.defaultProps = {
+  avatarVariant: 'curcular',
+}
 export default DefaultListItem
 

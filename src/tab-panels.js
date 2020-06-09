@@ -23,7 +23,7 @@ const TabPanels = ({ tabIndex, tabLabels, tabChildren, customStyles, customTabs,
         {tabLabels.length > 0 && tabLabels.map(label => <TabComponent key={label} label={label} />)}
       </TabsComponent>
 
-      {tabChildren.length > 0 && tabChildren.map((child, i) => <TabPanel key={i} value={value} index={i}>{child}</TabPanel>)}
+      {tabChildren.length > 0 && tabChildren.map((child, i) => <TabPanel key={i} value={value} index={i}>{child.content || child}</TabPanel>)}
     </>
   )
 }
@@ -33,8 +33,8 @@ TabPanels.propTypes = {
   tabLabels: PropTypes.array,
   tabChildren: PropTypes.array,
   customStyles: PropTypes.bool,
-  customTabs: PropTypes.func,
-  customTab: PropTypes.func,
+  customTabs: PropTypes.any,
+  customTab: PropTypes.any,
 }
 
 TabPanels.defaultProps = {
