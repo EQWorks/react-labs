@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2020-06-10
+### Added
+- `<Table />` component, based on `react-table` hooks and MUI Table components.
 
 ## [0.5.1] - 2020-05-15
 ### Added
