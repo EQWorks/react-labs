@@ -99,7 +99,12 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
                     active={column.isSorted}
                     direction={column.isSortedDesc ? 'desc' : 'asc'}
                   />
-                  <TableHideLabel onHide={() => { toggleHideColumn(column.id) }} />
+                  <TableHideLabel
+                    onHide={(e) => {
+                      e.stopPropagation()
+                      toggleHideColumn(column.id) }
+                    }
+                  />
                 </TableCell>
               ))}
             </TableRow>
