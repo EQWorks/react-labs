@@ -12,10 +12,11 @@ import Chip from '@material-ui/core/Chip'
 import Toolbar from '@material-ui/core/Toolbar'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import { makeStyles } from '@material-ui/core/styles'
-import { useTable, useSortBy } from 'react-table'
+import { useTable, useSortBy, useGlobalFilter } from 'react-table'
 
 import TableColumn from './table-column'
 import TableHideLabel from './table-hide-label'
+import Search from './search'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(0.5),
     },
+  },
+  search: {
+    marginLeft: 'auto',
+    marginRight: 0,
   },
 }))
 
@@ -66,8 +71,18 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
     allColumns,
     prepareRow,
     toggleHideColumn,
-    state: { hiddenColumns },
-  } = useTable({ columns: _cols, data: _data }, useSortBy)
+    setGlobalFilter,
+    preGlobalFilteredRows,
+    state: { hiddenColumns, globalFilter },
+  } = useTable(
+    {
+      columns: _cols,
+      data: _data,
+    },
+    // plugin hooks
+    useGlobalFilter,
+    useSortBy,
+  )
 
   return (
     <TableContainer>
@@ -87,6 +102,12 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
             ))}
           </div>
         )}
+        <div className={classes.search}>
+          <Search
+            preGlobalFilteredRows={preGlobalFilteredRows}
+            setGlobalFilter={setGlobalFilter} globalFilter={globalFilter}
+          />
+        </div>
       </Toolbar>
       <MUITable {...getTableProps(tableProps)}>
         <TableHead>
