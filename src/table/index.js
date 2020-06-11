@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
 import Chip from '@material-ui/core/Chip'
+import Toolbar from '@material-ui/core/Toolbar'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTable, useSortBy } from 'react-table'
@@ -65,25 +66,28 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
     allColumns,
     prepareRow,
     toggleHideColumn,
+    state: { hiddenColumns },
   } = useTable({ columns: _cols, data: _data }, useSortBy)
-  const hiddenColumns = allColumns.filter((c) => !c.isVisible)
 
   return (
     <TableContainer>
-      {hiddenColumns.length > 0 && (
-        <div className={classes.toggles}>
-          {hiddenColumns.map((column) => (
-            <Chip
-              key={column.id}
-              variant='outlined'
-              label={column.Header}
-              deleteIcon={<VisibilityIcon />}
-              onDelete={() => { toggleHideColumn(column.id) }}
-              onClick={() => { toggleHideColumn(column.id) }}
-            />
-          ))}
-        </div>
-      )}
+      <Toolbar>
+        {hiddenColumns.length > 0 && (
+          <div className={classes.toggles}>
+            {allColumns.filter((c) => hiddenColumns.includes(c.id)).map((column) => (
+              <Chip
+                size='small'
+                key={column.id}
+                variant='outlined'
+                label={column.Header}
+                deleteIcon={<VisibilityIcon />}
+                onDelete={() => { toggleHideColumn(column.id) }}
+                onClick={() => { toggleHideColumn(column.id) }}
+              />
+            ))}
+          </div>
+        )}
+      </Toolbar>
       <MUITable {...getTableProps(tableProps)}>
         <TableHead>
           {headerGroups.map((headerGroup, i) => (
