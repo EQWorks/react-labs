@@ -2,6 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 
+import Paper from '@material-ui/core/Paper'
 import { Table } from '../src'
 
 import provinces from './data/provinces'
@@ -35,4 +36,9 @@ storiesOf('Table', module)
       <Table.Column Header='Province' accessor='province' />
       <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
     </Table>
+  ))
+  .add('Wrapped by MUI <Paper />', () => (
+    <Paper>
+      <Table data={provinces} />
+    </Paper>
   ))

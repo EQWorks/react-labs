@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo, Children } from 'react'
 import PropTypes from 'prop-types'
 
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 import TableContainer from '@material-ui/core/TableContainer'
 import MUITable from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
@@ -8,11 +11,17 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
+import TablePagination from '@material-ui/core/TablePagination'
 import Chip from '@material-ui/core/Chip'
 import Toolbar from '@material-ui/core/Toolbar'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import { makeStyles } from '@material-ui/core/styles'
-import { useTable, useSortBy, useGlobalFilter } from 'react-table'
+import {
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  usePagination,
+} from 'react-table'
 
 import TableColumn from './table-column'
 import TableHideLabel from './table-hide-label'
@@ -67,25 +76,29 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     allColumns,
     prepareRow,
     toggleHideColumn,
     setGlobalFilter,
     preGlobalFilteredRows,
-    state: { hiddenColumns, globalFilter },
+    setPageSize,
+    gotoPage,
+    visibleColumns,
+    state: { hiddenColumns, globalFilter, pageSize, pageIndex },
   } = useTable(
     {
       columns: _cols,
       data: _data,
     },
-    // plugin hooks
+    // plugin hooks - order matters
     useGlobalFilter,
     useSortBy,
+    usePagination,
   )
 
   return (
-    <TableContainer>
+    <>
       <Toolbar>
         {hiddenColumns.length > 0 && (
           <div className={classes.toggles}>
@@ -109,48 +122,82 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
           />
         </div>
       </Toolbar>
-      <MUITable {...getTableProps(tableProps)}>
-        <TableHead>
-          {headerGroups.map((headerGroup, i) => (
-            <TableRow key={i} {...headerGroup.getHeaderGroupProps(headerGroupProps)}>
-              {headerGroup.headers.map((column, i) => (
-                <TableCell
-                  key={i}
-                  className={classes.head}
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                >
-                  {column.render('Header')}
-                  <TableSortLabel
-                    active={column.isSorted}
-                    direction={column.isSortedDesc ? 'desc' : 'asc'}
-                  />
-                  <TableHideLabel
-                    onHide={(e) => {
-                      e.stopPropagation()
-                      toggleHideColumn(column.id) }
-                    }
-                  />
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableHead>
-        <TableBody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
-            prepareRow(row)
-            return (
-              <TableRow key={i} {...row.getRowProps()}>
-                {row.cells.map((cell, i) => (
-                  <TableCell key={i} {...cell.getCellProps()}>
-                    {cell.render('Cell')}
-                  </TableCell>
+      {visibleColumns.length > 0 ? (
+        <>
+          <TableContainer>
+            <MUITable {...getTableProps(tableProps)}>
+              <TableHead>
+                {headerGroups.map((headerGroup, i) => (
+                  <TableRow key={i} {...headerGroup.getHeaderGroupProps(headerGroupProps)}>
+                    {headerGroup.headers.map((column, i) => (
+                      <TableCell
+                        key={i}
+                        className={classes.head}
+                        {...column.getHeaderProps(column.getSortByToggleProps())}
+                      >
+                        {column.render('Header')}
+                        <TableSortLabel
+                          active={column.isSorted}
+                          direction={column.isSortedDesc ? 'desc' : 'asc'}
+                        />
+                        <TableHideLabel
+                          onHide={(e) => {
+                            e.stopPropagation()
+                            toggleHideColumn(column.id) }
+                          }
+                        />
+                      </TableCell>
+                    ))}
+                  </TableRow>
                 ))}
-              </TableRow>
-            )
-          })}
-        </TableBody>
-      </MUITable>
-    </TableContainer>
+              </TableHead>
+              <TableBody {...getTableBodyProps()}>
+                {page.map((row, i) => {
+                  prepareRow(row)
+                  return (
+                    <TableRow key={i} {...row.getRowProps()}>
+                      {row.cells.map((cell, i) => (
+                        <TableCell key={i} {...cell.getCellProps()}>
+                          {cell.render('Cell')}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  )
+                })}
+              </TableBody>
+            </MUITable>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[
+              5,
+              10,
+              25,
+              { label: 'All', value: data.length },
+            ]}
+            colSpan={3}
+            count={data.length}
+            rowsPerPage={pageSize}
+            page={pageIndex}
+            SelectProps={{
+              inputProps: { 'aria-label': 'rows per page' },
+              native: true,
+            }}
+            onChangePage={(_, page) => { gotoPage(page) }}
+            onChangeRowsPerPage={({ target: { value }}) => {
+              setPageSize(Number(value))
+            }}
+          />
+        </>
+      ) : (
+        <Card>
+          <CardContent>
+            <Typography variant='h5' component='h5'>
+              No visible columns
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
+    </>
   )
 }
 
