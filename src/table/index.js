@@ -155,12 +155,14 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
                           active={column.isSorted}
                           direction={column.isSortedDesc ? 'desc' : 'asc'}
                         />
-                        <TableHideLabel
-                          onHide={(e) => {
-                            e.stopPropagation()
-                            toggleHideColumn(column.id) }
-                          }
-                        />
+                        {!column.noToggle && (
+                          <TableHideLabel
+                            onHide={(e) => {
+                              e.stopPropagation()
+                              toggleHideColumn(column.id) }
+                            }
+                          />
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>

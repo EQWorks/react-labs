@@ -43,7 +43,13 @@ storiesOf('Table', module)
     </Paper>
   ))
   .add('With { downloadable = false }', () => (
-    <Paper>
-      <Table data={provinces} downloadable={false} />
-    </Paper>
+    <Table data={provinces} downloadable={false} />
+  ))
+  .add('With some Table.Column { noToggle = true }', () => (
+    <Table data={provinces}>
+      <Table.Column Header='New cases' accessor='new_cases' noToggle={true} />
+      <Table.Column Header='Total cases' accessor='total_cases' />
+      <Table.Column Header='Province' accessor='province' noToggle={true} />
+      <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
+    </Table>
   ))
