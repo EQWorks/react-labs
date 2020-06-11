@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import { fade, makeStyles } from '@material-ui/core/styles'
+import { useAsyncDebounce } from 'react-table'
 
 const useStyles = makeStyles(theme => ({
   search: {
@@ -53,6 +54,10 @@ const Search = ({
   setGlobalFilter,
 }) => {
   const classes = useStyles()
+  const [value, setValue] = useState(globalFilter)
+  const onChange = useAsyncDebounce(value => {
+    setGlobalFilter(value || undefined)
+  }, 200)
 
   // Global filter only works with pagination from the first page.
   // This may not be a problem for server side pagination when
@@ -64,8 +69,11 @@ const Search = ({
         <SearchIcon />
       </div>
       <InputBase
-        value={globalFilter || ''}
-        onChange={(e) => { setGlobalFilter(e.target.value || undefined) }}
+        value={value || ''}
+        onChange={({ target: { value } }) => {
+          setValue(value) // real-time for show
+          onChange(value) // debounced for perf
+        }}
         placeholder={`${preGlobalFilteredRows.length} records...`}
         classes={{
           root: classes.inputRoot,
