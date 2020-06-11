@@ -13,7 +13,6 @@ import SaveIcon from '@material-ui/icons/Save'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
 
-
 const saveData = ({ data, columns, visibleColumns, saveVisible = false }) => {
   const cols = (saveVisible && visibleColumns.length > 0) ? visibleColumns : columns
   const headers = cols.map((c) => c.Header)
@@ -52,6 +51,9 @@ const Download = ({ data, columns, visibleColumns }) => {
   const [open, setOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
 
+  const allowOptions = visibleColumns.length < columns.length && visibleColumns.length > 0
+  const saveVisible = selectedIndex > 0 && visibleColumns.length !== columns.length
+
   const handleClick = (e) => {
     e.stopPropagation()
     saveData({ data, columns, visibleColumns, saveVisible })
@@ -73,12 +75,10 @@ const Download = ({ data, columns, visibleColumns }) => {
     setOpen(false)
   }
 
-  const allowOptions = visibleColumns.length < columns.length && visibleColumns.length > 0
-  const saveVisible = selectedIndex > 0 && visibleColumns.length !== columns.length
-
   if (!data.length || !(columns || []).length) {
     return null
   }
+
   return (
     <>
       <ButtonGroup ref={anchorRef} size='small' aria-label='Save button'>
