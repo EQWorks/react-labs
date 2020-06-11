@@ -42,3 +42,8 @@ storiesOf('Table', module)
       <Table data={provinces} />
     </Paper>
   ))
+  .add('With { downloadable = false }', () => (
+    <Paper>
+      <Table data={provinces} downloadable={false} />
+    </Paper>
+  ))

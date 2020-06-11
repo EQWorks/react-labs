@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, Children } from 'react'
 import PropTypes from 'prop-types'
 
+import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -26,6 +27,7 @@ import {
 import TableColumn from './table-column'
 import TableHideLabel from './table-hide-label'
 import Search from './search'
+import Download from './download'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0.5),
     },
   },
-  search: {
+  toolbarRight: {
     marginLeft: 'auto',
     marginRight: 0,
   },
@@ -51,7 +53,7 @@ const getHeader = (s) => [
   s.slice(1).replace(/_/g, ' '),
 ].join('')
 
-const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
+const Table = ({ columns, data, children, downloadable, tableProps, headerGroupProps }) => {
   const classes = useStyles()
   const [autoCols, setAutoCols] = useState(columns || [])
   const _data = useMemo(() => data, [data])
@@ -100,27 +102,40 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
   return (
     <>
       <Toolbar>
-        {hiddenColumns.length > 0 && (
-          <div className={classes.toggles}>
-            {allColumns.filter((c) => hiddenColumns.includes(c.id)).map((column) => (
-              <Chip
-                size='small'
-                key={column.id}
-                variant='outlined'
-                label={column.Header}
-                deleteIcon={<VisibilityIcon />}
-                onDelete={() => { toggleHideColumn(column.id) }}
-                onClick={() => { toggleHideColumn(column.id) }}
+        <Grid container spacing={3}>
+          {hiddenColumns.length > 0 && (
+            <Grid item xs>
+              <div className={classes.toggles}>
+                {allColumns.filter((c) => hiddenColumns.includes(c.id)).map((column) => (
+                  <Chip
+                    key={column.id}
+                    variant='outlined'
+                    label={column.Header}
+                    deleteIcon={<VisibilityIcon />}
+                    onDelete={() => { toggleHideColumn(column.id) }}
+                    onClick={() => { toggleHideColumn(column.id) }}
+                  />
+                ))}
+              </div>
+            </Grid>
+          )}
+          {downloadable && (
+            <Grid item xs>
+              <Download
+                data={data}
+                columns={_cols}
+                visibleColumns={visibleColumns}
               />
-            ))}
-          </div>
-        )}
-        <div className={classes.search}>
-          <Search
-            preGlobalFilteredRows={preGlobalFilteredRows}
-            setGlobalFilter={setGlobalFilter} globalFilter={globalFilter}
-          />
-        </div>
+            </Grid>
+          )}
+          <Grid item xs>
+            <Search
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              setGlobalFilter={setGlobalFilter}
+              globalFilter={globalFilter}
+            />
+          </Grid>
+        </Grid>
       </Toolbar>
       {visibleColumns.length > 0 ? (
         <>
@@ -211,6 +226,7 @@ Table.propTypes = {
   columns: childrenColumnCheck,
   children: childrenColumnCheck,
   data: PropTypes.array,
+  downloadable: PropTypes.bool,
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
 }
@@ -218,6 +234,7 @@ Table.defaultProps = {
   columns: null,
   children: null,
   data: [],
+  downloadable: true,
   tableProps: {},
   headerGroupProps: {},
 }
