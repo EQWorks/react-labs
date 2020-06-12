@@ -1,24 +1,50 @@
 import React, { useState, useEffect, useMemo, Children } from 'react'
 import PropTypes from 'prop-types'
 
-import {
-  Table as MUITable,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableSortLabel,
-} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import TableContainer from '@material-ui/core/TableContainer'
+import MUITable from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableBody from '@material-ui/core/TableBody'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import TableSortLabel from '@material-ui/core/TableSortLabel'
+import TablePagination from '@material-ui/core/TablePagination'
+import Chip from '@material-ui/core/Chip'
+import Toolbar from '@material-ui/core/Toolbar'
+import VisibilityIcon from '@material-ui/icons/Visibility'
 import { makeStyles } from '@material-ui/core/styles'
-import { useTable, useSortBy } from 'react-table'
+import {
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  usePagination,
+} from 'react-table'
 
 import TableColumn from './table-column'
+import TableHideLabel from './table-hide-label'
+import Search from './search'
+import Download from './download'
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   head: {
     fontSize: 'body',
     fontWeight: 600,
+  },
+  toggles: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
+  },
+  toolbarRight: {
+    marginLeft: 'auto',
+    marginRight: 0,
   },
 }))
 
@@ -27,7 +53,7 @@ const getHeader = (s) => [
   s.slice(1).replace(/_/g, ' '),
 ].join('')
 
-const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
+const Table = ({ columns, data, children, downloadable, tableProps, headerGroupProps }) => {
   const classes = useStyles()
   const [autoCols, setAutoCols] = useState(columns || [])
   const _data = useMemo(() => data, [data])
@@ -52,46 +78,143 @@ const Table = ({ columns, data, children, tableProps, headerGroupProps }) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
+    allColumns,
     prepareRow,
-  } = useTable({ columns: _cols, data: _data }, useSortBy)
+    toggleHideColumn,
+    setGlobalFilter,
+    preGlobalFilteredRows,
+    setPageSize,
+    gotoPage,
+    visibleColumns,
+    state: { hiddenColumns, globalFilter, pageSize, pageIndex },
+  } = useTable(
+    {
+      columns: _cols,
+      data: _data,
+    },
+    // plugin hooks - order matters
+    useGlobalFilter,
+    useSortBy,
+    usePagination,
+  )
 
   return (
-    <MUITable {...getTableProps(tableProps)}>
-      <TableHead>
-        {headerGroups.map((headerGroup, i) => (
-          <TableRow key={i} {...headerGroup.getHeaderGroupProps(headerGroupProps)}>
-            {headerGroup.headers.map((column, i) => (
-              <TableCell
-                key={i}
-                className={classes.head}
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-              >
-                {column.render('Header')}
-                <TableSortLabel
-                  active={column.isSorted}
-                  direction={column.isSortedDesc ? 'desc' : 'asc'}
-                />
-              </TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableHead>
-      <TableBody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
-          prepareRow(row)
-          return (
-            <TableRow key={i} {...row.getRowProps()}>
-              {row.cells.map((cell, i) => (
-                <TableCell key={i} {...cell.getCellProps()}>
-                  {cell.render('Cell')}
-                </TableCell>
-              ))}
-            </TableRow>
-          )
-        })}
-      </TableBody>
-    </MUITable>
+    <>
+      <Toolbar>
+        <Grid container spacing={3}>
+          {hiddenColumns.length > 0 && (
+            <Grid item xs>
+              <div className={classes.toggles}>
+                {allColumns.filter((c) => hiddenColumns.includes(c.id)).map((column) => (
+                  <Chip
+                    key={column.id}
+                    variant='outlined'
+                    label={column.Header}
+                    deleteIcon={<VisibilityIcon />}
+                    onDelete={() => { toggleHideColumn(column.id) }}
+                    onClick={() => { toggleHideColumn(column.id) }}
+                  />
+                ))}
+              </div>
+            </Grid>
+          )}
+          {downloadable && (
+            <Grid item xs>
+              <Download
+                data={data}
+                columns={_cols}
+                visibleColumns={visibleColumns}
+              />
+            </Grid>
+          )}
+          <Grid item xs>
+            <Search
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              setGlobalFilter={setGlobalFilter}
+              globalFilter={globalFilter}
+            />
+          </Grid>
+        </Grid>
+      </Toolbar>
+      {visibleColumns.length > 0 ? (
+        <>
+          <TableContainer>
+            <MUITable {...getTableProps(tableProps)}>
+              <TableHead>
+                {headerGroups.map((headerGroup, i) => (
+                  <TableRow key={i} {...headerGroup.getHeaderGroupProps(headerGroupProps)}>
+                    {headerGroup.headers.map((column, i) => (
+                      <TableCell
+                        key={i}
+                        className={classes.head}
+                        {...column.getHeaderProps(column.getSortByToggleProps())}
+                      >
+                        {column.render('Header')}
+                        <TableSortLabel
+                          active={column.isSorted}
+                          direction={column.isSortedDesc ? 'desc' : 'asc'}
+                        />
+                        {!column.noToggle && (
+                          <TableHideLabel
+                            onHide={(e) => {
+                              e.stopPropagation()
+                              toggleHideColumn(column.id) }
+                            }
+                          />
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableHead>
+              <TableBody {...getTableBodyProps()}>
+                {page.map((row, i) => {
+                  prepareRow(row)
+                  return (
+                    <TableRow key={i} {...row.getRowProps()}>
+                      {row.cells.map((cell, i) => (
+                        <TableCell key={i} {...cell.getCellProps()}>
+                          {cell.render('Cell')}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  )
+                })}
+              </TableBody>
+            </MUITable>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[
+              5,
+              10,
+              25,
+              { label: 'All', value: data.length },
+            ]}
+            colSpan={3}
+            count={data.length}
+            rowsPerPage={pageSize}
+            page={pageIndex}
+            SelectProps={{
+              inputProps: { 'aria-label': 'rows per page' },
+              native: true,
+            }}
+            onChangePage={(_, page) => { gotoPage(page) }}
+            onChangeRowsPerPage={({ target: { value }}) => {
+              setPageSize(Number(value))
+            }}
+          />
+        </>
+      ) : (
+        <Card>
+          <CardContent>
+            <Typography variant='h5' component='h5'>
+              No visible columns
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
+    </>
   )
 }
 
@@ -105,6 +228,7 @@ Table.propTypes = {
   columns: childrenColumnCheck,
   children: childrenColumnCheck,
   data: PropTypes.array,
+  downloadable: PropTypes.bool,
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
 }
@@ -112,6 +236,7 @@ Table.defaultProps = {
   columns: null,
   children: null,
   data: [],
+  downloadable: true,
   tableProps: {},
   headerGroupProps: {},
 }
