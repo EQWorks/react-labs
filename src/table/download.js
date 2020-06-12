@@ -16,7 +16,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 const saveData = ({ data, columns, visibleColumns, saveVisible = false }) => {
   const cols = (saveVisible && visibleColumns.length > 0) ? visibleColumns : columns
   const headers = cols.map((c) => c.Header)
-  const valueKeys = cols.map((c) => c.id)
+  const valueKeys = cols.map((c) => (c.id || c.accessor))
 
   let csvContent = ''
 
