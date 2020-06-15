@@ -168,7 +168,7 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
       ) : (
         <Card>
           <CardContent>
-            <Typography component='p'>
+            <Typography variant='body1'>
               No visible columns
             </Typography>
           </CardContent>
