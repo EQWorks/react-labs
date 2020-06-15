@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import TextField from '@material-ui/core/TextField'
@@ -7,21 +7,13 @@ import SearchIcon from '@material-ui/icons/Search'
 import { useAsyncDebounce } from 'react-table'
 
 
-const useSearch = ({ globalFilter, setGlobalFilter }) => {
-  const [value, setValue] = useState(globalFilter)
+const Search = ({ preGlobalFilteredRows, setGlobalFilter }) => {
   const _setFilter = useAsyncDebounce(value => {
     setGlobalFilter(value || undefined)
   }, 200)
-  const changeSearch = ({ target: { value } }) => {
-    setValue(value)
+  const search = ({ target: { value } }) => {
     _setFilter(value)
   }
-
-  return { value, changeSearch }
-}
-
-const Search = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
-  const { value, changeSearch } = useSearch({ globalFilter, setGlobalFilter })
 
   // Global filter only works with pagination from the first page.
   // This may not be a problem for server side pagination when
@@ -40,8 +32,7 @@ const Search = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
         ),
         'aria-label': 'search',
       }}
-      value={value}
-      onChange={changeSearch}
+      onChange={search}
       placeholder={`Search in ${preGlobalFilteredRows.length} records...`}
     />
   )
@@ -49,7 +40,6 @@ const Search = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
 
 Search.propTypes = {
   preGlobalFilteredRows: PropTypes.array.isRequired,
-  globalFilter: PropTypes.string.isRequired,
   setGlobalFilter: PropTypes.func.isRequired,
 }
 

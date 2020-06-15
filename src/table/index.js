@@ -82,7 +82,7 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
     setPageSize,
     gotoPage,
     visibleColumns,
-    state: { globalFilter, pageSize, pageIndex },
+    state: { pageSize, pageIndex },
   } = useTable(
     {
       columns: _cols,
@@ -104,7 +104,6 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
         data={data}
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
-        globalFilter={globalFilter}
       />
       {visibleColumns.length > 0 ? (
         <>

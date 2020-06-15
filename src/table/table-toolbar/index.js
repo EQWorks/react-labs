@@ -18,7 +18,6 @@ const TableToolbar = ({
   // Search
   preGlobalFilteredRows,
   setGlobalFilter,
-  globalFilter,
   // Toggle
   toggleHideColumn,
   allColumns, // + Download
@@ -34,7 +33,6 @@ const TableToolbar = ({
       <Search
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
-        globalFilter={globalFilter}
       />
       <div className={classes.grow} />
       {allColumns.some((c) => !c.noToggle) && (
