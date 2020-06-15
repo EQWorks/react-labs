@@ -11,8 +11,9 @@ Requires peer dependencies:
 
 ```js
 import {
-  DataTable,
-  WidgetNumber,
-  WidgetTrend,
+  WidgetStats,
+  QuickFilters,
+  DynamicButton,
+  Table,
 } from '@eqworks/react-labs'
 ```

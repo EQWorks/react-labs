@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, Children } from 'react'
 import PropTypes from 'prop-types'
 
-import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -13,9 +12,6 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
 import TablePagination from '@material-ui/core/TablePagination'
-import Chip from '@material-ui/core/Chip'
-import Toolbar from '@material-ui/core/Toolbar'
-import VisibilityIcon from '@material-ui/icons/Visibility'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   useTable,
@@ -25,15 +21,14 @@ import {
 } from 'react-table'
 
 import TableColumn from './table-column'
-import TableHideLabel from './table-hide-label'
-import Search from './search'
-import Download from './download'
+import TableToolbar from './table-toolbar'
 
 
 const useStyles = makeStyles((theme) => ({
   head: {
     fontSize: 'body',
     fontWeight: 600,
+    backgroundColor: theme.palette.grey[50],
   },
   toggles: {
     display: 'flex',
@@ -87,7 +82,7 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
     setPageSize,
     gotoPage,
     visibleColumns,
-    state: { hiddenColumns, globalFilter, pageSize, pageIndex },
+    state: { pageSize, pageIndex },
   } = useTable(
     {
       columns: _cols,
@@ -101,42 +96,15 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
 
   return (
     <>
-      <Toolbar>
-        <Grid container spacing={3}>
-          {hiddenColumns.length > 0 && (
-            <Grid item xs>
-              <div className={classes.toggles}>
-                {allColumns.filter((c) => hiddenColumns.includes(c.id)).map((column) => (
-                  <Chip
-                    key={column.id}
-                    variant='outlined'
-                    label={column.Header}
-                    deleteIcon={<VisibilityIcon />}
-                    onDelete={() => { toggleHideColumn(column.id) }}
-                    onClick={() => { toggleHideColumn(column.id) }}
-                  />
-                ))}
-              </div>
-            </Grid>
-          )}
-          {downloadable && (
-            <Grid item xs>
-              <Download
-                data={data}
-                columns={_cols}
-                visibleColumns={visibleColumns}
-              />
-            </Grid>
-          )}
-          <Grid item xs>
-            <Search
-              preGlobalFilteredRows={preGlobalFilteredRows}
-              setGlobalFilter={setGlobalFilter}
-              globalFilter={globalFilter}
-            />
-          </Grid>
-        </Grid>
-      </Toolbar>
+      <TableToolbar
+        allColumns={allColumns}
+        visibleColumns={visibleColumns}
+        toggleHideColumn={toggleHideColumn}
+        downloadable={downloadable}
+        data={data}
+        preGlobalFilteredRows={preGlobalFilteredRows}
+        setGlobalFilter={setGlobalFilter}
+      />
       {visibleColumns.length > 0 ? (
         <>
           <TableContainer>
@@ -155,14 +123,6 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
                           active={column.isSorted}
                           direction={column.isSortedDesc ? 'desc' : 'asc'}
                         />
-                        {!column.noToggle && (
-                          <TableHideLabel
-                            onHide={(e) => {
-                              e.stopPropagation()
-                              toggleHideColumn(column.id) }
-                            }
-                          />
-                        )}
                       </TableCell>
                     ))}
                   </TableRow>
@@ -208,7 +168,7 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
       ) : (
         <Card>
           <CardContent>
-            <Typography variant='h5' component='h5'>
+            <Typography variant='body1'>
               No visible columns
             </Typography>
           </CardContent>
