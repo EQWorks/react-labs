@@ -14,4 +14,4 @@ const GlobalWrapper = (storyFn) => {
     </ThemeProvider>
   )
 }
-// addDecorator(GlobalWrapper);
+addDecorator(GlobalWrapper);
