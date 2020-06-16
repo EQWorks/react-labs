@@ -10,7 +10,6 @@ import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
-import TableSortLabel from '@material-ui/core/TableSortLabel'
 import TablePagination from '@material-ui/core/TablePagination'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -22,6 +21,7 @@ import {
 
 import TableColumn from './table-column'
 import TableToolbar from './table-toolbar'
+import TableSortLabel from './table-sort-label'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,16 +30,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     backgroundColor: theme.palette.grey[50],
   },
-  toggles: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(0.5),
-    },
-  },
-  toolbarRight: {
-    marginLeft: 'auto',
-    marginRight: 0,
+  grow: {
+    flexGrow: 1,
   },
 }))
 
@@ -148,10 +140,7 @@ const Table = ({
                         {...column.getHeaderProps(column.getSortByToggleProps())}
                       >
                         {column.render('Header')}
-                        <TableSortLabel
-                          active={column.isSorted}
-                          direction={column.isSortedDesc ? 'desc' : 'asc'}
-                        />
+                        <TableSortLabel {...column} />
                       </TableCell>
                     ))}
                   </TableRow>

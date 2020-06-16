@@ -40,6 +40,7 @@ const TableContainer = ({ children }) => {
         exclusive
         onChange={(_, parent) => { setParent(parent) }}
         aria-label='parent container'
+        style={{ marginBottom: '0.5rem' }}
       >
         <ToggleButton value='bare' aria-label='bare container'>
           Bare
