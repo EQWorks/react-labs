@@ -48,27 +48,55 @@ const getHeader = (s) => [
   s.slice(1).replace(/_/g, ' '),
 ].join('')
 
-const Table = ({ columns, data, children, downloadable, tableProps, headerGroupProps }) => {
-  const classes = useStyles()
-  const [autoCols, setAutoCols] = useState(columns || [])
-  const _data = useMemo(() => data, [data])
+const useTableConfig = ({ data, hiddenColumns, children, columns }) => {
+  const [autoCols, setAutoCols] = useState([])
+  const [hidden, setHidden] = useState([])
+
   useEffect(() => {
     if (!children && !columns) {
       setAutoCols(Object.keys(data[0] || {}).map((accessor) => ({
         accessor,
         Header: getHeader(accessor),
       })))
-    } else if (Array.isArray(columns) && columns.length > 0) {
-      setAutoCols(columns)
     } else {
-      setAutoCols(
-        Children.toArray(children)
+      const _columns = Array.isArray(columns) && columns.length > 0
+        ? columns
+        : Children.toArray(children)
           .filter((c) => c.type === TableColumn || c.type.name === 'TableColumn')
           .map((c) => c.props)
-      )
+
+      setAutoCols(_columns)
+
+      // initial column hidden states
+      const _hidden = _columns.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
+      setHidden(_hidden.length ? _hidden : (hiddenColumns || []))
     }
   }, [columns, data, children])
+
+  // memoized columns and data for useTable hook
   const _cols = useMemo(() => autoCols, [autoCols])
+  const _data = useMemo(() => data, [data])
+
+  return {
+    _cols,
+    _data,
+    hidden,
+  }
+}
+
+const Table = ({
+  columns,
+  data,
+  children,
+  downloadable,
+  hiddenColumns,
+  tableProps,
+  headerGroupProps,
+}) => {
+  const classes = useStyles()
+  // custom table config hook
+  const { _cols, _data, hidden } = useTableConfig({ data, hiddenColumns, children, columns })
+  // useTable
   const {
     getTableProps,
     getTableBodyProps,
@@ -87,6 +115,7 @@ const Table = ({ columns, data, children, downloadable, tableProps, headerGroupP
     {
       columns: _cols,
       data: _data,
+      initialState: { hiddenColumns: hidden },
     },
     // plugin hooks - order matters
     useGlobalFilter,
@@ -189,6 +218,7 @@ Table.propTypes = {
   children: childrenColumnCheck,
   data: PropTypes.array,
   downloadable: PropTypes.bool,
+  hiddenColumns: PropTypes.arrayOf(PropTypes.string),
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
 }
@@ -197,6 +227,7 @@ Table.defaultProps = {
   children: null,
   data: [],
   downloadable: true,
+  hiddenColumns: [],
   tableProps: {},
   headerGroupProps: {},
 }

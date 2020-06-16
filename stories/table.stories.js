@@ -99,6 +99,27 @@ export const noToggle = () => (
   </Table>
 )
 
+export const initialHidden = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases', hidden: true },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Province', accessor: 'province', hidden: true, noToggle: true },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+    ]}
+  />
+)
+
+export const initialHiddenColumns = () => (
+  <Table data={provinces} hiddenColumns={['new_cases', 'total_cases']}>
+    <Table.Column Header='New cases' accessor='new_cases' />
+    <Table.Column Header='Total cases' accessor='total_cases' />
+    <Table.Column Header='Province' accessor='province' />
+    <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
+  </Table>
+)
+
 export const tableProps = () => (
   <Table
     data={provinces}
