@@ -10,7 +10,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Checkbox from '@material-ui/core/Checkbox'
-import FilterListIcon from '@material-ui/icons/FilterList'
+import Badge from '@material-ui/core/Badge'
+import SettingsIcon from '@material-ui/icons/Settings'
 
 import Button from '../../dynamic-button'
 
@@ -39,11 +40,18 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
       <div aria-label='Filter button' ref={anchorRef}>
         <Button
           type='tertiary'
-          endIcon={<FilterListIcon />}
+          endIcon={
+            <Badge color='secondary'
+              variant='dot'
+              invisible={allColumns.every((c) => c.isVisible || c.noToggle)}
+            >
+              <SettingsIcon fontSize='small' />
+            </Badge>
+          }
           onClick={handleToggle}
           aria-haspopup='menu'
         >
-          Filter columns
+          Edit table
         </Button>
       </div>
       <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>

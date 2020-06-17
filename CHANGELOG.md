@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `<Table />` `hiddenColumns` (Array of String, default empty) property and per-`<Table.Column />` `hidden` (Boolean, logically default `false`) property for configuring tables with initially hidden columns. When any per-column `hidden` property is true (technically, truthy), table-wise `hiddenColumns` property is ignored.
 
+### Changed
+- `<Table />` use custom `<TableSortLabel />` instead of the native MUI one for different design.
+- `<Table />` rename "Filter columns" to "Edit table", add dot badge to indicate togglable hidden columns.
 
 ## [0.6.2]
 ### Added
