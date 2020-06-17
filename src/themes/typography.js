@@ -1,8 +1,7 @@
-//The base pixel size is 8px.
 const typography = {
   fontFamily: "Open Sans",
   h1: {
-    fontWeight: 200,
+    fontWeight: 300,
   },
   h2: {
     fontWeight: 300,
@@ -11,7 +10,7 @@ const typography = {
     fontWeight: 400,
   },
   h4: {
-    fontWeight: 500,
+    fontWeight: 400,
   },
   h5: {
     fontWeight: 600,
