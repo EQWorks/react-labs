@@ -6,7 +6,6 @@ export const bodyStyles = css``
 
 export const GlobalStyle = createGlobalStyle`
   html {
-    font-size: 8px;
     ${bodyStyles}
   }
 `
