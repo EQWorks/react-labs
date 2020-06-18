@@ -21,7 +21,7 @@ const palette = {
     },
   },
   state: {
-    hoverWhite: () => fade(this.primary.main, 0.05),
+    hoverWhite: fade('#0075ff', 0.05),
     hoverColored: 'rgba(0,0,0,0.15)',
   },
   shadow: {
