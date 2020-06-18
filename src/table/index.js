@@ -86,6 +86,7 @@ const Table = ({
   hiddenColumns,
   tableProps,
   headerGroupProps,
+  title,
 }) => {
   const classes = useStyles()
   // custom table config hook
@@ -129,6 +130,7 @@ const Table = ({
         preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
+        title={title}
       />
       {visibleColumns.length > 0 ? (
         <>
@@ -215,6 +217,7 @@ Table.propTypes = {
   hiddenColumns: PropTypes.arrayOf(PropTypes.string),
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
+  title: PropTypes.string,
 }
 Table.defaultProps = {
   columns: null,
@@ -224,6 +227,7 @@ Table.defaultProps = {
   hiddenColumns: [],
   tableProps: {},
   headerGroupProps: {},
+  title: '',
 }
 Table.Column = TableColumn
 

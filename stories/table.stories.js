@@ -145,6 +145,10 @@ export const disableFilters = () => (
   />
 )
 
+export const title = () => (
+  <Table data={provinces} title='Cases by province' />
+)
+
 export const tableProps = () => (
   <Table
     data={provinces}
