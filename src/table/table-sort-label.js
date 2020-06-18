@@ -23,9 +23,9 @@ const TableSortLabel = ({ isSorted, isSortedDesc }) => {
       return (<ImportExportIcon color='disabled' />)
     }
     return isSortedDesc ? (
-      <ArrowDownwardIcon fontSize='small' />
+      <ArrowDownwardIcon fontSize='small' color='primary' />
     ) : (
-      <ArrowUpwardIcon fontSize='small' />
+      <ArrowUpwardIcon fontSize='small' color='primary' />
     )
   }
   return (<ButtonBase disableRipple className={classes.root}>{renderIcon()}</ButtonBase>)

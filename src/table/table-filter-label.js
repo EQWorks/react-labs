@@ -47,7 +47,7 @@ const TableFilterLabel = ({ column }) => {
           setOpen((prev) => !prev)
         }}
       >
-        <FilterListIcon color={column.filterValue ? 'inherit' : 'disabled'} />
+        <FilterListIcon color={column.filterValue ? 'primary' : 'disabled'} />
       </ButtonBase>
       <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
         {({ TransitionProps, placement }) => (
