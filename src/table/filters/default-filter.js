@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import TextField from '@material-ui/core/TextField'
@@ -7,11 +7,13 @@ import SearchIcon from '@material-ui/icons/Search'
 import { useAsyncDebounce } from 'react-table'
 
 
-const Search = ({ preGlobalFilteredRows, setGlobalFilter }) => {
+const DefaultFilter = ({ filterValue, preFilteredRows, setFilter, id }) => {
+  const [value, setValue] = useState(filterValue)
   const _setFilter = useAsyncDebounce(value => {
-    setGlobalFilter(value || undefined)
+    setFilter(value || undefined)
   }, 200)
   const search = ({ target: { value } }) => {
+    setValue(value)
     _setFilter(value)
   }
 
@@ -21,7 +23,7 @@ const Search = ({ preGlobalFilteredRows, setGlobalFilter }) => {
 
   return (
     <TextField
-      id='table-search'
+      id={`table-search${id ? `-${id}` : ''}`}
       variant='outlined'
       size='small'
       InputProps={{
@@ -32,15 +34,23 @@ const Search = ({ preGlobalFilteredRows, setGlobalFilter }) => {
         ),
         'aria-label': 'search',
       }}
+      onClick={(e) => { e.stopPropagation() }}
       onChange={search}
-      placeholder={`Search in ${preGlobalFilteredRows.length} records...`}
+      value={value || ''}
+      placeholder={`Search in ${preFilteredRows.length} records...`}
     />
   )
 }
 
-Search.propTypes = {
-  preGlobalFilteredRows: PropTypes.array.isRequired,
-  setGlobalFilter: PropTypes.func.isRequired,
+DefaultFilter.propTypes = {
+  filterValue: PropTypes.any,
+  preFilteredRows: PropTypes.array.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  id: PropTypes.string,
+}
+DefaultFilter.defaultProps = {
+  filterValue: null,
+  id: null,
 }
 
-export default Search
+export default DefaultFilter

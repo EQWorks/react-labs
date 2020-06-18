@@ -40,6 +40,7 @@ const TableContainer = ({ children }) => {
         exclusive
         onChange={(_, parent) => { setParent(parent) }}
         aria-label='parent container'
+        style={{ marginBottom: '0.5rem' }}
       >
         <ToggleButton value='bare' aria-label='bare container'>
           Bare
@@ -118,6 +119,34 @@ export const initialHiddenColumns = () => (
     <Table.Column Header='Province' accessor='province' />
     <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
   </Table>
+)
+
+export const disableGlobalFilter = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Rate', accessor: 'rate', filter: 'excludes', Cell: ({ value }) => `${value}%` },
+      { Header: 'Province', accessor: 'province' },
+    ].map((c) => ({ ...c, disableGlobalFilter: true }))}
+  />
+)
+
+export const disableFilters = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Rate', accessor: 'rate', filter: 'excludes', Cell: ({ value }) => `${value}%` },
+      { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+    ]}
+  />
+)
+
+export const title = () => (
+  <Table data={provinces} title='Cases by province' />
 )
 
 export const tableProps = () => (

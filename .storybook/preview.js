@@ -1,17 +1,50 @@
-import React from "react";
-import { addDecorator, configure } from "@storybook/react";
-import { ThemeProvider } from '@material-ui/core/styles';
-import { GlobalStyle } from '../src/shared/global'
-import theme from '../src/themes/index';
+import React, { useState } from 'react'
 
-configure(require.context("../stories", true, /\.stories\.js$/), module);
+import { addDecorator, configure } from '@storybook/react'
+import { ThemeProvider } from '@material-ui/core/styles'
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+
+import { GlobalStyle } from '../src/shared/global'
+import LOCUSTheme from '../src/themes'
+
+
+configure(require.context('../stories', true, /\.stories\.js$/), module)
 
 const GlobalWrapper = (storyFn) => {
+  const [checked, setChecked] = useState(false)
+
+  const renderStory = () => {
+    if (checked) {
+      return (
+        <ThemeProvider theme={LOCUSTheme}>
+          <GlobalStyle/>
+          {storyFn()}
+        </ThemeProvider>
+      )
+    }
+
+    return storyFn()
+  }
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle/>
-       {storyFn()}
-    </ThemeProvider>
+    <>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={checked}
+              onChange={({ target: { checked } }) => { setChecked(checked) }}
+              name='locus'
+              color='primary'
+            />
+          }
+          label='Use LOCUS Theme'
+        />
+      </FormGroup>
+      {renderStory()}
+    </>
   )
 }
-addDecorator(GlobalWrapper);
+addDecorator(GlobalWrapper)
