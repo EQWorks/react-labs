@@ -37,7 +37,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
 
   return (
     <>
-      <div aria-label='Filter button' ref={anchorRef}>
+      <div aria-label='Edit button' ref={anchorRef}>
         <Button
           type='tertiary'
           endIcon={
@@ -86,7 +86,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
                             inputProps={{ 'aria-labelledby': labelID }}
                           />
                         </ListItemIcon>
-                        <ListItemText id={labelID} primary={c.Header} />
+                        <ListItemText id={labelID} primary={c.render('Header')} />
                       </ListItem>
                     )
                   })}

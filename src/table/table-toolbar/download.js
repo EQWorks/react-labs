@@ -14,7 +14,7 @@ import Button from '../../dynamic-button'
 
 const saveData = ({ data, allColumns, visibleColumns, saveVisible = false }) => {
   const cols = (saveVisible && visibleColumns.length > 0) ? visibleColumns : allColumns
-  const headers = cols.map((c) => c.Header)
+  const headers = cols.map((c) => c.render('Header'))
   const valueKeys = cols.map((c) => c.id)
 
   let csvContent = ''

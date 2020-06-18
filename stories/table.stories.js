@@ -121,6 +121,30 @@ export const initialHiddenColumns = () => (
   </Table>
 )
 
+export const disableGlobalFilter = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Rate', accessor: 'rate', filter: 'excludes', Cell: ({ value }) => `${value}%` },
+      { Header: 'Province', accessor: 'province' },
+    ].map((c) => ({ ...c, disableGlobalFilter: true }))}
+  />
+)
+
+export const disableFilters = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Rate', accessor: 'rate', filter: 'excludes', Cell: ({ value }) => `${value}%` },
+      { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+    ]}
+  />
+)
+
 export const tableProps = () => (
   <Table
     data={provinces}

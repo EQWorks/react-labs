@@ -17,11 +17,13 @@ import {
   useSortBy,
   useGlobalFilter,
   usePagination,
+  useFilters,
 } from 'react-table'
 
 import TableColumn from './table-column'
 import TableToolbar from './table-toolbar'
 import TableSortLabel from './table-sort-label'
+import TableFilterLabel from './table-filter-label'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -102,7 +104,7 @@ const Table = ({
     setPageSize,
     gotoPage,
     visibleColumns,
-    state: { pageSize, pageIndex },
+    state: { pageSize, pageIndex, globalFilter },
   } = useTable(
     {
       columns: _cols,
@@ -111,6 +113,7 @@ const Table = ({
     },
     // plugin hooks - order matters
     useGlobalFilter,
+    useFilters,
     useSortBy,
     usePagination,
   )
@@ -124,6 +127,7 @@ const Table = ({
         downloadable={downloadable}
         data={data}
         preGlobalFilteredRows={preGlobalFilteredRows}
+        globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
       />
       {visibleColumns.length > 0 ? (
@@ -141,6 +145,7 @@ const Table = ({
                       >
                         {column.render('Header')}
                         <TableSortLabel {...column} />
+                        {column.canFilter && (<TableFilterLabel column={column} />)}
                       </TableCell>
                     ))}
                   </TableRow>
