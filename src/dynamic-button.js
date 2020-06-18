@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     "&:hover": {
-      backgroundColor: theme.palette.hoverOnPrimary,
+      backgroundColor: theme.palette.primary.main,
+      backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`
     },
     "&:disabled": {
       color: theme.palette.common.white,
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     border: "solid 1px",
     color: theme.palette.primary.main,
     "&:hover": {
-      backgroundColor: theme.palette.hoverOnWhite,
+      backgroundColor: theme.palette.state.hoverWhite,
       color: theme.palette.primary.main,
     },
     "&:disabled": {
@@ -45,7 +46,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     "&:hover": {
       backgroundColor: "rgba(255,255,255,0)",
-      color: theme.palette.hoverOnPrimary,
+      color: theme.palette.primary.main,
+      backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`,
+      backgroundBlendMode: 'screen',
     },
     "&:disabled": {
       opacity: 0.5,
