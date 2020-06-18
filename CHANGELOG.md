@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<Table />` use custom `<TableSortLabel />` instead of the native MUI one for different design.
 - `<Table />` rename "Filter columns" to "Edit table", add dot badge to indicate togglable hidden columns.
 - `<Table />` refactor table toolbar search as `filters.DefaultFilter`.
+- `<Table />` sort and filter indicators are more prominent when in-effect.
 
 ## [0.6.2]
 ### Added
