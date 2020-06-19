@@ -87,6 +87,7 @@ const Table = ({
   tableProps,
   headerGroupProps,
   title,
+  sortBy,
 }) => {
   const classes = useStyles()
   // custom table config hook
@@ -110,7 +111,10 @@ const Table = ({
     {
       columns: _cols,
       data: _data,
-      initialState: { hiddenColumns: hidden },
+      initialState: {
+        hiddenColumns: hidden,
+        sortBy: useMemo(() => Array.isArray(sortBy) ? sortBy : [sortBy], [sortBy]),
+      },
     },
     // plugin hooks - order matters
     useGlobalFilter,
@@ -220,6 +224,7 @@ Table.propTypes = {
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
   title: PropTypes.string,
+  sortBy: PropTypes.oneOfType(PropTypes.arrayOf(PropTypes.object), PropTypes.object),
 }
 Table.defaultProps = {
   columns: null,
@@ -230,6 +235,7 @@ Table.defaultProps = {
   tableProps: {},
   headerGroupProps: {},
   title: '',
+  sortBy: {},
 }
 Table.Column = TableColumn
 
