@@ -1,11 +1,7 @@
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { fade } from '@material-ui/core/styles/colorManipulator'
 
-const palette = {
-  primary: { main: '#0075FF' },
-  error: { main: "#ea0000" },
-  warning: { main: "#f4b000" },
-  info: { main: "#741fff" },
-  success: { main: "#00d308" },
+
+const extension = {
   shade: {
     primary: {
       50:  '#E2F3FF',
@@ -30,6 +26,16 @@ const palette = {
     30: '0px 4px 12px rgba(12, 12, 13, 0.2)',
     40: '0px 8px 16px rgba(0, 0, 0, 0.25)',
   },
-};
+}
+export { extension }
 
-export default palette;
+const palette = {
+  primary: { main: '#0075FF' },
+  error: { main: "#ea0000" },
+  warning: { main: "#f4b000" },
+  info: { main: "#741fff" },
+  success: { main: "#00d308" },
+  ...extension,
+}
+
+export default palette

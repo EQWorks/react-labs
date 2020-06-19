@@ -1,12 +1,13 @@
-import { createMuiTheme } from '@material-ui/core';
-import palette from './palette';
-import typography from './typography';
+import { createMuiTheme } from '@material-ui/core'
+import palette from './palette'
+import typography from './typography'
 
 
 const theme = createMuiTheme({
   palette,
   typography,
-});
+})
 
-export default theme;
-
+export { palette }
+export { extension as PALETTE_EXT } from './palette'
+export default theme
