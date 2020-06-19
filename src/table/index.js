@@ -121,17 +121,19 @@ const Table = ({
 
   return (
     <>
-      <TableToolbar
-        allColumns={allColumns}
-        visibleColumns={visibleColumns}
-        toggleHideColumn={toggleHideColumn}
-        downloadable={downloadable}
-        data={data}
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={globalFilter}
-        setGlobalFilter={setGlobalFilter}
-        title={title}
-      />
+      {(title || _data.length > 0) && (
+        <TableToolbar
+          allColumns={allColumns}
+          visibleColumns={visibleColumns}
+          toggleHideColumn={toggleHideColumn}
+          downloadable={downloadable}
+          data={data}
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+          title={title}
+        />
+      )}
       {visibleColumns.length > 0 ? (
         <>
           <TableContainer>
