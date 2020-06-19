@@ -6,7 +6,6 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 
-import { GlobalStyle } from '../src/shared/global'
 import LOCUSTheme from '../src/themes'
 
 
@@ -19,7 +18,6 @@ const GlobalWrapper = (storyFn) => {
     if (checked) {
       return (
         <ThemeProvider theme={LOCUSTheme}>
-          <GlobalStyle/>
           {storyFn()}
         </ThemeProvider>
       )

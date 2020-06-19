@@ -1,10 +1,13 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
+import theme from "../src/themes/index";
 
-const useStyles = makeStyles((theme) => ({
+const styles = {
   primary: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.body1,
     margin: theme.spacing(0.5),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -13,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.white,
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
-      backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`
+      backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`,
     },
     "&:disabled": {
       color: theme.palette.common.white,
@@ -21,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   secondary: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.body1,
     margin: theme.spacing(0.5),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -38,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   tertiary: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.body1,
     margin: theme.spacing(0.5),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
@@ -45,19 +52,23 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(255,255,255,0)",
     color: theme.palette.primary.main,
     "&:hover": {
-      backgroundColor: "rgba(255,255,255,0)",
+      backgroundColor: theme.palette.state.hoverWhite,
       color: theme.palette.primary.main,
-      backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`,
-      backgroundBlendMode: 'screen',
     },
     "&:disabled": {
       opacity: 0.5,
       color: theme.palette.primary.main,
     },
   },
-}));
-const DynamicButton = ({ type, addIcon, onWhichSide, children, ...rest }) => {
-  const classes = useStyles();
+};
+const DynamicButton = ({
+  classes,
+  type,
+  addIcon,
+  onWhichSide,
+  children,
+  ...rest
+}) => {
   const side = `${onWhichSide}` + "Icon";
   const iconProps = {
     [side]: addIcon,
@@ -92,7 +103,7 @@ DynamicButton.defaultProps = {
   onWhichSide: "start",
   size: "medium",
   children: "Call to action",
-  onClick: ()=>alert('this is a default onClick message.'),
+  onClick: () => alert("this is a default onClick message."),
 };
 
-export default DynamicButton;
+export default withStyles(styles)(DynamicButton);
