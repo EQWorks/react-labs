@@ -8,6 +8,6 @@ const theme = createMuiTheme({
   typography,
 })
 
-export { palette }
-export { extension as PALETTE_EXT } from './palette'
+export { palette, typography }
+export { PALETTE_EXT, PALETTE_DEFAULT } from './palette'
 export default theme

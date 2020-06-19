@@ -1,7 +1,8 @@
 import { fade } from '@material-ui/core/styles/colorManipulator'
 
 
-const extension = {
+// extended namespaces
+const PALETTE_EXT = {
   shade: {
     primary: {
       50:  '#E2F3FF',
@@ -27,15 +28,22 @@ const extension = {
     40: '0px 8px 16px rgba(0, 0, 0, 0.25)',
   },
 }
-export { extension }
+export { PALETTE_EXT }
 
-const palette = {
+// overrides default namespaces
+const PALETTE_DEFAULT = {
   primary: { main: '#0075FF' },
   error: { main: "#ea0000" },
   warning: { main: "#f4b000" },
   info: { main: "#741fff" },
   success: { main: "#00d308" },
-  ...extension,
+}
+
+export { PALETTE_DEFAULT }
+
+const palette = {
+  ...PALETTE_DEFAULT,
+  ...PALETTE_EXT,
 }
 
 export default palette
