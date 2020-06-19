@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - `<Table />` hide toolbar when no title and no data.
+- `<Table />` Edit columns list with a maxHeight for in-list scroll.
 
 ## [0.7.0] - 2020-06-18
 ### Added

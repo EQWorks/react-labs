@@ -12,11 +12,20 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Checkbox from '@material-ui/core/Checkbox'
 import Badge from '@material-ui/core/Badge'
 import SettingsIcon from '@material-ui/icons/Settings'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Button from '../../dynamic-button'
 
 
+const useStyles = makeStyles(() => ({
+  list: {
+    overflow: 'auto',
+    maxHeight: '60vh',
+  },
+}))
+
 const Toggle = ({ allColumns, toggleHideColumn }) => {
+  const classes = useStyles()
   const anchorRef = useRef(null)
   const [open, setOpen] = useState(false)
 
@@ -64,7 +73,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <List>
+                <List className={classes.list}>
                   {allColumns.map((c) => {
                     const labelID = `toggle-label-${c.id}`
                     return (
