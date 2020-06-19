@@ -1,10 +1,10 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import theme from "../src/themes/index";
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
   primary: {
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.body1,
@@ -60,15 +60,16 @@ const styles = {
       color: theme.palette.primary.main,
     },
   },
-};
-const DynamicButton = ({
-  classes,
+}));
+
+const DynamicButtonBase = ({
   type,
   addIcon,
   onWhichSide,
   children,
   ...rest
 }) => {
+  const classes = useStyles();
   const side = `${onWhichSide}` + "Icon";
   const iconProps = {
     [side]: addIcon,
@@ -86,7 +87,7 @@ const DynamicButton = ({
   );
 };
 
-DynamicButton.propTypes = {
+DynamicButtonBase.propTypes = {
   type: PropTypes.string,
   disabled: PropTypes.bool,
   addIcon: PropTypes.node,
@@ -96,7 +97,7 @@ DynamicButton.propTypes = {
   children: PropTypes.node,
 };
 
-DynamicButton.defaultProps = {
+DynamicButtonBase.defaultProps = {
   type: "primary",
   disabled: false,
   addIcon: null,
@@ -106,4 +107,10 @@ DynamicButton.defaultProps = {
   onClick: () => alert("this is a default onClick message."),
 };
 
-export default withStyles(styles)(DynamicButton);
+export default function DynamicButton({ ...props }){
+  return (
+    <ThemeProvider theme={theme}>
+      <DynamicButtonBase {...props} />
+    </ThemeProvider>
+  );
+};
