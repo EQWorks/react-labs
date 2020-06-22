@@ -143,7 +143,14 @@ const dataSetThree = [
     timeStatus: '1h',
     progressBar: 100,
     expand: true,
-    expansionDetails: <div style={{marginTop: '25px'}}><button style={{width: '100px', padding: '8px', borderRadius: '5px', fontSize:'14px', color: 'white', backgroundColor: '#2185d0', cursor: 'pointer'}}>View page</button> <a href="#" style={{ marginLeft: '10px', fontSize: '13px', textDecoration: 'none', color: '#0088ff'}}>Export CSV </a></div>
+    expansionDetails: (
+      <div style={{marginTop: '25px'}}>
+        <button style={{width: '100px', padding: '8px', borderRadius: '5px', fontSize:'14px', color: 'white', backgroundColor: '#2185d0', cursor: 'pointer'}}>
+          View page
+        </button> 
+        <a href="#" style={{ marginLeft: '10px', fontSize: '13px', textDecoration: 'none', color: '#0088ff'}}>Export CSV </a>
+      </div>
+    )
   },
   {
     avatar: 'empty',
@@ -152,7 +159,14 @@ const dataSetThree = [
     timeStatus: '1h',
     progressBar: 50,
     expand: true,
-    expansionDetails: <div style={{marginTop: '25px'}}><button style={{width: '100px', padding: '8px', borderRadius: '5px', fontSize:'14px', color: 'white', backgroundColor: '#2185d0', cursor: 'pointer'}}>View page</button> <a href="#" style={{ marginLeft: '10px', fontSize: '13px', textDecoration: 'none', color: '#0088ff'}}>Export CSV </a></div>
+    expansionDetails: (
+      <div style={{marginTop: '25px'}}>
+        <button style={{width: '100px', padding: '8px', borderRadius: '5px', fontSize:'14px', color: 'white', backgroundColor: '#2185d0', cursor: 'pointer'}}>
+          View page
+        </button> 
+        <a href="#" style={{ marginLeft: '10px', fontSize: '13px', textDecoration: 'none', color: '#0088ff'}}>Export CSV </a>
+      </div>
+    )
   },
   {
     avatar: 'empty',
@@ -161,9 +175,76 @@ const dataSetThree = [
     timeStatus: '1h',
     progressBar: 70,
     expand: true,
-    expansionDetails: <div style={{marginTop: '25px'}}><button style={{width: '100px', padding: '8px', borderRadius: '5px', fontSize:'14px', color: 'white', backgroundColor: '#2185d0', cursor: 'pointer'}}>View page</button> <a href="#" style={{ marginLeft: '10px', fontSize: '13px', textDecoration: 'none', color: '#0088ff'}}>Export CSV </a></div>
+    expansionDetails: (
+      <div style={{marginTop: '25px'}}>
+        <button style={{width: '100px', padding: '8px', borderRadius: '5px', fontSize:'14px', color: 'white', backgroundColor: '#2185d0', cursor: 'pointer'}}>
+          View page
+        </button> 
+        <a href="#" style={{ marginLeft: '10px', fontSize: '13px', textDecoration: 'none', color: '#0088ff'}}>Export CSV </a>
+      </div>
+    )
   },
 ]
+
+const rawLogData = [
+  {
+    id: 3727,
+    email: 'user.name@email.com',
+    time_st: '2020-06-12T21:23:59.000Z',
+    action: 'edit POI - 1',
+    return_meta: {
+      action: "[{\"field\":\"radius\",\"value\":300}][{\"field\":\"lat\",\"value\":47.6},{\"field\":\"lon\",\"value\":89.9},{\"field\":\"name\",\"value\":\"'Hello'\"}]",
+      message: 'This POI 180797 has been updated under POI list 1319',
+    },
+    http_method: 'POST',
+    api_path: 'poi/edit',
+    payload: {
+      poi: {
+        lat: 47.6,
+        lon: 89.9,
+        name: 'Hello',
+        poiid: 180797,
+        radius: 300,
+        poilistid: '1319',
+      },
+    },
+    return_code: 200,
+  },
+  {
+    id: 3728,
+    email: 'user.name@email.com',
+    time_st: '2020-06-12T21:26:46.000Z',
+    action: 'edit POI - 2',
+    return_meta: {
+      action: "[{\"field\":\"radius\",\"value\":300}][{\"field\":\"lat\",\"value\":47.6},{\"field\":\"lon\",\"value\":89.9},{\"field\":\"name\",\"value\":\"'hello'\"}]",
+      message: 'This POI 180797 has been updated under POI list 1319',
+    },
+    http_method: 'POST',
+    api_path: 'poi/edit',
+    payload: {
+      poi: {
+        lat: 47.6,
+        lon: 89.9,
+        name: 'hello',
+        poiid: 180797,
+        radius: 300,
+        poilistid: '1319',
+      },
+    },
+    return_code: 200,
+  },
+]
+
+const finalLogData = rawLogData.reduce((acc, log) => {
+  const newObj = {
+    expand: true,
+    expansionDetails: log.return_meta.message,
+    heading: log.action,
+    details: log.return_meta.message,
+  }
+  acc.push(newObj)
+  return acc
+}, [])
 
 const customTabs = {
   root: {
@@ -263,3 +344,4 @@ storiesOf('List', module)
       </div>
     </>
   ))
+  .add('With Log Object', () => <List onItemClick={action('Item clicked: ')} divider data={finalLogData} />)
