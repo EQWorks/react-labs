@@ -145,8 +145,11 @@ export const disableFilters = () => (
   />
 )
 
-export const title = () => (
-  <Table data={provinces} title='Cases by province' />
+export const initialSortBy = () => (
+  <Table
+    data={provinces}
+    sortBy={{ id: 'new_cases', desc: true }}
+  />
 )
 
 export const tableProps = () => (

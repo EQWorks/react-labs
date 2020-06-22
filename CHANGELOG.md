@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- `<Table />` - initial `sortBy` property for specifying one (Object) or multiple (Array of Objects) column sorting.
+
+### Changed
+- `<Table />` hide toolbar when no title and no data.
+- `<Table />` Edit columns list with a maxHeight for in-list scroll.
+
+### Removed
+- **BREAKING** `<Table />` - remove `title` property.
+
+## [0.7.0] - 2020-06-18
+### Added
 - `<Table />` `hiddenColumns` (Array of String, default empty) property and per-`<Table.Column />` `hidden` (Boolean, logically default `false`) property for configuring tables with initially hidden columns. When any per-column `hidden` property is true (technically, truthy), table-wise `hiddenColumns` property is ignored.
 - `<Table />` per-column value filter, default to `filters.DefaultFilter`.
 - `<Table />` `title` property.
@@ -16,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<Table />` refactor table toolbar search as `filters.DefaultFilter`.
 - `<Table />` sort and filter indicators are more prominent when in-effect.
 
-## [0.6.2]
+## [0.6.2] - 2020-06-15
 ### Added
 - `<Table />` component, based on `react-table` hooks and MUI Table components. Deprecating `<DataTable />` and `<DynamicDataTable />` components.
 

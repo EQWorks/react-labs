@@ -86,7 +86,7 @@ const Table = ({
   hiddenColumns,
   tableProps,
   headerGroupProps,
-  title,
+  sortBy,
 }) => {
   const classes = useStyles()
   // custom table config hook
@@ -110,7 +110,10 @@ const Table = ({
     {
       columns: _cols,
       data: _data,
-      initialState: { hiddenColumns: hidden },
+      initialState: {
+        hiddenColumns: hidden,
+        sortBy: useMemo(() => Array.isArray(sortBy) ? sortBy : [sortBy], [sortBy]),
+      },
     },
     // plugin hooks - order matters
     useGlobalFilter,
@@ -121,17 +124,18 @@ const Table = ({
 
   return (
     <>
-      <TableToolbar
-        allColumns={allColumns}
-        visibleColumns={visibleColumns}
-        toggleHideColumn={toggleHideColumn}
-        downloadable={downloadable}
-        data={data}
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={globalFilter}
-        setGlobalFilter={setGlobalFilter}
-        title={title}
-      />
+      {(_data.length > 0) && (
+        <TableToolbar
+          allColumns={allColumns}
+          visibleColumns={visibleColumns}
+          toggleHideColumn={toggleHideColumn}
+          downloadable={downloadable}
+          data={data}
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+      )}
       {visibleColumns.length > 0 ? (
         <>
           <TableContainer>
@@ -217,7 +221,7 @@ Table.propTypes = {
   hiddenColumns: PropTypes.arrayOf(PropTypes.string),
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
-  title: PropTypes.string,
+  sortBy: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.object]),
 }
 Table.defaultProps = {
   columns: null,
@@ -227,7 +231,7 @@ Table.defaultProps = {
   hiddenColumns: [],
   tableProps: {},
   headerGroupProps: {},
-  title: '',
+  sortBy: {},
 }
 Table.Column = TableColumn
 
