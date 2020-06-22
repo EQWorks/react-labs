@@ -221,7 +221,7 @@ Table.propTypes = {
   hiddenColumns: PropTypes.arrayOf(PropTypes.string),
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
-  sortBy: PropTypes.oneOfType(PropTypes.arrayOf(PropTypes.object), PropTypes.object),
+  sortBy: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.object]),
 }
 Table.defaultProps = {
   columns: null,
