@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Download from './download'
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const TableToolbar = ({
-  title,
   // Search
   preGlobalFilteredRows,
   globalFilter,
@@ -37,11 +35,6 @@ const TableToolbar = ({
 
   return (
     <Toolbar>
-      {title && (
-        <Typography className={classes.title} variant='h6' id='tableTitle'>
-          {title}
-        </Typography>
-      )}
       {allColumns.some((c) => !c.disableGlobalFilter) && (
         <DefaultFilter
           preFilteredRows={preGlobalFilteredRows}
@@ -68,15 +61,11 @@ const TableToolbar = ({
 }
 
 TableToolbar.propTypes = {
-  title: PropTypes.string,
   preGlobalFilteredRows: PropTypes.array.isRequired,
   globalFilter: PropTypes.string.isRequired,
   setGlobalFilter: PropTypes.func.isRequired,
   ...Download.propTypes,
   ...Toggle.propTypes,
-}
-TableToolbar.defaultProps = {
-  title: '',
 }
 
 export default TableToolbar

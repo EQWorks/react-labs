@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<Table />` hide toolbar when no title and no data.
 - `<Table />` Edit columns list with a maxHeight for in-list scroll.
 
+### Removed
+- **BREAKING** `<Table />` - remove `title` property.
+
 ## [0.7.0] - 2020-06-18
 ### Added
 - `<Table />` `hiddenColumns` (Array of String, default empty) property and per-`<Table.Column />` `hidden` (Boolean, logically default `false`) property for configuring tables with initially hidden columns. When any per-column `hidden` property is true (technically, truthy), table-wise `hiddenColumns` property is ignored.

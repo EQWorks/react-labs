@@ -86,7 +86,6 @@ const Table = ({
   hiddenColumns,
   tableProps,
   headerGroupProps,
-  title,
   sortBy,
 }) => {
   const classes = useStyles()
@@ -125,7 +124,7 @@ const Table = ({
 
   return (
     <>
-      {(title || _data.length > 0) && (
+      {(_data.length > 0) && (
         <TableToolbar
           allColumns={allColumns}
           visibleColumns={visibleColumns}
@@ -135,7 +134,6 @@ const Table = ({
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}
-          title={title}
         />
       )}
       {visibleColumns.length > 0 ? (
@@ -223,7 +221,6 @@ Table.propTypes = {
   hiddenColumns: PropTypes.arrayOf(PropTypes.string),
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
-  title: PropTypes.string,
   sortBy: PropTypes.oneOfType(PropTypes.arrayOf(PropTypes.object), PropTypes.object),
 }
 Table.defaultProps = {
@@ -234,7 +231,6 @@ Table.defaultProps = {
   hiddenColumns: [],
   tableProps: {},
   headerGroupProps: {},
-  title: '',
   sortBy: {},
 }
 Table.Column = TableColumn
