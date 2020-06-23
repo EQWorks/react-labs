@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import { Table } from '../src'
+import { SelectFilter, NativeSelectFilter } from '../src/table/filters/select-filter'
 
 import provinces from './data/provinces'
 
@@ -153,6 +154,18 @@ export const SelectionFilter = () => (
       { Header: 'Total cases', accessor: 'total_cases' },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
       { Header: 'Province', accessor: 'province', Filter: Table.filters.SelectionFilter, filter: Table.filters.SelectionFilter.filterFn },
+    ]}
+  />
+)
+
+export const SelectFilters = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, Filter: SelectFilter, filter: SelectFilter.filterFn },
+      { Header: 'Province', accessor: 'province', Filter: NativeSelectFilter, filter: NativeSelectFilter.filterFn },
     ]}
   />
 )
