@@ -9,7 +9,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import Checkbox from '@material-ui/core/Checkbox'
+import Switch from '@material-ui/core/Switch'
 import Badge from '@material-ui/core/Badge'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { makeStyles } from '@material-ui/core/styles'
@@ -86,7 +86,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
                         onClick={() => { toggleHideColumn(c.id) }}
                       >
                         <ListItemIcon>
-                          <Checkbox
+                          <Switch
                             color='primary'
                             edge='start'
                             checked={c.isVisible}
