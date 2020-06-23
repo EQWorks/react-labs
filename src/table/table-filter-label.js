@@ -19,6 +19,7 @@ const useStyles = makeStyles(() => ({
   },
   filter: {
     padding: '1rem',
+    display: 'flex',
   },
 }))
 
@@ -28,7 +29,6 @@ const TableFilterLabel = ({ column }) => {
   const [open, setOpen] = useState(false)
 
   const handleClose = (e) => {
-    console.log('lol')
     if (anchorRef.current && anchorRef.current.contains(e.target)) {
       return
     }

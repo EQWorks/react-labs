@@ -127,7 +127,7 @@ export const disableGlobalFilter = () => (
     columns={[
       { Header: 'New cases', accessor: 'new_cases' },
       { Header: 'Total cases', accessor: 'total_cases' },
-      { Header: 'Rate', accessor: 'rate', filter: 'excludes', Cell: ({ value }) => `${value}%` },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
       { Header: 'Province', accessor: 'province' },
     ].map((c) => ({ ...c, disableGlobalFilter: true }))}
   />
@@ -138,9 +138,21 @@ export const disableFilters = () => (
     data={provinces}
     columns={[
       { Header: 'New cases', accessor: 'new_cases' },
-      { Header: 'Total cases', accessor: 'total_cases' },
-      { Header: 'Rate', accessor: 'rate', filter: 'excludes', Cell: ({ value }) => `${value}%` },
+      { Header: 'Total cases', accessor: 'total_cases', disableFilters: true },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
       { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+    ]}
+  />
+)
+
+export const SelectionFilter = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases' },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+      { Header: 'Province', accessor: 'province', Filter: Table.filters.SelectionFilter, filter: Table.filters.SelectionFilter.filterFn },
     ]}
   />
 )
