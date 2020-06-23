@@ -24,8 +24,9 @@ import TableColumn from './table-column'
 import TableToolbar from './table-toolbar'
 import TableSortLabel from './table-sort-label'
 import TableFilterLabel from './table-filter-label'
-import SelectionFilter from './filters/selection-filter'
 import DefaultFilter from './filters/default-filter'
+import SelectionFilter from './filters/selection-filter'
+import RangeFilter from './filters/range-filter'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -236,6 +237,6 @@ Table.defaultProps = {
   sortBy: {},
 }
 Table.Column = TableColumn
-Table.filters = { DefaultFilter, SelectionFilter }
+Table.filters = { DefaultFilter, SelectionFilter, RangeFilter }
 
 export default Table

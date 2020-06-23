@@ -157,6 +157,18 @@ export const SelectionFilter = () => (
   />
 )
 
+export const RangeFilter = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+      { Header: 'Province', accessor: 'province' },
+    ]}
+  />
+)
+
 export const initialSortBy = () => (
   <Table
     data={provinces}

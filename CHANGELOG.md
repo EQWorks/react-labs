@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ## Added
 - `<Table />` - `react-table` compatible selection filter implementation.
+- `<Table />` - `react-table` compatible range filter implementation.
 
 ## [1.0.0] - 2020-06-22
 ### Added
