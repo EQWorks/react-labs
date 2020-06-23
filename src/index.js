@@ -6,3 +6,4 @@ export { default as QuickFilters } from './quick-filters'
 export { default as DynamicButton } from './dynamic-button'
 export { default as DynamicDataTable } from './dynamic-data-table' // deprecated by Table
 export { default as Table } from './table'
+export { default as Alert } from './alert'
