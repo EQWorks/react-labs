@@ -5,6 +5,29 @@ import Slider from '@material-ui/core/Slider'
 import { makeStyles } from '@material-ui/core/styles'
 
 
+// based on https://stackoverflow.com/a/10601315/158111
+function abbreviateNumber(value) {
+  const suffixes = ['', 'k', 'm', 'b', 't']
+  let newValue = value
+  if (value >= 1000) {
+    const suffixNum = Math.floor(String(value).length / 3)
+    let shortValue = '';
+    for (var precision = 2; precision >= 1; precision--) {
+      shortValue = (suffixNum !== 0 ? (value / Math.pow(1000, suffixNum)) : value)
+      shortValue = parseFloat(shortValue.toPrecision(precision))
+      const dotLessShortValue = String(shortValue).replace(/[^a-zA-Z 0-9]+/g, '')
+      if (dotLessShortValue.length <= 2) {
+        break
+      }
+    }
+    if (shortValue % 1 != 0) {
+      shortValue = shortValue.toFixed(1)
+    }
+    newValue = `${shortValue}${suffixes[suffixNum]}`
+  }
+  return newValue;
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '300px',
@@ -25,7 +48,7 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
   }, [id, preFilteredRows])
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={(e) => { e.stopPropagation() }}>
       <Slider
         value={filterValue || [min, max]}
         onChange={(_, newValue) => {
@@ -40,6 +63,8 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         min={min}
         valueLabelDisplay="on"
         aria-labelledby={`${id}-range-label`}
+        getAriaValueText={abbreviateNumber}
+        valueLabelFormat={abbreviateNumber}
       />
     </div>
   )
