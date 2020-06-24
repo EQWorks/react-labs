@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Slider from '@material-ui/core/Slider'
+import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 
 
@@ -30,8 +31,13 @@ function abbreviateNumber(value) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '300px',
+    width: '40ch',
     padding: theme.spacing(1),
+  },
+  text: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '18ch',
   },
 }))
 
@@ -61,10 +67,36 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         }}
         max={max}
         min={min}
-        valueLabelDisplay="on"
+        valueLabelDisplay="auto"
         aria-labelledby={`${id}-range-label`}
         getAriaValueText={abbreviateNumber}
         valueLabelFormat={abbreviateNumber}
+      />
+      <TextField
+        className={classes.text}
+        id={`${id}-range-min`}
+        label="min"
+        type="number"
+        variant="outlined"
+        size="small"
+        placeholder={min}
+        value={(filterValue || [])[0] || ''}
+        onChange={({ target: { value } }) => {
+          setFilter((old = []) => [value ? parseInt(value, 10) : undefined, old[1]])
+        }}
+      />
+      <TextField
+        className={classes.text}
+        id={`${id}-range-max`}
+        label="max"
+        type="number"
+        variant="outlined"
+        size="small"
+        placeholder={max}
+        value={(filterValue || [])[1] || ''}
+        onChange={({ target: { value } }) => {
+          setFilter((old = []) => [old[0], value ? parseInt(value, 10) : undefined])
+        }}
       />
     </div>
   )
