@@ -3,12 +3,10 @@ import PropTypes from "prop-types"
 
 import { makeStyles } from "@material-ui/core/styles"
 import { Button } from "@material-ui/core"
-
 import { palette, typography } from '../src/themes'
 
 
 const useStyles = makeStyles((t) => {
-  // enforce PALETTE_EXT
   const theme = {
     ...t,
     typography: {

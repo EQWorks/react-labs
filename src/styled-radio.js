@@ -2,51 +2,67 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 import clsx from 'clsx';
+import { palette, typography } from '../src/themes'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: theme.spacing(0.5),
-    '&:hover': {
-      backgroundColor: 'transparent',
+const useStyles = makeStyles((t) => {
+  const theme = {
+    ...t,
+    typography: {
+      ...t.typography,
+      ...typography,
     },
-  },
-  icon: {
-    borderRadius: '50%',
-    width: 16,
-    height: 16,
-    border: '1px solid',
-    borderColor: theme.palette.grey[400],
-    backgroundColor: theme.palette.grey[50],
-    'input:hover ~ &': {
-      transition: 'all .3s',
-      backgroundColor: theme.palette.hoverOnWhite,
-      borderColor: theme.palette.locusBlue[100],
+    palette: {
+      ...t.palette,
+      ...palette,
     },
-    'input:disabled ~ &': {
-      opacity: 0.5,
+  }
+
+  return {
+    root: {
+      margin: theme.spacing(0.5),
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  checkedIcon: {
-    borderRadius: '50%',
-    backgroundColor: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main,
-    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-    '&:before': {
-      display: 'block',
+    icon: {
+      borderRadius: '50%',
       width: 16,
       height: 16,
-      backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
-      content: '""',
+      border: '1px solid',
+      borderColor: theme.palette.grey[400],
+      backgroundColor: theme.palette.grey[50],
+      'input:hover ~ &': {
+        transition: 'all .3s',
+        backgroundColor: theme.palette.state.hoverWhite,
+        borderColor: theme.palette.shade.primary[100],
+      },
+      'input:disabled ~ &': {
+        opacity: 0.5,
+      },
     },
-    'input:hover ~ &': {
-      backgroundColor: theme.palette.hoverOnPrimary,
-      borderColor: theme.palette.hoverOnPrimary,
+    checkedIcon: {
+      borderRadius: '50%',
+      backgroundColor: theme.palette.primary.main,
+      borderColor: theme.palette.primary.main,
+      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+      '&:before': {
+        display: 'block',
+        width: 16,
+        height: 16,
+        backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+        content: '""',
+      },
+      'input:hover ~ &': {
+        backgroundColor: theme.palette.primary.main,
+        backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`,
+        borderColor: theme.palette.state.hoverWhite,
+      },
+      'input:disabled ~ &': {
+        opacity: 0.5,
+      },
     },
-    'input:disabled ~ &': {
-      opacity: 0.5,
-    },
-  },
-}));
+  }
+})
 
 const StyledRadio = props => {
   const classes = useStyles();

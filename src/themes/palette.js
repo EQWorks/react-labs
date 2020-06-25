@@ -1,5 +1,15 @@
 import { fade } from '@material-ui/core/styles/colorManipulator'
 
+// overrides default namespaces
+const PALETTE_DEFAULT = {
+  primary: { main: '#0075FF' },
+  error: { main: "#ea0000" },
+  warning: { main: "#f4b000" },
+  info: { main: "#741fff" },
+  success: { main: "#00d308" },
+}
+
+export { PALETTE_DEFAULT }
 
 // extended namespaces
 const PALETTE_EXT = {
@@ -18,7 +28,7 @@ const PALETTE_EXT = {
     },
   },
   state: {
-    hoverWhite: fade('#0075ff', 0.05),
+    hoverWhite: fade(PALETTE_DEFAULT.primary.main, 0.05),
     hoverColored: 'rgba(0,0,0,0.15)',
   },
   shadow: {
@@ -29,17 +39,6 @@ const PALETTE_EXT = {
   },
 }
 export { PALETTE_EXT }
-
-// overrides default namespaces
-const PALETTE_DEFAULT = {
-  primary: { main: '#0075FF' },
-  error: { main: "#ea0000" },
-  warning: { main: "#f4b000" },
-  info: { main: "#741fff" },
-  success: { main: "#00d308" },
-}
-
-export { PALETTE_DEFAULT }
 
 const palette = {
   ...PALETTE_DEFAULT,
