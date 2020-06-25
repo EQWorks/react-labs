@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 
+import Skeleton from '@material-ui/lab/Skeleton'
+
 import { Transition, DynamicButton } from '../src'
 
+
+const skeleton = (
+  <div>
+    <Skeleton variant='rect' width={100} height={40} />
+  </div>
+)
 
 storiesOf('Transition', module)
   .add('Backdrop-Circular: Default', () => (
@@ -115,3 +123,18 @@ storiesOf('Transition', module)
       </Transition>
     )
   })
+
+  // with skeleton config:
+  .add('Wrapper-Button: w/ skeleton', () => {
+    const [progress, setProgress] = useState(0)
+    useEffect(() => {
+      const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
+      return () => clearInterval(timer)
+    }, [])
+    return (
+      <Transition open={progress < 50} skeletonConfig={skeleton}>
+        <DynamicButton>Click Me</DynamicButton>
+      </Transition>
+    )
+  })
+  
