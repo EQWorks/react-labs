@@ -21,8 +21,9 @@ const arr = [
   },
 ];
 
+
 storiesOf("DynamicButton", module)
-  .add("Default", () => <DynamicButton />)
+  .add("Default", () => <DynamicButton/>)
   .add("Types", () => (
     <div>
       {arr.map(({ type }, index) => (
