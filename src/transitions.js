@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 /* eslint-disable react/prop-types */
 const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
   const classes = useStyles()
-  const actionType = action.split(' ')[0]
+  const actionType = action && action.split(' ')[0]
   if (actionType === 'circular') return (
     <Box position='relative' display='inline-flex'>
       <CircularProgress variant='static' {...props} />
@@ -76,12 +76,12 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
   )
 }
 
-const Transition = ({ open, backDrop, action, message, progress, childProps, children }) => {
+const Transition = ({ open, backDrop, action, message, progress, childProps, children, skeletonConfig }) => {
   const classes = useStyles()
   const [bufferProgress, setBufferProgress] = useState(progress)
   const [buffer, setBuffer] = useState(10)
   const progressRef = useRef(() => {})
-  const actionType = action.split(' ')[0]
+  const actionType = action && action.split(' ')[0]
 
   if (action === 'linear buffer' || action === 'linear buffer label') {
     useEffect(() => {
@@ -141,6 +141,14 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
     }
   }
 
+  /* transition as loading wrapper with skeleton */
+  if (skeletonConfig) return (
+    <div>
+      {!open && cloneElement(children, { ...childProps })}
+      {open && skeletonConfig}
+    </div>
+  )
+
   /* transition as loading wrapper */
   return (
     <div className={classes.root}>
@@ -160,13 +168,14 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
 }
 
 const propTypes = {
-  action: PropTypes.string.isRequired,
-  message: PropTypes.string,
   open: PropTypes.bool.isRequired,
+  action: PropTypes.string,
+  message: PropTypes.string,
   backDrop: PropTypes.bool,
   progress: PropTypes.number,
   childProps: PropTypes.object,
   children: PropTypes.node,
+  skeletonConfig: PropTypes.node,
 }
 
 Transition.propTypes = propTypes
