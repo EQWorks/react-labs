@@ -12,18 +12,18 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const Alert = ({ severity, message, header }) => {
+const Alert = ({ severity, message, header, ...props }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       {header ? (
-        <MUIAlert severity={severity}>
+        <MUIAlert severity={severity} {...props}>
           <AlertTitle><strong>{header}</strong></AlertTitle>
           {message}
         </MUIAlert>
       ) : (
-        <MUIAlert severity={severity}>{message}</MUIAlert>
+        <MUIAlert severity={severity} {...props}>{message}</MUIAlert>
       )}
     </div>
   )

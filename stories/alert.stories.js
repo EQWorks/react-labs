@@ -8,6 +8,9 @@ storiesOf('Alert', module)
   .add('Error', () => (
     <Alert severity='error' message='Error message.' />
   ))
+  .add('Error-outlined', () => (
+    <Alert severity='error' variant='outlined' message='Error message.' />
+  ))
   .add('Warning', () => (
     <Alert severity='warning' message='Warning message.' />
   ))
