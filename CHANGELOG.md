@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2020-06-25
+### Changed
+- `themes` split palette and typography into default and extended ones.
+- `themes` directly enforce themes at component level for `<DynamicButton />`, `<StyledCheckbox />` and `<StyledRadio />`.
+
+### Fixed
+- `<StyledCheckbox />` and `<StyledRadio />` crashes due to lack of themes enforcement.
+
 ## [1.1.0] - 2020-06-24
 ### Added
 - `<Table />` - `react-table` compatible selection filter implementation.
