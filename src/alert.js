@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Alert = ({ severity, message, header, ...props }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
@@ -29,11 +29,14 @@ const Alert = ({ severity, message, header, ...props }) => {
   )
 }
 
-const propTypes = {
+Alert.propTypes = {
   severity: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   header: PropTypes.string,
 }
 
-Alert.propTypes = propTypes
+Alert.defaultProps = {
+  header: '',
+}
+
 export default Alert

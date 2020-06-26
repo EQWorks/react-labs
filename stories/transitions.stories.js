@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 
-import Skeleton from '@material-ui/lab/Skeleton'
-
 import { Transition, DynamicButton } from '../src'
+
+import Skeleton from '@material-ui/lab/Skeleton'
 
 
 const skeleton = (
@@ -137,4 +137,3 @@ storiesOf('Transition', module)
       </Transition>
     )
   })
-  
