@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: '40%',
     padding: '5px',
-  }
+  },
 })
 
 const Card = ({ cardContent, cardAction }) => {
@@ -26,10 +26,13 @@ const Card = ({ cardContent, cardAction }) => {
   )
 }
 
-const propTypes = {
+Card.propTypes = {
   cardContent: PropTypes.any.isRequired,
   cardAction: PropTypes.any,
 }
 
-Card.propTypes = propTypes
+Card.defaultProps = {
+  cardAction: null,
+}
+
 export default Card

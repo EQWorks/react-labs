@@ -167,7 +167,7 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
   )
 }
 
-const propTypes = {
+Transition.propTypes = {
   open: PropTypes.bool.isRequired,
   action: PropTypes.string,
   message: PropTypes.string,
@@ -178,5 +178,14 @@ const propTypes = {
   skeletonConfig: PropTypes.node,
 }
 
-Transition.propTypes = propTypes
+Transition.defaultProps = {
+  action: '',
+  message: '',
+  backDrop: false,
+  progress: 0,
+  childProps: {},
+  children: null,
+  skeletonConfig: null,
+}
+
 export default Transition
