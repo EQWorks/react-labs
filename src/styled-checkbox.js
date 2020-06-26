@@ -1,8 +1,10 @@
-import React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import { palette, typography } from '../src/themes'
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import Checkbox from '@material-ui/core/Checkbox'
+import { makeStyles } from '@material-ui/core/styles'
+
+import { palette, typography } from './themes'
 
 
 const checkMark =
@@ -22,7 +24,7 @@ const useStyles = makeStyles((t) => {
       ...palette,
     },
   }
-  return {   
+  return {
     root: {
       margin: theme.spacing(0.5),
       "&&:hover": {

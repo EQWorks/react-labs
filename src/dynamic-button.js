@@ -1,9 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { makeStyles } from "@material-ui/core/styles"
-import { Button } from "@material-ui/core"
-import { palette, typography } from '../src/themes'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+
+import { palette, typography } from './themes'
 
 
 const useStyles = makeStyles((t) => {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((t) => {
       margin: theme.spacing(0.5),
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
-      textTransform: "none",
+      textTransform: 'none',
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       "&:hover": {

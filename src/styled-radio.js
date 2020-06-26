@@ -1,8 +1,11 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Radio from "@material-ui/core/Radio";
-import clsx from 'clsx';
-import { palette, typography } from '../src/themes'
+import React from 'react'
+
+import { makeStyles } from '@material-ui/core/styles'
+import Radio from '@material-ui/core/Radio'
+import clsx from 'clsx'
+
+import { palette, typography } from './themes'
+
 
 const useStyles = makeStyles((t) => {
   const theme = {

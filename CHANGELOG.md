@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- `themes` fix import path for `<DynamicButton />`, `<StyledCheckbox />` and `<StyledRadio />`.
+
 ## [1.1.1] - 2020-06-25
 ### Changed
 - `themes` split palette and typography into default and extended ones.
