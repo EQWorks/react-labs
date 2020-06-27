@@ -6,36 +6,54 @@ import InputLabel from '@material-ui/core/InputLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
+import grey from '@material-ui/core/colors/grey'
 import { fade, makeStyles } from '@material-ui/core/styles'
 
+import { palette, typography } from '../src/themes'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(0.5),
+
+const useStyles = makeStyles((t) => {
+  const theme = {
+    ...t,
+    typography: {
+      ...t.typography,
+      ...typography,
     },
-    borderRadius: 4,
-    border: '1px solid #e0e0e0',
-    fontSize: 15,
-    padding: '4px 6px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-  },
-  label: {
-    marginLeft: theme.spacing(1)
-  },
-  labelError: {
-    marginLeft: theme.spacing(1),
-    color: '#ea0000',
-  },
-  inputDefault: {
-    boxShadow: `${fade('#0075ff', 0.25)} 0 0 0 0.2rem`,
-    borderColor: '#0075ff',
-  },
-  inputError: {
-    boxShadow: `${fade('#ea0000', 0.25)} 0 0 0 0.2rem`,
-    borderColor: '#ea0000',
-  },
-}))
+    palette: {
+      ...t.palette,
+      ...palette,
+    },
+  }
+
+  return {
+    root: {
+      fontFamily: theme.typography.fontFamily,
+      'label + &': {
+        marginTop: theme.spacing(0.5),
+      },
+      borderRadius: 4,
+      border:  `1px solid ${grey[300]}`,
+      fontSize: theme.typography.body1,
+      padding: '4px 6px',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+    },
+    label: {
+      marginLeft: theme.spacing(1)
+    },
+    labelError: {
+      marginLeft: theme.spacing(1),
+      color: '#ea0000',
+    },
+    inputDefault: {
+      boxShadow: `${fade(theme.palette.shade.primary[100], 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+    inputError: {
+      boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.error.main,
+    },
+  }
+})
 
 const TextField = ({
   inputProps,
@@ -55,20 +73,24 @@ const TextField = ({
   const classes = useStyles()
   const dimensions = { width, height: multiline ? 'auto' : height }
   const inp = {
-    startAdornment: adornmentButton && startAdornment ?
-      (<InputAdornment position="start">
-        <IconButton onMouseDown={(e) => e.preventDefault()} disableRipple onClick={adornmentOnClick}>
-          {startAdornment}
-        </IconButton>
-      </InputAdornment>)
-      : (<InputAdornment position="start">{startAdornment}</InputAdornment>),
-    endAdornment: adornmentButton && endAdornment ?
-      (<InputAdornment position="end">
-        <IconButton onMouseDown={(e) => e.preventDefault()} disableRipple onClick={adornmentOnClick}>
-          {endAdornment}
-        </IconButton>
-      </InputAdornment>)
-      : (<InputAdornment position="end">{endAdornment}</InputAdornment>),
+    startAdornment: (
+      <InputAdornment position='start'>
+        {adornmentButton && startAdornment ?
+          (<IconButton onMouseDown={(e) => e.preventDefault()} disableRipple onClick={adornmentOnClick}>
+            {startAdornment}
+          </IconButton>)
+          : startAdornment}
+      </InputAdornment>
+    ),
+    endAdornment: (
+      <InputAdornment position='end'>
+        {adornmentButton && endAdornment ?
+          (<IconButton onMouseDown={(e) => e.preventDefault()} disableRipple onClick={adornmentOnClick}>
+            {endAdornment}
+          </IconButton>)
+          : endAdornment}
+      </InputAdornment>
+    ),
   }
 
   return (
