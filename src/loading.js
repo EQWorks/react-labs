@@ -76,7 +76,7 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
   )
 }
 
-const Transition = ({ open, backDrop, action, message, progress, childProps, children, skeletonConfig }) => {
+const Loading = ({ open, backDrop, action, message, progress, childProps, children, skeletonConfig }) => {
   const classes = useStyles()
   const [bufferProgress, setBufferProgress] = useState(progress)
   const [buffer, setBuffer] = useState(10)
@@ -119,7 +119,7 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
     </>
   )
 
-  /* transition as backdrop */
+  /* Loading as backdrop */
   if (backDrop) {
     if (actionType === 'linear') {
       return <Modal open={open}>{modalBody}</Modal>
@@ -141,7 +141,7 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
     }
   }
 
-  /* transition as loading wrapper with skeleton */
+  /* Loading as loading wrapper with skeleton */
   if (skeletonConfig) return (
     <div>
       {!open && cloneElement(children, { ...childProps })}
@@ -149,7 +149,7 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
     </div>
   )
 
-  /* transition as loading wrapper */
+  /* Loading as loading wrapper */
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
@@ -167,7 +167,7 @@ const Transition = ({ open, backDrop, action, message, progress, childProps, chi
   )
 }
 
-Transition.propTypes = {
+Loading.propTypes = {
   open: PropTypes.bool.isRequired,
   action: PropTypes.string,
   message: PropTypes.string,
@@ -178,7 +178,7 @@ Transition.propTypes = {
   skeletonConfig: PropTypes.node,
 }
 
-Transition.defaultProps = {
+Loading.defaultProps = {
   action: '',
   message: '',
   backDrop: false,
@@ -188,4 +188,4 @@ Transition.defaultProps = {
   skeletonConfig: null,
 }
 
-export default Transition
+export default Loading

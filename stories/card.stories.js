@@ -8,7 +8,7 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime'
 
 
 const loginContent = (
-  <div>
+  <>
     <p style={{ marginBottom: '30px' }}>
       Enter your email and we will send you the authentication methods
     </p>
@@ -21,16 +21,16 @@ const loginContent = (
       endAdornment={<CheckIcon style={{ color: '#00d308' }} />}
       autoFocus
     />
-  </div>
+  </>
 )
 
 const subPgContent = (
-  <div>
+  <>
     <AccessTimeIcon style={{ color: '#0075ff', fontSize: '90px' }} />
     <p style={{ margin: '0px' }}>
       View recent 30 days of activities of your customers
     </p>
-  </div>
+  </>
 )
 
 storiesOf('Card', module)
