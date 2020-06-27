@@ -17,7 +17,9 @@ storiesOf('Alert', module)
   .add('Success', () => (
     <Alert severity='success' message='Success message.' />
   ))
+  .add('Info', () => (
+    <Alert severity='info' message='Info message.' />
+  ))
   .add('Success with header', () => (
     <Alert severity='success' header='Msg Header' message='Success message.' />
   ))
-  
