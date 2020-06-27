@@ -36,10 +36,7 @@ const subPgContent = (
 storiesOf('Card', module)
   .add('Default', () => (
     <Card
-      actionSide='start'
-      cardTitle='Interesting Title'
       cardContent='Some content goes here..'
-      cardAction={<DynamicButton />}
     />
   ))
   .add('Small', () => (

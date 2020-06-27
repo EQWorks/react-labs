@@ -33,7 +33,7 @@ Alert.propTypes = {
 Alert.defaultProps = {
   header: '',
   width: '100%',
-  height: '',
+  height: 'auto',
 }
 
 export default Alert

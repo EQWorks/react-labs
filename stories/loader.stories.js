@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { Loading, DynamicButton } from '../src'
+import { Loader, DynamicButton } from '../src'
 
 import Skeleton from '@material-ui/lab/Skeleton'
 
@@ -12,9 +12,14 @@ const skeleton = (
   </div>
 )
 
-storiesOf('Loading', module)
+storiesOf('Loader', module)
   .add('Backdrop-Circular: Default', () => (
-    <Loading open={true} backDrop action='circular' message='Loading...' />
+    <Loader
+      open={true}
+      backDrop
+      action='circular'
+      message='Loading...'
+    />
   ))
   .add('Backdrop-Circular: Determinate', () => {
     const [progress, setProgress] = useState(0)
@@ -22,9 +27,13 @@ storiesOf('Loading', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return (
-      <Loading open={true} backDrop action='circular determinate' message='Determinate...' progress={progress} />
-    )
+    return <Loader
+      open={true}
+      backDrop
+      action='circular determinate'
+      message='Determinate...'
+      progress={progress}
+    />
   })
   .add('Backdrop-Circular: w/ Label', () => {
     const [progress, setProgress] = useState(0)
@@ -32,24 +41,35 @@ storiesOf('Loading', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return (
-      <Loading
-        open={true}
-        backDrop
-        action='circular determinate label'
-        message='Determinate with label...'
-        progress={progress}
-      />
-    )
+    return <Loader
+      open={true}
+      backDrop
+      action='circular determinate label'
+      message='Determinate with label...'
+      progress={progress}
+    />
   })
-  .add('BackDrop-Linear: Default', () => <Loading open={true} backDrop action='linear' message='Linear...' />)
+  .add('BackDrop-Linear: Default', () => (
+    <Loader
+      open={true}
+      backDrop
+      action='linear'
+      message='Linear...'
+    />
+  ))
   .add('BackDrop-Linear: Determinate', () => {
     const [progress, setProgress] = useState(0)
     useEffect(() => {
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Loading open={true} backDrop action='linear determinate' progress={progress} message='Linear Determinate...' />
+    return <Loader
+      open={true}
+      backDrop
+      action='linear determinate'
+      progress={progress}
+      message='Linear Determinate...'
+    />
   })
   .add('BackDrop-Linear: Determinate w/ Label', () => {
     const [progress, setProgress] = useState(0)
@@ -57,7 +77,7 @@ storiesOf('Loading', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Loading
+    return <Loader
       open={true}
       backDrop
       action='linear determinate label'
@@ -71,7 +91,13 @@ storiesOf('Loading', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Loading open={true} backDrop action='linear buffer' progress={progress} message='Linear Buffer...' />
+    return <Loader
+      open={true}
+      backDrop
+      action='linear buffer'
+      progress={progress}
+      message='Linear Buffer...'
+    />
   })
   .add('BackDrop-Linear: Buffer w/ Label', () => {
     const [progress, setProgress] = useState(0)
@@ -79,7 +105,7 @@ storiesOf('Loading', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Loading
+    return <Loader
       open={true}
       backDrop
       action='linear buffer label'
@@ -92,9 +118,9 @@ storiesOf('Loading', module)
   .add('Wrapper-Button: Default', () => {
     const [open, setOpen] = useState(false)
     return (
-      <Loading open={open} action='circular' childProps={{ disabled: open }}>
+      <Loader open={open} action='circular' childProps={{ disabled: open }}>
         <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
-      </Loading>
+      </Loader>
     )
   })
   .add('Wrapper-Button: Determinate', () => {
@@ -105,9 +131,9 @@ storiesOf('Loading', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Loading open={open} action='circular determinate' progress={progress} childProps={{ disabled: open }}>
+      <Loader open={open} action='circular determinate' progress={progress} childProps={{ disabled: open }}>
         <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
-      </Loading>
+      </Loader>
     )
   })
   .add('Wrapper-Button: w/ Label', () => {
@@ -118,9 +144,9 @@ storiesOf('Loading', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Loading open={open} action='circular determinate label' progress={progress} childProps={{ disabled: open }}>
+      <Loader open={open} action='circular determinate label' progress={progress} childProps={{ disabled: open }}>
         <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
-      </Loading>
+      </Loader>
     )
   })
 
@@ -132,8 +158,8 @@ storiesOf('Loading', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Loading open={progress < 50} skeletonConfig={skeleton}>
+      <Loader open={progress < 50} skeletonConfig={skeleton}>
         <DynamicButton>Click Me</DynamicButton>
-      </Loading>
+      </Loader>
     )
   })
