@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { Transition, DynamicButton } from '../src'
+import { Loading, DynamicButton } from '../src'
 
 import Skeleton from '@material-ui/lab/Skeleton'
 
@@ -12,9 +12,9 @@ const skeleton = (
   </div>
 )
 
-storiesOf('Transition', module)
+storiesOf('Loading', module)
   .add('Backdrop-Circular: Default', () => (
-    <Transition open={true} backDrop action='circular' message='Loading...' />
+    <Loading open={true} backDrop action='circular' message='Loading...' />
   ))
   .add('Backdrop-Circular: Determinate', () => {
     const [progress, setProgress] = useState(0)
@@ -23,7 +23,7 @@ storiesOf('Transition', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Transition open={true} backDrop action='circular determinate' message='Determinate...' progress={progress} />
+      <Loading open={true} backDrop action='circular determinate' message='Determinate...' progress={progress} />
     )
   })
   .add('Backdrop-Circular: w/ Label', () => {
@@ -33,7 +33,7 @@ storiesOf('Transition', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Transition
+      <Loading
         open={true}
         backDrop
         action='circular determinate label'
@@ -42,14 +42,14 @@ storiesOf('Transition', module)
       />
     )
   })
-  .add('BackDrop-Linear: Default', () => <Transition open={true} backDrop action='linear' message='Linear...' />)
+  .add('BackDrop-Linear: Default', () => <Loading open={true} backDrop action='linear' message='Linear...' />)
   .add('BackDrop-Linear: Determinate', () => {
     const [progress, setProgress] = useState(0)
     useEffect(() => {
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Transition open={true} backDrop action='linear determinate' progress={progress} message='Linear Determinate...' />
+    return <Loading open={true} backDrop action='linear determinate' progress={progress} message='Linear Determinate...' />
   })
   .add('BackDrop-Linear: Determinate w/ Label', () => {
     const [progress, setProgress] = useState(0)
@@ -57,7 +57,7 @@ storiesOf('Transition', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Transition
+    return <Loading
       open={true}
       backDrop
       action='linear determinate label'
@@ -71,7 +71,7 @@ storiesOf('Transition', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Transition open={true} backDrop action='linear buffer' progress={progress} message='Linear Buffer...' />
+    return <Loading open={true} backDrop action='linear buffer' progress={progress} message='Linear Buffer...' />
   })
   .add('BackDrop-Linear: Buffer w/ Label', () => {
     const [progress, setProgress] = useState(0)
@@ -79,7 +79,7 @@ storiesOf('Transition', module)
       const timer = setInterval(() => setProgress((prev) => prev >= 100 ? 0 : prev + 10), 800)
       return () => clearInterval(timer)
     }, [])
-    return <Transition
+    return <Loading
       open={true}
       backDrop
       action='linear buffer label'
@@ -92,9 +92,9 @@ storiesOf('Transition', module)
   .add('Wrapper-Button: Default', () => {
     const [open, setOpen] = useState(false)
     return (
-      <Transition open={open} action='circular' childProps={{ disabled: open }}>
+      <Loading open={open} action='circular' childProps={{ disabled: open }}>
         <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
-      </Transition>
+      </Loading>
     )
   })
   .add('Wrapper-Button: Determinate', () => {
@@ -105,9 +105,9 @@ storiesOf('Transition', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Transition open={open} action='circular determinate' progress={progress} childProps={{ disabled: open }}>
+      <Loading open={open} action='circular determinate' progress={progress} childProps={{ disabled: open }}>
         <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
-      </Transition>
+      </Loading>
     )
   })
   .add('Wrapper-Button: w/ Label', () => {
@@ -118,9 +118,9 @@ storiesOf('Transition', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Transition open={open} action='circular determinate label' progress={progress} childProps={{ disabled: open }}>
+      <Loading open={open} action='circular determinate label' progress={progress} childProps={{ disabled: open }}>
         <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
-      </Transition>
+      </Loading>
     )
   })
 
@@ -132,8 +132,8 @@ storiesOf('Transition', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Transition open={progress < 50} skeletonConfig={skeleton}>
+      <Loading open={progress < 50} skeletonConfig={skeleton}>
         <DynamicButton>Click Me</DynamicButton>
-      </Transition>
+      </Loading>
     )
   })

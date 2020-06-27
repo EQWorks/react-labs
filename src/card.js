@@ -52,8 +52,8 @@ const Card = ({
     <MUICard style={dimensions} className={classes[size]}>
       {Object.entries(headerProps).length > 0 && <CardHeader {...headerProps}/>}
       <CardContent>
-        <Typography variant={variantTitle} component='h2' align={alignTitle}>{cardTitle}</Typography>
-        <Typography variant={variantContent} component='p' align={alignContent}>{cardContent}</Typography>
+        <Typography variant={variantTitle} align={alignTitle}>{cardTitle}</Typography>
+        <Typography variant={variantContent} align={alignContent}>{cardContent}</Typography>
       </CardContent>
       {cardAction && 
       <Grid
