@@ -97,7 +97,16 @@ const Table = ({
   // custom table config hook
   const { _cols, _data, hidden } = useTableConfig({ data, hiddenColumns, children, columns })
   // remember me
-  const [cachedHidden, setCachedHidden] = cached({ ...remember })(useState)(hidden)
+  const [
+    cachedHidden,
+    setCachedHidden,
+    removeCachedHidden,
+  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(hidden)
+  const [
+    cachedSortBy,
+    setCachedSortBy,
+    removeCachedSortBy,
+  ] = cached({ ...remember, key: `${remember.key}_SORT_BY` })(useState)(sortBy)
   // useTable
   const {
     getTableProps,
@@ -112,7 +121,7 @@ const Table = ({
     setPageSize,
     gotoPage,
     visibleColumns,
-    state: { pageSize, pageIndex, globalFilter, hiddenColumns: _hidden },
+    state: { pageSize, pageIndex, globalFilter, hiddenColumns: _hidden, sortBy: _sortBy },
     rows,
   } = useTable(
     {
@@ -120,7 +129,7 @@ const Table = ({
       data: _data,
       initialState: {
         hiddenColumns: cachedHidden,
-        sortBy: useMemo(() => Array.isArray(sortBy) ? sortBy : [sortBy], [sortBy]),
+        sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
       },
     },
     // plugin hooks - order matters
@@ -129,12 +138,22 @@ const Table = ({
     useSortBy,
     usePagination,
   )
-  // remember effects
+  // remember hidden
   useEffect(() => {
     if (remember.hidden) {
       setCachedHidden(_hidden)
+    } else {
+      removeCachedHidden()
     }
   }, [_hidden, remember.hidden])
+  // remember sortBy
+  useEffect(() => {
+    if (remember.sortBy) {
+      setCachedSortBy(_sortBy)
+    } else {
+      removeCachedSortBy()
+    }
+  }, [_sortBy, remember.sortBy])
 
   return (
     <>
@@ -242,6 +261,7 @@ Table.propTypes = {
     ttl: PropTypes.number,
     ttlMS: PropTypes.number,
     hidden: PropTypes.bool,
+    sortBy: PropTypes.bool,
   }),
 }
 Table.defaultProps = {
