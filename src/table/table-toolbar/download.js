@@ -26,7 +26,7 @@ const saveData = ({ data, rows, allColumns, visibleColumns, visCols = false, fil
   csvContent = csvContent.slice(0, -1)
   csvContent += '\r\n'
 
-  ;(filteredRows ? rows : data).forEach((d) => {
+  ;(filteredRows ? rows.map((r) => r.values) : data).forEach((d) => {
     valueKeys.forEach((x) => {
       csvContent += `"${String(d[x]).replace(/"/g, '""')}",`
     })
