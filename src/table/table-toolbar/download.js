@@ -12,8 +12,8 @@ import SaveAltIcon from '@material-ui/icons/SaveAlt'
 import Button from '../../dynamic-button'
 
 
-const saveData = ({ data, allColumns, visibleColumns, saveVisible = false }) => {
-  const cols = (saveVisible && visibleColumns.length > 0) ? visibleColumns : allColumns
+const saveData = ({ data, rows, allColumns, visibleColumns, visCols = false, filteredRows = false }) => {
+  const cols = (visCols && visibleColumns.length > 0) ? visibleColumns : allColumns
   const headers = cols.map((c) => c.render('Header'))
   const valueKeys = cols.map((c) => c.id)
 
@@ -25,7 +25,7 @@ const saveData = ({ data, allColumns, visibleColumns, saveVisible = false }) => 
   csvContent = csvContent.slice(0, -1)
   csvContent += '\r\n'
 
-  data.forEach((d) => {
+  ;(filteredRows ? rows : data).forEach((d) => {
     valueKeys.forEach((x) => {
       csvContent += `"${String(d[x]).replace(/"/g, '""')}",`
     })
@@ -43,14 +43,16 @@ const saveData = ({ data, allColumns, visibleColumns, saveVisible = false }) => 
   link.remove()
 }
 
-const Download = ({ data, allColumns, visibleColumns }) => {
+const Download = ({ data, allColumns, visibleColumns, rows }) => {
   const anchorRef = useRef(null)
   const [open, setOpen] = useState(false)
-  const allowOptions = 0 < visibleColumns.length && visibleColumns.length < allColumns.length
+  const allowVisCols = 0 < visibleColumns.length && visibleColumns.length < allColumns.length
+  const allowFilteredRows = 0 < rows.length && rows.length < data.length
+  const allowOptions = allowVisCols || allowFilteredRows
 
-  const handleClick = (saveVisible = false) => (e) => {
+  const handleDownload = ({ visCols = false, filteredRows = false }) => (e) => {
     e.stopPropagation()
-    saveData({ data, allColumns, visibleColumns, saveVisible })
+    saveData({ data, rows, allColumns, visibleColumns, visCols, filteredRows })
   }
 
   const handleToggle = () => {
@@ -74,7 +76,7 @@ const Download = ({ data, allColumns, visibleColumns }) => {
         <Button
           type='tertiary'
           endIcon={<SaveAltIcon />}
-          onClick={allowOptions ? handleToggle : handleClick(false)}
+          onClick={allowOptions ? handleToggle : handleDownload({ visCols: false, filteredRows: false })}
           aria-haspopup='menu'
         >
           Download
@@ -91,12 +93,24 @@ const Download = ({ data, allColumns, visibleColumns }) => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList>
-                  <MenuItem onClick={handleClick(false)}>
-                    Include all columns
+                  <MenuItem onClick={handleDownload({ visCols: false, filteredRows: false })}>
+                    All columns, all rows
                   </MenuItem>
-                  <MenuItem onClick={handleClick(true)}>
-                    Include only visible columns
-                  </MenuItem>
+                  {allowVisCols && allowFilteredRows && (
+                    <MenuItem onClick={handleDownload({ visCols: true, filteredRows: true })}>
+                      Visible columns, filtered rows
+                    </MenuItem>
+                  )}
+                  {allowVisCols && (
+                    <MenuItem onClick={handleDownload({ visCols: true, filteredRows: false })}>
+                      Visible columns, all rows
+                    </MenuItem>
+                  )}
+                  {allowFilteredRows && (
+                    <MenuItem onClick={handleDownload({ visCols: false, filteredRows: true })}>
+                      All columns, filtered rows
+                    </MenuItem>
+                  )}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
@@ -111,11 +125,13 @@ Download.propTypes = {
   data: PropTypes.array,
   allColumns: PropTypes.array,
   visibleColumns: PropTypes.array,
+  rows: PropTypes.array,
 }
 Download.defaultProps = {
   data: [],
   allColumns: null,
   visibleColumns: [],
+  rows: [],
 }
 
 export default Download

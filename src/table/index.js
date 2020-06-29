@@ -109,6 +109,7 @@ const Table = ({
     gotoPage,
     visibleColumns,
     state: { pageSize, pageIndex, globalFilter },
+    rows,
   } = useTable(
     {
       columns: _cols,
@@ -129,6 +130,7 @@ const Table = ({
     <>
       {(_data.length > 0) && (
         <TableToolbar
+          rows={rows}
           allColumns={allColumns}
           visibleColumns={visibleColumns}
           toggleHideColumn={toggleHideColumn}
