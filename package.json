@@ -50,7 +50,8 @@
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "react-table": "^7.1.0",
-    "styled-components": "^5.1.0"
+    "use-cached": "^1.2.1",
+    "uuid": "^8.2.0"
   },
   "scripts": {
     "test": "yarn jest --testPathPattern=__tests__/",

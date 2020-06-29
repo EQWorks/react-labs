@@ -19,6 +19,8 @@ import {
   usePagination,
   useFilters,
 } from 'react-table'
+import { cached } from 'use-cached'
+import { v4 as uuidv4 } from 'uuid'
 
 import TableColumn from './table-column'
 import TableToolbar from './table-toolbar'
@@ -31,8 +33,7 @@ import RangeFilter from './filters/range-filter'
 
 const useStyles = makeStyles((theme) => ({
   head: {
-    fontSize: 'body',
-    fontWeight: 600,
+    fontWeight: theme.typography.fontWeightBold,
     backgroundColor: theme.palette.grey[50],
   },
   grow: {
@@ -90,10 +91,13 @@ const Table = ({
   tableProps,
   headerGroupProps,
   sortBy,
+  remember,
 }) => {
   const classes = useStyles()
   // custom table config hook
   const { _cols, _data, hidden } = useTableConfig({ data, hiddenColumns, children, columns })
+  // remember me
+  const [cachedHidden, setCachedHidden] = cached({ ...remember })(useState)(hidden)
   // useTable
   const {
     getTableProps,
@@ -108,14 +112,14 @@ const Table = ({
     setPageSize,
     gotoPage,
     visibleColumns,
-    state: { pageSize, pageIndex, globalFilter },
+    state: { pageSize, pageIndex, globalFilter, hiddenColumns: _hidden },
     rows,
   } = useTable(
     {
       columns: _cols,
       data: _data,
       initialState: {
-        hiddenColumns: hidden,
+        hiddenColumns: cachedHidden,
         sortBy: useMemo(() => Array.isArray(sortBy) ? sortBy : [sortBy], [sortBy]),
       },
     },
@@ -125,6 +129,12 @@ const Table = ({
     useSortBy,
     usePagination,
   )
+  // remember effects
+  useEffect(() => {
+    if (remember.hidden) {
+      setCachedHidden(_hidden)
+    }
+  }, [_hidden, remember.hidden])
 
   return (
     <>
@@ -227,6 +237,12 @@ Table.propTypes = {
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
   sortBy: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.object]),
+  remember: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    ttl: PropTypes.number,
+    ttlMS: PropTypes.number,
+    hidden: PropTypes.bool,
+  }),
 }
 Table.defaultProps = {
   columns: null,
@@ -237,6 +253,9 @@ Table.defaultProps = {
   tableProps: {},
   headerGroupProps: {},
   sortBy: {},
+  remember: {
+    key: uuidv4(),
+  },
 }
 Table.Column = TableColumn
 Table.filters = { DefaultFilter, SelectionFilter, RangeFilter }

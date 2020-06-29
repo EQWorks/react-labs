@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import Card from '@material-ui/core/Card'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
+import Typography from '@material-ui/core/Typography'
 import { Table } from '../src'
 
 import provinces from './data/provinces'
@@ -191,3 +192,28 @@ export const tableProps = () => (
     }}
   />
 )
+
+export const rememberHidden = () => {
+  const remember = {
+    key: 'DEMO_REMEMBER_HIDDEN',
+    ttl: 5, // remember for 5 minutes
+    hidden: true,
+  }
+  return (
+    <>
+      <Typography variant='body1'>
+        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see persisted hidden columns.
+      </Typography>
+      <Table
+        data={provinces}
+        columns={[
+          { Header: 'New cases', accessor: 'new_cases', hidden: true },
+          { Header: 'Total cases', accessor: 'total_cases' },
+          { Header: 'Province', accessor: 'province', hidden: true },
+          { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+        ]}
+        remember={remember}
+      />
+    </>
+  )
+}
