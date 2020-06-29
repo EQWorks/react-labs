@@ -300,8 +300,8 @@ const tabsArr = [
 
 
 storiesOf('List', module)
-  .add('Default', () => <List onItemClick={action('Item clicked: ')} data={[
-    { heading: 'Default View Title', details: 'Default view for secondary title' },
+  .add('Default', () => <List spacing={5} onItemClick={action('Item clicked: ')} data={[
+    { expand: true, heading: 'Default View Title', details: 'Default view for secondary title' },
     { heading: 'Default View Title', details: 'Default view for secondary title' }
   ]} />)
   .add('With Divider', () => <List onItemClick={action('Item clicked: ')} divider data={[
@@ -324,7 +324,7 @@ storiesOf('List', module)
     { timeStatus: '20m', heading: 'Default View Title', details: 'Default view for secondary title' },
     { timeStatus: '30m', expand: true, heading: 'Default View Title', details: 'Default view for secondary title' }
   ]} />)
-  .add('Combined', () => <List onItemClick={action('Item clicked: ')} divider data={exampleData} />)
+  .add('Combined', () => <List spacing={1} onItemClick={action('Item clicked: ')} divider data={exampleData} />)
   .add('Combined With Tabs', () => (
     <>
       <div style={{margin: '50px'}}>

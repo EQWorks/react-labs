@@ -26,6 +26,7 @@ const List = ({
   divider,
   button,
   focusSelect,
+  spacing,
   data,
 }) => {
   const classes = useStyles()
@@ -44,9 +45,10 @@ const List = ({
             button={button}
             selected={selected === i}
             focusSelect={focusSelect}
+            spacing={spacing}
             {...data}
           />
-          {divider && <Divider />}
+          {divider && !spacing && <Divider />}
         </div>
       ))}
     </MUIList>
@@ -60,10 +62,12 @@ List.propTypes = {
   button: PropTypes.bool,
   focusSelect: PropTypes.bool,
   data: PropTypes.array,
+  spacing: PropTypes.number,
 }
 
 List.defaultProps = {
   width: '500px',
+  spacing: 0,
 }
 
 export default List

@@ -21,9 +21,44 @@ import clsx from 'clsx'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: '10px',
-    border: '1px red solid',
-    // borderTop: '1px red solid',
-    // marginBottom: '20px',
+  },
+  1: {
+    border: '1px solid lightgrey',
+    marginBottom: theme.spacing(1),
+  },
+  2: {
+    border: '1px solid lightgrey',
+    marginBottom: theme.spacing(2),
+  },
+  3: {
+    border: '1px solid lightgrey',
+    marginBottom: theme.spacing(3),
+  },
+  4: {
+    border: '1px solid lightgrey',
+    marginBottom: theme.spacing(4),
+  },
+  5: {
+    border: '1px solid lightgrey',
+    marginBottom: theme.spacing(5),
+  },
+  iconButton: {
+    paddingLeft: '0px',
+    paddingRight: '5px',
+    '&:hover': {
+      backgroundColor: 'inherit',
+    }
+  },
+  listItemAvatar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listItemAvatarRightPadding: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: '7px',
   },
   backgroundColor: {
     backgroundColor: '#f5f5f5'
@@ -57,29 +92,13 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
-  iconButton: {
-    paddingLeft: '0px',
-    paddingRight: '5px',
-    '&:hover': {
-      backgroundColor: 'inherit',
-    }
-  },
-  listItemAvatar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  listItemAvatarRightPadding: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingRight: '7px',
-  }
 }));
 
 // expand - (Default: false, Specify: ['start', 'end'], If True: ['start'])
-// spacing - space between each list item
+// spacing - space between each list item (1 - 5)
 const ListItem = ({
+  expand,
+  spacing,
   itemSecondaryAction,
   onClick,
   selected,
@@ -91,7 +110,6 @@ const ListItem = ({
   avatarColor,
   heading,
   details,
-  expand,
   expansionDetails,
   timeStatus,
   progressBar,
@@ -140,7 +158,7 @@ const ListItem = ({
   }
 
   return (
-    <>
+    <div className={clsx({ [classes[spacing]]: spacing })}>
       <MUIListItem
         onClick={onClick}
         selected={selected}
@@ -152,6 +170,7 @@ const ListItem = ({
           [classes.backgroundColor]: open,
         })}
       >
+        {!avatar && renderIconButton()}
         {renderAvatar()}
         <ListItemText
           primary={itemHeading(heading, progressBar)}
@@ -173,11 +192,16 @@ const ListItem = ({
           {expansionDetails}
         </MUIListItem>
       </Collapse>
-    </>
+    </div>
   )
 }
 
 ListItem.propTypes = {
+  expand: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
+  spacing: PropTypes.number,
   onClick: PropTypes.func,
   selected: PropTypes.bool,
   button: PropTypes.bool,
@@ -188,10 +212,6 @@ ListItem.propTypes = {
   avatarColor: PropTypes.string,
   heading: PropTypes.string,
   details: PropTypes.any,
-  expand: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
   expansionDetails: PropTypes.any,
   timeStatus: PropTypes.string,
   progressBar: PropTypes.number,
@@ -201,6 +221,7 @@ ListItem.propTypes = {
 ListItem.defaultProps = {
   avatarVariant: 'circle',
   expand: false,
+  spacing: 0,
 }
 
 export default ListItem
