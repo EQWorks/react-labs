@@ -20,7 +20,10 @@ import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: '10px'
+    padding: '10px',
+    border: '1px red solid',
+    // borderTop: '1px red solid',
+    // marginBottom: '20px',
   },
   backgroundColor: {
     backgroundColor: '#f5f5f5'
@@ -54,8 +57,28 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
+  iconButton: {
+    paddingLeft: '0px',
+    paddingRight: '5px',
+    '&:hover': {
+      backgroundColor: 'inherit',
+    }
+  },
+  listItemAvatar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listItemAvatarRightPadding: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: '7px',
+  }
 }));
 
+// expand - (Default: false, Specify: ['start', 'end'], If True: ['start'])
+// spacing - space between each list item
 const ListItem = ({
   itemSecondaryAction,
   onClick,
@@ -77,6 +100,12 @@ const ListItem = ({
   const [open, setOpen] = useState(false)
   const showDetails = () => setOpen(!open)
 
+  const listItemAvatarRootClass = () => {
+    const applyPadding = expand && expand !== 'end'
+    if (applyPadding) return classes.listItemAvatarRightPadding
+    return classes.listItemAvatar
+  }
+
   const itemHeading = (heading, progressBar) => {
     return (
       <Grid container alignItems='center' spacing={1}>
@@ -84,7 +113,7 @@ const ListItem = ({
           <Grid item xs={12} >
             <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
           </Grid>}
-        <Grid item xs={12} >{ heading }</Grid>
+        <Grid item xs={12} >{heading}</Grid>
       </Grid>
     )
   }
@@ -92,7 +121,7 @@ const ListItem = ({
   const renderIconButton = () => {
     if (!expand) return null
     return (
-      <IconButton disableFocusRipple disableRipple onClick={showDetails}>
+      <IconButton disableFocusRipple disableRipple onClick={showDetails} classes={{ root: classes.iconButton }}>
         {open ? <ExpandLess /> : <ExpandMore />}
       </IconButton>
     )
@@ -101,7 +130,8 @@ const ListItem = ({
   const renderAvatar = () => {
     if (!avatar) return null
     return (
-      <ListItemAvatar>
+      <ListItemAvatar classes={{ root: listItemAvatarRootClass() }}>
+        {expand !== 'end' && renderIconButton()}
         <Avatar variant={avatarVariant} className={classes[avatarSize]} style={{backgroundColor: avatarColor}}>
           {avatar}
         </Avatar>
@@ -131,7 +161,10 @@ const ListItem = ({
           <Grid item container justify='flex-end' xs={12}>
             {timeStatus ? <div><FiberManualRecord className={classes.complete} />&nbsp;&nbsp;{timeStatus} ago</div> : null}
           </Grid>
-          <Grid item container justify='flex-end' xs={12} >{renderIconButton()}</Grid>
+          {expand === 'end' &&
+            <Grid item container justify='flex-end' xs={12} >
+              {renderIconButton()}
+            </Grid>}
         </Grid>
         {itemSecondaryAction && <ListItemSecondaryAction>{itemSecondaryAction}</ListItemSecondaryAction>}
       </MUIListItem>
@@ -155,7 +188,10 @@ ListItem.propTypes = {
   avatarColor: PropTypes.string,
   heading: PropTypes.string,
   details: PropTypes.any,
-  expand: PropTypes.bool,
+  expand: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]),
   expansionDetails: PropTypes.any,
   timeStatus: PropTypes.string,
   progressBar: PropTypes.number,
@@ -164,6 +200,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   avatarVariant: 'circle',
+  expand: false,
 }
-export default ListItem
 
+export default ListItem
