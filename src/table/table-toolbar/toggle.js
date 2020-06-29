@@ -50,7 +50,8 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
         <Button
           type='tertiary'
           endIcon={
-            <Badge color='secondary'
+            <Badge
+              color='secondary'
               variant='dot'
               invisible={allColumns.every((c) => c.isVisible || c.noToggle)}
             >

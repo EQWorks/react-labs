@@ -7,6 +7,7 @@ import Popper from '@material-ui/core/Popper'
 import MenuItem from '@material-ui/core/MenuItem'
 import MenuList from '@material-ui/core/MenuList'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Badge from '@material-ui/core/Badge'
 import SaveAltIcon from '@material-ui/icons/SaveAlt'
 
 import Button from '../../dynamic-button'
@@ -85,7 +86,11 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
       <div ref={anchorRef} aria-label='Save button'>
         <Button
           type='tertiary'
-          endIcon={<SaveAltIcon />}
+          endIcon={
+            <Badge color='secondary' variant='dot' invisible={!allowOptions}>
+              <SaveAltIcon fontSize='small' />
+            </Badge>
+          }
           onClick={allowOptions ? handleToggle : handleDownload({ visCols: false, filteredRows: false })}
           aria-haspopup='menu'
         >
@@ -108,19 +113,17 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
                   </MenuItem>
                   {allowVisCols && allowFilteredRows && (
                     <MenuItem onClick={handleDownload({ visCols: true, filteredRows: true })}>
-                      <i><u>Visible columns</u></i>,
-                      {' '}
-                      <i><u>filtered rows</u></i>
+                      Visible columns and filtered rows
                     </MenuItem>
                   )}
                   {allowVisCols && (
                     <MenuItem onClick={handleDownload({ visCols: true, filteredRows: false })}>
-                      <i><u>Visible columns</u></i>
+                      Visible columns
                     </MenuItem>
                   )}
                   {allowFilteredRows && (
                     <MenuItem onClick={handleDownload({ visCols: false, filteredRows: true })}>
-                      <i><u>Filtered rows</u></i>
+                      Filtered rows
                     </MenuItem>
                   )}
                 </MenuList>

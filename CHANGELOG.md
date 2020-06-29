@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - `<Table />` - additional download options to reflect filtered rows.
+- `<Table />` - show dot badge for download when options are allowed.
 
 ## [1.1.3] - 2020-06-29
 ### Fixed
