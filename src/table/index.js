@@ -20,7 +20,6 @@ import {
   useFilters,
 } from 'react-table'
 import { cached } from 'use-cached'
-import { v4 as uuidv4 } from 'uuid'
 
 import TableColumn from './table-column'
 import TableToolbar from './table-toolbar'
@@ -274,7 +273,7 @@ Table.defaultProps = {
   headerGroupProps: {},
   sortBy: {},
   remember: {
-    key: uuidv4(),
+    key: '__not_cached',
   },
 }
 Table.Column = TableColumn
