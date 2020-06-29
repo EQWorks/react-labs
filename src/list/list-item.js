@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 
 import { makeStyles } from '@material-ui/core/styles'
 import MUIListItem from '@material-ui/core/ListItem'
@@ -15,12 +16,28 @@ import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import FiberManualRecord from '@material-ui/icons/FiberManualRecord'
 
-import clsx from 'clsx'
-
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: '10px',
+  },
+  iconButton: {
+    paddingLeft: '0px',
+    paddingRight: '5px',
+    '&:hover': {
+      backgroundColor: 'inherit',
+    }
+  },
+  listItemAvatar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listItemAvatarRightPadding: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: '7px',
   },
   1: {
     border: '1px solid lightgrey',
@@ -41,24 +58,6 @@ const useStyles = makeStyles(theme => ({
   5: {
     border: '1px solid lightgrey',
     marginBottom: theme.spacing(5),
-  },
-  iconButton: {
-    paddingLeft: '0px',
-    paddingRight: '5px',
-    '&:hover': {
-      backgroundColor: 'inherit',
-    }
-  },
-  listItemAvatar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  listItemAvatarRightPadding: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingRight: '7px',
   },
   backgroundColor: {
     backgroundColor: '#f5f5f5'
@@ -91,6 +90,7 @@ const useStyles = makeStyles(theme => ({
   large: {
     width: theme.spacing(7),
     height: theme.spacing(7),
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -107,7 +107,7 @@ const ListItem = ({
   avatar,
   avatarVariant,
   avatarSize,
-  avatarColor,
+  avatarBgColor,
   heading,
   details,
   expansionDetails,
@@ -127,7 +127,7 @@ const ListItem = ({
   const itemHeading = (heading, progressBar) => {
     return (
       <Grid container alignItems='center' spacing={1}>
-        {progressBar &&
+        {progressBar > 0 &&
           <Grid item xs={12} >
             <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
           </Grid>}
@@ -149,10 +149,16 @@ const ListItem = ({
     if (!avatar) return null
     return (
       <ListItemAvatar classes={{ root: listItemAvatarRootClass() }}>
-        {expand !== 'end' && renderIconButton()}
-        <Avatar variant={avatarVariant} className={classes[avatarSize]} style={{backgroundColor: avatarColor}}>
-          {avatar}
-        </Avatar>
+        <>
+          {expand !== 'end' && renderIconButton()}
+          <Avatar
+            variant={ avatarVariant }
+            className={ classes[avatarSize] }
+            style={{ backgroundColor: avatarBgColor }}
+          >
+            {avatar}
+          </Avatar>
+        </>
       </ListItemAvatar>
     )
   }
@@ -170,7 +176,7 @@ const ListItem = ({
           [classes.backgroundColor]: open,
         })}
       >
-        {!avatar && renderIconButton()}
+        {!avatar && expand !=='end' && renderIconButton()}
         {renderAvatar()}
         <ListItemText
           primary={itemHeading(heading, progressBar)}
@@ -202,14 +208,15 @@ ListItem.propTypes = {
     PropTypes.string,
   ]),
   spacing: PropTypes.number,
+  avatar: PropTypes.any,
+  avatarVariant: PropTypes.string,
+  avatarSize: PropTypes.string,
+  avatarBgColor: PropTypes.string,
+  /////////////////////////////////
   onClick: PropTypes.func,
   selected: PropTypes.bool,
   button: PropTypes.bool,
   focusSelect: PropTypes.bool,
-  avatar: PropTypes.any,
-  avatarVariant: PropTypes.string,
-  avatarSize: PropTypes.string,
-  avatarColor: PropTypes.string,
   heading: PropTypes.string,
   details: PropTypes.any,
   expansionDetails: PropTypes.any,
@@ -219,7 +226,10 @@ ListItem.propTypes = {
 }
 
 ListItem.defaultProps = {
+  avatar: '',
   avatarVariant: 'circle',
+  avatarSize: 'medium',
+  onClick: () => null,
   expand: false,
   spacing: 0,
 }

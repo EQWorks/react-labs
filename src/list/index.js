@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import clsx from 'clsx'
+
 import { makeStyles } from '@material-ui/core/styles'
 import MUIList from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
@@ -7,26 +9,24 @@ import PropTypes from 'prop-types'
 import ListItem from './list-item'
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
-    // border: '1px solid lightgrey',
-    borderRadius: '3px'
+    borderRadius: '3px',
   },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
+  border: {
+    border: '1px solid lightgrey',
   },
-  title: {
-    margin: theme.spacing(4, 0, 2),
-  },
-}));
+}))
 
 const List = ({
+  divider,
+  border,
+  spacing,
+  //////////
   width,
   onItemClick,
-  divider,
   button,
   focusSelect,
-  spacing,
   data,
 }) => {
   const classes = useStyles()
@@ -36,8 +36,12 @@ const List = ({
 
   // move selected with data to parent level
   return (
-    <MUIList className={classes.root} style={{ ...inputStyles }} disablePadding>
-      {data.map((data, i) => (
+    <MUIList 
+      className={clsx({[classes.root]: true, [classes.border]: border })} 
+      style={{ ...inputStyles }} 
+      disablePadding
+    >
+      {data.map((datum, i) => (
         <div key={i}>
           <ListItem
             itemSecondaryAction={data.secondaryAction}
@@ -46,7 +50,7 @@ const List = ({
             selected={selected === i}
             focusSelect={focusSelect}
             spacing={spacing}
-            {...data}
+            {...datum}
           />
           {divider && !spacing && <Divider />}
         </div>
@@ -56,18 +60,25 @@ const List = ({
 }
 
 List.propTypes = {
+  divider: PropTypes.bool,
+  border: PropTypes.bool,
+  spacing: PropTypes.number,
+  data: PropTypes.array,
+  /////////////////////////
   width: PropTypes.string,
   onItemClick: PropTypes.func,
-  divider: PropTypes.bool,
   button: PropTypes.bool,
   focusSelect: PropTypes.bool,
-  data: PropTypes.array,
-  spacing: PropTypes.number,
 }
 
 List.defaultProps = {
-  width: '500px',
+  onItemClick: () => null,
+  divider: false,
+  border: false,
   spacing: 0,
+  data: [],
+  ////////////////////
+  width: '500px',
 }
 
 export default List
