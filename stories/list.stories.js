@@ -14,14 +14,7 @@ const exampleData = [
     heading: 'Heading・One',
     details: 'Secondary summary one.',
     timeStatus: '30m',
-    expand: true,
-    expansionDetails: 'Example expansion details written here.'
-  },
-  {
-    avatar: <FolderIcon />,
-    heading: 'Heading・Two',
-    details: 'Secondary summary two.',
-    expand: true,
+    expand: 'start',
     expansionDetails: 'Example expansion details written here.'
   },
   {
@@ -30,6 +23,13 @@ const exampleData = [
     progressBar: 50,
     details: 'Secondary summary two.',
     expand: true,
+    expansionDetails: 'Example expansion details written here.'
+  },
+  {
+    avatar: <FolderIcon />,
+    heading: 'Heading・Two',
+    details: 'Secondary summary two.',
+    expand: 'end',
     expansionDetails: 'Example expansion details written here.'
   },
   {
@@ -313,7 +313,7 @@ storiesOf('List', module)
     { avatar: <FolderIcon />, heading: 'Default View Title', details: 'Default view for secondary title' }
   ]} />)
   .add('With Expansion', () => <List onItemClick={action('Item clicked: ')} divider data={[
-    { expand: true, expansionDetails: <FolderIcon />, heading: 'Default View Title', details: 'Default view for secondary title' },
+    { expand: 'start', expansionDetails: <FolderIcon />, heading: 'Default View Title', details: 'Default view for secondary title' },
     { expand: true, expansionDetails: 'Example expansion details written here.', heading: 'Default View Title', details: 'Default view for secondary title' }
   ]} />)
   .add('With Progress Bar', () => <List onItemClick={action('Item clicked: ')} divider data={[

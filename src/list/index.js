@@ -9,7 +9,7 @@ import ListItem from './list-item'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    border: '1px solid lightgrey',
+    // border: '1px solid lightgrey',
     borderRadius: '3px'
   },
   demo: {
