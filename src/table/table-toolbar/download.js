@@ -66,6 +66,16 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
     setOpen(false)
   }
 
+  const allText = () => {
+    if (allowVisCols && !allowFilteredRows) {
+      return 'All columns'
+    }
+    if (!allowVisCols && allowFilteredRows) {
+      return 'All rows'
+    }
+    return 'All columns and rows'
+  }
+
   if (!data.length || !(allColumns || []).length) {
     return null
   }
@@ -94,21 +104,23 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList>
                   <MenuItem onClick={handleDownload({ visCols: false, filteredRows: false })}>
-                    All columns, all rows
+                    {allText()}
                   </MenuItem>
                   {allowVisCols && allowFilteredRows && (
                     <MenuItem onClick={handleDownload({ visCols: true, filteredRows: true })}>
-                      Visible columns, filtered rows
+                      <i><u>Visible columns</u></i>,
+                      {' '}
+                      <i><u>filtered rows</u></i>
                     </MenuItem>
                   )}
                   {allowVisCols && (
                     <MenuItem onClick={handleDownload({ visCols: true, filteredRows: false })}>
-                      Visible columns, all rows
+                      <i><u>Visible columns</u></i>
                     </MenuItem>
                   )}
                   {allowFilteredRows && (
                     <MenuItem onClick={handleDownload({ visCols: false, filteredRows: true })}>
-                      All columns, filtered rows
+                      <i><u>Filtered rows</u></i>
                     </MenuItem>
                   )}
                 </MenuList>
