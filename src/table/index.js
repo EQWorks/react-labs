@@ -19,6 +19,7 @@ import {
   usePagination,
   useFilters,
 } from 'react-table'
+import { cached } from 'use-cached'
 
 import TableColumn from './table-column'
 import TableToolbar from './table-toolbar'
@@ -31,8 +32,7 @@ import RangeFilter from './filters/range-filter'
 
 const useStyles = makeStyles((theme) => ({
   head: {
-    fontSize: 'body',
-    fontWeight: 600,
+    fontWeight: theme.typography.fontWeightBold,
     backgroundColor: theme.palette.grey[50],
   },
   grow: {
@@ -90,10 +90,22 @@ const Table = ({
   tableProps,
   headerGroupProps,
   sortBy,
+  remember,
 }) => {
   const classes = useStyles()
   // custom table config hook
   const { _cols, _data, hidden } = useTableConfig({ data, hiddenColumns, children, columns })
+  // remember me
+  const [
+    cachedHidden,
+    setCachedHidden,
+    removeCachedHidden,
+  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(hidden)
+  const [
+    cachedSortBy,
+    setCachedSortBy,
+    removeCachedSortBy,
+  ] = cached({ ...remember, key: `${remember.key}_SORT_BY` })(useState)(sortBy)
   // useTable
   const {
     getTableProps,
@@ -108,15 +120,15 @@ const Table = ({
     setPageSize,
     gotoPage,
     visibleColumns,
-    state: { pageSize, pageIndex, globalFilter },
+    state: { pageSize, pageIndex, globalFilter, hiddenColumns: _hidden, sortBy: _sortBy },
     rows,
   } = useTable(
     {
       columns: _cols,
       data: _data,
       initialState: {
-        hiddenColumns: hidden,
-        sortBy: useMemo(() => Array.isArray(sortBy) ? sortBy : [sortBy], [sortBy]),
+        hiddenColumns: cachedHidden,
+        sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
       },
     },
     // plugin hooks - order matters
@@ -125,6 +137,28 @@ const Table = ({
     useSortBy,
     usePagination,
   )
+  // remember hidden
+  useEffect(() => {
+    if (remember.hidden) {
+      setCachedHidden(_hidden)
+    }
+    return () => {
+      if (!remember.hidden) {
+        removeCachedHidden()
+      }
+    }
+  }, [_hidden, remember.hidden])
+  // remember sortBy
+  useEffect(() => {
+    if (remember.sortBy) {
+      setCachedSortBy(_sortBy)
+    }
+    return () => {
+      if (!remember.sortBy) {
+        removeCachedSortBy()
+      }
+    }
+  }, [_sortBy, remember.sortBy])
 
   return (
     <>
@@ -227,6 +261,13 @@ Table.propTypes = {
   tableProps: PropTypes.object,
   headerGroupProps: PropTypes.object,
   sortBy: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.object]),
+  remember: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    ttl: PropTypes.number,
+    ttlMS: PropTypes.number,
+    hidden: PropTypes.bool,
+    sortBy: PropTypes.bool,
+  }),
 }
 Table.defaultProps = {
   columns: null,
@@ -237,6 +278,9 @@ Table.defaultProps = {
   tableProps: {},
   headerGroupProps: {},
   sortBy: {},
+  remember: {
+    key: '__not_cached',
+  },
 }
 Table.Column = TableColumn
 Table.filters = { DefaultFilter, SelectionFilter, RangeFilter }
