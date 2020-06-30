@@ -46,6 +46,19 @@ const useStyles = makeStyles(theme => ({
     padding: '10px',
     opacity: 0.6
   },
+  sm: {
+    width: theme.spacing(3.5),
+    height: theme.spacing(3.5),
+  },
+  md: {
+    width: theme.spacing(5),
+    height: theme.spacing(5)
+  },
+  lg: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    marginRight: theme.spacing(1),
+  },
   1: {
     border: '1px solid lightgrey',
     marginBottom: theme.spacing(1),
@@ -79,25 +92,14 @@ const useStyles = makeStyles(theme => ({
   linearProgressBar: {
     borderRadius: 50
   },
-  sm: {
-    width: theme.spacing(3.5),
-    height: theme.spacing(3.5),
-  },
-  md: {
-    width: theme.spacing(5),
-    height: theme.spacing(5)
-  },
-  lg: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    marginRight: theme.spacing(1),
-  },
 }));
 
 // expand - (Default: false, Specify: ['start', 'end'], If True: ['start'])
 // spacing - space between each list item (1 - 5)
 const ListItem = ({
+  itemSecondaryAction,
   expand,
+  expansionDetails,
   spacing,
   avatar,
   avatarVariant,
@@ -106,13 +108,11 @@ const ListItem = ({
   button,
   focusOnSelected,
   onClick,
-  ///////////////////
-  itemSecondaryAction,
   selected,
   heading,
   details,
-  expansionDetails,
   timeStatus,
+  progress,
   progressBar,
 }) => {
   const classes = useStyles()
@@ -128,12 +128,12 @@ const ListItem = ({
 
   const itemHeading = (heading, progressBar) => {
     return (
-      <Grid container alignItems='center' justify='center' spacing={1}>
+      <Grid container alignItems='center' justify='flex-start' direction='row' spacing={1}>
+        <Grid item xs={12} >{heading}</Grid>
         {progressBar > 0 &&
-          <Grid item xs={12} >
+          <Grid item xs={10} >
             <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
           </Grid>}
-        <Grid item xs={12} >{heading}</Grid>
       </Grid>
     )
   }
@@ -187,7 +187,14 @@ const ListItem = ({
         />
         <Grid item container xs={2} >
           <Grid item container justify='flex-end' xs={12}>
-            {timeStatus ? <div><FiberManualRecord className={classes.complete} />&nbsp;&nbsp;{timeStatus} ago</div> : null}
+            {timeStatus ? <div>
+              <FiberManualRecord
+                className={clsx({
+                  [classes.complete]: progress === 'complete',
+                  [classes.inProgress]: progress === 'incomplete',
+                })} />
+                &nbsp;&nbsp;{timeStatus} ago
+            </div> : null}
           </Grid>
           {expand === 'end' &&
             <Grid item container justify='flex-end' xs={12} >
@@ -196,7 +203,7 @@ const ListItem = ({
         </Grid>
         {itemSecondaryAction && <ListItemSecondaryAction>{itemSecondaryAction}</ListItemSecondaryAction>}
       </MUIListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit  style={{backgroundColor: '#f5f5f5'}}>
+      <Collapse in={open} timeout="auto" unmountOnExit  className={ classes.backgroundColor }>
         <MUIListItem>
           {expansionDetails}
         </MUIListItem>
@@ -206,10 +213,12 @@ const ListItem = ({
 }
 
 ListItem.propTypes = {
+  itemSecondaryAction: PropTypes.any,
   expand: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string,
   ]),
+  expansionDetails: PropTypes.any,
   spacing: PropTypes.number,
   avatar: PropTypes.any,
   avatarVariant: PropTypes.string,
@@ -217,26 +226,33 @@ ListItem.propTypes = {
   avatarBgColor: PropTypes.string,
   focusOnSelected: PropTypes.bool,
   onClick: PropTypes.func,
-  /////////////////////////////////
-  selected: PropTypes.bool,
-  button: PropTypes.bool,
   heading: PropTypes.string,
   details: PropTypes.any,
-  expansionDetails: PropTypes.any,
+  selected: PropTypes.bool,
+  button: PropTypes.bool,
   timeStatus: PropTypes.string,
+  progress: PropTypes.string,
   progressBar: PropTypes.number,
-  itemSecondaryAction: PropTypes.any,
 }
 
 ListItem.defaultProps = {
+  itemSecondaryAction: '',
   onClick: () => null,
   avatar: '',
   avatarVariant: 'circle',
-  avatarSize: 'medium',
+  avatarSize: 'md',
   avatarBgColor: '',
   expand: false,
+  expansionDetails: '',
   spacing: 0,
   focusOnSelected: false,
+  heading: '',
+  details: '',
+  selected: false,
+  button: false,
+  timeStatus: '',
+  progress: 'completed',
+  progressBar: 0,
 }
 
 export default ListItem

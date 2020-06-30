@@ -364,11 +364,19 @@ storiesOf('List', module)
       data={defaultData} 
     />
   ))
-  .add('Expansion', () => {
+  .add('Expansion & ProgressBar & TimeStatus', () => {
     const modifiedData = defaultData.map((item ,i) => {
-      const newFields = [ { expand: true }, { expand: 'start' }, { expand: 'end' }, { expand: 'end' } ]
+      const newFields = [
+        { expand: true, progressBar: 20, timeStatus: '30m', progress: 'incomplete' },
+        { expand: 'start', timeStatus: '2h', progress: 'complete' },
+        { expand: 'end', timeStatus: '30m', progressBar: 80, progress: 'incomplete' },
+        { expand: 'end', timeStatus: '4h', progress: 'complete' }
+      ]
       const newItem = {
         ...item,
+        progressBar: newFields[i].progressBar,
+        timeStatus: newFields[i].timeStatus,
+        progress: newFields[i].progress,
         expand: newFields[i].expand,
         expansionDetails: 'Example expansion details written here.',
       }
