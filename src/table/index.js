@@ -141,16 +141,22 @@ const Table = ({
   useEffect(() => {
     if (remember.hidden) {
       setCachedHidden(_hidden)
-    } else {
-      removeCachedHidden()
+    }
+    return () => {
+      if (!remember.hidden) {
+        removeCachedHidden()
+      }
     }
   }, [_hidden, remember.hidden])
   // remember sortBy
   useEffect(() => {
     if (remember.sortBy) {
       setCachedSortBy(_sortBy)
-    } else {
-      removeCachedSortBy()
+    }
+    return () => {
+      if (!remember.sortBy) {
+        removeCachedSortBy()
+      }
     }
   }, [_sortBy, remember.sortBy])
 
