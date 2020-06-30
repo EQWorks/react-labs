@@ -15,6 +15,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import FiberManualRecord from '@material-ui/icons/FiberManualRecord'
+import Chip from '@material-ui/core/Chip'
 
 import { palette, typography } from '../themes'
 
@@ -32,11 +33,14 @@ const useStyles = makeStyles((t) => {
     },
   }
   return {
+    font: {
+      fontFamily: theme.typography.fontFamily,
+    },
     root: {
       padding: theme.spacing(1.25),
     },
     backgroundColor: {
-      backgroundColor: theme.palette.shade.secondary[100]
+      backgroundColor: theme.palette.shade.secondary[50]
     },
     iconButton: {
       paddingLeft: theme.spacing(0),
@@ -73,26 +77,11 @@ const useStyles = makeStyles((t) => {
       height: theme.spacing(7),
       marginRight: theme.spacing(1),
     },
-    1: {
+    spacing: num => ({
       border: `1px solid ${theme.palette.shade.secondary[300]}`,
-      marginBottom: theme.spacing(1),
-    },
-    2: {
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
-      marginBottom: theme.spacing(2),
-    },
-    3: {
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
-      marginBottom: theme.spacing(3),
-    },
-    4: {
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
-      marginBottom: theme.spacing(4),
-    },
-    5: {
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
-      marginBottom: theme.spacing(5),
-    },
+      borderRadius: theme.spacing(0.5),
+      marginBottom: theme.spacing(num),
+    }),
     complete: {
       color: theme.palette.success.main,
       width: theme.spacing(1.4),
@@ -104,13 +93,24 @@ const useStyles = makeStyles((t) => {
       height: theme.spacing(1.4),
     },
     linearProgressBar: {
-      borderRadius: 50
+      borderRadius: 50,
+    },
+    chip: {
+      borderRadius: '4px !important',
+    },
+    timeStatus: {
+      fontFamily: theme.typography.fontFamily,
+      fontSize: '12px',
+      marginTop: theme.spacing(0.7),
     },
   }
 })
 
-// expand - (Default: false, Specify: ['start', 'end'], If True: ['start'])
-// spacing - space between each list item (1 - 5)
+/**
+* Renders <ListItem /> component
+* @param props
+* @param props.expand - expansion panel (Default: false, Specify: ['start', 'end'], If True: [default 'start'])
+*/
 const ListItem = ({
   itemSecondaryAction,
   expand,
@@ -129,8 +129,11 @@ const ListItem = ({
   timeStatus,
   progress,
   progressBar,
+  chip,
+  chipColor,
+  chipProps,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles(spacing)
   const [open, setOpen] = useState(false)
   const showDetails = () => setOpen(!open)
   const buttonProps = button && { disableRipple: true }
@@ -144,7 +147,7 @@ const ListItem = ({
   const itemHeading = (heading, progressBar) => {
     return (
       <Grid container alignItems='center' justify='flex-start' direction='row' spacing={1}>
-        <Grid item xs={12} >{heading}</Grid>
+        <Grid item xs={12}>{heading}</Grid>
         {progressBar > 0 &&
           <Grid item xs={10} >
             <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
@@ -181,7 +184,7 @@ const ListItem = ({
   }
 
   return (
-    <div className={clsx({ [classes[spacing]]: spacing })}>
+    <div className={spacing && classes.spacing}>
       <MUIListItem
         onClick={onClick}
         selected={selected}
@@ -200,16 +203,25 @@ const ListItem = ({
           primary={itemHeading(heading, progressBar)}
           secondary={details}
         />
-        <Grid item container xs={2} >
-          <Grid item container justify='flex-end' xs={12}>
-            {timeStatus ? <div>
-              <FiberManualRecord
+        <Grid item container xs={2}>
+          <Grid item container xs={12} justify='flex-start' alignItems='flex-end' direction='column'>
+            {chip && <div>
+              <Chip
+                classes={{ root: classes.chip }}
+                style={{ backgroundColor: chipColor }}
+                label={chip}
+                size='small'
+                {...chipProps}
+              />
+            </div>}
+            {timeStatus && <div className={classes.timeStatus}>
+              {progress ? <FiberManualRecord
                 className={clsx({
                   [classes.complete]: progress === 'complete',
                   [classes.inProgress]: progress === 'incomplete',
-                })} />
+                })} /> : null}
                 &nbsp;&nbsp;{timeStatus} ago
-            </div> : null}
+            </div>}
           </Grid>
           {expand === 'end' &&
             <Grid item container justify='flex-end' xs={12} >
@@ -220,7 +232,7 @@ const ListItem = ({
       </MUIListItem>
       <Collapse in={open} timeout="auto" unmountOnExit  className={ classes.backgroundColor }>
         <MUIListItem>
-          {expansionDetails}
+          <div className={classes.font}>{expansionDetails}</div>
         </MUIListItem>
       </Collapse>
     </div>
@@ -248,6 +260,9 @@ ListItem.propTypes = {
   timeStatus: PropTypes.string,
   progress: PropTypes.string,
   progressBar: PropTypes.number,
+  chip: PropTypes.string,
+  chipColor: PropTypes.string,
+  chipProps: PropTypes.object,
 }
 
 ListItem.defaultProps = {
@@ -266,8 +281,11 @@ ListItem.defaultProps = {
   selected: false,
   button: false,
   timeStatus: '',
-  progress: 'completed',
+  progress: '',
   progressBar: 0,
+  chip: '',
+  propColor: '',
+  chipProps: {},
 }
 
 export default ListItem

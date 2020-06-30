@@ -1,5 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+
 import { TabPanels } from '../src'
 
 
@@ -14,8 +15,7 @@ const customTabs = {
     backgroundColor: '#1890ff',
   },
 }
-
-const customTab = theme => ({
+const customTab = () => ({
   root: {
     textTransform: 'none',
     minWidth: 72,
@@ -34,18 +34,22 @@ const customTab = theme => ({
       color: '#40a9ff',
       opacity: 1,
     },
-    '&$selected': {
-      fontWeight: theme.typography.fontWeightMedium,
-    },
   },
 })
 
 storiesOf('TabPanel', module)
-  .add('Default', () => <TabPanels tabLabels={labelArr} tabChildren={tabsArr} />)
-  .add('Example CustomStyles', () => <TabPanels
-    customStyles
-    customTabs={customTabs}
-    customTab={customTab}
-    tabLabels={labelArr}
-    tabChildren={tabsArr}
-  />)
+  .add('Default', () => (
+    <TabPanels
+      tabLabels={labelArr}
+      tabChildren={tabsArr}
+    />
+  ))
+  .add('CustomStyling Example', () => (
+    <TabPanels
+      customTabs={customTabs}
+      customTab={customTab}
+      tabLabels={labelArr}
+      tabChildren={tabsArr}
+    />
+  ))
+  
