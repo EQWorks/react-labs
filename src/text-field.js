@@ -1,21 +1,81 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import MUITextField from '@material-ui/core/TextField'
+import InputBase from '@material-ui/core/InputBase'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormHelperText from '@material-ui/core/FormHelperText'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import { palette, typography } from '../src/themes'
 
+const useStyles = makeStyles((t) => {
+  const theme = {
+    ...t,
+    typography: {
+      ...t.typography,
+      ...typography,
+    },
+    palette: {
+      ...t.palette,
+      ...palette,
+    },
+  }
+  
+  return {
+    root: {
+      fontFamily: theme.typography.fontFamily,
+      'label + &': {
+        marginTop: theme.spacing(0.5),
+      },
+      borderRadius: 4,
+      //border: '1px solid #e0e0e0',
+      border:  `1px solid ${theme.palette.shade.secondary[300]}`,
+      
+      //fontSize: 15,
+      fontSize: theme.typography.body1,
+      padding: '4px 6px',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+    },
+    label: {
+      marginLeft: theme.spacing(1)
+    },
+    labelError: {
+      marginLeft: theme.spacing(1),
+      color: '#ea0000',
+    },
+    inputDefault: {
+      //boxShadow: `${fade('#0075ff', 0.25)} 0 0 0 0.2rem`,
+      boxShadow: `${fade(theme.palette.shade.primary[100], 0.25)} 0 0 0 0.2rem`,
+      //borderColor: '#0075ff',
+      borderColor: theme.palette.primary.main,
+    },
+    inputError: {
+      //boxShadow: `${fade('#ea0000', 0.25)} 0 0 0 0.2rem`,
+      boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
+      //borderColor: '#ea0000',
+      borderColor: theme.palette.error.main,
+    },
+  }
+})
 
 const TextField = ({
-  inputLabelProps,
   inputProps,
   label,
   startAdornment,
   endAdornment,
   adornmentButton,
   adornmentOnClick,
+  helperText,
+  width,
+  height,
+  fullWidth,
+  error,
+  multiline,
   ...props
 }) => {
+  const classes = useStyles()
+  const dimensions = { width, height: multiline ? 'auto' : height }
   const inp = {
     startAdornment: adornmentButton && startAdornment ?
       (<InputAdornment position="start">
@@ -35,35 +95,53 @@ const TextField = ({
 
   return (
     <div>
-      <MUITextField
+      <InputLabel id='label' shrink className={error ? classes.labelError : classes.label}>{label}</InputLabel>
+      <InputBase
+        classes={{
+          root: classes.root,
+          focused: error ? classes.inputError : classes.inputDefault,
+        }}
+        style={fullWidth ? {} : dimensions}
         label={label}
+        fullWidth={fullWidth}
+        multiline={multiline}
         inputProps={inputProps}
-        InputProps={startAdornment || endAdornment ? inp : {}}
-        InputLabelProps={inputLabelProps}
+        {...inp}
         {...props}
       />
+      <FormHelperText id='helper-text' className={error ? classes.labelError : classes.label}>{helperText}</FormHelperText>
     </div>
   )
 }
 
 TextField.propTypes = {
-  inputLabelProps: PropTypes.object,
   inputProps: PropTypes.object,
   label: PropTypes.string,
   startAdornment: PropTypes.any,
   endAdornment: PropTypes.any,
   adornmentButton: PropTypes.bool,
   adornmentOnClick: PropTypes.func,
+  helperText: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  fullWidth: PropTypes.bool,
+  error: PropTypes.bool,
+  multiline: PropTypes.bool,
 }
 
 TextField.defaultProps = {
-  inputLabelProps: {},
   inputProps: {},
   label: 'Label',
   startAdornment: '',
   endAdornment: '',
   adornmentButton: false,
   adornmentOnClick: null,
+  helperText: '',
+  width: '380px',
+  height: '42px',
+  fullWidth: false,
+  error: false,
+  multiline: false,
 }
 
 export default TextField

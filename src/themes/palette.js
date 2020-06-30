@@ -26,6 +26,18 @@ const PALETTE_EXT = {
       800: '#1564EC',
       900: '#2242CD',
     },
+    secondary: {
+      50:  '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#616161',
+      700: '#757575',
+      800: '#424242',
+      900: '#212121',
+    },
   },
   state: {
     hoverWhite: fade(PALETTE_DEFAULT.primary.main, 0.05),

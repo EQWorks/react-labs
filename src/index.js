@@ -8,5 +8,5 @@ export { default as DynamicDataTable } from './dynamic-data-table' // deprecated
 export { default as Table } from './table'
 export { default as Alert } from './alert'
 export { default as Card } from './card'
-export { default as Transition } from './transitions'
+export { default as Loading } from './loading'
 export { default as TextField } from './text-field'

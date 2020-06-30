@@ -1,5 +1,7 @@
 const typography = {
   fontFamily: "Open Sans",
+  //base font size is 16px
+  fontSize: 32,
   h1: {
     fontWeight: 300,
   },
