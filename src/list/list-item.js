@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     padding: '10px',
   },
+  backgroundColor: {
+    backgroundColor: '#f5f5f5'
+  },
   iconButton: {
     paddingLeft: '0px',
     paddingRight: '5px',
@@ -38,6 +41,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     paddingRight: '7px',
+  },
+  notSelected: {
+    padding: '10px',
+    opacity: 0.6
   },
   1: {
     border: '1px solid lightgrey',
@@ -59,13 +66,6 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid lightgrey',
     marginBottom: theme.spacing(5),
   },
-  backgroundColor: {
-    backgroundColor: '#f5f5f5'
-  },
-  notSelected: {
-    padding: '10px',
-    opacity: 0.6
-  },
   complete: {
     color: 'green',
     width: '12px',
@@ -79,15 +79,15 @@ const useStyles = makeStyles(theme => ({
   linearProgressBar: {
     borderRadius: 50
   },
-  small: {
+  sm: {
     width: theme.spacing(3.5),
     height: theme.spacing(3.5),
   },
-  medium: {
+  md: {
     width: theme.spacing(5),
     height: theme.spacing(5)
   },
-  large: {
+  lg: {
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginRight: theme.spacing(1),
@@ -99,15 +99,16 @@ const useStyles = makeStyles(theme => ({
 const ListItem = ({
   expand,
   spacing,
-  itemSecondaryAction,
-  onClick,
-  selected,
-  button,
-  focusSelect,
   avatar,
   avatarVariant,
   avatarSize,
   avatarBgColor,
+  button,
+  focusOnSelected,
+  onClick,
+  ///////////////////
+  itemSecondaryAction,
+  selected,
   heading,
   details,
   expansionDetails,
@@ -117,6 +118,7 @@ const ListItem = ({
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const showDetails = () => setOpen(!open)
+  const buttonProps = button && { disableRipple: true }
 
   const listItemAvatarRootClass = () => {
     const applyPadding = expand && expand !== 'end'
@@ -126,7 +128,7 @@ const ListItem = ({
 
   const itemHeading = (heading, progressBar) => {
     return (
-      <Grid container alignItems='center' spacing={1}>
+      <Grid container alignItems='center' justify='center' spacing={1}>
         {progressBar > 0 &&
           <Grid item xs={12} >
             <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
@@ -169,10 +171,11 @@ const ListItem = ({
         onClick={onClick}
         selected={selected}
         button={button}
+        {...buttonProps}
         disableGutters
         className={clsx({
           [classes.root]: true,
-          [classes.notSelected]: focusSelect,
+          [classes.notSelected]: focusOnSelected && !selected,
           [classes.backgroundColor]: open,
         })}
       >
@@ -212,11 +215,11 @@ ListItem.propTypes = {
   avatarVariant: PropTypes.string,
   avatarSize: PropTypes.string,
   avatarBgColor: PropTypes.string,
-  /////////////////////////////////
+  focusOnSelected: PropTypes.bool,
   onClick: PropTypes.func,
+  /////////////////////////////////
   selected: PropTypes.bool,
   button: PropTypes.bool,
-  focusSelect: PropTypes.bool,
   heading: PropTypes.string,
   details: PropTypes.any,
   expansionDetails: PropTypes.any,
@@ -226,12 +229,14 @@ ListItem.propTypes = {
 }
 
 ListItem.defaultProps = {
+  onClick: () => null,
   avatar: '',
   avatarVariant: 'circle',
   avatarSize: 'medium',
-  onClick: () => null,
+  avatarBgColor: '',
   expand: false,
   spacing: 0,
+  focusOnSelected: false,
 }
 
 export default ListItem

@@ -22,23 +22,23 @@ const List = ({
   divider,
   border,
   spacing,
-  //////////
   width,
   onItemClick,
+  focusOnSelected,
+  //////////
   button,
-  focusSelect,
   data,
 }) => {
   const classes = useStyles()
-  const [selected, setSelected] = useState(button && focusSelect ? 0 : false)
+  const dimensions = { width }
+  const [selected, setSelected] = useState(button && focusOnSelected ? 0 : false)
 
-  const inputStyles = { width }
 
   // move selected with data to parent level
   return (
     <MUIList 
       className={clsx({[classes.root]: true, [classes.border]: border })} 
-      style={{ ...inputStyles }} 
+      style={dimensions}
       disablePadding
     >
       {data.map((datum, i) => (
@@ -48,8 +48,9 @@ const List = ({
             onClick={() => {if (button) {setSelected(i)} return onItemClick(data, i)}}
             button={button}
             selected={selected === i}
-            focusSelect={focusSelect}
+            focusOnSelected={focusOnSelected}
             spacing={spacing}
+            dimensions={dimensions}
             {...datum}
           />
           {divider && !spacing && <Divider />}
@@ -64,11 +65,14 @@ List.propTypes = {
   border: PropTypes.bool,
   spacing: PropTypes.number,
   data: PropTypes.array,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  focusOnSelected: PropTypes.bool,
   /////////////////////////
-  width: PropTypes.string,
   onItemClick: PropTypes.func,
   button: PropTypes.bool,
-  focusSelect: PropTypes.bool,
 }
 
 List.defaultProps = {
@@ -77,8 +81,8 @@ List.defaultProps = {
   border: false,
   spacing: 0,
   data: [],
-  ////////////////////
-  width: '500px',
+  width: 500,
+  focusOnSelected: false,
 }
 
 export default List
