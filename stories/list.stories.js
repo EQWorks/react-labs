@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-// import { action } from '@storybook/addon-actions'
+import { action } from '@storybook/addon-actions'
 
 // import { List, TabPanels } from '../src'
 import { List } from '../src'
@@ -412,9 +412,9 @@ storiesOf('List', module)
       const modifiedData = defaultData.map((item ,i) => {
         const newFields = [
           { heading: 'Default' },
-          { heading: 'Small', avatarSize: 'small' },
-          { heading: 'Medium', avatarSize: 'medium' },
-          { heading: 'Large', avatarSize: 'large' },
+          { heading: 'Small', avatarSize: 'sm' },
+          { heading: 'Medium', avatarSize: 'md' },
+          { heading: 'Large', avatarSize: 'lg' },
         ]
         const newItem = {
           ...item,
@@ -434,6 +434,51 @@ storiesOf('List', module)
       <List
         spacing={2}
         data={[ ...circleVarant, ...roundedVariant ]} 
+      />
+    )
+  })
+  .add('Button & Selected', () => {
+    const modifiedData = defaultData.map((item, i) => {
+      const newItem = {
+        ...item,
+        avatar: i + 1,
+        avatarSize: 'sm',
+        avatarVariant: 'rounded',
+        avatarBgColor: 'green',
+        details: '',
+      }
+      return newItem
+    })
+    return (
+      <List
+        width={300}
+        spacing={2}
+        data={modifiedData}
+        button
+        onItemClick={action('clicked')}
+      />
+    )
+  })
+  .add('FocusOnSelected', () => {
+    const modifiedData = defaultData.map((item, i) => {
+      const newItem = {
+        ...item,
+        avatar: i + 1,
+        avatarSize: 'sm',
+        avatarVariant: 'rounded',
+        avatarBgColor: 'green',
+        details: '',
+      }
+      return newItem
+    })
+    return (
+      <List
+        width={300}
+        spacing={2}
+        data={modifiedData}
+        button
+        focusOnSelected
+        onItemClick={action('clicked')}
       />
     )
   })
