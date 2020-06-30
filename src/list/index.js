@@ -7,16 +7,30 @@ import Divider from '@material-ui/core/Divider'
 import PropTypes from 'prop-types'
 
 import ListItem from './list-item'
+import { palette, typography } from '../themes'
 
 
-const useStyles = makeStyles(() => ({
-  root: {
-    borderRadius: '3px',
-  },
-  border: {
-    border: '1px solid lightgrey',
-  },
-}))
+const useStyles = makeStyles((t) => {
+  const theme = {
+    ...t,
+    typography: {
+      ...t.typography,
+      ...typography,
+    },
+    palette: {
+      ...t.palette,
+      ...palette,
+    },
+  }
+  return {
+    root: {
+      borderRadius: '3px',
+    },
+    border: {
+      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+    },
+  }
+})
 
 const List = ({
   divider,
@@ -25,7 +39,6 @@ const List = ({
   width,
   onItemClick,
   focusOnSelected,
-  //////////
   button,
   data,
 }) => {
@@ -33,8 +46,6 @@ const List = ({
   const dimensions = { width }
   const [selected, setSelected] = useState(button && focusOnSelected ? 0 : false)
 
-
-  // move selected with data to parent level
   return (
     <MUIList 
       className={clsx({[classes.root]: true, [classes.border]: border })} 
@@ -50,7 +61,6 @@ const List = ({
             selected={selected === i}
             focusOnSelected={focusOnSelected}
             spacing={spacing}
-            dimensions={dimensions}
             {...datum}
           />
           {divider && !spacing && <Divider />}
@@ -70,7 +80,6 @@ List.propTypes = {
     PropTypes.number,
   ]),
   focusOnSelected: PropTypes.bool,
-  /////////////////////////
   onItemClick: PropTypes.func,
   button: PropTypes.bool,
 }
@@ -83,6 +92,7 @@ List.defaultProps = {
   data: [],
   width: 500,
   focusOnSelected: false,
+  button: false,
 }
 
 export default List

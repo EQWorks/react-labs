@@ -16,83 +16,98 @@ import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import FiberManualRecord from '@material-ui/icons/FiberManualRecord'
 
+import { palette, typography } from '../themes'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: '10px',
-  },
-  backgroundColor: {
-    backgroundColor: '#f5f5f5'
-  },
-  iconButton: {
-    paddingLeft: '0px',
-    paddingRight: '5px',
-    '&:hover': {
-      backgroundColor: 'inherit',
-    }
-  },
-  listItemAvatar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  listItemAvatarRightPadding: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingRight: '7px',
-  },
-  notSelected: {
-    padding: '10px',
-    opacity: 0.6
-  },
-  sm: {
-    width: theme.spacing(3.5),
-    height: theme.spacing(3.5),
-  },
-  md: {
-    width: theme.spacing(5),
-    height: theme.spacing(5)
-  },
-  lg: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    marginRight: theme.spacing(1),
-  },
-  1: {
-    border: '1px solid lightgrey',
-    marginBottom: theme.spacing(1),
-  },
-  2: {
-    border: '1px solid lightgrey',
-    marginBottom: theme.spacing(2),
-  },
-  3: {
-    border: '1px solid lightgrey',
-    marginBottom: theme.spacing(3),
-  },
-  4: {
-    border: '1px solid lightgrey',
-    marginBottom: theme.spacing(4),
-  },
-  5: {
-    border: '1px solid lightgrey',
-    marginBottom: theme.spacing(5),
-  },
-  complete: {
-    color: 'green',
-    width: '12px',
-    height: '12px',
-  },
-  inProgress: {
-    color: 'red',
-    width: '12px',
-    height: '12px',
-  },
-  linearProgressBar: {
-    borderRadius: 50
-  },
-}));
+
+const useStyles = makeStyles((t) => {
+  const theme = {
+    ...t,
+    typography: {
+      ...t.typography,
+      ...typography,
+    },
+    palette: {
+      ...t.palette,
+      ...palette,
+    },
+  }
+  return {
+    root: {
+      padding: theme.spacing(1.25),
+    },
+    backgroundColor: {
+      backgroundColor: theme.palette.shade.secondary[100]
+    },
+    iconButton: {
+      paddingLeft: theme.spacing(0),
+      paddingRight: theme.spacing(0.6),
+      '&:hover': {
+        backgroundColor: 'inherit',
+      }
+    },
+    listItemAvatar: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    listItemAvatarRightPadding: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingRight: theme.spacing(1),
+    },
+    notSelected: {
+      padding: theme.spacing(1.25),
+      opacity: 0.6
+    },
+    sm: {
+      width: theme.spacing(3.5),
+      height: theme.spacing(3.5),
+    },
+    md: {
+      width: theme.spacing(5),
+      height: theme.spacing(5)
+    },
+    lg: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+      marginRight: theme.spacing(1),
+    },
+    1: {
+      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+      marginBottom: theme.spacing(1),
+    },
+    2: {
+      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+      marginBottom: theme.spacing(2),
+    },
+    3: {
+      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+      marginBottom: theme.spacing(3),
+    },
+    4: {
+      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+      marginBottom: theme.spacing(4),
+    },
+    5: {
+      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+      marginBottom: theme.spacing(5),
+    },
+    complete: {
+      color: theme.palette.success.main,
+      width: theme.spacing(1.4),
+      height: theme.spacing(1.4),
+    },
+    inProgress: {
+      color: theme.palette.error.main,
+      width: theme.spacing(1.4),
+      height: theme.spacing(1.4),
+    },
+    linearProgressBar: {
+      borderRadius: 50
+    },
+  }
+})
 
 // expand - (Default: false, Specify: ['start', 'end'], If True: ['start'])
 // spacing - space between each list item (1 - 5)
