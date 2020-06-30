@@ -30,6 +30,7 @@ const TableToolbar = ({
   downloadable,
   data,
   visibleColumns,
+  rows,
 }) => {
   const classes = useStyles()
 
@@ -54,6 +55,7 @@ const TableToolbar = ({
           data={data}
           allColumns={allColumns}
           visibleColumns={visibleColumns}
+          rows={rows}
         />
       )}
     </Toolbar>
