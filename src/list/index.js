@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
+import PropTypes from 'prop-types'
 import clsx from 'clsx'
 
 import { makeStyles } from '@material-ui/core/styles'
 import MUIList from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
-import PropTypes from 'prop-types'
 
 import ListItem from './list-item'
 import { palette, typography } from '../themes'
@@ -24,7 +24,7 @@ const useStyles = makeStyles((t) => {
   }
   return {
     root: {
-      borderRadius: '3px',
+      borderRadius: '4px',
     },
     border: {
       border: `1px solid ${theme.palette.shade.secondary[300]}`,
@@ -71,10 +71,10 @@ const List = ({
 }
 
 List.propTypes = {
+  data: PropTypes.array.isRequired,
   divider: PropTypes.bool,
   border: PropTypes.bool,
   spacing: PropTypes.number,
-  data: PropTypes.array,
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -89,8 +89,7 @@ List.defaultProps = {
   divider: false,
   border: false,
   spacing: 0,
-  data: [],
-  width: 500,
+  width: 600,
   focusOnSelected: false,
   button: false,
 }
