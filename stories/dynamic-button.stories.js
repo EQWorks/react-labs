@@ -36,7 +36,7 @@ storiesOf("DynamicButton", module)
   .add("With an icon", () => (
     <div>
       {arr.map(({ type }, index) => (
-        <DynamicButton key={index} type={type} addIcon={<CloudUploadIcon />}>
+        <DynamicButton key={index} type={type} startIcon={<CloudUploadIcon />}>
           Click
         </DynamicButton>
       ))}
@@ -48,8 +48,7 @@ storiesOf("DynamicButton", module)
         <DynamicButton
           key={index}
           type={type}
-          addIcon={<CloudUploadIcon />}
-          onWhichSide="end"
+          endIcon={<CloudUploadIcon />}
         >
           Click
         </DynamicButton>
@@ -62,8 +61,7 @@ storiesOf("DynamicButton", module)
         <DynamicButton
           key={index}
           type={type}
-          addIcon={<CloudUploadIcon />}
-          onWhichSide="end"
+          startIcon={<CloudUploadIcon />}
           size={size}
         >
           Click
@@ -79,8 +77,7 @@ storiesOf("DynamicButton", module)
           test={"this test"}
           type={type}
           disabled={true}
-          addIcon={<CloudUploadIcon />}
-          onWhichSide="end"
+          startIcon={<CloudUploadIcon />}
           size="large"
         >
           Click
