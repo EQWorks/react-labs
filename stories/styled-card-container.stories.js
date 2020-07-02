@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+/* eslint react/prop-types: 0 */
+import React from "react";
 import StyledCardContainer from "../src/styled-card-container";
 import {
   Avatar,
@@ -7,13 +8,9 @@ import {
   Grid,
   Typography,
   makeStyles,
-  CardActions,
 } from "@material-ui/core";
-import image from "../src/assets/footwear.jpeg";
-import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
 import { data, data2, data3 } from "./data/cardInfo";
-
 
 export default {
   component: StyledCardContainer,
@@ -102,7 +99,7 @@ export const StyleSelection = () => {
   return (
     <Grid container spacing={2}>
       {data2.map((cardInfo, i) => (
-        <Grid key={i} item xs={2}>
+        <Grid key={i} item xs={12} sm={4} md={2}>
           <StyledCardContainer
             pattern={{
               style: 2,
@@ -183,7 +180,6 @@ export const WithImage = () => {
               style: 3,
               image: cardInfo.image,
             }}
-            clickable
           >
             <CardContent className={classes.content}>
               {contents(cardInfo)}
@@ -191,6 +187,50 @@ export const WithImage = () => {
           </StyledCardContainer>
         </Grid>
       ))}
+    </Grid>
+  );
+};
+
+const useStyles4 = makeStyles((theme) => ({
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '150px',
+    padding: theme.spacing(2),
+  },
+}));
+
+export const Clickable = () => {
+  const classes = useStyles4();
+
+  const content = (
+    <React.Fragment>
+      <Grid item className={classes.header}>
+        <Typography variant="subtitle1">American Motors</Typography>
+        <Chip size="small" label="Layer" />
+      </Grid>
+      <Grid item>
+        <Typography variant="body1">
+          Propensity of American Motors vehicle brand in the FSA
+        </Typography>
+      </Grid>
+      <Grid item>
+        <Typography variant="h6">$500/mo</Typography>
+      </Grid>
+    </React.Fragment>
+  );
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={3}>
+        <StyledCardContainer clickable>
+          <CardContent className={classes.content}>{content}</CardContent>
+        </StyledCardContainer>
+      </Grid>
     </Grid>
   );
 };

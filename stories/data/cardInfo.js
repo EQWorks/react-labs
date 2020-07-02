@@ -1,16 +1,16 @@
-import img1 from "../../src/assets/branding.jpg";
-import img2 from "../../src/assets/spending.jpeg";
-import img3 from "../../src/assets/auto.jpg";
-import img4 from "../../src/assets/fans.png";
-import img5 from "../../src/assets/rogers.jpg";
-import img6 from "../../src/assets/telus.jpg";
-import img7 from "../../src/assets/census.jpeg";
-import img8 from "../../src/assets/custom.jpg";
-import img9 from "../../src/assets/finance.jpg";
-import img10 from "../../src/assets/household.jpg";
-import img11 from "../../src/assets/persona.jpg";
-import img12 from "../../src/assets/retail.jpg";
-import img13 from "../../src/assets/telco.jpg";
+import img1 from "../assets/branding.jpg";
+import img2 from "../assets/spending.jpeg";
+import img3 from "../assets/auto.jpg";
+import img4 from "../assets/fans.png";
+import img5 from "../assets/rogers.jpg";
+import img6 from "../assets/telus.jpg";
+import img7 from "../assets/census.jpeg";
+import img8 from "../assets/custom.jpg";
+import img9 from "../assets/finance.jpg";
+import img10 from "../assets/household.jpg";
+import img11 from "../assets/persona.jpg";
+import img12 from "../assets/retail.jpg";
+import img13 from "../assets/telco.jpg";
 
 
 const data = [
@@ -31,46 +31,46 @@ const data = [
   },
 ];
 const data2 = [
-    {
-        category:'Retail',
-        image: img12,
-    },
-    {
-        category:'Automotive',
-        image: img3,
-    },
-    {
-        category:'Brand loyalty',
-        image: img1,
-    },
-    {
-        category:'Consumer spending',
-        image: img2,
-    },
-    {
-        category:'Household',
-        image: img10,
-    },
-    {
-        category:'Finance',
-        image: img9,
-    },
-    {
-        category:'Telecom',
-        image: img13,
-    },
-    {
-        category:'EQ personas',
-        image: img11,
-    },
-    {
-        category:'Census',
-        image: img7,
-    },
-    {
-        category:'Custom',
-        image: img8,
-    },
+  {
+    category:'Retail',
+    image: img12,
+  },
+  {
+    category:'Automotive',
+    image: img3,
+  },
+  {
+    category:'Brand loyalty',
+    image: img1,
+  },
+  {
+    category:'Consumer spending',
+    image: img2,
+  },
+  {
+    category:'Household',
+    image: img10,
+  },
+  {
+    category:'Finance',
+    image: img9,
+  },
+  {
+    category:'Telecom',
+    image: img13,
+  },
+  {
+    category:'EQ personas',
+    image: img11,
+  },
+  {
+    category:'Census',
+    image: img7,
+  },
+  {
+    category:'Custom',
+    image: img8,
+  },
 ]
 const data3 = [
   {

@@ -49,11 +49,9 @@ const useStyles = makeStyles((t) => {
       backgroundSize: "100% auto",
       transition: "background-size 0.6s ease-out",
       color: "white",
-      //border: `1px solid ${theme.palette.grey[400]}`,
       boxShadow: theme.palette.shadow[10],
       "&:hover": {
         transition: "all .6s",
-        //border: `1px solid ${theme.palette.primary.main}`,
         boxShadow: theme.palette.shadow[30],
         backgroundSize: "105% auto",
       },
@@ -61,7 +59,7 @@ const useStyles = makeStyles((t) => {
   };
 });
 
-const StyledCardContainer = ({ pattern, clickable, onClick, checked, children }) => {
+const StyledCardContainer = ({ pattern, clickable, onClick, children }) => {
   const whichStyle = "style" + pattern.style;
   const classes = useStyles(pattern);
   return (
@@ -77,16 +75,19 @@ const StyledCardContainer = ({ pattern, clickable, onClick, checked, children })
 
 StyledCardContainer.propTypes = {
   onClick: PropTypes.func,
+  clickable: PropTypes.bool,
+  pattern: PropTypes.object,
+  children: PropTypes.node,
 };
 
 StyledCardContainer.defaultProps = {
   onClick: () => alert("this is a default onClick message."),
   clickable: false,
-  checked: false,
   pattern: {
     style: 1,
     backgroundImage: "none",
   },
+  children: {},
 };
 
 export default StyledCardContainer;
