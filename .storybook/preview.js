@@ -12,7 +12,6 @@ configure(require.context('../stories', true, /\.stories\.js$/), module)
 
 const GlobalWrapper = (storyFn) => {
   const [checked, setChecked] = useState(true)
-
   const renderStory = () => {
     if (checked) {
       return (

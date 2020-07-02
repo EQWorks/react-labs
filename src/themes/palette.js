@@ -26,7 +26,7 @@ const PALETTE_EXT = {
       800: '#1564EC',
       900: '#2242CD',
     },
-    second: {
+    secondary: {
       50:  '#FAFAFA',
       100: '#F5F5F5',
       200: '#EEEEEE',

@@ -21,7 +21,7 @@ const useStyles = makeStyles((t) => {
   return {
     style1: {
       width: "100%",
-      backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[50]})`,
+      backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
       border: `1px solid ${theme.palette.grey[400]}`,
       boxShadow: theme.palette.shadow[10],
       "&:hover": {
@@ -32,7 +32,7 @@ const useStyles = makeStyles((t) => {
     },
     style2: {
       width: "100%",
-      backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[50]})`,
+      backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
       border: `1px solid ${theme.palette.grey[400]}`,
       boxShadow: theme.palette.shadow[10],
       "&:hover": {
@@ -61,7 +61,7 @@ const useStyles = makeStyles((t) => {
   };
 });
 
-const StyledCardContainer = ({ pattern, clickable, onClick, children }) => {
+const StyledCardContainer = ({ pattern, clickable, onClick, checked, children }) => {
   const whichStyle = "style" + pattern.style;
   const classes = useStyles(pattern);
   return (
@@ -82,6 +82,7 @@ StyledCardContainer.propTypes = {
 StyledCardContainer.defaultProps = {
   onClick: () => alert("this is a default onClick message."),
   clickable: false,
+  checked: false,
   pattern: {
     style: 1,
     backgroundImage: "none",
