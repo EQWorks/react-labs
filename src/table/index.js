@@ -46,37 +46,30 @@ const getHeader = (s) => [
 ].join('')
 
 const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) => {
-  const [autoCols, setAutoCols] = useState([])
+  // memoized columns and data for useTable hook
+  const _data = useMemo(() => data, [data])
+  const _cols = useMemo(() => {
+    if (!children && !columns) {
+      return Object.keys(data[0] || {}).map((accessor) => ({
+        accessor,
+        Header: getHeader(accessor),
+      }))
+    }
+    return Array.isArray(columns) && columns.length > 0
+      ? columns
+      : Children.toArray(children)
+        .filter((c) => c.type === TableColumn || c.type.name === 'TableColumn')
+        .map((c) => c.props)
+  }, [columns, data, children])
+  // cached hidden state
   const [
     hidden,
     setHiddenCache,
     removeHiddenCache,
-  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(hiddenColumns)
-
-  useEffect(() => {
-    if (!children && !columns) {
-      setAutoCols(Object.keys(data[0] || {}).map((accessor) => ({
-        accessor,
-        Header: getHeader(accessor),
-      })))
-    } else {
-      const _columns = Array.isArray(columns) && columns.length > 0
-        ? columns
-        : Children.toArray(children)
-          .filter((c) => c.type === TableColumn || c.type.name === 'TableColumn')
-          .map((c) => c.props)
-
-      setAutoCols(_columns)
-
-      // initial column hidden states
-      const _hidden = _columns.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
-      setHiddenCache(_hidden.length ? _hidden : (hiddenColumns || []))
-    }
-  }, [columns, data, children])
-
-  // memoized columns and data for useTable hook
-  const _cols = useMemo(() => autoCols, [autoCols])
-  const _data = useMemo(() => data, [data])
+  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(() => {
+    const _hidden = _cols.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
+    return _hidden.length ? _hidden : (hiddenColumns || [])
+  })
 
   return {
     _cols,
