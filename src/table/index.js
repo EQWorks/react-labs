@@ -219,26 +219,30 @@ const Table = ({
               </TableBody>
             </MUITable>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[
-              5,
-              10,
-              25,
-              { label: 'All', value: data.length },
-            ]}
-            colSpan={3}
-            count={data.length}
-            rowsPerPage={pageSize}
-            page={pageIndex}
-            SelectProps={{
-              inputProps: { 'aria-label': 'rows per page' },
-              native: true,
-            }}
-            onChangePage={(_, page) => { gotoPage(page) }}
-            onChangeRowsPerPage={({ target: { value }}) => {
-              setPageSize(Number(value))
-            }}
-          />
+          {/* TODO: this seems to be simplifiable */}
+          {(0 < rows.length && rows.length < data.length ? rows.length > pageSize : true) && (
+            <TablePagination
+              /* TODO: dynamically scale rowsPerPageOptions */
+              rowsPerPageOptions={[
+                5,
+                10,
+                25,
+                { label: 'All', value: data.length },
+              ]}
+              colSpan={3}
+              count={data.length}
+              rowsPerPage={pageSize}
+              page={pageIndex}
+              SelectProps={{
+                inputProps: { 'aria-label': 'rows per page' },
+                native: true,
+              }}
+              onChangePage={(_, page) => { gotoPage(page) }}
+              onChangeRowsPerPage={({ target: { value }}) => {
+                setPageSize(Number(value))
+              }}
+            />
+          )}
         </>
       ) : (
         <Card>

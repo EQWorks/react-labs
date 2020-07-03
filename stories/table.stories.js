@@ -227,7 +227,7 @@ export const rememberSortBy = () => {
   return (
     <>
       <Typography variant='body1'>
-        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see persisted hidden columns.
+        Columns sorting order remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see persisted hidden columns.
       </Typography>
       <Table
         data={provinces}

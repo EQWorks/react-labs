@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - `<Table />` - fix initial per-col hidden, and table-wise hiddenColumns, a regression from v1.2.0.
 
+### Changed
+- `<Table />` - hide pagination when filtered & page size can show all filtered.
+
 ## [1.2.0] - 2020-06-30
 ### Added
 - `<Table />` - additional download options to reflect filtered rows.
