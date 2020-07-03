@@ -24,6 +24,7 @@ const useStyles = makeStyles((t) => {
       backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
       border: `1px solid ${theme.palette.grey[400]}`,
       boxShadow: theme.palette.shadow[10],
+      borderRadius: '10px',
       "&:hover": {
         transition: "all .3s",
         border: `1px solid ${theme.palette.grey[600]}`,
@@ -35,6 +36,7 @@ const useStyles = makeStyles((t) => {
       backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
       border: `1px solid ${theme.palette.grey[400]}`,
       boxShadow: theme.palette.shadow[10],
+      borderRadius: '10px',
       "&:hover": {
         transition: "all .3s",
         border: `1px solid ${theme.palette.primary.main}`,
@@ -50,6 +52,7 @@ const useStyles = makeStyles((t) => {
       transition: "background-size 0.6s ease-out",
       color: "white",
       boxShadow: theme.palette.shadow[10],
+      borderRadius: '10px',
       "&:hover": {
         transition: "all .6s",
         boxShadow: theme.palette.shadow[30],

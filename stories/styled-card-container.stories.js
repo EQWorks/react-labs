@@ -125,6 +125,7 @@ export const StyleSelection = () => {
 };
 
 const useStyles3 = makeStyles((theme) => ({
+  
   header: {
     display: "flex",
     justifyContent: "space-between",
