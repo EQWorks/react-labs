@@ -45,9 +45,13 @@ const getHeader = (s) => [
   s.slice(1).replace(/_/g, ' '),
 ].join('')
 
-const useTableConfig = ({ data, hiddenColumns, children, columns }) => {
+const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) => {
   const [autoCols, setAutoCols] = useState([])
-  const [hidden, setHidden] = useState([])
+  const [
+    hidden,
+    setHiddenCache,
+    removeHiddenCache,
+  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(hiddenColumns)
 
   useEffect(() => {
     if (!children && !columns) {
@@ -66,7 +70,7 @@ const useTableConfig = ({ data, hiddenColumns, children, columns }) => {
 
       // initial column hidden states
       const _hidden = _columns.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
-      setHidden(_hidden.length ? _hidden : (hiddenColumns || []))
+      setHiddenCache(_hidden.length ? _hidden : (hiddenColumns || []))
     }
   }, [columns, data, children])
 
@@ -78,6 +82,8 @@ const useTableConfig = ({ data, hiddenColumns, children, columns }) => {
     _cols,
     _data,
     hidden,
+    setHiddenCache,
+    removeHiddenCache,
   }
 }
 
@@ -94,13 +100,14 @@ const Table = ({
 }) => {
   const classes = useStyles()
   // custom table config hook
-  const { _cols, _data, hidden } = useTableConfig({ data, hiddenColumns, children, columns })
+  const {
+    _cols,
+    _data,
+    hidden,
+    setHiddenCache,
+    removeHiddenCache,
+  } = useTableConfig({ data, hiddenColumns, children, columns, remember })
   // remember me
-  const [
-    cachedHidden,
-    setCachedHidden,
-    removeCachedHidden,
-  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(hidden)
   const [
     cachedSortBy,
     setCachedSortBy,
@@ -127,7 +134,7 @@ const Table = ({
       columns: _cols,
       data: _data,
       initialState: {
-        hiddenColumns: cachedHidden,
+        hiddenColumns: hidden,
         sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
       },
     },
@@ -140,11 +147,11 @@ const Table = ({
   // remember hidden
   useEffect(() => {
     if (remember.hidden) {
-      setCachedHidden(_hidden)
+      setHiddenCache(_hidden)
     }
     return () => {
       if (!remember.hidden) {
-        removeCachedHidden()
+        removeHiddenCache()
       }
     }
   }, [_hidden, remember.hidden])
