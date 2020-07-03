@@ -220,7 +220,7 @@ const Table = ({
             </MUITable>
           </TableContainer>
           {/* TODO: this seems to be simplifiable */}
-          {(0 < rows.length && rows.length < data.length ? rows.length > pageSize : true) && (
+          {(0 < rows.length && rows.length < data.length ? rows.length > pageSize : rows.length > 0) && (
             <TablePagination
               /* TODO: dynamically scale rowsPerPageOptions */
               rowsPerPageOptions={[
@@ -230,7 +230,7 @@ const Table = ({
                 { label: 'All', value: data.length },
               ]}
               colSpan={3}
-              count={data.length}
+              count={rows.length}
               rowsPerPage={pageSize}
               page={pageIndex}
               SelectProps={{

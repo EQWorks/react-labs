@@ -207,11 +207,12 @@ export const rememberHidden = () => {
       <Table
         data={provinces}
         columns={[
-          { Header: 'New cases', accessor: 'new_cases', hidden: true },
+          { Header: 'New cases', accessor: 'new_cases' },
           { Header: 'Total cases', accessor: 'total_cases' },
-          { Header: 'Province', accessor: 'province', hidden: true },
+          { Header: 'Province', accessor: 'province' },
           { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
         ]}
+        hiddenColumns={['new_cases', 'total_cases']}
         remember={remember}
       />
     </>
