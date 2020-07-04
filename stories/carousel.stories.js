@@ -1,6 +1,6 @@
 /* eslint react/prop-types: 0 */
 import React, { useRef } from "react";
-import Carousel from "../src/carousel";
+import Carousel from "../src/imageSlider/carousel";
 import {
   Avatar,
   Link,
@@ -66,9 +66,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Default = () => {
+export const CustomCards = () => {
   const customSlider = useRef();
   const classes = useStyles();
+  
   const topSection = (
     <Grid container className={classes.textarea}>
       <Grid item>
