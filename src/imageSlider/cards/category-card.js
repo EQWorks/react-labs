@@ -1,10 +1,19 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Avatar, Card, Grid, Typography } from "@material-ui/core";
 import StyledCardContainer from "../../styled-card-container";
 
 const useStyles = makeStyles((theme) => {
   return {
+    container: {
+      backgroundColor: theme.palette.grey[50],
+      width: "100%",
+      borderRadius: '10px',
+      "&:hover": {
+        transition: "all .3s",
+        backgroundColor: theme.palette.grey[100],
+      },
+    },
     header: {
       display: "flex",
       justifyContent: "flex-end",
@@ -15,7 +24,7 @@ const useStyles = makeStyles((theme) => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      //height: '200px',
+      padding: theme.spacing(2),
     },
     avatar: {
       width: "96px",
@@ -24,31 +33,29 @@ const useStyles = makeStyles((theme) => {
       marginBottom: theme.spacing(2),
     },
     category: {
-      marginBottom: theme.spacing(3),
+      marginBottom: theme.spacing(0),
+    },
+    inventory: {
+        color: theme.palette.grey[400],
     },
   };
 });
 
-const CategoryCard = ({prop}) => {
+const CategoryCard = ({ prop }) => {
   const classes = useStyles();
-  const {image, avatar, category} = prop;
+  const { image, avatar, category, inventory } = prop;
   return (
-    <StyledCardContainer
-      pattern={{
-        style: 2,
-      }}
-    >
+    <Card className={classes.container} elevation={0}>
       <Grid item className={classes.content}>
-        <Avatar
-          alt="item"
-          src={image}
-          className={classes.avatar}
-        ></Avatar>
+        <Avatar alt="item" src={image} className={classes.avatar}></Avatar>
         <Typography variant="body1" className={classes.category}>
           {category}
         </Typography>
+        <Typography varitant="body1" className={classes.inventory}>
+            {`${inventory} products`}
+        </Typography>
       </Grid>
-    </StyledCardContainer>
+    </Card>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import TopSection from "./top-section";
 import Carousel from "./carousel";
+import PropTypes from 'prop-types';
 
 const ImageSlider = ({ carouselContent, topSectionContent }) => {
   const customSlider = useRef();

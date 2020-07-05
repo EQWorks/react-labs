@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 import {
   Chip,
   CardContent,
@@ -18,11 +19,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "../css/carousel.css";
 
 const Carousel = ({ carouselContent, getRef }) => {
-  const {imagesToShow, content} = carouselContent;
+  const { imagesToShow, content } = carouselContent;
   const settings = {
     dots: true,
     infinite: true,
     speed: 600,
+    arrows: false,
     slidesToShow: imagesToShow,
     slidesToScroll: imagesToShow,
   };
@@ -35,5 +37,15 @@ const Carousel = ({ carouselContent, getRef }) => {
     </div>
   );
 };
+Carousel.PropTypes = {
+  carouselContent: PropTypes.object,
+}
+
+Carousel.defaultProps = {
+  carouselContent: {
+    imagesToShow: 3,
+    content: [],
+  },
+}
 
 export default Carousel;

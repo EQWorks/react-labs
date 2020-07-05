@@ -34,7 +34,7 @@ const TopSection = ({topSelectionContent, customSlider}) => {
     <Grid container className={classes.textarea}>
       <Grid item>
         <Typography variant="subtitle1">{title}</Typography>
-        <Typography variant="body1">{paragraph}</Typography>
+        <Typography variant="body1" gutterBottom>{paragraph}</Typography>
       </Grid>
       <Grid item className={classes.link}>
         <Link href="#" variant="body1" color="primary">

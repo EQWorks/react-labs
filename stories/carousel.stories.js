@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
-import { data, data2, data3 } from "./data/cardInfo";
+import { data, categoriesData, bundlesData } from "./data/cardInfo";
 import StyledCardContainer from "../src/styled-card-container";
 export default {
   component: Carousel,
@@ -132,7 +132,10 @@ export const CustomCards = () => {
   return (
     <div>
       {topSection}
-      <Carousel getRef={customSlider}>{cards}</Carousel>
+      <Carousel getRef={customSlider} carouselContent={{
+        imagesToShow: 3,
+        content: cards,
+      }}/>
     </div>
   );
 };
