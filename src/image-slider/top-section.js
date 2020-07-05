@@ -8,6 +8,8 @@ import {
 } from "@material-ui/core";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
+import PropTypes from 'prop-types';
+
 
 const useStyles = makeStyles((theme) => ({
   sliderControl: {
@@ -27,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TopSection = ({topSelectionContent, customSlider}) => {
+const TopSection = ({topSectionContent, customSlider}) => {
   const classes = useStyles();
-  const { title, paragraph, button } = topSelectionContent;
+  const { title, paragraph, button } = topSectionContent;
   return (
     <Grid container className={classes.textarea}>
       <Grid item>
@@ -56,5 +58,19 @@ const TopSection = ({topSelectionContent, customSlider}) => {
     </Grid>
   );
 };
+
+TopSection.propTypes = {
+  topSectionContent: PropTypes.object,
+  customSlider: PropTypes.func,
+}
+
+TopSection.defaultProps = {
+  topSectionContent: {
+    title: 'Title',
+    paragraph: 'Paragraph',
+    button: 'Link',
+  },
+  customSlider: null,
+}
 
 export default TopSection;

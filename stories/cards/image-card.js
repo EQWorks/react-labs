@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, CardContent, Grid, Typography } from "@material-ui/core";
-import StyledCardContainer from "../../styled-card-container";
-import { palette, typography } from '../../themes';
+import StyledCardContainer from "../../src/styled-card-container";
+import { palette, typography } from '../../src/themes';
 
-
+/* eslint react/prop-types: 0 */
 const useStyles = makeStyles((t) => {
   const theme = {
     ...t,

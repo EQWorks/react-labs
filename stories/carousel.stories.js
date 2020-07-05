@@ -1,8 +1,7 @@
 /* eslint react/prop-types: 0 */
 import React, { useRef } from "react";
-import Carousel from "../src/imageSlider/carousel";
+import Carousel from "../src/image-slider/carousel";
 import {
-  Avatar,
   Link,
   Chip,
   CardContent,
@@ -13,7 +12,7 @@ import {
 } from "@material-ui/core";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
-import { data, categoriesData, bundlesData } from "./data/cardInfo";
+import { bundlesData } from "./data/card-info";
 import StyledCardContainer from "../src/styled-card-container";
 export default {
   component: Carousel,
@@ -65,6 +64,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5),
   },
 }));
+export const Default = () => {
+
+  return (
+    <Carousel/>
+  );
+}
 
 export const CustomCards = () => {
   const customSlider = useRef();
@@ -99,7 +104,7 @@ export const CustomCards = () => {
     </Grid>
   );
 
-  const cards = data3.map(
+  const cards = bundlesData.map(
     ({ name, description, type, price, category, image }, index) => (
       <StyledCardContainer
         pattern={{

@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import ImageSlider from "../src/imageSlider";
-import { AppBar, Toolbar, Grid, Card, Typography } from "@material-ui/core";
+import React from "react";
+import ImageSlider from "../src/image-slider";
+import { AppBar, Toolbar, Grid, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { bundlesData, categoriesData, layersData } from "./data/cardInfo";
-import ImageCard from "../src/imageSlider/cards/image-card";
-import CategoryCard from "../src/imageSlider/cards/category-card";
+import { bundlesData, categoriesData, layersData } from "./data/card-info";
+import ImageCard from "./cards/image-card";
+import CategoryCard from "./cards/category-card";
 import DynamicButton from "../src/dynamic-button";
 import heroImage from "./assets/hero.jpg";
 
@@ -13,8 +13,12 @@ export default {
   title: "Image Slider",
 };
 
+export const Default = () => {
+  return <ImageSlider/>
+}
+
 export const Bundles = () => {
-  const cards = bundlesData.map((prop) => <ImageCard prop={prop} />);
+  const cards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />);
   return (
     <ImageSlider
       topSectionContent={{
@@ -32,7 +36,7 @@ export const Bundles = () => {
 };
 
 export const Categories = () => {
-  const cards = categoriesData.map((prop) => <CategoryCard prop={prop} />);
+  const cards = categoriesData.map((prop, i) => <CategoryCard key={i} prop={prop} />);
   return (
     <ImageSlider
       topSectionContent={{
@@ -49,7 +53,7 @@ export const Categories = () => {
 };
 
 export const Layers = () => {
-  const cards = layersData.map((prop) => <ImageCard prop={prop} />);
+  const cards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />);
   return (
     <ImageSlider
       topSectionContent={{
@@ -98,20 +102,20 @@ const useStyles = makeStyles((theme) => ({
 export const MultipleSliders = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const categoriesCards = categoriesData.map((prop) => (
-    <CategoryCard prop={prop} />
+  const categoriesCards = categoriesData.map((prop, i) => (
+    <CategoryCard key={i} prop={prop} />
   ));
-  const bundlesCards = bundlesData.map((prop) => <ImageCard prop={prop} />);
-  const layersCards = layersData.map((prop) => <ImageCard prop={prop} />);
+  const bundlesCards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />);
+  const layersCards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />);
 
   return (
     <Grid container spacing={2}>
       <AppBar position="sticky" className={classes.appbar}>
-          <Toolbar>   
-            <DynamicButton type='secondary'>My subscription</DynamicButton>
-            <DynamicButton type='tertiary'>Marketplace seller hub</DynamicButton>
-          </Toolbar>
-        </AppBar>
+        <Toolbar>   
+          <DynamicButton type='secondary'>My subscription</DynamicButton>
+          <DynamicButton type='tertiary'>Marketplace seller hub</DynamicButton>
+        </Toolbar>
+      </AppBar>
       <Grid container item xs={12}>
       </Grid>
       <Grid container item xs={12}>
@@ -174,7 +178,7 @@ export const MultipleSliders = () => {
               button: "View all",
             }}
             carouselContent={{
-              imagesToShow: 3,
+              imagesToShow: 4,
               content: layersCards,
             }}
           />
@@ -190,7 +194,7 @@ export const MultipleSliders = () => {
               button: "View all",
             }}
             carouselContent={{
-              imagesToShow: 3,
+              imagesToShow: 4,
               content: bundlesCards,
             }}
           />

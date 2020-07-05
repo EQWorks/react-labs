@@ -1,23 +1,12 @@
-import React, { useState, useRef } from 'react'
-import PropTypes from 'prop-types'
-import {
-  Chip,
-  CardContent,
-  Grid,
-  Link,
-  Typography,
-  makeStyles,
-  IconButton,
-} from "@material-ui/core";
-import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
-import { data3 } from "../../stories/data/cardInfo";
-import DynamicButton from "../dynamic-button";
-import { typography } from "@storybook/theming";
+import React from "react";
+import PropTypes from "prop-types";
 import Slider from "react-slick";
+import DefaultCard from "./cards/default-card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../css/carousel.css";
 
+const defaultData = [1, 2, 3, 4, 5, 6, 7, 8];
 const Carousel = ({ carouselContent, getRef }) => {
   const { imagesToShow, content } = carouselContent;
   const settings = {
@@ -37,15 +26,18 @@ const Carousel = ({ carouselContent, getRef }) => {
     </div>
   );
 };
-Carousel.PropTypes = {
+
+Carousel.propTypes = {
+  getRef: PropTypes.func,
   carouselContent: PropTypes.object,
-}
+};
 
 Carousel.defaultProps = {
+  getRef: null,
   carouselContent: {
-    imagesToShow: 3,
-    content: [],
+    imagesToShow: 4,
+    content: defaultData.map((d, i) => <DefaultCard key={i} content={d} />),
   },
-}
+};
 
 export default Carousel;

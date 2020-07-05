@@ -1,8 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Card, Grid, Typography } from "@material-ui/core";
-import StyledCardContainer from "../../styled-card-container";
 
+
+/* eslint react/prop-types: 0 */
 const useStyles = makeStyles((theme) => {
   return {
     container: {
@@ -36,14 +37,14 @@ const useStyles = makeStyles((theme) => {
       marginBottom: theme.spacing(0),
     },
     inventory: {
-        color: theme.palette.grey[400],
+      color: theme.palette.grey[400],
     },
   };
 });
 
 const CategoryCard = ({ prop }) => {
   const classes = useStyles();
-  const { image, avatar, category, inventory } = prop;
+  const { image, category, inventory } = prop;
   return (
     <Card className={classes.container} elevation={0}>
       <Grid item className={classes.content}>
@@ -52,7 +53,7 @@ const CategoryCard = ({ prop }) => {
           {category}
         </Typography>
         <Typography varitant="body1" className={classes.inventory}>
-            {`${inventory} products`}
+          {`${inventory} products`}
         </Typography>
       </Grid>
     </Card>
