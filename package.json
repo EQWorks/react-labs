@@ -1,7 +1,7 @@
 {
   "name": "@eqworks/react-labs",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.2.3-alpha",
   "main": "dist/index.js",
   "source": "src/index.js",
   "files": [

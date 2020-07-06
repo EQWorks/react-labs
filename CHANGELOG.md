@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- `<Table />` - fix initial per-col hidden, and table-wise hiddenColumns, a regression from v1.2.0.
+
+### Changed
+- `<Table />` - hide pagination when filtered & page size can show all filtered.
+- `<Table />` - pagination count number of possibly filterd rows.
 
 ## [1.2.0] - 2020-06-30
 ### Added

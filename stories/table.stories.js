@@ -202,16 +202,36 @@ export const rememberHidden = () => {
   return (
     <>
       <Typography variant='body1'>
-        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see persisted hidden columns.
+        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see its effect.
       </Typography>
       <Table
         data={provinces}
         columns={[
           { Header: 'New cases', accessor: 'new_cases', hidden: true },
           { Header: 'Total cases', accessor: 'total_cases' },
-          { Header: 'Province', accessor: 'province', hidden: true },
+          { Header: 'Province', accessor: 'province' },
           { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
         ]}
+        remember={remember}
+      />
+    </>
+  )
+}
+
+export const rememberHiddenWithInitHiddenColumns = () => {
+  const remember = {
+    key: 'DEMO_REMEMBER_HIDDEN2',
+    ttl: 5, // remember for 5 minutes
+    hidden: true,
+  }
+  return (
+    <>
+      <Typography variant='body1'>
+        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see its effect.
+      </Typography>
+      <Table
+        data={provinces}
+        hiddenColumns={['new_cases', 'total_cases']}
         remember={remember}
       />
     </>
@@ -227,7 +247,7 @@ export const rememberSortBy = () => {
   return (
     <>
       <Typography variant='body1'>
-        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see persisted hidden columns.
+        Columns sorting order remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see its effect.
       </Typography>
       <Table
         data={provinces}

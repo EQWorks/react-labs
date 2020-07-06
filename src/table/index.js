@@ -45,39 +45,38 @@ const getHeader = (s) => [
   s.slice(1).replace(/_/g, ' '),
 ].join('')
 
-const useTableConfig = ({ data, hiddenColumns, children, columns }) => {
-  const [autoCols, setAutoCols] = useState([])
-  const [hidden, setHidden] = useState([])
-
-  useEffect(() => {
+const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) => {
+  // memoized columns and data for useTable hook
+  const _data = useMemo(() => data, [data])
+  const _cols = useMemo(() => {
     if (!children && !columns) {
-      setAutoCols(Object.keys(data[0] || {}).map((accessor) => ({
+      return Object.keys(data[0] || {}).map((accessor) => ({
         accessor,
         Header: getHeader(accessor),
-      })))
-    } else {
-      const _columns = Array.isArray(columns) && columns.length > 0
-        ? columns
-        : Children.toArray(children)
-          .filter((c) => c.type === TableColumn || c.type.name === 'TableColumn')
-          .map((c) => c.props)
-
-      setAutoCols(_columns)
-
-      // initial column hidden states
-      const _hidden = _columns.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
-      setHidden(_hidden.length ? _hidden : (hiddenColumns || []))
+      }))
     }
+    return Array.isArray(columns) && columns.length > 0
+      ? columns
+      : Children.toArray(children)
+        .filter((c) => c.type === TableColumn || c.type.name === 'TableColumn')
+        .map((c) => c.props)
   }, [columns, data, children])
-
-  // memoized columns and data for useTable hook
-  const _cols = useMemo(() => autoCols, [autoCols])
-  const _data = useMemo(() => data, [data])
+  // cached hidden state
+  const [
+    hidden,
+    setHiddenCache,
+    removeHiddenCache,
+  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(() => {
+    const _hidden = _cols.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
+    return _hidden.length ? _hidden : (hiddenColumns || [])
+  })
 
   return {
     _cols,
     _data,
     hidden,
+    setHiddenCache,
+    removeHiddenCache,
   }
 }
 
@@ -94,13 +93,14 @@ const Table = ({
 }) => {
   const classes = useStyles()
   // custom table config hook
-  const { _cols, _data, hidden } = useTableConfig({ data, hiddenColumns, children, columns })
+  const {
+    _cols,
+    _data,
+    hidden,
+    setHiddenCache,
+    removeHiddenCache,
+  } = useTableConfig({ data, hiddenColumns, children, columns, remember })
   // remember me
-  const [
-    cachedHidden,
-    setCachedHidden,
-    removeCachedHidden,
-  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(hidden)
   const [
     cachedSortBy,
     setCachedSortBy,
@@ -127,7 +127,7 @@ const Table = ({
       columns: _cols,
       data: _data,
       initialState: {
-        hiddenColumns: cachedHidden,
+        hiddenColumns: hidden,
         sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
       },
     },
@@ -140,11 +140,11 @@ const Table = ({
   // remember hidden
   useEffect(() => {
     if (remember.hidden) {
-      setCachedHidden(_hidden)
+      setHiddenCache(_hidden)
     }
     return () => {
       if (!remember.hidden) {
-        removeCachedHidden()
+        removeHiddenCache()
       }
     }
   }, [_hidden, remember.hidden])
@@ -212,26 +212,30 @@ const Table = ({
               </TableBody>
             </MUITable>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[
-              5,
-              10,
-              25,
-              { label: 'All', value: data.length },
-            ]}
-            colSpan={3}
-            count={data.length}
-            rowsPerPage={pageSize}
-            page={pageIndex}
-            SelectProps={{
-              inputProps: { 'aria-label': 'rows per page' },
-              native: true,
-            }}
-            onChangePage={(_, page) => { gotoPage(page) }}
-            onChangeRowsPerPage={({ target: { value }}) => {
-              setPageSize(Number(value))
-            }}
-          />
+          {/* TODO: this seems to be simplifiable */}
+          {(0 < rows.length && rows.length < data.length ? rows.length > pageSize : rows.length > 0) && (
+            <TablePagination
+              /* TODO: dynamically scale rowsPerPageOptions */
+              rowsPerPageOptions={[
+                5,
+                10,
+                25,
+                { label: 'All', value: data.length },
+              ]}
+              colSpan={3}
+              count={rows.length}
+              rowsPerPage={pageSize}
+              page={pageIndex}
+              SelectProps={{
+                inputProps: { 'aria-label': 'rows per page' },
+                native: true,
+              }}
+              onChangePage={(_, page) => { gotoPage(page) }}
+              onChangeRowsPerPage={({ target: { value }}) => {
+                setPageSize(Number(value))
+              }}
+            />
+          )}
         </>
       ) : (
         <Card>
