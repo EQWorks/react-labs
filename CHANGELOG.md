@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `<Table />` - hide pagination when filtered & page size can show all filtered.
 - `<Table />` - pagination count number of possibly filterd rows.
+- `<DynamicButton />` - Internal prop process logic is revised.
+
+### Added
+- `<StyledCardContainer/>` - component added with examples.
+
 
 ## [1.2.0] - 2020-06-30
 ### Added
