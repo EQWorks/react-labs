@@ -65,7 +65,6 @@ export const Default = () => {
 };
 
 const useStyles2 = makeStyles((theme) => {
-  console.log(theme);
   return {
     header: {
       display: "flex",
