@@ -100,18 +100,12 @@ const DynamicButton = ({
 
 DynamicButton.propTypes = {
   type: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  size: PropTypes.string,
   children: PropTypes.node,
 }
 
 DynamicButton.defaultProps = {
   type: "primary",
-  disabled: false,
-  size: "medium",
   children: "Call to action",
-  onClick: () => alert("this is a default onClick message."),
 }
 
 export default DynamicButton
