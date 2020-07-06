@@ -59,14 +59,14 @@ const useStyles = makeStyles((t) => {
   };
 });
 
-const StyledCardContainer = ({ pattern, clickable, onClick, children }) => {
+const StyledCardContainer = ({ pattern, onClick, children }) => {
   const whichStyle = "style" + pattern.style;
   const classes = useStyles(pattern);
   return (
     <Card
       className={classes[whichStyle]}
       elevation={0}
-      onClick={clickable && onClick}
+      onClick={onClick}
     >
       {children}
     </Card>
@@ -75,14 +75,12 @@ const StyledCardContainer = ({ pattern, clickable, onClick, children }) => {
 
 StyledCardContainer.propTypes = {
   onClick: PropTypes.func,
-  clickable: PropTypes.bool,
   pattern: PropTypes.object,
   children: PropTypes.node,
 };
 
 StyledCardContainer.defaultProps = {
-  onClick: () => alert("this is a default onClick message."),
-  clickable: false,
+  onClick: null,
   pattern: {
     style: 1,
     backgroundImage: "none",

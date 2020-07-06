@@ -10,7 +10,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
-import { data, data2, data3 } from "./data/cardInfo";
+import { data, data2, data3 } from "./data/card-info";
 
 export default {
   component: StyledCardContainer,
@@ -207,7 +207,7 @@ const useStyles4 = makeStyles((theme) => ({
 
 export const Clickable = () => {
   const classes = useStyles4();
-
+  
   const content = (
     <React.Fragment>
       <Grid item className={classes.header}>
@@ -227,7 +227,7 @@ export const Clickable = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
-        <StyledCardContainer clickable>
+        <StyledCardContainer onClick={()=>alert("clicked")}>
           <CardContent className={classes.content}>{content}</CardContent>
         </StyledCardContainer>
       </Grid>
