@@ -95,7 +95,7 @@ StyledCheckbox.propTypes = {
 StyledCheckbox.defaultProps = {
   checked: false,
   onChange: null,
-  disabled: true,
+  disabled: false,
 };
 
 export default StyledCheckbox;

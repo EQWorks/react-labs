@@ -25,6 +25,7 @@ const typography = {
     fontWeight: 400,
   },
   body1: {
+    fontSize: '0.875rem',
     fontWeight: 400,
   },
   body2: {
