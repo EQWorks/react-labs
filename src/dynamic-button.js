@@ -81,22 +81,16 @@ const useStyles = makeStyles((t) => {
 
 const DynamicButton = ({
   type,
-  addIcon,
-  onWhichSide,
   children,
   ...rest
 }) => {
   const classes = useStyles()
-  const side = `${onWhichSide}` + "Icon"
-  const iconProps = {
-    [side]: addIcon,
-  }
+  
   return (
     <Button
       className={classes[type]}
       disableRipple
       disableElevation
-      {...iconProps}
       {...rest}
     >
       {children}
@@ -106,22 +100,12 @@ const DynamicButton = ({
 
 DynamicButton.propTypes = {
   type: PropTypes.string,
-  disabled: PropTypes.bool,
-  addIcon: PropTypes.node,
-  onWhichSide: PropTypes.string,
-  onClick: PropTypes.func,
-  size: PropTypes.string,
   children: PropTypes.node,
 }
 
 DynamicButton.defaultProps = {
   type: "primary",
-  disabled: false,
-  addIcon: null,
-  onWhichSide: "start",
-  size: "medium",
   children: "Call to action",
-  onClick: () => alert("this is a default onClick message."),
 }
 
 export default DynamicButton
