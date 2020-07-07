@@ -10,7 +10,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
-import { data, data2, data3 } from "./data/card-info";
+import { subsData, bundlesData, categoriesData } from "./data/card-info";
 
 export default {
   component: StyledCardContainer,
@@ -51,7 +51,7 @@ export const Default = () => {
 
   return (
     <Grid container spacing={2}>
-      {data.map((cardInfo, i) => (
+      {subsData.map((cardInfo, i) => (
         <Grid key={i} item xs={12} sm={6} md={4}>
           <StyledCardContainer>
             <CardContent className={classes.content}>
@@ -97,7 +97,7 @@ export const StyleSelection = () => {
   const classes = useStyles2();
   return (
     <Grid container spacing={2}>
-      {data2.map((cardInfo, i) => (
+      {categoriesData.map((cardInfo, i) => (
         <Grid key={i} item xs={12} sm={4} md={2}>
           <StyledCardContainer
             pattern={{
@@ -125,6 +125,7 @@ export const StyleSelection = () => {
 };
 
 const useStyles3 = makeStyles((theme) => ({
+  
   header: {
     display: "flex",
     justifyContent: "space-between",
@@ -172,7 +173,7 @@ export const WithImage = () => {
 
   return (
     <Grid container spacing={2}>
-      {data3.map((cardInfo, i) => (
+      {bundlesData.map((cardInfo, i) => (
         <Grid key={i} item xs={12} sm={6} md={4}>
           <StyledCardContainer
             pattern={{
