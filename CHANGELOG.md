@@ -17,7 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `<StyledCardContainer/>` - component added with examples.
-
+- `<Carousel/>` - component added with examples.
+- `<ImageSlider/>` - component added with examples.
 
 ## [1.2.0] - 2020-06-30
 ### Added
