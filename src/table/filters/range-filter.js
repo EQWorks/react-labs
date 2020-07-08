@@ -26,7 +26,17 @@ function abbreviateNumber(value) {
     }
     newValue = `${shortValue}${suffixes[suffixNum]}`
   }
+  if (value % 1 != 0) {
+    return value.toFixed(2)
+  }
   return newValue;
+}
+
+function placeHolderformat(value) {
+  if (!Number.isInteger(value)) {
+    return value.toFixed(2).toString()
+  }
+  return value.toString()
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }) => {
+
   const classes = useStyles()
   const [min, max] = useMemo(() => {
     let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
@@ -76,13 +87,17 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         className={classes.text}
         id={`${id}-range-min`}
         label="min"
-        type="number"
+        type="text"
         variant="outlined"
         size="small"
-        placeholder={min}
+        step="0.01"
+        min="0"
+        max="100000"
+        // placeholder={min}
+        placeholder={placeHolderformat(min)}
         value={(filterValue || [])[0] || ''}
         onChange={({ target: { value } }) => {
-          setFilter((old = []) => [value ? parseInt(value, 10) : undefined, old[1]])
+          setFilter((old = []) => [value ? parseFloat(value) : undefined, old[1]])
         }}
       />
       <TextField
@@ -92,10 +107,10 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         type="number"
         variant="outlined"
         size="small"
-        placeholder={max}
+        placeholder={placeHolderformat(max)}
         value={(filterValue || [])[1] || ''}
         onChange={({ target: { value } }) => {
-          setFilter((old = []) => [old[0], value ? parseInt(value, 10) : undefined])
+          setFilter((old = []) => [old[0], value ? parseFloat(value) : undefined])
         }}
       />
     </div>

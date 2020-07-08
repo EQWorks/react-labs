@@ -175,7 +175,7 @@ export const RangeFilter = () => (
     columns={[
       { Header: 'New cases', accessor: 'new_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
       { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn},
       { Header: 'Province', accessor: 'province' },
     ]}
   />
