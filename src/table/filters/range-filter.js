@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Slider from '@material-ui/core/Slider'
-import TextField from '@material-ui/core/TextField'
+// import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 
 
@@ -11,7 +11,7 @@ function abbreviateNumber(value) {
   const suffixes = ['', 'k', 'm', 'b', 't']
   let newValue = value
   if (value >= 1000) {
-    const suffixNum = Math.floor(String(value).length / 3)
+    const suffixNum = Math.floor(String(Math.floor(value)).length / 3)
     let shortValue = '';
     for (var precision = 2; precision >= 1; precision--) {
       shortValue = (suffixNum !== 0 ? (value / Math.pow(1000, suffixNum)) : value)
@@ -25,6 +25,8 @@ function abbreviateNumber(value) {
       shortValue = shortValue.toFixed(1)
     }
     newValue = `${shortValue}${suffixes[suffixNum]}`
+  } else if (value % 1 != 0 && value > 1) { //to account for float numbers
+    newValue = Math.floor(value).toString()
   }
   return newValue;
 }
@@ -32,16 +34,17 @@ function abbreviateNumber(value) {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '40ch',
-    padding: theme.spacing(1),
+    padding: theme.spacing(4, 2, 0, 2),
+    textAlign: 'center'
   },
   text: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: '18ch',
+    width: '16ch',
   },
 }))
 
-const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }) => {
+const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id, percentage } }) => {
   const classes = useStyles()
   const [min, max] = useMemo(() => {
     let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0
@@ -54,9 +57,9 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
   }, [id, preFilteredRows])
 
   return (
-    <div className={classes.root} onClick={(e) => { e.stopPropagation() }}>
+    <div className={classes.root} onClick={(e) => { e.stopPropagation() }} >
       <Slider
-        value={filterValue || [min, max]}
+        value={filterValue || [Math.ceil(max), Math.floor(min)]}
         onChange={(_, newValue) => {
           const [_min, _max] = newValue
           if (_min === min && _max === max) {
@@ -65,24 +68,27 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
             setFilter(newValue)
           }
         }}
-        max={max}
-        min={min}
-        valueLabelDisplay="auto"
+        max={Math.ceil(max)}
+        min={Math.floor(min)}
+        valueLabelDisplay="on"
         aria-labelledby={`${id}-range-label`}
-        getAriaValueText={abbreviateNumber}
-        valueLabelFormat={abbreviateNumber}
+        getAriaValueText={percentage ? (value) => (value*100) : abbreviateNumber}
+        valueLabelFormat={percentage ? (value) => (value*100) : abbreviateNumber}
+        step={max - min <= 1 ? 0.1 : 1}
       />
-      <TextField
+      {/* <TextField
         className={classes.text}
         id={`${id}-range-min`}
         label="min"
         type="number"
         variant="outlined"
         size="small"
-        placeholder={min}
+        max={Math.ceil(max)}
+        min={Math.floor(min)}
+        placeholder={percentage ? (Math.floor(min) * 100).toString() : Math.floor(min).toString()}
         value={(filterValue || [])[0] || ''}
         onChange={({ target: { value } }) => {
-          setFilter((old = []) => [value ? parseInt(value, 10) : undefined, old[1]])
+          setFilter((old = []) => [value ? parseFloat(value) : undefined, old[1]])
         }}
       />
       <TextField
@@ -92,12 +98,14 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         type="number"
         variant="outlined"
         size="small"
-        placeholder={max}
-        value={(filterValue || [])[1] || ''}
+        max={Math.ceil(max)}
+        min={Math.floor(min)}
+        placeholder={percentage ? (Math.floor(max) * 100).toString() : Math.ceil(max).toString()}
+        value={percentage ? (filterValue || [])[1] * 100 || '' : (filterValue || [])[1] || ''}
         onChange={({ target: { value } }) => {
-          setFilter((old = []) => [old[0], value ? parseInt(value, 10) : undefined])
+          setFilter((old = []) => [old[0], value ? parseFloat(value) : undefined])
         }}
-      />
+      /> */}
     </div>
   )
 }
