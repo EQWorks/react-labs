@@ -188,8 +188,9 @@ const Table = ({
                         className={classes.head}
                         {...column.getHeaderProps(column.getSortByToggleProps())}
                       >
+                        {console.log(column)}
                         {column.render('Header')}
-                        <TableSortLabel {...column} />
+                        { column.canSort && (<TableSortLabel {...column} />)}
                         {column.canFilter && (<TableFilterLabel column={column} />)}
                       </TableCell>
                     ))}

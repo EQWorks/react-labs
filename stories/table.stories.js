@@ -145,6 +145,17 @@ export const disableFilters = () => (
     ]}
   />
 )
+export const disableSortBy = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases', disableFilters: true, disableSortBy: true },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, disableSortBy: true },
+      { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+    ]}
+  />
+)
 
 export const SelectionFilter = () => (
   <Table
