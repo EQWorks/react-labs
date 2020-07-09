@@ -63,7 +63,6 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
     })
     return [min, max]
   }, [id, preFilteredRows])
-
   return (
     <div className={classes.root} onClick={(e) => { e.stopPropagation() }}>
       <Slider
@@ -76,8 +75,8 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
             setFilter(newValue)
           }
         }}
-        max={max}
-        min={min}
+        //max={max}
+        //min={min}
         valueLabelDisplay="auto"
         aria-labelledby={`${id}-range-label`}
         getAriaValueText={abbreviateNumber}
@@ -87,12 +86,11 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         className={classes.text}
         id={`${id}-range-min`}
         label="min"
-        type="text"
+        type="number"
         variant="outlined"
         size="small"
-        step="0.01"
-        min="0"
-        max="100000"
+        //min={min}
+        //max={max}
         // placeholder={min}
         placeholder={placeHolderformat(min)}
         value={(filterValue || [])[0] || ''}
@@ -107,6 +105,8 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }
         type="number"
         variant="outlined"
         size="small"
+        min={min}
+        max={max}
         placeholder={placeHolderformat(max)}
         value={(filterValue || [])[1] || ''}
         onChange={({ target: { value } }) => {
