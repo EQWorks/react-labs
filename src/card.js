@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import { palette, typography } from '../src/themes'
+import { palette, typography } from './themes'
 import { StyleCardContainer } from '.'
 
 
