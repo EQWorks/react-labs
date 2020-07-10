@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import grey from '@material-ui/core/colors/grey'
 import { fade, makeStyles } from '@material-ui/core/styles'
 
-import { palette, typography } from '../src/themes'
+import { palette, typography } from './themes'
 
 
 const useStyles = makeStyles((t) => {

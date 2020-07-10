@@ -1,4 +1,4 @@
-import React, { cloneElement, useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import Backdrop from '@material-ui/core/Backdrop'
@@ -41,6 +41,7 @@ const useStyles = makeStyles((t) => {
       left: '50%',
       marginTop: -12,
       marginLeft: -12,
+      color: theme.palette.primary.main,
     },
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
@@ -91,7 +92,7 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
   )
 }
 
-const Loader = ({ open, backDrop, action, message, progress, childProps, children, skeletonConfig }) => {
+const Loader = ({ open, backDrop, action, message, progress, children, skeletonConfig }) => {
   const classes = useStyles()
   const [bufferProgress, setBufferProgress] = useState(progress)
   const [buffer, setBuffer] = useState(10)
@@ -156,7 +157,7 @@ const Loader = ({ open, backDrop, action, message, progress, childProps, childre
   /* Loading as loading wrapper with skeleton */
   if (skeletonConfig) return (
     <div>
-      {!open && cloneElement(children, { ...childProps })}
+      {!open && children}
       {open && skeletonConfig}
     </div>
   )
@@ -165,7 +166,7 @@ const Loader = ({ open, backDrop, action, message, progress, childProps, childre
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        {cloneElement(children, { ...childProps })}
+        {children}
         {open && action === 'circular' 
           && <CircularProgress size={24} color='inherit' className={classes.centeredProgress} />}
         {open && action === 'circular determinate'
@@ -185,7 +186,6 @@ Loader.propTypes = {
   message: PropTypes.string,
   backDrop: PropTypes.bool,
   progress: PropTypes.number,
-  childProps: PropTypes.object,
   children: PropTypes.node,
   skeletonConfig: PropTypes.node,
 }
@@ -195,7 +195,6 @@ Loader.defaultProps = {
   message: '',
   backDrop: false,
   progress: 0,
-  childProps: {},
   children: null,
   skeletonConfig: null,
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import clsx from 'clsx'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -76,12 +77,19 @@ const useStyles = makeStyles((t) => {
         color: theme.palette.primary.main,
       },
     },
+    loadPrimary: {
+      color: theme.palette.primary.main,
+    },
+    loadSecondary: {
+      color: "rgba(255,255,255,0)",
+    },
   }
 })
 
 const DynamicButton = ({
   type,
   children,
+  load,
   ...rest
 }) => {
   const classes = useStyles()
@@ -93,7 +101,12 @@ const DynamicButton = ({
       disableElevation
       {...rest}
     >
-      {children}
+      <div className={clsx({
+        [classes.loadPrimary]: load && type === 'primary',
+        [classes.loadSecondary]: load && type !== 'primary',
+      })}>
+        {children}
+      </div>
     </Button>
   )
 }
@@ -101,11 +114,13 @@ const DynamicButton = ({
 DynamicButton.propTypes = {
   type: PropTypes.string,
   children: PropTypes.node,
+  load: PropTypes.bool,
 }
 
 DynamicButton.defaultProps = {
   type: "primary",
   children: "Call to action",
+  load: false,
 }
 
 export default DynamicButton

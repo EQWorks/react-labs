@@ -118,8 +118,8 @@ storiesOf('Loader', module)
   .add('Wrapper-Button: Default', () => {
     const [open, setOpen] = useState(false)
     return (
-      <Loader open={open} action='circular' childProps={{ disabled: open }}>
-        <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
+      <Loader open={open} action='circular'>
+        <DynamicButton disabled={open} load={open} onClick={() => setOpen(true)}>Click Me</DynamicButton>
       </Loader>
     )
   })
@@ -131,8 +131,8 @@ storiesOf('Loader', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Loader open={open} action='circular determinate' progress={progress} childProps={{ disabled: open }}>
-        <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
+      <Loader open={open} action='circular determinate' progress={progress}>
+        <DynamicButton disabled={open} load={open} onClick={() => setOpen(true)}>Click Me</DynamicButton>
       </Loader>
     )
   })
@@ -144,8 +144,8 @@ storiesOf('Loader', module)
       return () => clearInterval(timer)
     }, [])
     return (
-      <Loader open={open} action='circular determinate label' progress={progress} childProps={{ disabled: open }}>
-        <DynamicButton onClick={() => setOpen(true)}>Click Me</DynamicButton>
+      <Loader open={open} action='circular determinate label' progress={progress}>
+        <DynamicButton disabled={open} load={open} onClick={() => setOpen(true)}>Click Me</DynamicButton>
       </Loader>
     )
   })
