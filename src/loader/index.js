@@ -6,11 +6,11 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
 import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { palette, typography } from './themes'
+import { palette, typography } from '../themes'
+import ProgressWithLabel from './progress-with-label'
 
 
 const useStyles = makeStyles((t) => {
@@ -63,36 +63,10 @@ const useStyles = makeStyles((t) => {
       color: '#fff',
       marginTop: '5px',
     },
-    linearProgressLabel: {
-      color: '#c8cbcf'
-    }
   }
 })
 
-/* eslint-disable react/prop-types */
-const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
-  const classes = useStyles()
-  if (action.startsWith('linear')) return (
-    <Box display='flex' alignItems='center' className={classes.linearBackdrop}>
-      <Box width='100%' mr={1}>
-        <LinearProgress {...props} />
-      </Box>
-      <Box minWidth={35}>
-        <Typography variant='body2' className={classes.linearProgressLabel}>{`${Math.round(props.value)}%`}</Typography>
-      </Box>
-    </Box>
-  )
-  return (
-    <Box position='relative' display='inline-flex'>
-      <CircularProgress variant='static' {...props} />
-      <Box top={0} left={0} bottom={0} right={0} position='absolute' display='flex' alignItems='center' justifyContent='center'>
-        <Typography style={labelStyle} variant='caption' component='div' color='inherit'>{`${Math.round(props.value)}%`}</Typography>
-      </Box>
-    </Box>
-  )
-}
-
-const Loader = ({ open, backDrop, action, message, progress, children, skeletonConfig }) => {
+const Loader = ({ open, backdrop, action, message, progress, children, skeletonConfig }) => {
   const classes = useStyles()
   const [bufferProgress, setBufferProgress] = useState(progress)
   const [buffer, setBuffer] = useState(10)
@@ -135,7 +109,7 @@ const Loader = ({ open, backDrop, action, message, progress, children, skeletonC
   )
 
   /* Loading as backdrop */
-  if (backDrop) {
+  if (backdrop) {
     if (action.startsWith('linear')) {
       return <Modal open={open}>{modalBody}</Modal>
     }
@@ -184,7 +158,7 @@ Loader.propTypes = {
   open: PropTypes.bool.isRequired,
   action: PropTypes.string,
   message: PropTypes.string,
-  backDrop: PropTypes.bool,
+  backdrop: PropTypes.bool,
   progress: PropTypes.number,
   children: PropTypes.node,
   skeletonConfig: PropTypes.node,
@@ -193,7 +167,7 @@ Loader.propTypes = {
 Loader.defaultProps = {
   action: '',
   message: '',
-  backDrop: false,
+  backdrop: false,
   progress: 0,
   children: null,
   skeletonConfig: null,
