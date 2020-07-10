@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2020-07-10
+### Added
+- `<Alert>` - - component added with examples.
+- `<Card>` - - component added with examples.
+- `<Textfield>` - - component added with examples.
+- `<Loader>` - - component added with examples.
+
 ## [1.4.1] - 2020-07-09
 ### Changed
 - export Carousel and a few other components from root level
