@@ -36,11 +36,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 2, 0, 2),
     textAlign: 'center'
   },
-  text: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '16ch',
-  },
 }))
 
 const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id, percentage } }) => {

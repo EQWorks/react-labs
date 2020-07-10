@@ -177,7 +177,6 @@ const Table = ({
         />
       )}
       {visibleColumns.length > 0 ? (
-        // <>
         <TableContainer>
           <MUITable {...getTableProps(tableProps)}>
             <TableHead>
@@ -243,7 +242,6 @@ const Table = ({
             )}
           </MUITable>
         </TableContainer>
-        // </>
       ) : (
         <Card>
           <CardContent>
