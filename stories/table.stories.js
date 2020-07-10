@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import { Table } from '../src'
 
 import provinces from './data/provinces'
+import provincesRange from './data/provinces-range'
 
 
 const TableContainer = ({ children }) => {
@@ -145,6 +146,17 @@ export const disableFilters = () => (
     ]}
   />
 )
+export const disableSortBy = () => (
+  <Table
+    data={provinces}
+    columns={[
+      { Header: 'New cases', accessor: 'new_cases' },
+      { Header: 'Total cases', accessor: 'total_cases', disableFilters: true, disableSortBy: true },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, disableSortBy: true },
+      { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+    ]}
+  />
+)
 
 export const SelectionFilter = () => (
   <Table
@@ -160,11 +172,11 @@ export const SelectionFilter = () => (
 
 export const RangeFilter = () => (
   <Table
-    data={provinces}
+    data={provincesRange}
     columns={[
       { Header: 'New cases', accessor: 'new_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
       { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value * 100}%`, Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn, percentage: true },
       { Header: 'Province', accessor: 'province' },
     ]}
   />
