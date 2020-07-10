@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import { palette, typography } from '../src/themes'
+import { StyleCardContainer } from '.'
 
 
 const useStyles = makeStyles((t) => {
@@ -60,7 +61,8 @@ const Card = ({
   headerProps,
   actionSide,
   width,
-  height
+  height,
+  styledContainerProps
 }) => {
   const classes = useStyles()
   const dimensions = { maxWidth: width, height }
@@ -69,8 +71,8 @@ const Card = ({
     if (placement === 'end') return 'right'
     return placement
   }
-  return (
-    <MUICard style={dimensions} className={classes[size]}>
+  const cardBody = (
+    <>
       {Object.entries(headerProps).length > 0 && <CardHeader {...headerProps}/>}
       <CardContent>
         <Grid container item xs={12} justify={alignTitle === 'center' ? 'center' : `flex-${alignTitle}`}>
@@ -89,7 +91,14 @@ const Card = ({
       >
         <CardActions disableSpacing>{cardAction}</CardActions>
       </Grid>}
-    </MUICard>
+    </>
+  )
+  if (Object.entries(styledContainerProps).length > 0) return (
+    <StyleCardContainer {...styledContainerProps}>{cardBody}</StyleCardContainer>
+  )
+
+  return (
+    <MUICard style={dimensions} className={classes[size]}>{cardBody}</MUICard>
   )
 }
 
@@ -112,6 +121,7 @@ Card.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  styledContainerProps: PropTypes.object,
 }
 
 Card.defaultProps = {
@@ -126,6 +136,7 @@ Card.defaultProps = {
   alignContent: 'start',
   variantTitle: 'h5',
   variantContent: 'body2',
+  styledContainerProps: {},
 }
 
 export default Card

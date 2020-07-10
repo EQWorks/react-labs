@@ -71,3 +71,20 @@ storiesOf('Card', module)
       />
     )
   })
+  .add('With styled wrapper', () => {
+    const styledContainerProps = {
+      pattern: { style: 3 }
+    }
+    return(
+      <Card
+        width={320}
+        height={190}
+        cardTitle='Recent Activities'
+        variantTitle='h6'
+        alignTitle='center'
+        cardContent={subPgContent}
+        alignContent='center'
+        styledContainerProps={styledContainerProps}
+      />
+    )
+  })
