@@ -3,7 +3,7 @@ name: Node.js Package - alpha tag
 on:
   push:
     tags:
-      - 'v*-alpha'
+      - 'v*-alpha*'
 
 jobs:
   publish-npm:
