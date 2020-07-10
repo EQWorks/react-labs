@@ -16,7 +16,7 @@ storiesOf('Loader', module)
   .add('Backdrop-Circular: Default', () => (
     <Loader
       open={true}
-      backDrop
+      backdrop
       action='circular'
       message='Loading...'
     />
@@ -29,7 +29,7 @@ storiesOf('Loader', module)
     }, [])
     return <Loader
       open={true}
-      backDrop
+      backdrop
       action='circular determinate'
       message='Determinate...'
       progress={progress}
@@ -43,7 +43,7 @@ storiesOf('Loader', module)
     }, [])
     return <Loader
       open={true}
-      backDrop
+      backdrop
       action='circular determinate label'
       message='Determinate with label...'
       progress={progress}
@@ -52,7 +52,7 @@ storiesOf('Loader', module)
   .add('BackDrop-Linear: Default', () => (
     <Loader
       open={true}
-      backDrop
+      backdrop
       action='linear'
       message='Linear...'
     />
@@ -65,7 +65,7 @@ storiesOf('Loader', module)
     }, [])
     return <Loader
       open={true}
-      backDrop
+      backdrop
       action='linear determinate'
       progress={progress}
       message='Linear Determinate...'
@@ -79,7 +79,7 @@ storiesOf('Loader', module)
     }, [])
     return <Loader
       open={true}
-      backDrop
+      backdrop
       action='linear determinate label'
       progress={progress}
       message='Linear Determinate with label...'
@@ -93,7 +93,7 @@ storiesOf('Loader', module)
     }, [])
     return <Loader
       open={true}
-      backDrop
+      backdrop
       action='linear buffer'
       progress={progress}
       message='Linear Buffer...'
@@ -107,7 +107,7 @@ storiesOf('Loader', module)
     }, [])
     return <Loader
       open={true}
-      backDrop
+      backdrop
       action='linear buffer label'
       progress={progress}
       message='Linear Buffer with label...'
