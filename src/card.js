@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import { palette, typography } from './themes'
-import { StyleCardContainer } from '.'
+import { StyledCardContainer } from '.'
 
 
 const useStyles = makeStyles((t) => {
@@ -94,7 +94,7 @@ const Card = ({
     </>
   )
   if (Object.entries(styledContainerProps).length > 0) return (
-    <StyleCardContainer {...styledContainerProps}>{cardBody}</StyleCardContainer>
+    <StyledCardContainer {...styledContainerProps}>{cardBody}</StyledCardContainer>
   )
 
   return (

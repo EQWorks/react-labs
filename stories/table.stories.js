@@ -10,7 +10,8 @@ import { Table } from '../src'
 
 import provinces from './data/provinces'
 import provincesRange from './data/provinces-range'
-
+import provincesDates from './data/province-dates'
+import { DateRangeFilter, filterDates } from './data/date-range-filter'
 
 const TableContainer = ({ children }) => {
   const [parent, setParent] = useState('bare')
@@ -177,6 +178,22 @@ export const RangeFilter = () => (
       { Header: 'New cases', accessor: 'new_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
       { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value * 100}%`, Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn, percentage: true },
+      { Header: 'Province', accessor: 'province' },
+    ]}
+  />
+)
+export const CusotmDateRangeFilter = () => (
+  // pass a custom Component and a custom filter to a column, following react-table documentation
+  <Table
+    data={provincesDates}
+    columns={[
+      {
+        Header: 'Date', accessor: 'date',
+        Filter: DateRangeFilter, filter: filterDates
+      },
+      { Header: 'New cases', accessor: 'new_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
+      { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, disableFilters: true },
       { Header: 'Province', accessor: 'province' },
     ]}
   />
