@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React from "react";
+import React, {useState} from "react";
 import StyledCardContainer from "../src/styled-card-container";
 import {
   Avatar,
@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
 import { subsData, bundlesData, categoriesData } from "./data/card-info";
+
 
 export default {
   component: StyledCardContainer,
@@ -64,59 +65,35 @@ export const Default = () => {
   );
 };
 
-const useStyles2 = makeStyles((theme) => {
-  return {
-    header: {
-      display: "flex",
-      justifyContent: "flex-end",
-      margin: theme.spacing(1),
-    },
-    content: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      //height: '200px',
-    },
-    icon: {
-      color: "#0075FF",
-    },
-    avatar: {
-      width: "96px",
-      height: "96px",
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(2),
-    },
-    category: {
-      marginBottom: theme.spacing(3),
-    },
-  };
-});
+export const SelectStyles= () => {
+  const classes = useStyles();
 
-export const StyleSelection = () => {
-  const classes = useStyles2();
+  const contents = ({ title, main, sub }) => {
+    return (
+      <React.Fragment>
+        <Grid item className={classes.header}>
+          <Typography variant="subtitle1">{title}</Typography>
+        </Grid>
+        <Typography variant="h3">{main}</Typography>
+        <Typography variant="body1" className={classes.sub}>
+          {sub}
+        </Typography>
+      </React.Fragment>
+    );
+  };
+
   return (
     <Grid container spacing={2}>
-      {categoriesData.map((cardInfo, i) => (
-        <Grid key={i} item xs={12} sm={4} md={2}>
-          <StyledCardContainer
-            pattern={{
+      {subsData.map((cardInfo, i) => (
+        <Grid key={i} item xs={12} sm={6} md={4}>
+          <StyledCardContainer pattern={
+            {
               style: 2,
-            }}
-          >
-            <Grid item className={classes.header}>
-              <CheckCircleOutlineRoundedIcon className={classes.icon} />
-            </Grid>
-            <Grid item className={classes.content}>
-              <Avatar
-                alt="item"
-                src={cardInfo.image}
-                className={classes.avatar}
-              ></Avatar>
-              <Typography variant="body1" className={classes.category}>
-                {cardInfo.category}
-              </Typography>
-            </Grid>
+            }
+          }>
+            <CardContent className={classes.content}>
+              {contents(cardInfo)}
+            </CardContent>
           </StyledCardContainer>
         </Grid>
       ))}
@@ -124,8 +101,8 @@ export const StyleSelection = () => {
   );
 };
 
-const useStyles3 = makeStyles((theme) => ({
-  
+
+const useStyles2 = makeStyles((theme) => ({
   header: {
     display: "flex",
     justifyContent: "space-between",
@@ -147,7 +124,7 @@ const useStyles3 = makeStyles((theme) => ({
 }));
 
 export const WithImage = () => {
-  const classes = useStyles3();
+  const classes = useStyles2();
 
   const contents = ({ name, description, type, price, category }) => {
     return (
@@ -191,23 +168,23 @@ export const WithImage = () => {
   );
 };
 
-const useStyles4 = makeStyles((theme) => ({
+const useStyles3 = makeStyles((theme) => ({
   header: {
     display: "flex",
     justifyContent: "space-between",
   },
   content: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '150px',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "150px",
     padding: theme.spacing(2),
   },
 }));
 
 export const Clickable = () => {
-  const classes = useStyles4();
-  
+  const classes = useStyles3();
+
   const content = (
     <React.Fragment>
       <Grid item className={classes.header}>
@@ -227,10 +204,87 @@ export const Clickable = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
-        <StyledCardContainer onClick={()=>alert("clicked")}>
+        <StyledCardContainer onClick={() => alert("clicked")}>
           <CardContent className={classes.content}>{content}</CardContent>
         </StyledCardContainer>
       </Grid>
+    </Grid>
+  );
+};
+
+const useStyles4 = makeStyles((theme) => {
+  return {
+    header: {
+      display: "flex",
+      justifyContent: "flex-end",
+      margin: theme.spacing(1),
+    },
+    content: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      //height: '200px',
+    },
+    iconDefault: {
+      color: "#9e9e9e",
+    },
+    iconSelected: {
+      color: "#0075FF",
+    },
+    avatar: {
+      width: "96px",
+      height: "96px",
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(2),
+    },
+    category: {
+      marginBottom: theme.spacing(3),
+    },
+  };
+});
+
+export const Selectable = () => {
+  const classes = useStyles4();
+  const [filterableData, setFilterableData] = useState(
+    categoriesData.map((data, index) => ({
+      ...data,
+      selected: true,
+      key: index,
+    }))
+  );
+  const CardOnToggle = (key) => {
+    const newData = filterableData.map(data => data.key === key ? {...data, selected: !data.selected} : data)
+    setFilterableData(newData);
+  };
+  return (
+    <Grid container spacing={2}>
+      {filterableData.map((cardInfo, index) => (
+        <Grid key={index} item xs={12} sm={4} md={2}>
+          <StyledCardContainer
+            key={index}
+            selected={cardInfo.selected}
+            onClick={()=>CardOnToggle(index)}
+            pattern={{
+              style: 1,
+            }}
+          >
+            <Grid item className={classes.header}>
+              <CheckCircleOutlineRoundedIcon className={cardInfo.selected ? classes.iconSelected : classes.iconDefault } />
+            </Grid>
+            <Grid item className={classes.content}>
+              <Avatar
+                alt="item"
+                src={cardInfo.image}
+                className={classes.avatar}
+              ></Avatar>
+              <Typography variant="body1" className={classes.category}>
+                {cardInfo.category}
+              </Typography>
+            </Grid>
+          </StyledCardContainer>
+        </Grid>
+      ))}
     </Grid>
   );
 };
