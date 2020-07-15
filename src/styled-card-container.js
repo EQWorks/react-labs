@@ -89,9 +89,7 @@ const StyledCardContainer = ({ pattern, onClick, selected, children }) => {
   const classes = useStyles(pattern);
   return (
     <Card
-      className={clsx(classes[whichStyle], {
-        'selected': selected,
-      })}
+      className={clsx(classes[whichStyle], {selected})}
       elevation={0}
       onClick={onClick}
     >
