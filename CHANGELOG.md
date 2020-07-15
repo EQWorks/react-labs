@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `<StyledCardContainer>` - - toggle function added with a storybook example
+- `<Carousel>` - - responsive sizing mechanism added
+- `<Table>` - - custom filter passing mechanism added with a storybook example
+- `<Card>` - -  Typographic mistake corrected
+- Storybook theme switcher logic revised
 
 ## [1.5.0] - 2020-07-10
 ### Added
