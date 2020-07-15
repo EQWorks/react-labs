@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import StyledCheckbox  from "../src/styled-checkbox";
-import FormControlLabel from '@material-ui/core/FormControlLabel'; 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export default {
   component: StyledCheckbox,
