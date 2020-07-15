@@ -4,6 +4,8 @@ import { palette, typography } from "./themes";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { fade } from "@material-ui/core/styles/colorManipulator";
+import clsx from 'clsx';
+
 
 const useStyles = makeStyles((t) => {
   const theme = {
@@ -21,14 +23,24 @@ const useStyles = makeStyles((t) => {
   return {
     style1: {
       width: "100%",
-      backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
+      backgroundImage: '#fff',
       border: `1px solid ${theme.palette.grey[400]}`,
       boxShadow: theme.palette.shadow[10],
       borderRadius: '10px',
       "&:hover": {
         transition: "all .3s",
-        border: `1px solid ${theme.palette.grey[600]}`,
+        border: `1px solid ${theme.palette.grey[500]}`,
         boxShadow: theme.palette.shadow[20],
+      },
+      "&.selected": {
+        transition: "all .3s",
+        border: `1px solid ${theme.palette.primary.main}`,
+        boxShadow: theme.palette.shadow[30],
+        "&:hover": {
+          transition: "all .3s",
+          border: `1px solid ${theme.palette.shade.primary[800]}`,
+          boxShadow: theme.palette.shadow[40],
+        },
       },
     },
     style2: {
@@ -39,8 +51,18 @@ const useStyles = makeStyles((t) => {
       borderRadius: '10px',
       "&:hover": {
         transition: "all .3s",
-        border: `1px solid ${theme.palette.primary.main}`,
+        border: `1px solid ${theme.palette.grey[500]}`,
         boxShadow: theme.palette.shadow[20],
+      },
+      "&.selected": {
+        transition: "all .3s",
+        border: `1px solid ${theme.palette.primary.main}`,
+        boxShadow: theme.palette.shadow[30],
+        "&:hover": {
+          transition: "all .3s",
+          border: `1px solid ${theme.palette.shade.primary[800]}`,
+          boxShadow: theme.palette.shadow[40],
+        },
       },
     },
     style3: {
@@ -62,12 +84,12 @@ const useStyles = makeStyles((t) => {
   };
 });
 
-const StyledCardContainer = ({ pattern, onClick, children }) => {
+const StyledCardContainer = ({ pattern, onClick, selected, children }) => {
   const whichStyle = "style" + pattern.style;
   const classes = useStyles(pattern);
   return (
     <Card
-      className={classes[whichStyle]}
+      className={clsx(classes[whichStyle], {selected})}
       elevation={0}
       onClick={onClick}
     >
@@ -80,6 +102,8 @@ StyledCardContainer.propTypes = {
   onClick: PropTypes.func,
   pattern: PropTypes.object,
   children: PropTypes.node,
+  checked: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 StyledCardContainer.defaultProps = {
@@ -89,6 +113,8 @@ StyledCardContainer.defaultProps = {
     backgroundImage: "none",
   },
   children: {},
+  checked: false,
+  selected: false,
 };
 
 export default StyledCardContainer;
