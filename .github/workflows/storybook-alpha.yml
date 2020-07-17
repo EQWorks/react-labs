@@ -1,0 +1,39 @@
+name: Storybook Build & Deploy - alpha tags
+
+on:
+  push:
+    tags:
+      - 'v*-alpha*'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache Node Modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - run: yarn install
+      - run: yarn build-storybook
+
+      - name: Publish to netlify deployment preview
+        uses: netlify/actions/cli@master
+        with:
+          args: deploy --dir=storybook-static --alias=$(echo ${GITHUB_REF/refs\//} | sed 's/[^a-zA-Z0-9-]/-/g' | sed 's/-alpha\-.*/-alpha/g')
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.CD_NETLIFY_AUTH_TOKEN }}
