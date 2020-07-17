@@ -3,6 +3,10 @@
   publish = "storybook-static/"
   command = "yarn build-storybook"
 
+[context.production]
+  # shell exit $? = 0 to early return, thus ignore the build
+  ignore = "git log -1 --pretty=%B"
+
 [context.deploy-preview]
   # ignore building PR deploy previews with commit that doesn't have "[build]" in commit messages
   ignore = "git log -1 --pretty=%B | grep -v '\[build\]'"
