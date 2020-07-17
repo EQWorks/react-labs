@@ -33,7 +33,7 @@ jobs:
       - name: Publish to netlify deployment preview
         uses: netlify/actions/cli@master
         with:
-          args: deploy --dir=storybook-static --alias=$(echo ${GITHUB_REF/refs\//} | sed 's/[^a-zA-Z0-9-]/-/g' | sed 's/-alpha\-.*/-alpha/g')
+          args: deploy --dir=storybook-static
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.CD_NETLIFY_AUTH_TOKEN }}
