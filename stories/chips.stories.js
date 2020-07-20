@@ -18,35 +18,27 @@ export const Default = () => {
     <div>
       <Chip
         backgroundColor='primary'
-        label='Primary'
-        {...actionsData}
-      />
-      <Chip
-        backgroundColor='error'
-        label='Error'
+        label='primary'
         {...actionsData}
       />
       <Chip
         backgroundColor='#f2c94c'
-        color='#000000'
-        label='Yellow'
+        label='yellow'
         {...actionsData}
       />
       <Chip
         backgroundColor='#eb5757'
-        color='#000000'
-        label='Red'
+        label='red'
         {...actionsData}
       />
       <Chip
         backgroundColor='#6fcf97'
-        color='#000000'
-        label='Green'
+        label='green'
         {...actionsData}
       />
       <Chip
         backgroundColor='#828282'
-        label='Grey'
+        label='grey'
         {...actionsData}
       />
     </div>
