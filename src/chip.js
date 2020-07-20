@@ -2,17 +2,33 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import MUIChip from '@material-ui/core/Chip'
+import clsx from 'clsx'
 
 import { palette } from './themes'
 
 const useStyles = makeStyles((theme) => ({
   chip: {
     margin: theme.spacing(1),
-    textTransform: 'capitalize'
+    textTransform: 'lowercase'
+  },
+  clickable: {
+    backgroundColor: '#FFFFFF',
+    border: `1px solid ${theme.palette.shade.secondary[400]}`,
+    color: theme.palette.shade.secondary[900],
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      color: '#FFFFFF',
+      border: `1px solid ${theme.palette.primary.main}`
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.state.hoverWhite,
+      border: `1px solid ${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
+    }
   }
 }))
 
-const Chip = ({ backgroundColor, clickable, label, onClick }) => {
+const Chip = ({ backgroundColor, clickable, isRectangle, label, ...rest }) => {
   const classes = useStyles()
 
   const determineBackgroundColor = (inputBackgroundColor) => {
@@ -59,29 +75,33 @@ const Chip = ({ backgroundColor, clickable, label, onClick }) => {
   }
 
   return <MUIChip
-    className={classes.chip}
+    className={clsx({
+      [classes.chip]: true,
+      [classes.clickable]: clickable,
+    })}
     clickable={clickable}
     label={label}
-    onClick={() => onClick()}
     style={{
-      color: determineColor(backgroundColor),
-      backgroundColor: determineBackgroundColor(backgroundColor)
+      borderRadius: (isRectangle) ? '4px' : null,
+      color: (!clickable) ? determineColor(backgroundColor) : null,
+      backgroundColor: (!clickable) ? determineBackgroundColor(backgroundColor) : null
     }}
+    {...rest}
   />
 }
 
 Chip.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
   clickable: PropTypes.bool,
+  isRectangle: PropTypes.bool,
+  isToggle: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  onClick: PropTypes.func
 }
 
 Chip.defaultProps = {
-  backgroundColor: 'primary',
   clickable: false,
-  color: '#FFFFFF',
-  label: 'Chip'
+  isRectangle: false,
+  label: 'chip',
 }
 
 export default Chip
