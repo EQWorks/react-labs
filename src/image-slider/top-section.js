@@ -39,8 +39,8 @@ const TopSection = ({topSectionContent, customSlider}) => {
         <Typography variant="body1" gutterBottom>{paragraph}</Typography>
       </Grid>
       <Grid item className={classes.link}>
-        <Link href="#" variant="body1" color="primary">
-          {button}
+        <Link href={button.linkTo} variant="body1" color="primary">
+          {button.text}
         </Link>
         <IconButton
           classes={{ root: classes.sliderControl }}
@@ -68,7 +68,10 @@ TopSection.defaultProps = {
   topSectionContent: {
     title: 'Title',
     paragraph: 'Paragraph',
-    button: 'Link',
+    button: {
+      text: 'Link',
+      linkTo: 'https://console.locus.place'
+    },
   },
   customSlider: null,
 }
