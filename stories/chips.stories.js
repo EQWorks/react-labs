@@ -67,3 +67,16 @@ export const Toggle = () => {
     </div>
   )
 }
+
+export const ToggleRectangular = () => {
+  return (
+    <div>
+      <Chip
+        clickable={true}
+        disableRipple
+        isRectangle={true}
+        label='item'
+      />
+    </div>
+  )
+}
