@@ -1,4 +1,5 @@
 import React from 'react'
+import { action } from '@storybook/addon-actions'
 
 import Chip from '../src/chip'
 
@@ -47,9 +48,9 @@ export const Rectangular = () => {
       {defaultOptions.map((option, index) => (
         <Chip
           backgroundColor={option.backgroundColor}
-          isRectangle={true}
           key={index}
           label={option.label}
+          rectangle={true}
         />
       ))}
     </div>
@@ -63,6 +64,8 @@ export const Toggle = () => {
         clickable={true}
         disableRipple
         label='item'
+        onClick={action('onClick')}
+        type='toggle'
       />
     </div>
   )
@@ -74,8 +77,23 @@ export const ToggleRectangular = () => {
       <Chip
         clickable={true}
         disableRipple
-        isRectangle={true}
         label='item'
+        onClick={action('onClick')}
+        rectangle={true}
+        type='toggle'
+      />
+    </div>
+  )
+}
+
+export const Deletable = () => {
+  return (
+    <div>
+      <Chip
+        disableRipple
+        label='item'
+        onDelete={action('onDelete')}
+        type='deletable'
       />
     </div>
   )

@@ -11,7 +11,22 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     textTransform: 'lowercase'
   },
-  clickable: {
+  deletable: {
+    backgroundColor: '#FFFFFF',
+    border: `1px solid ${theme.palette.shade.secondary[400]}`,
+    color: theme.palette.shade.secondary[900],
+    '&:hover': {
+      backgroundColor: theme.palette.state.hoverWhite,
+      border: `1px solid ${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
+    },
+    '&:focus': {
+      backgroundColor: '#FFFFFF',
+      border: `1px solid ${theme.palette.shade.secondary[400]}`,
+      color: theme.palette.shade.secondary[900],
+    }
+  },
+  toggle: {
     backgroundColor: '#FFFFFF',
     border: `1px solid ${theme.palette.shade.secondary[400]}`,
     color: theme.palette.shade.secondary[900],
@@ -28,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Chip = ({ backgroundColor, clickable, isRectangle, label, ...rest }) => {
+const Chip = ({ backgroundColor, clickable, label, rectangle, type, ...rest }) => {
   const classes = useStyles()
 
   const determineBackgroundColor = (inputBackgroundColor) => {
@@ -77,14 +92,15 @@ const Chip = ({ backgroundColor, clickable, isRectangle, label, ...rest }) => {
   return <MUIChip
     className={clsx({
       [classes.chip]: true,
-      [classes.clickable]: clickable,
+      [classes.toggle]: type === 'toggle',
+      [classes.deletable]: type === 'deletable'
     })}
     clickable={clickable}
     label={label}
     style={{
-      borderRadius: (isRectangle) ? '4px' : null,
-      color: (!clickable) ? determineColor(backgroundColor) : null,
-      backgroundColor: (!clickable) ? determineBackgroundColor(backgroundColor) : null
+      borderRadius: (rectangle) ? '4px' : null,
+      color: (type === 'default') ? determineColor(backgroundColor) : null,
+      backgroundColor: (type === 'default') ? determineBackgroundColor(backgroundColor) : null
     }}
     {...rest}
   />
@@ -93,15 +109,17 @@ const Chip = ({ backgroundColor, clickable, isRectangle, label, ...rest }) => {
 Chip.propTypes = {
   backgroundColor: PropTypes.string,
   clickable: PropTypes.bool,
-  isRectangle: PropTypes.bool,
   isToggle: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  rectangle: PropTypes.bool,
+  type: PropTypes.string,
 }
 
 Chip.defaultProps = {
   clickable: false,
-  isRectangle: false,
   label: 'chip',
+  rectangle: false,
+  type: 'default'
 }
 
 export default Chip
