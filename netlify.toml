@@ -7,7 +7,7 @@
 
 [context.deploy-preview]
   # ignore building PR deploy previews with commit that doesn't have "[build]" in commit messages
-  ignore = "git log -1 --pretty=%B | grep -v '\[build\]'"
+  ignore = "./netlify-dp-ignore.sh"
 
 [[redirects]]
   from = "/*"
