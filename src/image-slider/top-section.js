@@ -39,7 +39,7 @@ const TopSection = ({topSectionContent, customSlider}) => {
         <Typography variant="body1" gutterBottom>{paragraph}</Typography>
       </Grid>
       <Grid item className={classes.link}>
-      <Link href={typeof button === "object" ? button.linkTo : "#"}>
+        <Link href={typeof button === "object" ? button.linkTo : "#"}>
           {typeof button === "object" ? button.text : button}
         </Link>
         <IconButton
