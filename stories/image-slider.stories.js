@@ -25,7 +25,10 @@ export const Bundles = () => {
         title: "Bundles",
         paragraph:
           "Bundles are the collection of segments and layers packaged based on a specific persona.",
-        button: "View all",
+        button: {
+          text: "View all",
+          linkTo: "https://console.locus.place",
+        }
       }}
       carouselContent={{
         imagesToShow: 3,
@@ -42,7 +45,9 @@ export const Categories = () => {
       topSectionContent={{
         title: "Categories",
         paragraph: "",
-        button: "Customize my feed",
+        button: {
+          text: "Customize my feed",
+        }
       }}
       carouselContent={{
         imagesToShow: 6,
@@ -60,7 +65,9 @@ export const Layers = () => {
         title: "Layers",
         paragraph:
           "A collection of geospatial data product of selected categories.",
-        button: "View all",
+        button: {
+          text: "View all",
+        }
       }}
       carouselContent={{
         imagesToShow: 3,
@@ -152,7 +159,9 @@ export const MultipleSliders = () => {
             topSectionContent={{
               title: "Categories",
               paragraph: "",
-              button: "Customize my feed",
+              button: {
+                text: "Customize my feed",
+              }
             }}
             carouselContent={{
               imagesToShow: 6,
@@ -175,7 +184,9 @@ export const MultipleSliders = () => {
               title: "Layers",
               paragraph:
                 "A collection of geospatial data product of selected categories.",
-              button: "View all",
+              button: {
+                text: "View all",
+              }
             }}
             carouselContent={{
               imagesToShow: 4,
@@ -191,7 +202,9 @@ export const MultipleSliders = () => {
               title: "Bundles",
               paragraph:
                 "Bundles are the collection of segments and layers packaged based on a specific persona.",
-              button: "View all",
+              button: {
+                text: "View all",
+              }
             }}
             carouselContent={{
               imagesToShow: 4,
