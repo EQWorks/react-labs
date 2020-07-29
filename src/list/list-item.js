@@ -63,10 +63,10 @@ const useStyles = makeStyles((theme) => {
       height: theme.spacing(7),
       marginRight: theme.spacing(0.5),
     },
-    spacing: (num) => ({
+    spacing: ({ spacing }) => ({
       border: `1px solid ${theme.palette.secondary[300]}`,
       borderRadius: theme.spacing(0.5),
-      marginBottom: theme.spacing(num),
+      marginBottom: theme.spacing(spacing),
     }),
     complete: {
       color: theme.palette.success.main,
@@ -89,6 +89,10 @@ const useStyles = makeStyles((theme) => {
       fontSize: '12px',
       marginTop: theme.spacing(0.7),
     },
+    selected: ({ selectedColor, fontColor }) => ({
+      backgroundColor: `${selectedColor} !important`,
+      color: `${fontColor} !important`,
+    }),
   }
 })
 
@@ -118,8 +122,10 @@ const ListItem = ({
   chip,
   chipColor,
   chipProps,
+  selectedColor,
+  fontColor,
 }) => {
-  const classes = useStyles(spacing)
+  const classes = useStyles({ spacing, selectedColor, fontColor })
   const [open, setOpen] = useState(false)
   const showDetails = () => setOpen(!open)
   const buttonProps = button && { disableRipple: true }
@@ -199,6 +205,7 @@ const ListItem = ({
           [classes.root]: true,
           [classes.notSelected]: focusOnSelected && !selected,
           [classes.backgroundColor]: open,
+          [classes.selected]: selected && classes.selected,
         })}
       >
         {!avatar && expand !== 'end' && renderIconButton()}
@@ -288,6 +295,8 @@ ListItem.propTypes = {
   chip: PropTypes.string,
   chipColor: PropTypes.string,
   chipProps: PropTypes.object,
+  selectedColor: PropTypes.string,
+  fontColor: PropTypes.string,
 }
 
 ListItem.defaultProps = {
@@ -311,6 +320,8 @@ ListItem.defaultProps = {
   chip: '',
   propColor: '',
   chipProps: {},
+  selectedColor: '',
+  fontColor: '',
 }
 
 export default ListItem
