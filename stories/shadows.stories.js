@@ -1,6 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
+
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -26,11 +28,11 @@ export const Default = () => {
 
   return (
     <div className={classes.container}>
-      <Box boxShadow={0}>Shadow 0</Box>
-      <Box boxShadow={1}>Shadow 1</Box>
-      <Box boxShadow={2}>Shadow 2</Box>
-      <Box boxShadow={3}>Shadow 3</Box>
-      <Box boxShadow={4}>Shadow 4</Box>
+      <Box boxShadow={0}><Typography variant='body1'>Shadow 0</Typography></Box>
+      <Box boxShadow={1}><Typography variant='body1'>Shadow 1</Typography></Box>
+      <Box boxShadow={2}><Typography variant='body1'>Shadow 2</Typography></Box>
+      <Box boxShadow={3}><Typography variant='body1'>Shadow 3</Typography></Box>
+      <Box boxShadow={4}><Typography variant='body1'>Shadow 4</Typography></Box>
     </div>
   )
 }
