@@ -14,8 +14,9 @@ export default {
   title: 'Chip'
 }
 
-export const Default = () => {
+export const Default = (theme) => {
   const classes = useStyles()
+  console.log(theme)
 
   return <Chip className={classes.test} label='Basic' />
 }
