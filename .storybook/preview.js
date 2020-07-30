@@ -8,6 +8,6 @@ configure(require.context("../stories", true, /\.stories\.js$/), module);
 
 addDecorator(StoryFn => (
   <ThemeProvider theme={customTheme}>
-    <StoryFn />
+    <StoryFn theme={customTheme} />
   </ThemeProvider>
 ))

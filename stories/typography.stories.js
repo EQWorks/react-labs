@@ -31,7 +31,7 @@ export const Default = () => {
       <Typography variant='body1'>body1/Open Sans/Regular/14px</Typography>
       <Typography variant='button'>button/Open Sans/Regular/14px</Typography>
       <Typography variant='caption'>caption/Open Sans/Regular/12px</Typography>
-      <Typography variant='overline'>overline/Noto Sans/Regular/10px</Typography>
+      <Typography variant='overline'>overline/Open Sans/Regular/10px</Typography>
     </div>
   )
 }
