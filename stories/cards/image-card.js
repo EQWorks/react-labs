@@ -2,44 +2,66 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Chip, CardContent, Grid, Typography } from "@material-ui/core";
 import StyledCardContainer from "../../src/styled-card-container";
-import { palette, typography } from '../../src/themes';
+// import { palette, typography } from '../../src/theme';
+
+const useStyles = makeStyles(theme => ({
+  header: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "240px"
+  },
+  tag: {
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+  chip: {
+    borderRadius: "4px",
+    margin: theme.spacing(0.5),
+    backgroundColor: theme.palette.common.white
+  }
+}))
 
 /* eslint react/prop-types: 0 */
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
+// const useStyles = makeStyles((t) => {
+//   const theme = {
+//     ...t,
+//     typography: {
+//       ...t.typography,
+//       ...typography,
+//     },
+//     palette: {
+//       ...t.palette,
+//       ...palette,
+//     },
+//   }
   
-  return {
-    header: {
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    content: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      height: "240px",
-    },
-    tag: {
-      display: "flex",
-      justifyContent: "flex-end",
-    },
-    chip: {
-      borderRadius: "4px",
-      margin: theme.spacing(0.5),
-      backgroundColor: theme.palette.common.white,
-    },
-  }
-})
+//   return {
+//     header: {
+//       display: "flex",
+//       justifyContent: "space-between",
+//     },
+//     content: {
+//       display: "flex",
+//       flexDirection: "column",
+//       justifyContent: "space-between",
+//       height: "240px",
+//     },
+//     tag: {
+//       display: "flex",
+//       justifyContent: "flex-end",
+//     },
+//     chip: {
+//       borderRadius: "4px",
+//       margin: theme.spacing(0.5),
+//       backgroundColor: theme.palette.common.white,
+//     },
+//   }
+// })
 
 const ImageCard = ({prop}) => {
   const {type, category, name, description, price, image} = prop;

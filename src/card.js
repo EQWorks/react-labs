@@ -9,45 +9,67 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import { palette, typography } from './themes'
+// import { palette, typography } from './theme'
 import { StyledCardContainer } from '.'
 
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
+const useStyles = makeStyles(theme => ({
+  sm: {
+    maxWidth: 200,
+    height: 220,
+    padding: theme.spacing(1),
+    position: 'relative',
+  },
+  md: {
+    maxWidth: 500,
+    height: 270,
+    padding: theme.spacing(1),
+    position: 'relative',
+  },
+  actions: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+    padding: theme.spacing(1.2),
   }
+}))
 
-  return {
-    sm: {
-      maxWidth: 200,
-      height: 220,
-      padding: theme.spacing(1),
-      position: 'relative',
-    },
-    md: {
-      maxWidth: 500,
-      height: 270,
-      padding: theme.spacing(1),
-      position: 'relative',
-    },
-    actions: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
-      padding: theme.spacing(1.2),
-    },
-  }
-})
+
+// const useStyles = makeStyles((t) => {
+//   const theme = {
+//     ...t,
+//     typography: {
+//       ...t.typography,
+//       ...typography,
+//     },
+//     palette: {
+//       ...t.palette,
+//       ...palette,
+//     },
+//   }
+
+//   return {
+//     sm: {
+//       maxWidth: 200,
+//       height: 220,
+//       padding: theme.spacing(1),
+//       position: 'relative',
+//     },
+//     md: {
+//       maxWidth: 500,
+//       height: 270,
+//       padding: theme.spacing(1),
+//       position: 'relative',
+//     },
+//     actions: {
+//       position: 'absolute',
+//       bottom: 0,
+//       right: 0,
+//       left: 0,
+//       padding: theme.spacing(1.2),
+//     },
+//   }
+// })
 
 const Card = ({
   cardTitle,

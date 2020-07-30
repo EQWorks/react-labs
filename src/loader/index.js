@@ -9,62 +9,100 @@ import Grid from '@material-ui/core/Grid'
 import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { palette, typography } from '../themes'
+// import { palette, typography } from '../theme'
 import ProgressWithLabel from './progress-with-label'
 
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative'
+  },
+  centeredProgress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+    color: theme.palette.primary.main
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff'
+  },
+  linearBackdrop: {
+    position: 'absolute',
+    width: '80%',
+    top: '50%',
+    left: '10%',
+    marginTop: -12,
+    marginLeft: -12
+  },
+  linearBackdropText: {
+    position: 'absolute',
+    textAlign: 'center',
+    width: '100%',
+    top: '50%',
+    color: '#fff',
+    marginTop: '5px'
   }
+}))
 
-  return {
-    root: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    wrapper: {
-      margin: theme.spacing(1),
-      position: 'relative',
-    },
-    centeredProgress: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      marginTop: -12,
-      marginLeft: -12,
-      color: theme.palette.primary.main,
-    },
-    backdrop: {
-      zIndex: theme.zIndex.drawer + 1,
-      color: '#fff',
-    },
-    linearBackdrop: {
-      position: 'absolute',
-      width: '80%',
-      top: '50%',
-      left: '10%',
-      marginTop: -12,
-      marginLeft: -12,
-    },
-    linearBackdropText: {
-      position: 'absolute',
-      textAlign: 'center',
-      width: '100%',
-      top: '50%',
-      color: '#fff',
-      marginTop: '5px',
-    },
-  }
-})
+// const useStyles = makeStyles((t) => {
+//   const theme = {
+//     ...t,
+//     typography: {
+//       ...t.typography,
+//       ...typography,
+//     },
+//     palette: {
+//       ...t.palette,
+//       ...palette,
+//     },
+//   }
+
+//   return {
+//     root: {
+//       display: 'flex',
+//       alignItems: 'center',
+//     },
+//     wrapper: {
+//       margin: theme.spacing(1),
+//       position: 'relative',
+//     },
+//     centeredProgress: {
+//       position: 'absolute',
+//       top: '50%',
+//       left: '50%',
+//       marginTop: -12,
+//       marginLeft: -12,
+//       color: theme.palette.primary.main,
+//     },
+//     backdrop: {
+//       zIndex: theme.zIndex.drawer + 1,
+//       color: '#fff',
+//     },
+//     linearBackdrop: {
+//       position: 'absolute',
+//       width: '80%',
+//       top: '50%',
+//       left: '10%',
+//       marginTop: -12,
+//       marginLeft: -12,
+//     },
+//     linearBackdropText: {
+//       position: 'absolute',
+//       textAlign: 'center',
+//       width: '100%',
+//       top: '50%',
+//       color: '#fff',
+//       marginTop: '5px',
+//     },
+//   }
+// })
 
 const Loader = ({ open, backdrop, action, message, progress, children, skeletonConfig }) => {
   const classes = useStyles()

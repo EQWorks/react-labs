@@ -7,30 +7,38 @@ import MUIList from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 
 import ListItem from './list-item'
-import { palette, typography } from '../themes'
+// import { palette, typography } from '../theme'
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    borderRadius: '4px'
+  },
+  border: {
+    border: `1px solid ${theme.palette.secondary[300]}`
+  }
+}))
 
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
-  return {
-    root: {
-      borderRadius: '4px',
-    },
-    border: {
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
-    },
-  }
-})
+// const useStyles = makeStyles((t) => {
+//   const theme = {
+//     ...t,
+//     typography: {
+//       ...t.typography,
+//       ...typography,
+//     },
+//     palette: {
+//       ...t.palette,
+//       ...palette,
+//     },
+//   }
+//   return {
+//     root: {
+//       borderRadius: '4px',
+//     },
+//     border: {
+//       border: `1px solid ${theme.palette.shade.secondary[300]}`,
+//     },
+//   }
+// })
 
 const List = ({
   divider,

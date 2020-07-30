@@ -17,95 +17,169 @@ import ExpandMore from '@material-ui/icons/ExpandMore'
 import FiberManualRecord from '@material-ui/icons/FiberManualRecord'
 import Chip from '@material-ui/core/Chip'
 
-import { palette, typography } from '../themes'
+// import { palette, typography } from '../theme'
+
+const useStyles = makeStyles(theme => ({
+  font: {
+    fontFamily: theme.typography.fontFamily,
+    paddingLeft: theme.spacing(3),
+  },
+  root: {
+    padding: theme.spacing(1.25),
+  },
+  backgroundColor: {
+    backgroundColor: theme.palette.secondary[50]
+  },
+  iconButton: {
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(1.5),
+    '&:hover': {
+      backgroundColor: 'inherit',
+    }
+  },
+  listItemAvatar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listItemAvatarRightPadding: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: theme.spacing(1),
+  },
+  notSelected: {
+    padding: theme.spacing(1.25),
+    opacity: 0.6
+  },
+  sm: {
+    width: theme.spacing(3.5),
+    height: theme.spacing(3.5),
+  },
+  md: {
+    width: theme.spacing(5),
+    height: theme.spacing(5)
+  },
+  lg: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+    marginRight: theme.spacing(0.5),
+  },
+  spacing: num => ({
+    border: `1px solid ${theme.palette.secondary[300]}`,
+    borderRadius: theme.spacing(0.5),
+    marginBottom: theme.spacing(num),
+  }),
+  complete: {
+    color: theme.palette.success.main,
+    width: theme.spacing(1.4),
+    height: theme.spacing(1.4),
+  },
+  inProgress: {
+    color: theme.palette.error.main,
+    width: theme.spacing(1.4),
+    height: theme.spacing(1.4),
+  },
+  linearProgressBar: {
+    borderRadius: 50,
+  },
+  chip: {
+    borderRadius: '4px !important',
+  },
+  timeStatus: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '12px',
+    marginTop: theme.spacing(0.7),
+  }
+}))
 
 
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
-  return {
-    font: {
-      fontFamily: theme.typography.fontFamily,
-      paddingLeft: theme.spacing(3),
-    },
-    root: {
-      padding: theme.spacing(1.25),
-    },
-    backgroundColor: {
-      backgroundColor: theme.palette.shade.secondary[50]
-    },
-    iconButton: {
-      paddingLeft: theme.spacing(0),
-      paddingRight: theme.spacing(1.5),
-      '&:hover': {
-        backgroundColor: 'inherit',
-      }
-    },
-    listItemAvatar: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    listItemAvatarRightPadding: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingRight: theme.spacing(1),
-    },
-    notSelected: {
-      padding: theme.spacing(1.25),
-      opacity: 0.6
-    },
-    sm: {
-      width: theme.spacing(3.5),
-      height: theme.spacing(3.5),
-    },
-    md: {
-      width: theme.spacing(5),
-      height: theme.spacing(5)
-    },
-    lg: {
-      width: theme.spacing(7),
-      height: theme.spacing(7),
-      marginRight: theme.spacing(0.5),
-    },
-    spacing: num => ({
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
-      borderRadius: theme.spacing(0.5),
-      marginBottom: theme.spacing(num),
-    }),
-    complete: {
-      color: theme.palette.success.main,
-      width: theme.spacing(1.4),
-      height: theme.spacing(1.4),
-    },
-    inProgress: {
-      color: theme.palette.error.main,
-      width: theme.spacing(1.4),
-      height: theme.spacing(1.4),
-    },
-    linearProgressBar: {
-      borderRadius: 50,
-    },
-    chip: {
-      borderRadius: '4px !important',
-    },
-    timeStatus: {
-      fontFamily: theme.typography.fontFamily,
-      fontSize: '12px',
-      marginTop: theme.spacing(0.7),
-    },
-  }
-})
+// const useStyles = makeStyles((t) => {
+//   const theme = {
+//     ...t,
+//     typography: {
+//       ...t.typography,
+//       ...typography,
+//     },
+//     palette: {
+//       ...t.palette,
+//       ...palette,
+//     },
+//   }
+//   return {
+//     font: {
+//       fontFamily: theme.typography.fontFamily,
+//       paddingLeft: theme.spacing(3),
+//     },
+//     root: {
+//       padding: theme.spacing(1.25),
+//     },
+//     backgroundColor: {
+//       backgroundColor: theme.palette.shade.secondary[50]
+//     },
+//     iconButton: {
+//       paddingLeft: theme.spacing(0),
+//       paddingRight: theme.spacing(1.5),
+//       '&:hover': {
+//         backgroundColor: 'inherit',
+//       }
+//     },
+//     listItemAvatar: {
+//       display: 'flex',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//     },
+//     listItemAvatarRightPadding: {
+//       display: 'flex',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       paddingRight: theme.spacing(1),
+//     },
+//     notSelected: {
+//       padding: theme.spacing(1.25),
+//       opacity: 0.6
+//     },
+//     sm: {
+//       width: theme.spacing(3.5),
+//       height: theme.spacing(3.5),
+//     },
+//     md: {
+//       width: theme.spacing(5),
+//       height: theme.spacing(5)
+//     },
+//     lg: {
+//       width: theme.spacing(7),
+//       height: theme.spacing(7),
+//       marginRight: theme.spacing(0.5),
+//     },
+//     spacing: num => ({
+//       border: `1px solid ${theme.palette.shade.secondary[300]}`,
+//       borderRadius: theme.spacing(0.5),
+//       marginBottom: theme.spacing(num),
+//     }),
+//     complete: {
+//       color: theme.palette.success.main,
+//       width: theme.spacing(1.4),
+//       height: theme.spacing(1.4),
+//     },
+//     inProgress: {
+//       color: theme.palette.error.main,
+//       width: theme.spacing(1.4),
+//       height: theme.spacing(1.4),
+//     },
+//     linearProgressBar: {
+//       borderRadius: 50,
+//     },
+//     chip: {
+//       borderRadius: '4px !important',
+//     },
+//     timeStatus: {
+//       fontFamily: theme.typography.fontFamily,
+//       fontSize: '12px',
+//       marginTop: theme.spacing(0.7),
+//     },
+//   }
+// })
 
 /**
 * Renders <ListItem /> component

@@ -9,51 +9,80 @@ import IconButton from '@material-ui/core/IconButton'
 import grey from '@material-ui/core/colors/grey'
 import { fade, makeStyles } from '@material-ui/core/styles'
 
-import { palette, typography } from './themes'
+// import { palette, typography } from './theme'
 
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
+const useStyles = makeStyles(theme => ({
+  root: {
+    fontFamily: theme.typography.fontFamily,
+    'label + &': {
+      marginTop: theme.spacing(0.5),
     },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
+    borderRadius: 4,
+    border: `1px solid ${grey[300]}`,
+    fontSize: theme.typography.body1,
+    padding: '4px 6px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+  },
+  label: {
+    marginLeft: theme.spacing(1)
+  },
+  labelError: {
+    marginLeft: theme.spacing(1),
+    color: '#ea0000',
+  },
+  inputDefault: {
+    boxShadow: `${fade(theme.palette.primary[100], 0.25)} 0 0 0 0.2rem`,
+    borderColor: theme.palette.primary.main,
+  },
+  inputError: {
+    boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
+    borderColor: theme.palette.error.main,
   }
+}))
 
-  return {
-    root: {
-      fontFamily: theme.typography.fontFamily,
-      'label + &': {
-        marginTop: theme.spacing(0.5),
-      },
-      borderRadius: 4,
-      border:  `1px solid ${grey[300]}`,
-      fontSize: theme.typography.body1,
-      padding: '4px 6px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-    },
-    label: {
-      marginLeft: theme.spacing(1)
-    },
-    labelError: {
-      marginLeft: theme.spacing(1),
-      color: '#ea0000',
-    },
-    inputDefault: {
-      boxShadow: `${fade(theme.palette.shade.primary[100], 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-    inputError: {
-      boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.error.main,
-    },
-  }
-})
+
+// const useStyles = makeStyles((t) => {
+//   const theme = {
+//     ...t,
+//     typography: {
+//       ...t.typography,
+//       ...typography,
+//     },
+//     palette: {
+//       ...t.palette,
+//       ...palette,
+//     },
+//   }
+
+//   return {
+//     root: {
+//       fontFamily: theme.typography.fontFamily,
+//       'label + &': {
+//         marginTop: theme.spacing(0.5),
+//       },
+//       borderRadius: 4,
+//       border:  `1px solid ${grey[300]}`,
+//       fontSize: theme.typography.body1,
+//       padding: '4px 6px',
+//       transition: theme.transitions.create(['border-color', 'box-shadow']),
+//     },
+//     label: {
+//       marginLeft: theme.spacing(1)
+//     },
+//     labelError: {
+//       marginLeft: theme.spacing(1),
+//       color: '#ea0000',
+//     },
+//     inputDefault: {
+//       boxShadow: `${fade(theme.palette.shade.primary[100], 0.25)} 0 0 0 0.2rem`,
+//       borderColor: theme.palette.primary.main,
+//     },
+//     inputError: {
+//       boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
+//       borderColor: theme.palette.error.main,
+//     },
+//   }
+// })
 
 const TextField = ({
   inputProps,
