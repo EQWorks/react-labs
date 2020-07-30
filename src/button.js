@@ -7,19 +7,19 @@ const ButtonComponent = ({ type, ...props }) => {
     color: 'primary',
     type: 'primary'
   }
-  if (type === 'primary') {
-    props.variant = 'contained'
+  if (type === 'tertiary') {
+    props.variant = 'text'
   } else if (type === 'secondary') {
     props.variant = 'outlined'
-  } else if (type === 'tertiary') {
-    props.variant = 'text'
+  } else {
+    props.variant = 'contained'
   }
 
   return <Button {...styleProps} {...props}>Button</Button>
 }
 
 ButtonComponent.propTypes = {
-  type: PropTypes.string
+  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary'])
 }
 
 ButtonComponent.defaultProps = {
