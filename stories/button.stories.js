@@ -108,3 +108,20 @@ export const Size = () => {
     </div>
   )
 }
+
+export const Disabled = () => {
+  return (
+    <div>
+      {buttonTypes.map((type, index) => (
+        <Button
+          disabled
+          onClick={action('onClick')}
+          key={index}
+          type={type}
+        >
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </Button>
+      ))}
+    </div>
+  )
+}
