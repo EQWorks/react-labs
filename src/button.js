@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 
-const ButtonComponent = ({ type, ...props }) => {
+const ButtonComponent = ({ children, type, ...props }) => {
   const styleProps = {
     color: 'primary',
     type: 'primary'
@@ -15,14 +15,16 @@ const ButtonComponent = ({ type, ...props }) => {
     props.variant = 'contained'
   }
 
-  return <Button {...styleProps} {...props}>Button</Button>
+  return <Button {...styleProps} {...props}>{children}</Button>
 }
 
 ButtonComponent.propTypes = {
+  children: PropTypes.node,
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary'])
 }
 
 ButtonComponent.defaultProps = {
+  children: 'Button',
   type: 'primary'
 }
 

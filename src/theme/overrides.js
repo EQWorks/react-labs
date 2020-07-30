@@ -20,9 +20,16 @@ const overrides = {
       }
     },
     textPrimary: {
+      padding: '6px 16px',
       '&:hover': {
         backgroundColor: palette.primary[50]
       }
+    },
+    textSizeSmall: {
+      padding: '4px 10px'
+    },
+    textSizeLarge: {
+      padding: '8px 22px'
     }
   }
 }
