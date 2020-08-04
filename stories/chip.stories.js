@@ -1,29 +1,25 @@
-import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
-import Chip from '@material-ui/core/Chip'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Chip from "@material-ui/core/Chip";
 
-const useStyles = makeStyles(theme => {
-  console.log(theme);
-
+const useStyles = makeStyles((theme) => {
   return {
     test: {
-      color: theme.palette.primary.main
-    }
+      color: theme.palette.primary.main,
+    },
   };
 });
 
-
 export default {
   component: Chip,
-  title: 'Chip'
-}
+  title: "Chip",
+};
 
 export const Default = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
-  return <Chip className={classes.test} label='Basic' />
-}
-
+  return <Chip className={classes.test} label="Basic" />;
+};
 
 // https://material-ui.com/styles/basics/#adapting-based-on-props
 // const useStyles = makeStyles({
@@ -38,7 +34,6 @@ export const Default = () => {
 //     backgroundColor: props.backgroundColor
 //   })
 // })
-
 
 // const ButtonComponent = ({ backgroundColor, color, variant }) => {
 //   const props = {
