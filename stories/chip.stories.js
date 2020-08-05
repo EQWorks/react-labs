@@ -20,27 +20,3 @@ export const Default = () => {
 
   return <Chip className={classes.test} label="Basic" />;
 };
-
-// https://material-ui.com/styles/basics/#adapting-based-on-props
-// const useStyles = makeStyles({
-//   container: {
-//     '& button': {
-//       display: 'block',
-//       margin: '0 0 20px 0'
-//     }
-//   },
-//   test: props => ({
-//     color: props.color,
-//     backgroundColor: props.backgroundColor
-//   })
-// })
-
-// const ButtonComponent = ({ backgroundColor, color, variant }) => {
-//   const props = {
-//     backgroundColor: backgroundColor,
-//     color: color
-//   }
-//   const classes = useStyles(props)
-
-//   return <Button className={classes.test} disableRipple={true} variant={variant}>Button</Button>
-// }

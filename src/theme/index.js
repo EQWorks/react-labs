@@ -13,6 +13,4 @@ const theme = createMuiTheme({
   overrides,
 });
 
-// export { palette, typography }
-// export { PALETTE_EXT, PALETTE_DEFAULT } from './palette'
 export default theme;
