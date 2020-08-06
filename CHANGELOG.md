@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.1-alpha] - 2020-08-06
+### Fixed
+- `<Table />` - table can now update based on dinamically sortBy
+
 ## [1.7.0] - 2020-07-22
 ### Added
 - `<ImageSlider>` - - LinkTo prop added
