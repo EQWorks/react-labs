@@ -116,6 +116,7 @@ const Table = ({
     page,
     allColumns,
     prepareRow,
+    toggleSortBy,
     toggleHideColumn,
     setGlobalFilter,
     preGlobalFilteredRows,
@@ -161,6 +162,11 @@ const Table = ({
       }
     }
   }, [_sortBy, remember.sortBy])
+  useEffect(() => {
+    if (sortBy.length) {
+      toggleSortBy(sortBy[0].id, sortBy[0].desc, false)
+    }
+  }, [sortBy])
   return (
     <>
       {(_data.length > 0) && (

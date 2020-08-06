@@ -286,3 +286,25 @@ export const rememberSortBy = () => {
     </>
   )
 }
+export const dynamicSortBy = () => {
+  const [sort, setSort] = useState('province')
+  const remember = {
+    key: 'DEMO_REMEMBER_SORT_BY',
+    ttl: 5, // remember for 5 minutes
+    sortBy: true,
+  }
+  return (
+    <>
+      <Typography variant='body1'>
+        SortBy changing according to the chosen button
+      </Typography>
+      {['new_cases', 'total_cases', 'province'].map(col => (
+        <button key= {col} onClick={() => setSort(col)} > {col} </button>))}
+      <Table
+        data={provinces}
+        sortBy={[{ id: sort, desc: true }]}
+        remember={remember}
+      />
+    </>
+  )
+}
