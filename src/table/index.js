@@ -63,10 +63,10 @@ const useTableConfig = ({
     return Array.isArray(columns) && columns.length > 0
       ? columns
       : Children.toArray(children)
-          .filter(
-            (c) => c.type === TableColumn || c.type.name === "TableColumn"
-          )
-          .map((c) => c.props);
+        .filter(
+          (c) => c.type === TableColumn || c.type.name === "TableColumn"
+        )
+        .map((c) => c.props);
   }, [columns, data, children]);
   // cached hidden state
   const [hidden, setHiddenCache] = cached({
