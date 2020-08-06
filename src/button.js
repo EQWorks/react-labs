@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+
+import customTheme from "../src/theme/index";
 
 const ButtonComponent = ({ children, type, ...props }) => {
   const styleProps = {
@@ -16,9 +19,11 @@ const ButtonComponent = ({ children, type, ...props }) => {
   }
 
   return (
-    <Button {...styleProps} {...props}>
-      {children}
-    </Button>
+    <ThemeProvider theme={customTheme}>
+      <Button {...styleProps} {...props}>
+        {children}
+      </Button>
+    </ThemeProvider>
   );
 };
 

@@ -1,17 +1,14 @@
 import React from "react";
-import {
-  Link,
-  Grid,
-  Typography,
-  makeStyles,
-  IconButton,
-} from "@material-ui/core";
+import PropTypes from "prop-types";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
-import PropTypes from "prop-types";
+import { Link, Grid, Typography, IconButton } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => {
-  console.log(theme);
+import customTheme from "../../src/theme/index";
+
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
   return {
     sliderControl: {
       padding: "0px",
@@ -34,31 +31,33 @@ const TopSection = ({ topSectionContent, customSlider }) => {
   const classes = useStyles();
   const { title, paragraph, button } = topSectionContent;
   return (
-    <Grid container className={classes.textarea}>
-      <Grid item>
-        <Typography variant="subtitle1">{title}</Typography>
-        <Typography variant="body1" gutterBottom>
-          {paragraph}
-        </Typography>
+    <ThemeProvider theme={customTheme}>
+      <Grid container className={classes.textarea}>
+        <Grid item>
+          <Typography variant="subtitle1">{title}</Typography>
+          <Typography variant="body1" gutterBottom>
+            {paragraph}
+          </Typography>
+        </Grid>
+        <Grid item className={classes.link}>
+          <Link href={typeof button === "object" ? button.linkTo : "#"}>
+            {typeof button === "object" ? button.text : button}
+          </Link>
+          <IconButton
+            classes={{ root: classes.sliderControl }}
+            onClick={() => customSlider.current.slickPrev()}
+          >
+            <ArrowBackIosRoundedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            classes={{ root: classes.sliderControl }}
+            onClick={() => customSlider.current.slickNext()}
+          >
+            <ArrowForwardIosRoundedIcon fontSize="small" />
+          </IconButton>
+        </Grid>
       </Grid>
-      <Grid item className={classes.link}>
-        <Link href={typeof button === "object" ? button.linkTo : "#"}>
-          {typeof button === "object" ? button.text : button}
-        </Link>
-        <IconButton
-          classes={{ root: classes.sliderControl }}
-          onClick={() => customSlider.current.slickPrev()}
-        >
-          <ArrowBackIosRoundedIcon fontSize="small" />
-        </IconButton>
-        <IconButton
-          classes={{ root: classes.sliderControl }}
-          onClick={() => customSlider.current.slickNext()}
-        >
-          <ArrowForwardIosRoundedIcon fontSize="small" />
-        </IconButton>
-      </Grid>
-    </Grid>
+    </ThemeProvider>
   );
 };
 

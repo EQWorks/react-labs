@@ -1,22 +1,24 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
 
-import Toolbar from '@material-ui/core/Toolbar'
-import { makeStyles } from '@material-ui/core/styles'
+import customTheme from "../../../src/theme/index";
+import DefaultFilter from "../filters/default-filter";
+import Download from "./download";
+import Toggle from "./toggle";
 
-import Download from './download'
-import Toggle from './toggle'
-import DefaultFilter from '../filters/default-filter'
-
-
-const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-  },
-  title: {
-    marginRight: theme.spacing(2),
-  },
-}))
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
+  return {
+    grow: {
+      flexGrow: 1,
+    },
+    title: {
+      marginRight: theme.spacing(2),
+    },
+  };
+});
 
 const TableToolbar = ({
   // Search
@@ -32,35 +34,34 @@ const TableToolbar = ({
   visibleColumns,
   rows,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
-    <Toolbar>
-      {allColumns.some((c) => !c.disableGlobalFilter) && (
-        <DefaultFilter
-          preFilteredRows={preGlobalFilteredRows}
-          setFilter={setGlobalFilter}
-          globalFilter={globalFilter}
-        />
-      )}
-      <div className={classes.grow} />
-      {allColumns.some((c) => !c.noToggle) && (
-        <Toggle
-          allColumns={allColumns}
-          toggleHideColumn={toggleHideColumn}
-        />
-      )}
-      {downloadable && (
-        <Download
-          data={data}
-          allColumns={allColumns}
-          visibleColumns={visibleColumns}
-          rows={rows}
-        />
-      )}
-    </Toolbar>
-  )
-}
+    <ThemeProvider theme={customTheme}>
+      <Toolbar>
+        {allColumns.some((c) => !c.disableGlobalFilter) && (
+          <DefaultFilter
+            preFilteredRows={preGlobalFilteredRows}
+            setFilter={setGlobalFilter}
+            globalFilter={globalFilter}
+          />
+        )}
+        <div className={classes.grow} />
+        {allColumns.some((c) => !c.noToggle) && (
+          <Toggle allColumns={allColumns} toggleHideColumn={toggleHideColumn} />
+        )}
+        {downloadable && (
+          <Download
+            data={data}
+            allColumns={allColumns}
+            visibleColumns={visibleColumns}
+            rows={rows}
+          />
+        )}
+      </Toolbar>
+    </ThemeProvider>
+  );
+};
 
 TableToolbar.propTypes = {
   preGlobalFilteredRows: PropTypes.array.isRequired,
@@ -68,6 +69,6 @@ TableToolbar.propTypes = {
   setGlobalFilter: PropTypes.func.isRequired,
   ...Download.propTypes,
   ...Toggle.propTypes,
-}
+};
 
-export default TableToolbar
+export default TableToolbar;

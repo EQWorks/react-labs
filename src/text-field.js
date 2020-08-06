@@ -1,42 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { fade, makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import grey from "@material-ui/core/colors/grey";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import InputBase from "@material-ui/core/InputBase";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import IconButton from "@material-ui/core/IconButton";
-import grey from "@material-ui/core/colors/grey";
-import { fade, makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    fontFamily: theme.typography.fontFamily,
-    "label + &": {
-      marginTop: theme.spacing(0.5),
+import customTheme from "../src/theme/index";
+
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
+  return {
+    root: {
+      fontFamily: theme.typography.fontFamily,
+      "label + &": {
+        marginTop: theme.spacing(0.5),
+      },
+      borderRadius: 4,
+      border: `1px solid ${grey[300]}`,
+      fontSize: theme.typography.body1,
+      padding: "4px 6px",
+      transition: theme.transitions.create(["border-color", "box-shadow"]),
     },
-    borderRadius: 4,
-    border: `1px solid ${grey[300]}`,
-    fontSize: theme.typography.body1,
-    padding: "4px 6px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
-  },
-  label: {
-    marginLeft: theme.spacing(1),
-  },
-  labelError: {
-    marginLeft: theme.spacing(1),
-    color: "#ea0000",
-  },
-  inputDefault: {
-    boxShadow: `${fade(theme.palette.primary[100], 0.25)} 0 0 0 0.2rem`,
-    borderColor: theme.palette.primary.main,
-  },
-  inputError: {
-    boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
-    borderColor: theme.palette.error.main,
-  },
-}));
+    label: {
+      marginLeft: theme.spacing(1),
+    },
+    labelError: {
+      marginLeft: theme.spacing(1),
+      color: "#ea0000",
+    },
+    inputDefault: {
+      boxShadow: `${fade(theme.palette.primary[100], 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+    inputError: {
+      boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.error.main,
+    },
+  };
+});
 
 const TextField = ({
   inputProps,
@@ -89,34 +93,36 @@ const TextField = ({
   };
 
   return (
-    <div>
-      <InputLabel
-        id="label"
-        shrink
-        className={error ? classes.labelError : classes.label}
-      >
-        {label}
-      </InputLabel>
-      <InputBase
-        classes={{
-          root: classes.root,
-          focused: error ? classes.inputError : classes.inputDefault,
-        }}
-        style={fullWidth ? {} : dimensions}
-        label={label}
-        fullWidth={fullWidth}
-        multiline={multiline}
-        inputProps={inputProps}
-        {...inp}
-        {...props}
-      />
-      <FormHelperText
-        id="helper-text"
-        className={error ? classes.labelError : classes.label}
-      >
-        {helperText}
-      </FormHelperText>
-    </div>
+    <ThemeProvider theme={customTheme}>
+      <div>
+        <InputLabel
+          id="label"
+          shrink
+          className={error ? classes.labelError : classes.label}
+        >
+          {label}
+        </InputLabel>
+        <InputBase
+          classes={{
+            root: classes.root,
+            focused: error ? classes.inputError : classes.inputDefault,
+          }}
+          style={fullWidth ? {} : dimensions}
+          label={label}
+          fullWidth={fullWidth}
+          multiline={multiline}
+          inputProps={inputProps}
+          {...inp}
+          {...props}
+        />
+        <FormHelperText
+          id="helper-text"
+          className={error ? classes.labelError : classes.label}
+        >
+          {helperText}
+        </FormHelperText>
+      </div>
+    </ThemeProvider>
   );
 };
 

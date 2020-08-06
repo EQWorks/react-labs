@@ -1,43 +1,59 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import ImportExportIcon from "@material-ui/icons/ImportExport";
 
-import ButtonBase from '@material-ui/core/ButtonBase'
-import ImportExportIcon from '@material-ui/icons/ImportExport'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import { makeStyles } from '@material-ui/core/styles'
+import customTheme from "../../src/theme/index";
 
-
-const useStyles = makeStyles(() => ({
-  root: {
-    paddingLeft: '2px',
-    paddingRight: '2px',
-  },
-}))
+const useStyles = makeStyles(() => {
+  return {
+    root: {
+      paddingLeft: "2px",
+      paddingRight: "2px",
+    },
+  };
+});
 
 const TableSortLabel = ({ isSorted, isSortedDesc }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const renderIcon = () => {
     if (!isSorted) {
-      return (<ImportExportIcon color='disabled' />)
+      return (
+        <ThemeProvider theme={customTheme}>
+          <ImportExportIcon color="disabled" />
+        </ThemeProvider>
+      );
     }
     return isSortedDesc ? (
-      <ArrowDownwardIcon fontSize='small' color='primary' />
+      <ThemeProvider theme={customTheme}>
+        <ArrowDownwardIcon fontSize="small" color="primary" />
+      </ThemeProvider>
     ) : (
-      <ArrowUpwardIcon fontSize='small' color='primary' />
-    )
-  }
-  return (<ButtonBase disableRipple className={classes.root}>{renderIcon()}</ButtonBase>)
-}
+      <ThemeProvider theme={customTheme}>
+        <ArrowUpwardIcon fontSize="small" color="primary" />
+      </ThemeProvider>
+    );
+  };
+  return (
+    <ThemeProvider theme={customTheme}>
+      <ButtonBase disableRipple className={classes.root}>
+        {renderIcon()}
+      </ButtonBase>
+    </ThemeProvider>
+  );
+};
 
 TableSortLabel.propTypes = {
   isSorted: PropTypes.bool,
   isSortedDesc: PropTypes.bool,
-}
+};
 TableSortLabel.defaultProps = {
   isSorted: false,
   isSortedDesc: false,
-}
+};
 
-export default TableSortLabel
+export default TableSortLabel;

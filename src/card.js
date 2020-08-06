@@ -1,37 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import MUICard from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
+import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
+import customTheme from "../src/theme/index";
 import { StyledCardContainer } from ".";
 
-const useStyles = makeStyles((theme) => ({
-  sm: {
-    maxWidth: 200,
-    height: 220,
-    padding: theme.spacing(1),
-    position: "relative",
-  },
-  md: {
-    maxWidth: 500,
-    height: 270,
-    padding: theme.spacing(1),
-    position: "relative",
-  },
-  actions: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    left: 0,
-    padding: theme.spacing(1.2),
-  },
-}));
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
+  return {
+    sm: {
+      maxWidth: 200,
+      height: 220,
+      padding: theme.spacing(1),
+      position: "relative",
+    },
+    md: {
+      maxWidth: 500,
+      height: 270,
+      padding: theme.spacing(1),
+      position: "relative",
+    },
+    actions: {
+      position: "absolute",
+      bottom: 0,
+      right: 0,
+      left: 0,
+      padding: theme.spacing(1.2),
+    },
+  };
+});
 
 const Card = ({
   cardTitle,
@@ -106,15 +109,19 @@ const Card = ({
   );
   if (Object.entries(styledContainerProps).length > 0)
     return (
-      <StyledCardContainer {...styledContainerProps}>
-        {cardBody}
-      </StyledCardContainer>
+      <ThemeProvider theme={customTheme}>
+        <StyledCardContainer {...styledContainerProps}>
+          {cardBody}
+        </StyledCardContainer>
+      </ThemeProvider>
     );
 
   return (
-    <MUICard style={dimensions} className={classes[size]}>
-      {cardBody}
-    </MUICard>
+    <ThemeProvider theme={customTheme}>
+      <MUICard style={dimensions} className={classes[size]}>
+        {cardBody}
+      </MUICard>
+    </ThemeProvider>
   );
 };
 

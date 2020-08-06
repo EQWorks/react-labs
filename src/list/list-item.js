@@ -1,95 +1,99 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-
-import { makeStyles } from "@material-ui/core/styles";
-import MUIListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Grid from "@material-ui/core/Grid";
-import Collapse from "@material-ui/core/Collapse";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import Chip from "@material-ui/core/Chip";
+import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
-import Chip from "@material-ui/core/Chip";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import MUIListItem from "@material-ui/core/ListItem";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
-const useStyles = makeStyles((theme) => ({
-  font: {
-    fontFamily: theme.typography.fontFamily,
-    paddingLeft: theme.spacing(3),
-  },
-  root: {
-    padding: theme.spacing(1.25),
-  },
-  backgroundColor: {
-    backgroundColor: theme.palette.secondary[50],
-  },
-  iconButton: {
-    paddingLeft: theme.spacing(0),
-    paddingRight: theme.spacing(1.5),
-    "&:hover": {
-      backgroundColor: "inherit",
+import customTheme from "../../src/theme/index";
+
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
+  return {
+    font: {
+      fontFamily: theme.typography.fontFamily,
+      paddingLeft: theme.spacing(3),
     },
-  },
-  listItemAvatar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  listItemAvatarRightPadding: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingRight: theme.spacing(1),
-  },
-  notSelected: {
-    padding: theme.spacing(1.25),
-    opacity: 0.6,
-  },
-  sm: {
-    width: theme.spacing(3.5),
-    height: theme.spacing(3.5),
-  },
-  md: {
-    width: theme.spacing(5),
-    height: theme.spacing(5),
-  },
-  lg: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    marginRight: theme.spacing(0.5),
-  },
-  spacing: (num) => ({
-    border: `1px solid ${theme.palette.secondary[300]}`,
-    borderRadius: theme.spacing(0.5),
-    marginBottom: theme.spacing(num),
-  }),
-  complete: {
-    color: theme.palette.success.main,
-    width: theme.spacing(1.4),
-    height: theme.spacing(1.4),
-  },
-  inProgress: {
-    color: theme.palette.error.main,
-    width: theme.spacing(1.4),
-    height: theme.spacing(1.4),
-  },
-  linearProgressBar: {
-    borderRadius: 50,
-  },
-  chip: {
-    borderRadius: "4px !important",
-  },
-  timeStatus: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: "12px",
-    marginTop: theme.spacing(0.7),
-  },
-}));
+    root: {
+      padding: theme.spacing(1.25),
+    },
+    backgroundColor: {
+      backgroundColor: theme.palette.secondary[50],
+    },
+    iconButton: {
+      paddingLeft: theme.spacing(0),
+      paddingRight: theme.spacing(1.5),
+      "&:hover": {
+        backgroundColor: "inherit",
+      },
+    },
+    listItemAvatar: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    listItemAvatarRightPadding: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      paddingRight: theme.spacing(1),
+    },
+    notSelected: {
+      padding: theme.spacing(1.25),
+      opacity: 0.6,
+    },
+    sm: {
+      width: theme.spacing(3.5),
+      height: theme.spacing(3.5),
+    },
+    md: {
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+    },
+    lg: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+      marginRight: theme.spacing(0.5),
+    },
+    spacing: (num) => ({
+      border: `1px solid ${theme.palette.secondary[300]}`,
+      borderRadius: theme.spacing(0.5),
+      marginBottom: theme.spacing(num),
+    }),
+    complete: {
+      color: theme.palette.success.main,
+      width: theme.spacing(1.4),
+      height: theme.spacing(1.4),
+    },
+    inProgress: {
+      color: theme.palette.error.main,
+      width: theme.spacing(1.4),
+      height: theme.spacing(1.4),
+    },
+    linearProgressBar: {
+      borderRadius: 50,
+    },
+    chip: {
+      borderRadius: "4px !important",
+    },
+    timeStatus: {
+      fontFamily: theme.typography.fontFamily,
+      fontSize: "12px",
+      marginTop: theme.spacing(0.7),
+    },
+  };
+});
 
 /**
  * Renders <ListItem /> component
@@ -187,82 +191,84 @@ const ListItem = ({
   };
 
   return (
-    <div className={spacing && classes.spacing}>
-      <MUIListItem
-        onClick={onClick}
-        selected={selected}
-        button={button}
-        {...buttonProps}
-        disableGutters
-        className={clsx({
-          [classes.root]: true,
-          [classes.notSelected]: focusOnSelected && !selected,
-          [classes.backgroundColor]: open,
-        })}
-      >
-        {!avatar && expand !== "end" && renderIconButton()}
-        {renderAvatar()}
-        <ListItemText
-          primary={itemHeading(heading, progressBar)}
-          secondary={details}
-        />
-        <Grid item container xs={2}>
-          <Grid
-            item
-            container
-            xs={12}
-            justify="flex-start"
-            alignItems="flex-end"
-            direction="column"
-          >
-            {chip && (
-              <div>
-                <Chip
-                  classes={{ root: classes.chip }}
-                  style={{ backgroundColor: chipColor }}
-                  label={chip}
-                  size="small"
-                  {...chipProps}
-                />
-              </div>
-            )}
-            {timeStatus && (
-              <div className={classes.timeStatus}>
-                {progress ? (
-                  <FiberManualRecord
-                    className={clsx({
-                      [classes.complete]: progress === "complete",
-                      [classes.inProgress]: progress === "incomplete",
-                    })}
+    <ThemeProvider theme={customTheme}>
+      <div className={spacing && classes.spacing}>
+        <MUIListItem
+          onClick={onClick}
+          selected={selected}
+          button={button}
+          {...buttonProps}
+          disableGutters
+          className={clsx({
+            [classes.root]: true,
+            [classes.notSelected]: focusOnSelected && !selected,
+            [classes.backgroundColor]: open,
+          })}
+        >
+          {!avatar && expand !== "end" && renderIconButton()}
+          {renderAvatar()}
+          <ListItemText
+            primary={itemHeading(heading, progressBar)}
+            secondary={details}
+          />
+          <Grid item container xs={2}>
+            <Grid
+              item
+              container
+              xs={12}
+              justify="flex-start"
+              alignItems="flex-end"
+              direction="column"
+            >
+              {chip && (
+                <div>
+                  <Chip
+                    classes={{ root: classes.chip }}
+                    style={{ backgroundColor: chipColor }}
+                    label={chip}
+                    size="small"
+                    {...chipProps}
                   />
-                ) : null}
-                &nbsp;&nbsp;{timeStatus}
-              </div>
+                </div>
+              )}
+              {timeStatus && (
+                <div className={classes.timeStatus}>
+                  {progress ? (
+                    <FiberManualRecord
+                      className={clsx({
+                        [classes.complete]: progress === "complete",
+                        [classes.inProgress]: progress === "incomplete",
+                      })}
+                    />
+                  ) : null}
+                  &nbsp;&nbsp;{timeStatus}
+                </div>
+              )}
+            </Grid>
+            {expand === "end" && (
+              <Grid item container justify="flex-end" xs={12}>
+                {renderIconButton()}
+              </Grid>
             )}
           </Grid>
-          {expand === "end" && (
-            <Grid item container justify="flex-end" xs={12}>
-              {renderIconButton()}
-            </Grid>
+          {itemSecondaryAction && (
+            <ListItemSecondaryAction>
+              {itemSecondaryAction}
+            </ListItemSecondaryAction>
           )}
-        </Grid>
-        {itemSecondaryAction && (
-          <ListItemSecondaryAction>
-            {itemSecondaryAction}
-          </ListItemSecondaryAction>
-        )}
-      </MUIListItem>
-      <Collapse
-        in={open}
-        timeout="auto"
-        unmountOnExit
-        className={classes.backgroundColor}
-      >
-        <MUIListItem>
-          <div className={classes.font}>{expansionDetails}</div>
         </MUIListItem>
-      </Collapse>
-    </div>
+        <Collapse
+          in={open}
+          timeout="auto"
+          unmountOnExit
+          className={classes.backgroundColor}
+        >
+          <MUIListItem>
+            <div className={classes.font}>{expansionDetails}</div>
+          </MUIListItem>
+        </Collapse>
+      </div>
+    </ThemeProvider>
   );
 };
 

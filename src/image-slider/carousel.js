@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
-import DefaultCard from "./cards/default-card";
+import { ThemeProvider } from "@material-ui/core/styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import customTheme from "../../src/theme/index";
+import DefaultCard from "./cards/default-card";
 import "../css/carousel.css";
 
 const defaultData = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -36,17 +39,19 @@ const Carousel = ({ carouselContent, getRef }) => {
         settings: {
           slidesToShow: imagesToShow > 3 ? imagesToShow - 3 : 1,
           slidesToScroll: imagesToShow > 3 ? imagesToShow - 3 : 1,
-        }
+        },
       },
-    ]
+    ],
   };
 
   return (
-    <div>
-      <Slider {...settings} ref={getRef}>
-        {content}
-      </Slider>
-    </div>
+    <ThemeProvider theme={customTheme}>
+      <div>
+        <Slider {...settings} ref={getRef}>
+          {content}
+        </Slider>
+      </div>
+    </ThemeProvider>
   );
 };
 

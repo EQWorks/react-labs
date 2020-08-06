@@ -1,28 +1,33 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { CardContent, Typography } from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
-import StyledCardContainer from "../../styled-card-container";
-import PropTypes from 'prop-types';
 
+import customTheme from "../../../src/theme/index";
+import StyledCardContainer from "../../styled-card-container";
 
 const DefaultCard = ({ content }) => {
-  const theme = useTheme();
+  const theme = customTheme;
   return (
-    <StyledCardContainer>
-      <CardContent style={{padding: theme.spacing(4)}}>
-        <Typography variant="h4" gutterBottom>{content}</Typography>
-        <Typography variant="body1">This is a default card</Typography>
-      </CardContent>
-    </StyledCardContainer>
+    <ThemeProvider theme={customTheme}>
+      <StyledCardContainer>
+        <CardContent style={{ padding: theme.spacing(4) }}>
+          <Typography variant="h4" gutterBottom>
+            {content}
+          </Typography>
+          <Typography variant="body1">This is a default card</Typography>
+        </CardContent>
+      </StyledCardContainer>
+    </ThemeProvider>
   );
 };
 
 DefaultCard.propTypes = {
   content: PropTypes.number,
-}
+};
 
 DefaultCard.defaultProps = {
   content: 0,
-}
+};
 
 export default DefaultCard;

@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
-import QuickFilterItem from "./quick-filter-item";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
+import { ThemeProvider } from "@material-ui/core/styles";
 
+import customTheme from "../src/theme/index";
+import QuickFilterItem from "./quick-filter-item";
 
 const QuickFilters = ({ disabled, categories, filterOnClick }) => {
   const QuickFilterList = categories.map((category) => (
@@ -13,7 +15,11 @@ const QuickFilters = ({ disabled, categories, filterOnClick }) => {
     ></QuickFilterItem>
   ));
 
-  return <div>{QuickFilterList}</div>;
+  return (
+    <ThemeProvider theme={customTheme}>
+      <div>{QuickFilterList}</div>
+    </ThemeProvider>
+  );
 };
 
 QuickFilters.propTypes = {
@@ -27,10 +33,10 @@ QuickFilters.defaultProps = {
     {
       label: "Data missing",
       isActive: false,
-    }
+    },
   ],
   filterOnClick: () => {},
-  disabled: false
+  disabled: false,
 };
 
 export default QuickFilters;

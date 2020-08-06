@@ -1,41 +1,48 @@
 import React from "react";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
-  default: {
-    textTransform: "none",
-    borderRadius: "36px",
-    border: "1px solid",
-    orderColor: theme.palette.primary.main,
-  },
-  active: {
-    textTransform: "none",
-    borderRadius: "36px",
-    border: "hidden",
-    backgroundColor: theme.palette.primary.main,
-    color: "white",
-    "&:hover": {
-      backgroundColor: theme.palette.primary.main,
+import customTheme from "../src/theme/index";
+
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
+  return {
+    default: {
+      textTransform: "none",
+      borderRadius: "36px",
+      border: "1px solid",
+      orderColor: theme.palette.primary.main,
     },
-  },
-}));
+    active: {
+      textTransform: "none",
+      borderRadius: "36px",
+      border: "hidden",
+      backgroundColor: theme.palette.primary.main,
+      color: "white",
+      "&:hover": {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+  };
+});
 
 const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
   const classes = useStyles();
   const { label, isActive } = category;
   console.log(label, isActive);
   return (
-    <Button
-      variant="outlined"
-      data-selected={isActive}
-      className={!isActive ? classes.default : classes.active}
-      disabled={disabled}
-      onClick={() => filterOnClick(label)}
-    >
-      {label}
-    </Button>
+    <ThemeProvider theme={customTheme}>
+      <Button
+        variant="outlined"
+        data-selected={isActive}
+        className={!isActive ? classes.default : classes.active}
+        disabled={disabled}
+        onClick={() => filterOnClick(label)}
+      >
+        {label}
+      </Button>
+    </ThemeProvider>
   );
 };
 
@@ -50,11 +57,10 @@ QuickFilterItem.defaultProps = {
     {
       label: "Data missing",
       isActive: false,
-    }
+    },
   ],
   filterOnClick: () => {},
-  disabled: false
+  disabled: false,
 };
 
 export default QuickFilterItem;
-

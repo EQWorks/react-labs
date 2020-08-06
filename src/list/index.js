@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-
-import { makeStyles } from "@material-ui/core/styles";
-import MUIList from "@material-ui/core/List";
+import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
+import MUIList from "@material-ui/core/List";
 
+import customTheme from "../../src/theme/index";
 import ListItem from "./list-item";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    borderRadius: "4px",
-  },
-  border: {
-    border: `1px solid ${theme.palette.secondary[300]}`,
-  },
-}));
+const useStyles = makeStyles(() => {
+  const theme = customTheme;
+  return {
+    root: {
+      borderRadius: "4px",
+    },
+    border: {
+      border: `1px solid ${theme.palette.secondary[300]}`,
+    },
+  };
+});
 
 const List = ({
   divider,
@@ -34,31 +37,33 @@ const List = ({
   );
 
   return (
-    <MUIList
-      className={clsx({ [classes.root]: true, [classes.border]: border })}
-      style={dimensions}
-      disablePadding
-    >
-      {data.map((datum, i) => (
-        <div key={i}>
-          <ListItem
-            itemSecondaryAction={data.secondaryAction}
-            onClick={() => {
-              if (button) {
-                setSelected(i);
-              }
-              return onItemClick(datum, i);
-            }}
-            button={button}
-            selected={selected === i}
-            focusOnSelected={focusOnSelected}
-            spacing={spacing}
-            {...datum}
-          />
-          {divider && !spacing && i !== data.length - 1 && <Divider />}
-        </div>
-      ))}
-    </MUIList>
+    <ThemeProvider theme={customTheme}>
+      <MUIList
+        className={clsx({ [classes.root]: true, [classes.border]: border })}
+        style={dimensions}
+        disablePadding
+      >
+        {data.map((datum, i) => (
+          <div key={i}>
+            <ListItem
+              itemSecondaryAction={data.secondaryAction}
+              onClick={() => {
+                if (button) {
+                  setSelected(i);
+                }
+                return onItemClick(datum, i);
+              }}
+              button={button}
+              selected={selected === i}
+              focusOnSelected={focusOnSelected}
+              spacing={spacing}
+              {...datum}
+            />
+            {divider && !spacing && i !== data.length - 1 && <Divider />}
+          </div>
+        ))}
+      </MUIList>
+    </ThemeProvider>
   );
 };
 
