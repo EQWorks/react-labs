@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 
 import customTheme from "../src/theme/index";
@@ -72,11 +72,7 @@ const useStyles = makeStyles(() => {
 
 const StyledSwitch = (props) => {
   const classes = useStyles();
-  return (
-    <ThemeProvider theme={customTheme}>
-      <Switch classes={classes} {...props} />
-    </ThemeProvider>
-  );
+  return <Switch classes={classes} {...props} />;
 };
 
 StyledSwitch.propTypes = {

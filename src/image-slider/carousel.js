@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
-import { ThemeProvider } from "@material-ui/core/styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import customTheme from "../../src/theme/index";
 import DefaultCard from "./cards/default-card";
 import "../css/carousel.css";
 
@@ -45,13 +43,11 @@ const Carousel = ({ carouselContent, getRef }) => {
   };
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <div>
-        <Slider {...settings} ref={getRef}>
-          {content}
-        </Slider>
-      </div>
-    </ThemeProvider>
+    <div>
+      <Slider {...settings} ref={getRef}>
+        {content}
+      </Slider>
+    </div>
   );
 };
 

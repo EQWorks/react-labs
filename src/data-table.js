@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Table,
   TableHead,
@@ -9,8 +9,6 @@ import {
   TableContainer,
   TableCell,
 } from "@material-ui/core";
-
-import customTheme from "../src/theme/index";
 
 const useStyles = makeStyles(() => {
   return {
@@ -70,16 +68,14 @@ const DataTable = ({ data, isPercentage }) => {
   ));
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <TableContainer className={classes.root}>
-        <Table stickyHeader>
-          <TableHead>
-            <TableRow>{headList}</TableRow>
-          </TableHead>
-          <TableBody>{bodyList}</TableBody>
-        </Table>
-      </TableContainer>
-    </ThemeProvider>
+    <TableContainer className={classes.root}>
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>{headList}</TableRow>
+        </TableHead>
+        <TableBody>{bodyList}</TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

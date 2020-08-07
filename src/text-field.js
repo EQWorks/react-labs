@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { fade, makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { fade, makeStyles } from "@material-ui/core/styles";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import grey from "@material-ui/core/colors/grey";
 import IconButton from "@material-ui/core/IconButton";
@@ -93,36 +93,34 @@ const TextField = ({
   };
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <div>
-        <InputLabel
-          id="label"
-          shrink
-          className={error ? classes.labelError : classes.label}
-        >
-          {label}
-        </InputLabel>
-        <InputBase
-          classes={{
-            root: classes.root,
-            focused: error ? classes.inputError : classes.inputDefault,
-          }}
-          style={fullWidth ? {} : dimensions}
-          label={label}
-          fullWidth={fullWidth}
-          multiline={multiline}
-          inputProps={inputProps}
-          {...inp}
-          {...props}
-        />
-        <FormHelperText
-          id="helper-text"
-          className={error ? classes.labelError : classes.label}
-        >
-          {helperText}
-        </FormHelperText>
-      </div>
-    </ThemeProvider>
+    <div>
+      <InputLabel
+        id="label"
+        shrink
+        className={error ? classes.labelError : classes.label}
+      >
+        {label}
+      </InputLabel>
+      <InputBase
+        classes={{
+          root: classes.root,
+          focused: error ? classes.inputError : classes.inputDefault,
+        }}
+        style={fullWidth ? {} : dimensions}
+        label={label}
+        fullWidth={fullWidth}
+        multiline={multiline}
+        inputProps={inputProps}
+        {...inp}
+        {...props}
+      />
+      <FormHelperText
+        id="helper-text"
+        className={error ? classes.labelError : classes.label}
+      >
+        {helperText}
+      </FormHelperText>
+    </div>
   );
 };
 

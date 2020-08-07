@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
 
 import customTheme from "../src/theme/index";
@@ -58,18 +58,14 @@ const useStyles = makeStyles(() => {
 const StyledRadio = (props) => {
   const classes = useStyles();
   return (
-    <ThemeProvider theme={customTheme}>
-      <Radio
-        className={classes.root}
-        disableRipple
-        color="default"
-        checkedIcon={
-          <span className={clsx(classes.icon, classes.checkedIcon)} />
-        }
-        icon={<span className={classes.icon} />}
-        {...props}
-      />
-    </ThemeProvider>
+    <Radio
+      className={classes.root}
+      disableRipple
+      color="default"
+      checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+      icon={<span className={classes.icon} />}
+      {...props}
+    />
   );
 };
 

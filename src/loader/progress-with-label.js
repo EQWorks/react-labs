@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
-
-import customTheme from "../../src/theme/index";
 
 const useStyles = makeStyles(() => {
   return {
@@ -28,47 +26,43 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
   const classes = useStyles();
   if (action.startsWith("linear"))
     return (
-      <ThemeProvider theme={customTheme}>
-        <Box
-          display="flex"
-          alignItems="center"
-          className={classes.linearBackdrop}
-        >
-          <Box width="100%" mr={1}>
-            <LinearProgress {...props} />
-          </Box>
-          <Box minWidth={35}>
-            <Typography
-              variant="body2"
-              className={classes.linearProgressLabel}
-            >{`${Math.round(props.value)}%`}</Typography>
-          </Box>
+      <Box
+        display="flex"
+        alignItems="center"
+        className={classes.linearBackdrop}
+      >
+        <Box width="100%" mr={1}>
+          <LinearProgress {...props} />
         </Box>
-      </ThemeProvider>
-    );
-  return (
-    <ThemeProvider theme={customTheme}>
-      <Box position="relative" display="inline-flex">
-        <CircularProgress variant="static" {...props} />
-        <Box
-          top={0}
-          left={0}
-          bottom={0}
-          right={0}
-          position="absolute"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
+        <Box minWidth={35}>
           <Typography
-            style={labelStyle}
-            variant="caption"
-            component="div"
-            color="inherit"
+            variant="body2"
+            className={classes.linearProgressLabel}
           >{`${Math.round(props.value)}%`}</Typography>
         </Box>
       </Box>
-    </ThemeProvider>
+    );
+  return (
+    <Box position="relative" display="inline-flex">
+      <CircularProgress variant="static" {...props} />
+      <Box
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
+        position="absolute"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Typography
+          style={labelStyle}
+          variant="caption"
+          component="div"
+          color="inherit"
+        >{`${Math.round(props.value)}%`}</Typography>
+      </Box>
+    </Box>
   );
 };
 

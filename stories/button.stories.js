@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 import { makeStyles } from "@material-ui/core/styles";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
-import Button from "../src/button";
+import { Button } from "../src/index";
 
 const useStyles = makeStyles({
   container: {

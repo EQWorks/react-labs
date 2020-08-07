@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { Card } from "@material-ui/core";
 
@@ -79,15 +79,13 @@ const StyledCardContainer = ({ pattern, onClick, selected, children }) => {
   const whichStyle = "style" + pattern.style;
   const classes = useStyles(pattern);
   return (
-    <ThemeProvider theme={customTheme}>
-      <Card
-        className={clsx(classes[whichStyle], { selected })}
-        elevation={0}
-        onClick={onClick}
-      >
-        {children}
-      </Card>
-    </ThemeProvider>
+    <Card
+      className={clsx(classes[whichStyle], { selected })}
+      elevation={0}
+      onClick={onClick}
+    >
+      {children}
+    </Card>
   );
 };
 

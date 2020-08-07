@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
@@ -25,17 +25,15 @@ const WidgetNumber = ({ title, value, isPercentage }) => {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Paper className={classes.paper} variant="outlined">
-        <Typography className={classes.title} variant="subtitle2" gutterBottom>
-          {title}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {value}
-          {isPercentage ? "%" : ""}
-        </Typography>
-      </Paper>
-    </ThemeProvider>
+    <Paper className={classes.paper} variant="outlined">
+      <Typography className={classes.title} variant="subtitle2" gutterBottom>
+        {title}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {value}
+        {isPercentage ? "%" : ""}
+      </Typography>
+    </Paper>
   );
 };
 

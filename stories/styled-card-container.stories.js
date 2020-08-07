@@ -1,6 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, {useState} from "react";
-import StyledCardContainer from "../src/styled-card-container";
+import React, { useState } from "react";
 import {
   Avatar,
   Chip,
@@ -10,8 +9,9 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
-import { subsData, bundlesData, categoriesData } from "./data/card-info";
 
+import { StyledCardContainer } from "../src/index";
+import { subsData, bundlesData, categoriesData } from "./data/card-info";
 
 export default {
   component: StyledCardContainer,
@@ -65,7 +65,7 @@ export const Default = () => {
   );
 };
 
-export const SelectStyles= () => {
+export const SelectStyles = () => {
   const classes = useStyles();
 
   const contents = ({ title, main, sub }) => {
@@ -86,11 +86,11 @@ export const SelectStyles= () => {
     <Grid container spacing={2}>
       {subsData.map((cardInfo, i) => (
         <Grid key={i} item xs={12} sm={6} md={4}>
-          <StyledCardContainer pattern={
-            {
+          <StyledCardContainer
+            pattern={{
               style: 2,
-            }
-          }>
+            }}
+          >
             <CardContent className={classes.content}>
               {contents(cardInfo)}
             </CardContent>
@@ -100,7 +100,6 @@ export const SelectStyles= () => {
     </Grid>
   );
 };
-
 
 const useStyles2 = makeStyles((theme) => ({
   header: {
@@ -254,7 +253,9 @@ export const Selectable = () => {
     }))
   );
   const CardOnToggle = (key) => {
-    const newData = filterableData.map(data => data.key === key ? {...data, selected: !data.selected} : data)
+    const newData = filterableData.map((data) =>
+      data.key === key ? { ...data, selected: !data.selected } : data
+    );
     setFilterableData(newData);
   };
   return (
@@ -264,13 +265,17 @@ export const Selectable = () => {
           <StyledCardContainer
             key={index}
             selected={cardInfo.selected}
-            onClick={()=>CardOnToggle(index)}
+            onClick={() => CardOnToggle(index)}
             pattern={{
               style: 1,
             }}
           >
             <Grid item className={classes.header}>
-              <CheckCircleOutlineRoundedIcon className={cardInfo.selected ? classes.iconSelected : classes.iconDefault } />
+              <CheckCircleOutlineRoundedIcon
+                className={
+                  cardInfo.selected ? classes.iconSelected : classes.iconDefault
+                }
+              />
             </Grid>
             <Grid item className={classes.content}>
               <Avatar

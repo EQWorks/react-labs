@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import customTheme from "../src/theme/index";
@@ -77,23 +77,16 @@ const DynamicButton = ({ type, children, load, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Button
-        className={classes[type]}
-        disableRipple
-        disableElevation
-        {...rest}
+    <Button className={classes[type]} disableRipple disableElevation {...rest}>
+      <div
+        className={clsx({
+          [classes.loadPrimary]: load && type === "primary",
+          [classes.loadSecondary]: load && type !== "primary",
+        })}
       >
-        <div
-          className={clsx({
-            [classes.loadPrimary]: load && type === "primary",
-            [classes.loadSecondary]: load && type !== "primary",
-          })}
-        >
-          {children}
-        </div>
-      </Button>
-    </ThemeProvider>
+        {children}
+      </div>
+    </Button>
   );
 };
 

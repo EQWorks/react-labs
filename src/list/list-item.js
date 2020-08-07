@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import Collapse from "@material-ui/core/Collapse";
@@ -191,84 +191,82 @@ const ListItem = ({
   };
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <div className={spacing && classes.spacing}>
-        <MUIListItem
-          onClick={onClick}
-          selected={selected}
-          button={button}
-          {...buttonProps}
-          disableGutters
-          className={clsx({
-            [classes.root]: true,
-            [classes.notSelected]: focusOnSelected && !selected,
-            [classes.backgroundColor]: open,
-          })}
-        >
-          {!avatar && expand !== "end" && renderIconButton()}
-          {renderAvatar()}
-          <ListItemText
-            primary={itemHeading(heading, progressBar)}
-            secondary={details}
-          />
-          <Grid item container xs={2}>
-            <Grid
-              item
-              container
-              xs={12}
-              justify="flex-start"
-              alignItems="flex-end"
-              direction="column"
-            >
-              {chip && (
-                <div>
-                  <Chip
-                    classes={{ root: classes.chip }}
-                    style={{ backgroundColor: chipColor }}
-                    label={chip}
-                    size="small"
-                    {...chipProps}
+    <div className={spacing && classes.spacing}>
+      <MUIListItem
+        onClick={onClick}
+        selected={selected}
+        button={button}
+        {...buttonProps}
+        disableGutters
+        className={clsx({
+          [classes.root]: true,
+          [classes.notSelected]: focusOnSelected && !selected,
+          [classes.backgroundColor]: open,
+        })}
+      >
+        {!avatar && expand !== "end" && renderIconButton()}
+        {renderAvatar()}
+        <ListItemText
+          primary={itemHeading(heading, progressBar)}
+          secondary={details}
+        />
+        <Grid item container xs={2}>
+          <Grid
+            item
+            container
+            xs={12}
+            justify="flex-start"
+            alignItems="flex-end"
+            direction="column"
+          >
+            {chip && (
+              <div>
+                <Chip
+                  classes={{ root: classes.chip }}
+                  style={{ backgroundColor: chipColor }}
+                  label={chip}
+                  size="small"
+                  {...chipProps}
+                />
+              </div>
+            )}
+            {timeStatus && (
+              <div className={classes.timeStatus}>
+                {progress ? (
+                  <FiberManualRecord
+                    className={clsx({
+                      [classes.complete]: progress === "complete",
+                      [classes.inProgress]: progress === "incomplete",
+                    })}
                   />
-                </div>
-              )}
-              {timeStatus && (
-                <div className={classes.timeStatus}>
-                  {progress ? (
-                    <FiberManualRecord
-                      className={clsx({
-                        [classes.complete]: progress === "complete",
-                        [classes.inProgress]: progress === "incomplete",
-                      })}
-                    />
-                  ) : null}
-                  &nbsp;&nbsp;{timeStatus}
-                </div>
-              )}
-            </Grid>
-            {expand === "end" && (
-              <Grid item container justify="flex-end" xs={12}>
-                {renderIconButton()}
-              </Grid>
+                ) : null}
+                &nbsp;&nbsp;{timeStatus}
+              </div>
             )}
           </Grid>
-          {itemSecondaryAction && (
-            <ListItemSecondaryAction>
-              {itemSecondaryAction}
-            </ListItemSecondaryAction>
+          {expand === "end" && (
+            <Grid item container justify="flex-end" xs={12}>
+              {renderIconButton()}
+            </Grid>
           )}
+        </Grid>
+        {itemSecondaryAction && (
+          <ListItemSecondaryAction>
+            {itemSecondaryAction}
+          </ListItemSecondaryAction>
+        )}
+      </MUIListItem>
+      <Collapse
+        in={open}
+        timeout="auto"
+        unmountOnExit
+        className={classes.backgroundColor}
+      >
+        <MUIListItem>
+          <div className={classes.font}>{expansionDetails}</div>
         </MUIListItem>
-        <Collapse
-          in={open}
-          timeout="auto"
-          unmountOnExit
-          className={classes.backgroundColor}
-        >
-          <MUIListItem>
-            <div className={classes.font}>{expansionDetails}</div>
-          </MUIListItem>
-        </Collapse>
-      </div>
-    </ThemeProvider>
+      </Collapse>
+    </div>
   );
 };
 

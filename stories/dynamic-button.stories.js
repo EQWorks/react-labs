@@ -1,10 +1,8 @@
 import React from "react";
-
 import { storiesOf } from "@storybook/react";
-
-import { DynamicButton } from "../src";
-
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+
+import { DynamicButton } from "../src/index";
 
 const arr = [
   {
@@ -21,9 +19,8 @@ const arr = [
   },
 ];
 
-
 storiesOf("DynamicButton", module)
-  .add("Default", () => <DynamicButton/>)
+  .add("Default", () => <DynamicButton />)
   .add("Types", () => (
     <div>
       {arr.map(({ type }, index) => (
@@ -45,11 +42,7 @@ storiesOf("DynamicButton", module)
   .add("With an icon on the right side", () => (
     <div>
       {arr.map(({ type }, index) => (
-        <DynamicButton
-          key={index}
-          type={type}
-          endIcon={<CloudUploadIcon />}
-        >
+        <DynamicButton key={index} type={type} endIcon={<CloudUploadIcon />}>
           Click
         </DynamicButton>
       ))}

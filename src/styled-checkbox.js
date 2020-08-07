@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import customTheme from "../src/theme/index";
@@ -61,18 +61,16 @@ const useStyles = makeStyles(() => {
 const StyledCheckbox = ({ checked, ...rest }) => {
   const classes = useStyles();
   return (
-    <ThemeProvider theme={customTheme}>
-      <Checkbox
-        disableRipple
-        checked={checked}
-        className={classes.root}
-        icon={<span className={classes.icon} />}
-        checkedIcon={
-          <span className={checked ? classes.checkedIcon : classes.icon} />
-        }
-        {...rest}
-      />
-    </ThemeProvider>
+    <Checkbox
+      disableRipple
+      checked={checked}
+      className={classes.root}
+      icon={<span className={classes.icon} />}
+      checkedIcon={
+        <span className={checked ? classes.checkedIcon : classes.icon} />
+      }
+      {...rest}
+    />
   );
 };
 

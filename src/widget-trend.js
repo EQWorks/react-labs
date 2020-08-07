@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import TrendingDownRoundedIcon from "@material-ui/icons/TrendingDownRounded";
 import TrendingUpRoundedIcon from "@material-ui/icons/TrendingUpRounded";
@@ -28,25 +28,23 @@ const WidgetTrend = ({ title, value, percentage }) => {
   const updown = percentage > 0 ? true : false;
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Paper className={classes.paper} variant="outlined">
-        <Typography className={classes.title} variant="subtitle2" gutterBottom>
-          {title}
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          {value.toLocaleString()}
-        </Typography>
-        <Typography variant="body1">
-          {updown ? (
-            <TrendingUpRoundedIcon style={{ color: "red" }} />
-          ) : (
-            <TrendingDownRoundedIcon style={{ color: "green" }} />
-          )}
-          {percentage.toLocaleString()}
-          {updown ? "% increase from yesterday" : "% decrease from yesterday"}
-        </Typography>
-      </Paper>
-    </ThemeProvider>
+    <Paper className={classes.paper} variant="outlined">
+      <Typography className={classes.title} variant="subtitle2" gutterBottom>
+        {title}
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {value.toLocaleString()}
+      </Typography>
+      <Typography variant="body1">
+        {updown ? (
+          <TrendingUpRoundedIcon style={{ color: "red" }} />
+        ) : (
+          <TrendingDownRoundedIcon style={{ color: "green" }} />
+        )}
+        {percentage.toLocaleString()}
+        {updown ? "% increase from yesterday" : "% decrease from yesterday"}
+      </Typography>
+    </Paper>
   );
 };
 

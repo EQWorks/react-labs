@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import MUIList from "@material-ui/core/List";
 
@@ -37,33 +37,31 @@ const List = ({
   );
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <MUIList
-        className={clsx({ [classes.root]: true, [classes.border]: border })}
-        style={dimensions}
-        disablePadding
-      >
-        {data.map((datum, i) => (
-          <div key={i}>
-            <ListItem
-              itemSecondaryAction={data.secondaryAction}
-              onClick={() => {
-                if (button) {
-                  setSelected(i);
-                }
-                return onItemClick(datum, i);
-              }}
-              button={button}
-              selected={selected === i}
-              focusOnSelected={focusOnSelected}
-              spacing={spacing}
-              {...datum}
-            />
-            {divider && !spacing && i !== data.length - 1 && <Divider />}
-          </div>
-        ))}
-      </MUIList>
-    </ThemeProvider>
+    <MUIList
+      className={clsx({ [classes.root]: true, [classes.border]: border })}
+      style={dimensions}
+      disablePadding
+    >
+      {data.map((datum, i) => (
+        <div key={i}>
+          <ListItem
+            itemSecondaryAction={data.secondaryAction}
+            onClick={() => {
+              if (button) {
+                setSelected(i);
+              }
+              return onItemClick(datum, i);
+            }}
+            button={button}
+            selected={selected === i}
+            focusOnSelected={focusOnSelected}
+            spacing={spacing}
+            {...datum}
+          />
+          {divider && !spacing && i !== data.length - 1 && <Divider />}
+        </div>
+      ))}
+    </MUIList>
   );
 };
 

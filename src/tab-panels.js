@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { ThemeProvider, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { Tab, Tabs } from "@material-ui/core";
-
-import customTheme from "../src/theme/index";
 
 const TabPanel = ({ children, value, index }) => value === index && children;
 
@@ -26,7 +24,7 @@ const TabPanels = ({
     ));
 
   return (
-    <ThemeProvider theme={customTheme}>
+    <>
       <TabsComponent value={value} onChange={onTabChange}>
         {tabLabels.length > 0 &&
           tabLabels.map((label) => <TabComponent key={label} label={label} />)}
@@ -37,7 +35,7 @@ const TabPanels = ({
             {child.content || child}
           </TabPanel>
         ))}
-    </ThemeProvider>
+    </>
   );
 };
 

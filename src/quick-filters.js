@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
 import PropTypes from "prop-types";
-import { ThemeProvider } from "@material-ui/core/styles";
 
-import customTheme from "../src/theme/index";
 import QuickFilterItem from "./quick-filter-item";
 
 const QuickFilters = ({ disabled, categories, filterOnClick }) => {
@@ -15,11 +13,7 @@ const QuickFilters = ({ disabled, categories, filterOnClick }) => {
     ></QuickFilterItem>
   ));
 
-  return (
-    <ThemeProvider theme={customTheme}>
-      <div>{QuickFilterList}</div>
-    </ThemeProvider>
-  );
+  return <div>{QuickFilterList}</div>;
 };
 
 QuickFilters.propTypes = {

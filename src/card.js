@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import MUICard from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -109,19 +109,15 @@ const Card = ({
   );
   if (Object.entries(styledContainerProps).length > 0)
     return (
-      <ThemeProvider theme={customTheme}>
-        <StyledCardContainer {...styledContainerProps}>
-          {cardBody}
-        </StyledCardContainer>
-      </ThemeProvider>
+      <StyledCardContainer {...styledContainerProps}>
+        {cardBody}
+      </StyledCardContainer>
     );
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <MUICard style={dimensions} className={classes[size]}>
-        {cardBody}
-      </MUICard>
-    </ThemeProvider>
+    <MUICard style={dimensions} className={classes[size]}>
+      {cardBody}
+    </MUICard>
   );
 };
 

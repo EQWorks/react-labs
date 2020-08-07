@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import TrendingDownRoundedIcon from "@material-ui/icons/TrendingDownRounded";
 import TrendingUpRoundedIcon from "@material-ui/icons/TrendingUpRounded";
@@ -31,35 +31,33 @@ const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
     : Math.round(value - prev).toLocaleString();
 
   return (
-    <ThemeProvider theme={customTheme}>
-      <Paper className={classes.paper} variant="outlined">
-        <Typography className={classes.title} variant="subtitle2" gutterBottom>
-          {title}
+    <Paper className={classes.paper} variant="outlined">
+      <Typography className={classes.title} variant="subtitle2" gutterBottom>
+        {title}
+      </Typography>
+      <Typography
+        variant="h5"
+        gutterBottom
+      >{`${value.toLocaleString()} ${units}`}</Typography>
+      {children && <Typography variant="body1">{children}</Typography>}
+      {prev && (
+        <Typography variant="body1">
+          {trend > 0 ? (
+            <TrendingUpRoundedIcon
+              style={{ paddingRight: "8px", color: trendColours[0] }}
+            />
+          ) : (
+            <TrendingDownRoundedIcon
+              style={{ paddingRight: "8px", color: trendColours[1] }}
+            />
+          )}
+          {trend}
+          {isTrendPercentage ? "%" : ` ${units}`}
+          {trend > 0 ? ` ${up} ` : ` ${down} `}
+          {comparedTo}
         </Typography>
-        <Typography
-          variant="h5"
-          gutterBottom
-        >{`${value.toLocaleString()} ${units}`}</Typography>
-        {children && <Typography variant="body1">{children}</Typography>}
-        {prev && (
-          <Typography variant="body1">
-            {trend > 0 ? (
-              <TrendingUpRoundedIcon
-                style={{ paddingRight: "8px", color: trendColours[0] }}
-              />
-            ) : (
-              <TrendingDownRoundedIcon
-                style={{ paddingRight: "8px", color: trendColours[1] }}
-              />
-            )}
-            {trend}
-            {isTrendPercentage ? "%" : ` ${units}`}
-            {trend > 0 ? ` ${up} ` : ` ${down} `}
-            {comparedTo}
-          </Typography>
-        )}
-      </Paper>
-    </ThemeProvider>
+      )}
+    </Paper>
   );
 };
 

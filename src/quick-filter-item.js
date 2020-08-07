@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -32,17 +32,15 @@ const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
   const { label, isActive } = category;
   console.log(label, isActive);
   return (
-    <ThemeProvider theme={customTheme}>
-      <Button
-        variant="outlined"
-        data-selected={isActive}
-        className={!isActive ? classes.default : classes.active}
-        disabled={disabled}
-        onClick={() => filterOnClick(label)}
-      >
-        {label}
-      </Button>
-    </ThemeProvider>
+    <Button
+      variant="outlined"
+      data-selected={isActive}
+      className={!isActive ? classes.default : classes.active}
+      disabled={disabled}
+      onClick={() => filterOnClick(label)}
+    >
+      {label}
+    </Button>
   );
 };
 
