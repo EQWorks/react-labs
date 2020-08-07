@@ -68,7 +68,7 @@ const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) =>
     ...remember,
     key: remember.key != null ? `${remember.key}_HIDDEN` : null,
   })(useState)(() => {
-    const _hidden = _cols.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
+    const _hidden = _cols.filter((c) => c.hidden).map((c) => (typeof c.accessor === 'string') ? c.accessor : c.id)
     return _hidden.length ? _hidden : (hiddenColumns || [])
   })
 

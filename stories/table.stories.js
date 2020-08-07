@@ -111,16 +111,19 @@ export const initialHidden = () => (
       { Header: 'Total cases', accessor: 'total_cases' },
       { Header: 'Province', accessor: 'province', hidden: true, noToggle: true },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+      // eslint-disable-next-line react/display-name
+      { Header: 'Action', id: 'action', Cell: () => (<button onClick={null}>Edit</button>), hidden: true },
     ]}
   />
 )
 
 export const initialHiddenColumns = () => (
-  <Table data={provinces} hiddenColumns={['new_cases', 'total_cases']}>
+  <Table data={provinces} hiddenColumns={['new_cases', 'total_cases', 'action']}>
     <Table.Column Header='New cases' accessor='new_cases' />
     <Table.Column Header='Total cases' accessor='total_cases' />
     <Table.Column Header='Province' accessor='province' />
     <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
+    <Table.Column Header='Action' id='action' Cell={() => (<button onClick={null}>Edit</button>)} />
   </Table>
 )
 
@@ -288,11 +291,11 @@ export const rememberSortBy = () => {
 }
 export const dynamicSortBy = () => {
   const [sort, setSort] = useState('province')
-  
+
   return (
     <>
       <Typography variant='body1'>
-        SortBy changing according to the chosen button. 
+        SortBy changing according to the chosen button.
       </Typography>
       {['new_cases', 'total_cases', 'province'].map(col => (
         <button key= {col} onClick={() => setSort(col)} > {col} </button>))}
