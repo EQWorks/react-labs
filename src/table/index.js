@@ -64,12 +64,11 @@ const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) =>
         .map((c) => c.props)
   }, [columns, data, children])
   // cached hidden state
-  const [
-    hidden,
-    setHiddenCache,
-    removeHiddenCache,
-  ] = cached({ ...remember, key: `${remember.key}_HIDDEN` })(useState)(() => {
-    const _hidden = _cols.filter((c) => c.hidden).map((c) => typeof c.accessor === 'function' ? c.id : c.accessor)
+  const [hidden, setHiddenCache] = cached({
+    ...remember,
+    key: remember.key != null ? `${remember.key}_HIDDEN` : null,
+  })(useState)(() => {
+    const _hidden = _cols.filter((c) => c.hidden).map((c) => (typeof c.accessor === 'string') ? c.accessor : c.id)
     return _hidden.length ? _hidden : (hiddenColumns || [])
   })
 
@@ -78,7 +77,6 @@ const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) =>
     _data,
     hidden,
     setHiddenCache,
-    removeHiddenCache,
   }
 }
 
@@ -100,14 +98,12 @@ const Table = ({
     _data,
     hidden,
     setHiddenCache,
-    removeHiddenCache,
   } = useTableConfig({ data, hiddenColumns, children, columns, remember })
   // remember me
-  const [
-    cachedSortBy,
-    setCachedSortBy,
-    removeCachedSortBy,
-  ] = cached({ ...remember, key: `${remember.key}_SORT_BY` })(useState)(sortBy)
+  const [cachedSortBy, setCachedSortBy] = cached({
+    ...remember,
+    key: remember.key != null ? `${remember.key}_SORT_BY` : null,
+  })(useState)(sortBy)
   // useTable
   const {
     getTableProps,
@@ -145,21 +141,11 @@ const Table = ({
     if (remember.hidden) {
       setHiddenCache(_hidden)
     }
-    return () => {
-      if (!remember.hidden) {
-        removeHiddenCache()
-      }
-    }
   }, [_hidden, remember.hidden])
   // remember sortBy
   useEffect(() => {
     if (remember.sortBy) {
       setCachedSortBy(_sortBy)
-    }
-    return () => {
-      if (!remember.sortBy) {
-        removeCachedSortBy()
-      }
     }
   }, [_sortBy, remember.sortBy])
   useEffect(() => {
@@ -277,7 +263,7 @@ Table.propTypes = {
   headerGroupProps: PropTypes.object,
   sortBy: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.object]),
   remember: PropTypes.shape({
-    key: PropTypes.string.isRequired,
+    key: PropTypes.string,
     ttl: PropTypes.number,
     ttlMS: PropTypes.number,
     hidden: PropTypes.bool,
@@ -293,9 +279,7 @@ Table.defaultProps = {
   tableProps: {},
   headerGroupProps: {},
   sortBy: {},
-  remember: {
-    key: '__not_cached',
-  },
+  remember: {},
 }
 Table.Column = TableColumn
 Table.filters = { DefaultFilter, SelectionFilter, RangeFilter }

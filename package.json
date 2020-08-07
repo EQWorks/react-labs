@@ -55,7 +55,7 @@
     "react-slick": "^0.26.1",
     "react-table": "^7.1.0",
     "slick-carousel": "^1.8.1",
-    "use-cached": "^1.2.1"
+    "use-cached": "^2.0.0"
   },
   "scripts": {
     "test": "yarn jest --testPathPattern=__tests__/",

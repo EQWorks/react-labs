@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- `<Tabe />` - lighter impl on unspecified `remember.key` prop
+
+### Fixed
+- `<Table />` - per-column initial hidden state on no-accessor columns
+
 ## [1.7.2] - 2020-08-07
 ### Fixed
 - `<Table />` - table can now update based on dinamically sortBy
