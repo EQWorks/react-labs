@@ -286,3 +286,20 @@ export const rememberSortBy = () => {
     </>
   )
 }
+export const dynamicSortBy = () => {
+  const [sort, setSort] = useState('province')
+  
+  return (
+    <>
+      <Typography variant='body1'>
+        SortBy changing according to the chosen button. 
+      </Typography>
+      {['new_cases', 'total_cases', 'province'].map(col => (
+        <button key= {col} onClick={() => setSort(col)} > {col} </button>))}
+      <Table
+        data={provinces}
+        sortBy={[{ id: sort, desc: true }]}
+      />
+    </>
+  )
+}
