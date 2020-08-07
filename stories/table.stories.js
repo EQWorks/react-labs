@@ -117,10 +117,10 @@ export const initialHidden = () => (
         noToggle: true,
       },
       { Header: "Rate", accessor: "rate", Cell: ({ value }) => `${value}%` },
-      // eslint-disable-next-line react/display-name
       {
         Header: "Action",
         id: "action",
+        // eslint-disable-next-line react/display-name
         Cell: () => <button onClick={null}>Edit</button>,
         hidden: true,
       },
