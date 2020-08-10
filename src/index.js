@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-import customTheme from "../src/theme/index";
+import defaultTheme from "../src/theme/index";
 
 import AlertComponent from "./alert";
 import ButtonComponent from "./button";
@@ -26,7 +26,7 @@ import WidgetStatsComponent from "./widget-stats";
 // export { default as WidgetNumber } from './widget-number' // deprecated by WidgetStats
 // export { default as WidgetTrend } from './widget-trend' // deprecated by WidgetStats
 
-const wrapTheme = (WrappedComponent, theme = customTheme) => {
+const wrapTheme = (WrappedComponent, theme = defaultTheme) => {
   class Wrapper extends React.PureComponent {
     render() {
       return (
