@@ -14,6 +14,7 @@ const typography = {
   },
   button: {
     fontWeight: 400,
+    letterSpacing: '0.02857em',
     textTransform: "none",
   },
   overline: {
