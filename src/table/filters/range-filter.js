@@ -11,7 +11,7 @@ function abbreviateNumber(value) {
   let newValue = value
   if (value >= 1000) {
     const suffixNum = Math.floor(String(Math.floor(value)).length / 3)
-    let shortValue = '';
+    let shortValue = ''
     for (var precision = 2; precision >= 1; precision--) {
       shortValue = (suffixNum !== 0 ? (value / Math.pow(1000, suffixNum)) : value)
       shortValue = parseFloat(shortValue.toPrecision(precision))
@@ -27,7 +27,7 @@ function abbreviateNumber(value) {
   } else if (value % 1 != 0 && value > 1) { //to account for float numbers
     newValue = Math.floor(value).toString()
   }
-  return newValue;
+  return newValue
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     width: '40ch',
     padding: theme.spacing(4, 2, 0, 2),
     textAlign: 'center'
-  },
+  }
 }))
 
 const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id, percentage } }) => {
@@ -75,7 +75,7 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id, pe
 }
 
 RangeFilter.propTypes = {
-  column: PropTypes.object.isRequired,
+  column: PropTypes.object.isRequired
 }
 RangeFilter.filterFn = 'between'
 

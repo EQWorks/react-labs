@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import React, { useState } from 'react'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-import { StyledCheckbox } from "../src/index";
+import { StyledCheckbox } from '../src/index'
 
 export default {
   component: StyledCheckbox,
-  title: "StyledCheckbox",
-};
+  title: 'StyledCheckbox'
+}
 
 export const Default = () => {
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(true)
   const checkOnChange = (e) => {
-    setChecked(e.target.checked);
-  };
+    setChecked(e.target.checked)
+  }
   return (
     <FormControlLabel
       control={
@@ -24,8 +24,8 @@ export const Default = () => {
       }
       label="checkbox default"
     />
-  );
-};
+  )
+}
 
 export const Disabled = () => {
   return (
@@ -40,5 +40,5 @@ export const Disabled = () => {
         label="checkbox disabled"
       />
     </div>
-  );
-};
+  )
+}

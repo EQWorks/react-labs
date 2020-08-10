@@ -1,12 +1,12 @@
-import React from "react";
-import { FormControlLabel, FormGroup } from "@material-ui/core";
+import React from 'react'
+import { FormControlLabel, FormGroup } from '@material-ui/core'
 
-import { StyledSwitch } from "../src/index";
+import { StyledSwitch } from '../src/index'
 
 export default {
   component: StyledSwitch,
-  title: "StyledSwitch",
-};
+  title: 'StyledSwitch'
+}
 
 export const Default = () => {
   return (
@@ -28,5 +28,5 @@ export const Default = () => {
         label="Unchecked + Disabled"
       />
     </FormGroup>
-  );
-};
+  )
+}

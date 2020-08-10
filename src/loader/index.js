@@ -1,55 +1,55 @@
-import React, { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Grid from "@material-ui/core/Grid";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
+import React, { useState, useRef, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import Grid from '@material-ui/core/Grid'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import Modal from '@material-ui/core/Modal'
+import Typography from '@material-ui/core/Typography'
 
-import ProgressWithLabel from "./progress-with-label";
+import ProgressWithLabel from './progress-with-label'
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      display: "flex",
-      alignItems: "center",
+      display: 'flex',
+      alignItems: 'center'
     },
     wrapper: {
       margin: theme.spacing(1),
-      position: "relative",
+      position: 'relative'
     },
     centeredProgress: {
-      position: "absolute",
-      top: "50%",
-      left: "50%",
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
       marginTop: -12,
       marginLeft: -12,
-      color: theme.palette.primary.main,
+      color: theme.palette.primary.main
     },
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
-      color: "#fff",
+      color: '#fff'
     },
     linearBackdrop: {
-      position: "absolute",
-      width: "80%",
-      top: "50%",
-      left: "10%",
+      position: 'absolute',
+      width: '80%',
+      top: '50%',
+      left: '10%',
       marginTop: -12,
-      marginLeft: -12,
+      marginLeft: -12
     },
     linearBackdropText: {
-      position: "absolute",
-      textAlign: "center",
-      width: "100%",
-      top: "50%",
-      color: "#fff",
-      marginTop: "5px",
-    },
-  };
-});
+      position: 'absolute',
+      textAlign: 'center',
+      width: '100%',
+      top: '50%',
+      color: '#fff',
+      marginTop: '5px'
+    }
+  }
+})
 
 const Loader = ({
   open,
@@ -58,46 +58,46 @@ const Loader = ({
   message,
   progress,
   children,
-  skeletonConfig,
+  skeletonConfig
 }) => {
-  const classes = useStyles();
-  const [bufferProgress, setBufferProgress] = useState(progress);
-  const [buffer, setBuffer] = useState(10);
-  const progressRef = useRef(() => {});
+  const classes = useStyles()
+  const [bufferProgress, setBufferProgress] = useState(progress)
+  const [buffer, setBuffer] = useState(10)
+  const progressRef = useRef(() => {})
 
-  if (action === "linear buffer" || action === "linear buffer label") {
+  if (action === 'linear buffer' || action === 'linear buffer label') {
     useEffect(() => {
       progressRef.current = () => {
         if (bufferProgress > 100) {
-          setBufferProgress(0);
-          setBuffer(10);
+          setBufferProgress(0)
+          setBuffer(10)
         } else {
-          const progressDiff = Math.random() * 10;
-          const bufferDiff = Math.random() * 10;
-          setBufferProgress(bufferProgress + progressDiff);
-          setBuffer(bufferProgress + progressDiff + bufferDiff);
+          const progressDiff = Math.random() * 10
+          const bufferDiff = Math.random() * 10
+          setBufferProgress(bufferProgress + progressDiff)
+          setBuffer(bufferProgress + progressDiff + bufferDiff)
         }
-      };
-    });
+      }
+    })
     useEffect(() => {
-      const timer = setInterval(() => progressRef.current(), 500);
-      return () => clearInterval(timer);
-    }, []);
+      const timer = setInterval(() => progressRef.current(), 500)
+      return () => clearInterval(timer)
+    }, [])
   }
 
   const modalBody = (
     <>
-      {action === "linear" && (
+      {action === 'linear' && (
         <LinearProgress className={classes.linearBackdrop} />
       )}
-      {action === "linear determinate" && (
+      {action === 'linear determinate' && (
         <LinearProgress
           className={classes.linearBackdrop}
           variant="determinate"
           value={progress}
         />
       )}
-      {action === "linear buffer" && (
+      {action === 'linear buffer' && (
         <LinearProgress
           className={classes.linearBackdrop}
           variant="buffer"
@@ -105,14 +105,14 @@ const Loader = ({
           valueBuffer={buffer}
         />
       )}
-      {action === "linear determinate label" && (
+      {action === 'linear determinate label' && (
         <ProgressWithLabel
           action={action}
           variant="determinate"
           value={progress}
         />
       )}
-      {action === "linear buffer label" && (
+      {action === 'linear buffer label' && (
         <ProgressWithLabel
           action={action}
           variant="buffer"
@@ -122,25 +122,25 @@ const Loader = ({
       )}
       <Typography className={classes.linearBackdropText}>{message}</Typography>
     </>
-  );
+  )
 
   /* Loading as backdrop */
   if (backdrop) {
-    if (action.startsWith("linear")) {
-      return <Modal open={open}>{modalBody}</Modal>;
+    if (action.startsWith('linear')) {
+      return <Modal open={open}>{modalBody}</Modal>
     }
     return (
       <Backdrop className={classes.backdrop} open={open}>
         <Grid container direction="column" justify="center" alignItems="center">
-          {action === "circular" && <CircularProgress color="inherit" />}
-          {action === "circular determinate" && (
+          {action === 'circular' && <CircularProgress color="inherit" />}
+          {action === 'circular determinate' && (
             <CircularProgress
               color="inherit"
               variant="static"
               value={progress}
             />
           )}
-          {action === "circular determinate label" && (
+          {action === 'circular determinate label' && (
             <ProgressWithLabel
               color="inherit"
               action={action}
@@ -150,7 +150,7 @@ const Loader = ({
           <Typography>{message}</Typography>
         </Grid>
       </Backdrop>
-    );
+    )
   }
 
   /* Loading as loading wrapper with skeleton */
@@ -160,21 +160,21 @@ const Loader = ({
         {!open && children}
         {open && skeletonConfig}
       </div>
-    );
+    )
 
   /* Loading as loading wrapper */
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
         {children}
-        {open && action === "circular" && (
+        {open && action === 'circular' && (
           <CircularProgress
             size={24}
             color="inherit"
             className={classes.centeredProgress}
           />
         )}
-        {open && action === "circular determinate" && (
+        {open && action === 'circular determinate' && (
           <CircularProgress
             size={24}
             color="inherit"
@@ -183,21 +183,21 @@ const Loader = ({
             value={progress}
           />
         )}
-        {open && action === "circular determinate label" && (
+        {open && action === 'circular determinate label' && (
           <span className={classes.centeredProgress}>
             <ProgressWithLabel
               size={24}
               color="inherit"
               action={action}
               value={progress}
-              labelStyle={{ fontSize: "50%" }}
+              labelStyle={{ fontSize: '50%' }}
             />
           </span>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 Loader.propTypes = {
   open: PropTypes.bool.isRequired,
@@ -206,16 +206,16 @@ Loader.propTypes = {
   backdrop: PropTypes.bool,
   progress: PropTypes.number,
   children: PropTypes.node,
-  skeletonConfig: PropTypes.node,
-};
+  skeletonConfig: PropTypes.node
+}
 
 Loader.defaultProps = {
-  action: "",
-  message: "",
+  action: '',
+  message: '',
   backdrop: false,
   progress: 0,
   children: null,
-  skeletonConfig: null,
-};
+  skeletonConfig: null
+}
 
-export default Loader;
+export default Loader

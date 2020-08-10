@@ -8,28 +8,28 @@ module.exports = {
   settings: {
     react: {
       pragma: 'React',
-      version: '16.13',
-    },
+      version: '16.13'
+    }
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: 'module'
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
+    'comma-dangle': ['error', 'never'],
+    'eol-last': ['error', 'always'],
     indent: ['error', 2],
-  },
+    'object-curly-spacing': ['error', 'always'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never']
+  }
 }

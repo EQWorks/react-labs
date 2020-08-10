@@ -1,30 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(() => {
   return {
     linearBackdrop: {
-      position: "absolute",
-      width: "80%",
-      top: "50%",
-      left: "10%",
+      position: 'absolute',
+      width: '80%',
+      top: '50%',
+      left: '10%',
       marginTop: -12,
-      marginLeft: -12,
+      marginLeft: -12
     },
     linearProgressLabel: {
-      color: "#c8cbcf",
-    },
-  };
-});
+      color: '#c8cbcf'
+    }
+  }
+})
 
 const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
-  const classes = useStyles();
-  if (action.startsWith("linear"))
+  const classes = useStyles()
+  if (action.startsWith('linear'))
     return (
       <Box
         display="flex"
@@ -41,7 +41,7 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
           >{`${Math.round(props.value)}%`}</Typography>
         </Box>
       </Box>
-    );
+    )
   return (
     <Box position="relative" display="inline-flex">
       <CircularProgress variant="static" {...props} />
@@ -63,19 +63,19 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
         >{`${Math.round(props.value)}%`}</Typography>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 ProgressWithLabel.propTypes = {
   action: PropTypes.string,
   labelStyle: PropTypes.object,
-  value: PropTypes.any,
-};
+  value: PropTypes.any
+}
 
 ProgressWithLabel.defaultProps = {
-  action: "",
+  action: '',
   labelStyle: {},
-  value: "",
-};
+  value: ''
+}
 
-export default ProgressWithLabel;
+export default ProgressWithLabel

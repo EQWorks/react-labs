@@ -6,20 +6,20 @@ import TextField from '@material-ui/core/TextField'
 import moment from 'moment'
 
 DateRangeFilter.propTypes = {
-  column: PropTypes.object.isRequired,
+  column: PropTypes.object.isRequired
 }
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
+    width: 200
+  }
+}))
 
 export function DateRangeFilter({ column: { filterValue, preFilteredRows, setFilter, id } }) {
   const classes = useStyles()
@@ -51,7 +51,7 @@ export function DateRangeFilter({ column: { filterValue, preFilteredRows, setFil
         defaultValue={(filterValue || [])[0] || min}
         className={classes.textField}
         InputLabelProps={{
-          shrink: true,
+          shrink: true
         }}
         onChange={({ target: { value } }) => {
           setFilter((old = []) => [value ? value : undefined, old[1]])
@@ -64,7 +64,7 @@ export function DateRangeFilter({ column: { filterValue, preFilteredRows, setFil
         defaultValue={(filterValue || [])[1] || max}
         className={classes.textField}
         InputLabelProps={{
-          shrink: true,
+          shrink: true
         }}
         onChange={({ target: { value } }) => {
           setFilter((old = []) => [old[0], value ? value : undefined])

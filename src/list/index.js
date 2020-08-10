@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
-import MUIList from "@material-ui/core/List";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import Divider from '@material-ui/core/Divider'
+import MUIList from '@material-ui/core/List'
 
-import ListItem from "./list-item";
+import ListItem from './list-item'
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      borderRadius: "4px",
+      borderRadius: '4px'
     },
     border: {
-      border: `1px solid ${theme.palette.secondary[300]}`,
-    },
-  };
-});
+      border: `1px solid ${theme.palette.secondary[300]}`
+    }
+  }
+})
 
 const List = ({
   divider,
@@ -26,13 +26,13 @@ const List = ({
   onItemClick,
   focusOnSelected,
   button,
-  data,
+  data
 }) => {
-  const classes = useStyles();
-  const dimensions = { width };
+  const classes = useStyles()
+  const dimensions = { width }
   const [selected, setSelected] = useState(
     button && focusOnSelected ? 0 : false
-  );
+  )
 
   return (
     <MUIList
@@ -46,9 +46,9 @@ const List = ({
             itemSecondaryAction={data.secondaryAction}
             onClick={() => {
               if (button) {
-                setSelected(i);
+                setSelected(i)
               }
-              return onItemClick(datum, i);
+              return onItemClick(datum, i)
             }}
             button={button}
             selected={selected === i}
@@ -60,8 +60,8 @@ const List = ({
         </div>
       ))}
     </MUIList>
-  );
-};
+  )
+}
 
 List.propTypes = {
   data: PropTypes.array.isRequired,
@@ -71,8 +71,8 @@ List.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   focusOnSelected: PropTypes.bool,
   onItemClick: PropTypes.func,
-  button: PropTypes.bool,
-};
+  button: PropTypes.bool
+}
 
 List.defaultProps = {
   onItemClick: () => null,
@@ -81,7 +81,7 @@ List.defaultProps = {
   spacing: 0,
   width: 600,
   focusOnSelected: false,
-  button: false,
-};
+  button: false
+}
 
-export default List;
+export default List

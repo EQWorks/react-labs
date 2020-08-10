@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import DataTable from '../../src/data-table';
+import DataTable from '../../src/data-table'
 
 
 beforeEach(() => {
@@ -33,7 +33,7 @@ describe('<DataTable/>', () => {
   it.each([
     {}, // empty
     { data: [] }, // missing isPercentage
-    { isPercentage: false }, // missing data
+    { isPercentage: false } // missing data
   ])('Checking failing case for %p', (props) => {
     const component = renderer.create(
       <DataTable {...props} />
@@ -46,7 +46,7 @@ describe('<DataTable/>', () => {
   it.each([
     { data: [], isPercentage: true }, // data: checking empty array, isPercentage: non-default prop value
     { data: [], isPercentage: false }, // data: checking empty array, isPercentage: default prop value
-    { data: [{}], isPercentage: false }, // data: checking array of obj
+    { data: [{}], isPercentage: false } // data: checking array of obj
   ])('Checking passing case for %p', (props) => {
     const component = renderer.create(
       <DataTable {...props} />

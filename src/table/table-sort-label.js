@@ -11,8 +11,8 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(() => ({
   root: {
     paddingLeft: '2px',
-    paddingRight: '2px',
-  },
+    paddingRight: '2px'
+  }
 }))
 
 const TableSortLabel = ({ isSorted, isSortedDesc }) => {
@@ -33,11 +33,11 @@ const TableSortLabel = ({ isSorted, isSortedDesc }) => {
 
 TableSortLabel.propTypes = {
   isSorted: PropTypes.bool,
-  isSortedDesc: PropTypes.bool,
+  isSortedDesc: PropTypes.bool
 }
 TableSortLabel.defaultProps = {
   isSorted: false,
-  isSortedDesc: false,
+  isSortedDesc: false
 }
 
 export default TableSortLabel

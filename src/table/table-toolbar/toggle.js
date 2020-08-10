@@ -20,8 +20,8 @@ import { DynamicButton } from '../../index'
 const useStyles = makeStyles(() => ({
   list: {
     overflow: 'auto',
-    maxHeight: '60vh',
-  },
+    maxHeight: '60vh'
+  }
 }))
 
 const Toggle = ({ allColumns, toggleHideColumn }) => {
@@ -69,7 +69,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
           <Grow
             {...TransitionProps}
             style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'
             }}
           >
             <Paper>
@@ -112,11 +112,11 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
 
 Toggle.propTypes = {
   allColumns: PropTypes.array,
-  toggleHideColumn: PropTypes.func,
+  toggleHideColumn: PropTypes.func
 }
 Toggle.defaultProps = {
   allColumns: [],
-  toggleHideColumn: () => {},
+  toggleHideColumn: () => {}
 }
 
 export default Toggle

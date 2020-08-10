@@ -32,7 +32,7 @@ const DefaultFilter = ({ filterValue, preFilteredRows, setFilter, id }) => {
             <SearchIcon />
           </InputAdornment>
         ),
-        'aria-label': 'search',
+        'aria-label': 'search'
       }}
       onClick={(e) => { e.stopPropagation() }}
       onChange={search}
@@ -46,11 +46,11 @@ DefaultFilter.propTypes = {
   filterValue: PropTypes.any,
   preFilteredRows: PropTypes.array.isRequired,
   setFilter: PropTypes.func.isRequired,
-  id: PropTypes.string,
+  id: PropTypes.string
 }
 DefaultFilter.defaultProps = {
   filterValue: null,
-  id: null,
+  id: null
 }
 
 export default DefaultFilter

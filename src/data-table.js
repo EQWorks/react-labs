@@ -1,50 +1,50 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Table,
   TableHead,
   TableRow,
   TableBody,
   TableContainer,
-  TableCell,
-} from "@material-ui/core";
+  TableCell
+} from '@material-ui/core'
 
 const useStyles = makeStyles(() => {
   return {
-    root: { width: "100%" },
+    root: { width: '100%' },
     head: {
-      fontSize: "body",
-      fontWeight: 600,
+      fontSize: 'body',
+      fontWeight: 600
     },
-    cell: { flexGrow: 1 },
-  };
-});
+    cell: { flexGrow: 1 }
+  }
+})
 
 const nameReplacer = (name) => {
-  return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, " ");
-};
+  return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ')
+}
 
 const DataTable = ({ data, isPercentage }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [dynamicData, setDynamicData] = useState(data);
-  const [order, setOrder] = useState(false);
-  const tableHead = Object.getOwnPropertyNames(data[0] || {});
+  const [dynamicData, setDynamicData] = useState(data)
+  const [order, setOrder] = useState(false)
+  const tableHead = Object.getOwnPropertyNames(data[0] || {})
 
   const dynamicSort = (name) => {
-    setOrder(!order);
+    setOrder(!order)
     const sorted = [...dynamicData].sort((a, b) => {
       if (order ? a[name] < b[name] : a[name] > b[name]) {
-        return -1;
+        return -1
       }
       if (order ? a[name] > b[name] : a[name] < b[name]) {
-        return 1;
+        return 1
       }
-      return 0;
-    });
-    setDynamicData(sorted);
-  };
+      return 0
+    })
+    setDynamicData(sorted)
+  }
 
   const headList = tableHead.map((name) => (
     <TableCell
@@ -54,18 +54,18 @@ const DataTable = ({ data, isPercentage }) => {
     >
       {nameReplacer(name)}
     </TableCell>
-  ));
+  ))
 
   const bodyList = dynamicData.map((row, i) => (
     <TableRow key={i}>
       {Object.values(row).map((column, i) => (
         <TableCell key={i}>
           {column.toLocaleString()}
-          {`${isPercentage ? `%` : ""}`}
+          {`${isPercentage ? '%' : ''}`}
         </TableCell>
       ))}
     </TableRow>
-  ));
+  ))
 
   return (
     <TableContainer className={classes.root}>
@@ -76,14 +76,14 @@ const DataTable = ({ data, isPercentage }) => {
         <TableBody>{bodyList}</TableBody>
       </Table>
     </TableContainer>
-  );
-};
+  )
+}
 
 DataTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isPercentage: PropTypes.bool.isRequired,
-};
+  isPercentage: PropTypes.bool.isRequired
+}
 
-DataTable.defaultProps = { data: [], isPercentage: false };
+DataTable.defaultProps = { data: [], isPercentage: false }
 
-export default DataTable;
+export default DataTable
