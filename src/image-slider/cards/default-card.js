@@ -20,11 +20,11 @@ const DefaultCard = ({ content }) => {
 }
 
 DefaultCard.propTypes = {
-  content: PropTypes.number
+  content: PropTypes.number,
 }
 
 DefaultCard.defaultProps = {
-  content: 0
+  content: 0,
 }
 
 export default DefaultCard

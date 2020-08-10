@@ -10,7 +10,7 @@ const data = [
   { new_cases: 2, total_cases: 11, province: 'Yukon', rate: 22, date: '2019-11-12' },
   { new_cases: 1, total_cases: 118, province: 'New Brunswick', rate: 1, date: '2019-11-13' },
   { new_cases: 1, total_cases: 26, province: 'PEI', rate: 4, date: '2019-11-14' },
-  { new_cases: 1, total_cases: 5, province: 'Northwest Territories', rate: 25, date: '2019-11-15' }
+  { new_cases: 1, total_cases: 5, province: 'Northwest Territories', rate: 25, date: '2019-11-15' },
 ]
 
 export default data

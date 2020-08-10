@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => {
     root: {
       margin: theme.spacing(0.5),
       '&&:hover': {
-        backgroundColor: 'transparent'
-      }
+        backgroundColor: 'transparent',
+      },
     },
     icon: {
       borderRadius: 3,
@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme) => {
         border: '1px solid',
         borderColor: theme.palette.primary[100],
         backgroundColor: theme.palette.action.hover,
-        color: theme.palette.action.hover
+        color: theme.palette.action.hover,
       },
       'input:disabled ~ &': {
         opacity: 0.5,
-        pointerEvents: 'none'
-      }
+        pointerEvents: 'none',
+      },
     },
     checkedIcon: {
       borderRadius: 3,
@@ -46,12 +46,12 @@ const useStyles = makeStyles((theme) => {
         transition: 'all .2s',
         border: '1px solid',
         borderColor: theme.palette.primary[800],
-        backgroundColor: theme.palette.primary[800]
+        backgroundColor: theme.palette.primary[800],
       },
       'input:disabled ~ &': {
-        opacity: 0.5
-      }
-    }
+        opacity: 0.5,
+      },
+    },
   }
 })
 
@@ -74,13 +74,13 @@ const StyledCheckbox = ({ checked, ...rest }) => {
 StyledCheckbox.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 StyledCheckbox.defaultProps = {
   checked: false,
   onChange: null,
-  disabled: false
+  disabled: false,
 }
 
 export default StyledCheckbox

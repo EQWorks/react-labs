@@ -10,7 +10,7 @@ import ImageCard from './cards/image-card'
 
 export default {
   component: ImageSlider,
-  title: 'Image Slider'
+  title: 'Image Slider',
 }
 
 export const Default = () => {
@@ -27,12 +27,12 @@ export const Bundles = () => {
           'Bundles are the collection of segments and layers packaged based on a specific persona.',
         button: {
           text: 'View all',
-          linkTo: 'https://console.locus.place'
-        }
+          linkTo: 'https://console.locus.place',
+        },
       }}
       carouselContent={{
         imagesToShow: 3,
-        content: cards
+        content: cards,
       }}
     />
   )
@@ -48,12 +48,12 @@ export const Categories = () => {
         title: 'Categories',
         paragraph: '',
         button: {
-          text: 'Customize my feed'
-        }
+          text: 'Customize my feed',
+        },
       }}
       carouselContent={{
         imagesToShow: 6,
-        content: cards
+        content: cards,
       }}
     />
   )
@@ -68,12 +68,12 @@ export const Layers = () => {
         paragraph:
           'A collection of geospatial data product of selected categories.',
         button: {
-          text: 'View all'
-        }
+          text: 'View all',
+        },
       }}
       carouselContent={{
         imagesToShow: 3,
-        content: cards
+        content: cards,
       }}
     />
   )
@@ -83,29 +83,29 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: theme.palette.common.white,
     boxShadow: 'none',
-    border: `1px solid ${theme.palette.grey[300]}`
+    border: `1px solid ${theme.palette.grey[300]}`,
   },
   hero: {
     backgroundImage: heroImage,
     height: '420px',
     width: '100%',
     objectFit: 'cover',
-    borderRadius: '10px'
+    borderRadius: '10px',
   },
 
   section: {
-    padding: `${theme.spacing(4)}px ${theme.spacing(8)}px`
+    padding: `${theme.spacing(4)}px ${theme.spacing(8)}px`,
   },
   textarea: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
-    padding: theme.spacing(8)
+    padding: theme.spacing(8),
   },
   textareaItem: {
-    paddingBottom: theme.spacing(2)
-  }
+    paddingBottom: theme.spacing(2),
+  },
 }))
 
 export const MultipleSliders = () => {
@@ -165,12 +165,12 @@ export const MultipleSliders = () => {
               title: 'Categories',
               paragraph: '',
               button: {
-                text: 'Customize my feed'
-              }
+                text: 'Customize my feed',
+              },
             }}
             carouselContent={{
               imagesToShow: 6,
-              content: categoriesCards
+              content: categoriesCards,
             }}
           />
         </Grid>
@@ -190,12 +190,12 @@ export const MultipleSliders = () => {
               paragraph:
                 'A collection of geospatial data product of selected categories.',
               button: {
-                text: 'View all'
-              }
+                text: 'View all',
+              },
             }}
             carouselContent={{
               imagesToShow: 4,
-              content: layersCards
+              content: layersCards,
             }}
           />
         </Grid>
@@ -208,12 +208,12 @@ export const MultipleSliders = () => {
               paragraph:
                 'Bundles are the collection of segments and layers packaged based on a specific persona.',
               button: {
-                text: 'View all'
-              }
+                text: 'View all',
+              },
             }}
             carouselContent={{
               imagesToShow: 4,
-              content: bundlesCards
+              content: bundlesCards,
             }}
           />
         </Grid>

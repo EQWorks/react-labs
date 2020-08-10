@@ -5,7 +5,7 @@ import { StyledSwitch } from '../src/index'
 
 export default {
   component: StyledSwitch,
-  title: 'StyledSwitch'
+  title: 'StyledSwitch',
 }
 
 export const Default = () => {

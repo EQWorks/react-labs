@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.common.white,
       '&:hover': {
         backgroundColor: theme.palette.primary.main,
-        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`
+        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`,
       },
       '&:disabled': {
         color: theme.palette.common.white,
-        opacity: 0.5
-      }
+        opacity: 0.5,
+      },
     },
     secondary: {
       fontFamily: theme.typography.fontFamily,
@@ -35,13 +35,13 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: theme.palette.action.hover,
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
       },
       '&:disabled': {
         opacity: 0.5,
         border: 'solid 1px',
-        color: theme.palette.primary.main
-      }
+        color: theme.palette.primary.main,
+      },
     },
     tertiary: {
       fontFamily: theme.typography.fontFamily,
@@ -54,19 +54,19 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: theme.palette.action.hover,
-        color: theme.palette.primary.main
+        color: theme.palette.primary.main,
       },
       '&:disabled': {
         opacity: 0.5,
-        color: theme.palette.primary.main
-      }
+        color: theme.palette.primary.main,
+      },
     },
     loadPrimary: {
-      color: theme.palette.primary.main
+      color: theme.palette.primary.main,
     },
     loadSecondary: {
-      color: 'rgba(255,255,255,0)'
-    }
+      color: 'rgba(255,255,255,0)',
+    },
   }
 })
 
@@ -78,7 +78,7 @@ const DynamicButton = ({ type, children, load, ...rest }) => {
       <div
         className={clsx({
           [classes.loadPrimary]: load && type === 'primary',
-          [classes.loadSecondary]: load && type !== 'primary'
+          [classes.loadSecondary]: load && type !== 'primary',
         })}
       >
         {children}
@@ -90,13 +90,13 @@ const DynamicButton = ({ type, children, load, ...rest }) => {
 DynamicButton.propTypes = {
   type: PropTypes.string,
   children: PropTypes.node,
-  load: PropTypes.bool
+  load: PropTypes.bool,
 }
 
 DynamicButton.defaultProps = {
   type: 'primary',
   children: 'Call to action',
-  load: false
+  load: false,
 }
 
 export default DynamicButton

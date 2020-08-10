@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
   makeStyles,
-  IconButton
+  IconButton,
 } from '@material-ui/core'
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded'
 import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded'
@@ -17,53 +17,53 @@ import { bundlesData } from './data/card-info'
 
 export default {
   component: Carousel,
-  title: 'Carousel'
+  title: 'Carousel',
 }
 
 const useStyles = makeStyles((theme) => ({
   sliderControl: {
     padding: '0px',
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
   },
   textarea: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   wrapper: {
     display: 'flex',
     flexWrap: 'nowrap',
     overflowX: 'auto',
     '&::-webkit-scrollbar': {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   link: {
     display: 'flex',
     alignItems: 'flex-end',
-    paddingRight: theme.spacing(2)
+    paddingRight: theme.spacing(2),
   },
   container: {
-    width: '50px'
+    width: '50px',
   },
   header: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '240px'
+    height: '240px',
   },
   tag: {
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   chip: {
     borderRadius: '4px',
-    margin: theme.spacing(0.5)
-  }
+    margin: theme.spacing(0.5),
+  },
 }))
 export const Default = () => {
   return <Carousel />
@@ -107,7 +107,7 @@ export const CustomCards = () => {
       <StyledCardContainer
         pattern={{
           style: 3,
-          image: image
+          image: image,
         }}
         key={index}
       >
@@ -129,7 +129,7 @@ export const CustomCards = () => {
           </Grid>
         </CardContent>
       </StyledCardContainer>
-    )
+    ),
   )
 
   return (
@@ -139,7 +139,7 @@ export const CustomCards = () => {
         getRef={customSlider}
         carouselContent={{
           imagesToShow: 3,
-          content: cards
+          content: cards,
         }}
       />
     </div>

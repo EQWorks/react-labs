@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 const ButtonComponent = ({ children, type, ...props }) => {
   const styleProps = {
     color: 'primary',
-    type: 'primary'
+    type: 'primary',
   }
   if (type === 'tertiary') {
     props.variant = 'text'
@@ -24,12 +24,12 @@ const ButtonComponent = ({ children, type, ...props }) => {
 
 ButtonComponent.propTypes = {
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired
+  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
 }
 
 ButtonComponent.defaultProps = {
   children: 'Button',
-  type: 'primary'
+  type: 'primary',
 }
 
 export default ButtonComponent

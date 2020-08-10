@@ -18,12 +18,12 @@ const ImageSlider = ({ carouselContent, topSectionContent }) => {
 
 ImageSlider.propTypes = {
   ...TopSection.propTypes,
-  ...Carousel.propTypes
+  ...Carousel.propTypes,
 }
 
 ImageSlider.defaultProps = {
   ...TopSection.defaultProps,
-  ...Carousel.defaultProps
+  ...Carousel.defaultProps,
 }
 
 export default ImageSlider

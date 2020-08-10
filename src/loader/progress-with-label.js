@@ -14,11 +14,11 @@ const useStyles = makeStyles(() => {
       top: '50%',
       left: '10%',
       marginTop: -12,
-      marginLeft: -12
+      marginLeft: -12,
     },
     linearProgressLabel: {
-      color: '#c8cbcf'
-    }
+      color: '#c8cbcf',
+    },
   }
 })
 
@@ -69,13 +69,13 @@ const ProgressWithLabel = ({ action, labelStyle, ...props }) => {
 ProgressWithLabel.propTypes = {
   action: PropTypes.string,
   labelStyle: PropTypes.object,
-  value: PropTypes.any
+  value: PropTypes.any,
 }
 
 ProgressWithLabel.defaultProps = {
   action: '',
   labelStyle: {},
-  value: ''
+  value: '',
 }
 
 export default ProgressWithLabel

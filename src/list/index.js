@@ -10,11 +10,11 @@ import ListItem from './list-item'
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      borderRadius: '4px'
+      borderRadius: '4px',
     },
     border: {
-      border: `1px solid ${theme.palette.secondary[300]}`
-    }
+      border: `1px solid ${theme.palette.secondary[300]}`,
+    },
   }
 })
 
@@ -26,12 +26,12 @@ const List = ({
   onItemClick,
   focusOnSelected,
   button,
-  data
+  data,
 }) => {
   const classes = useStyles()
   const dimensions = { width }
   const [selected, setSelected] = useState(
-    button && focusOnSelected ? 0 : false
+    button && focusOnSelected ? 0 : false,
   )
 
   return (
@@ -71,7 +71,7 @@ List.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   focusOnSelected: PropTypes.bool,
   onItemClick: PropTypes.func,
-  button: PropTypes.bool
+  button: PropTypes.bool,
 }
 
 List.defaultProps = {
@@ -81,7 +81,7 @@ List.defaultProps = {
   spacing: 0,
   width: 600,
   focusOnSelected: false,
-  button: false
+  button: false,
 }
 
 export default List

@@ -29,13 +29,13 @@ Alert.propTypes = {
   message: PropTypes.string.isRequired,
   header: PropTypes.string,
   width: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
 }
 
 Alert.defaultProps = {
   header: '',
   width: '100%',
-  height: 'auto'
+  height: 'auto',
 }
 
 export default Alert

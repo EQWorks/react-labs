@@ -15,12 +15,12 @@ import DefaultFilter from './filters/default-filter'
 const useStyles = makeStyles(() => ({
   root: {
     paddingLeft: '2px',
-    paddingRight: '2px'
+    paddingRight: '2px',
   },
   filter: {
     padding: '1rem',
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 }))
 
 const TableFilterLabel = ({ column }) => {
@@ -54,7 +54,7 @@ const TableFilterLabel = ({ column }) => {
           <Grow
             {...TransitionProps}
             style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'
+              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
             }}
           >
             <Paper>
@@ -76,7 +76,7 @@ const TableFilterLabel = ({ column }) => {
 }
 
 TableFilterLabel.propTypes = {
-  column: PropTypes.object.isRequired
+  column: PropTypes.object.isRequired,
 }
 
 export default TableFilterLabel

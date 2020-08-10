@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => {
   return {
     root: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
     },
     wrapper: {
       margin: theme.spacing(1),
-      position: 'relative'
+      position: 'relative',
     },
     centeredProgress: {
       position: 'absolute',
@@ -26,11 +26,11 @@ const useStyles = makeStyles((theme) => {
       left: '50%',
       marginTop: -12,
       marginLeft: -12,
-      color: theme.palette.primary.main
+      color: theme.palette.primary.main,
     },
     backdrop: {
       zIndex: theme.zIndex.drawer + 1,
-      color: '#fff'
+      color: '#fff',
     },
     linearBackdrop: {
       position: 'absolute',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => {
       top: '50%',
       left: '10%',
       marginTop: -12,
-      marginLeft: -12
+      marginLeft: -12,
     },
     linearBackdropText: {
       position: 'absolute',
@@ -46,8 +46,8 @@ const useStyles = makeStyles((theme) => {
       width: '100%',
       top: '50%',
       color: '#fff',
-      marginTop: '5px'
-    }
+      marginTop: '5px',
+    },
   }
 })
 
@@ -58,7 +58,7 @@ const Loader = ({
   message,
   progress,
   children,
-  skeletonConfig
+  skeletonConfig,
 }) => {
   const classes = useStyles()
   const [bufferProgress, setBufferProgress] = useState(progress)
@@ -206,7 +206,7 @@ Loader.propTypes = {
   backdrop: PropTypes.bool,
   progress: PropTypes.number,
   children: PropTypes.node,
-  skeletonConfig: PropTypes.node
+  skeletonConfig: PropTypes.node,
 }
 
 Loader.defaultProps = {
@@ -215,7 +215,7 @@ Loader.defaultProps = {
   backdrop: false,
   progress: 0,
   children: null,
-  skeletonConfig: null
+  skeletonConfig: null,
 }
 
 export default Loader

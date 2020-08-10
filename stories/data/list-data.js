@@ -6,7 +6,7 @@ export const defaultData = [
     details: 'Secondary summary one.',
     timeStatus: '',
     expand: false,
-    expansionDetails: ''
+    expansionDetails: '',
   },
   {
     avatar: null,
@@ -15,7 +15,7 @@ export const defaultData = [
     details: 'Secondary summary two.',
     timeStatus: '',
     expand: false,
-    expansionDetails: ''
+    expansionDetails: '',
   },
   {
     avatar: null,
@@ -24,7 +24,7 @@ export const defaultData = [
     details: 'Secondary summary three.',
     timeStatus: '',
     expand: false,
-    expansionDetails: ''
+    expansionDetails: '',
   },
   {
     avatar: null,
@@ -33,6 +33,6 @@ export const defaultData = [
     details: 'Secondary summary four.',
     timeStatus: '',
     expand: false,
-    expansionDetails: ''
-  }
+    expansionDetails: '',
+  },
 ]

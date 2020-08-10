@@ -8,9 +8,9 @@ import { Button } from '../src/index'
 const useStyles = makeStyles({
   container: {
     '& button': {
-      margin: '0 20px 20px 0'
-    }
-  }
+      margin: '0 20px 20px 0',
+    },
+  },
 })
 
 const ContentWrapper = (storyFn) => {
@@ -25,7 +25,7 @@ const sizeTypes = ['small', 'medium', 'large']
 export default {
   title: 'Button',
   component: Button,
-  decorators: [ContentWrapper]
+  decorators: [ContentWrapper],
 }
 
 export const Default = () => {

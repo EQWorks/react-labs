@@ -76,5 +76,5 @@ export {
   // Table,
   TabPanels,
   TextField,
-  WidgetStats
+  WidgetStats,
 }

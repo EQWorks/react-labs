@@ -9,18 +9,18 @@ const useStyles = makeStyles((theme) => {
   return {
     sliderControl: {
       padding: '0px',
-      marginLeft: theme.spacing(2)
+      marginLeft: theme.spacing(2),
     },
     textarea: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginBottom: theme.spacing(1)
+      marginBottom: theme.spacing(1),
     },
     link: {
       display: 'flex',
       alignItems: 'flex-end',
-      paddingRight: theme.spacing(2)
-    }
+      paddingRight: theme.spacing(2),
+    },
   }
 })
 
@@ -58,7 +58,7 @@ const TopSection = ({ topSectionContent, customSlider }) => {
 
 TopSection.propTypes = {
   topSectionContent: PropTypes.object,
-  customSlider: PropTypes.func
+  customSlider: PropTypes.func,
 }
 
 TopSection.defaultProps = {
@@ -67,10 +67,10 @@ TopSection.defaultProps = {
     paragraph: 'Paragraph',
     button: {
       text: 'Link',
-      linkTo: 'https://console.locus.place'
-    }
+      linkTo: 'https://console.locus.place',
+    },
   },
-  customSlider: null
+  customSlider: null,
 }
 
 export default TopSection

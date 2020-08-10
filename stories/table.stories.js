@@ -59,7 +59,7 @@ TableContainer.defaultProps = { children: null }
 export default {
   component: Table,
   title: 'Table',
-  decorators: [(storyFn) => <TableContainer>{storyFn()}</TableContainer>]
+  decorators: [(storyFn) => <TableContainer>{storyFn()}</TableContainer>],
 }
 
 export const empty = () => <Table />
@@ -73,7 +73,7 @@ export const columns = () => (
       { Header: 'New cases', accessor: 'new_cases' },
       { Header: 'Total cases', accessor: 'total_cases' },
       { Header: 'Province', accessor: 'province' },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` }
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
     ]}
   />
 )
@@ -114,7 +114,7 @@ export const initialHidden = () => (
         Header: 'Province',
         accessor: 'province',
         hidden: true,
-        noToggle: true
+        noToggle: true,
       },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
       {
@@ -122,8 +122,8 @@ export const initialHidden = () => (
         id: 'action',
         // eslint-disable-next-line react/display-name
         Cell: () => <button onClick={null}>Edit</button>,
-        hidden: true
-      }
+        hidden: true,
+      },
     ]}
   />
 )
@@ -156,7 +156,7 @@ export const disableGlobalFilter = () => (
       { Header: 'New cases', accessor: 'new_cases' },
       { Header: 'Total cases', accessor: 'total_cases' },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
-      { Header: 'Province', accessor: 'province' }
+      { Header: 'Province', accessor: 'province' },
     ].map((c) => ({ ...c, disableGlobalFilter: true }))}
   />
 )
@@ -172,8 +172,8 @@ export const disableFilters = () => (
         Header: 'Province',
         accessor: 'province',
         disableFilters: true,
-        disableGlobalFilter: true
-      }
+        disableGlobalFilter: true,
+      },
     ]}
   />
 )
@@ -186,20 +186,20 @@ export const disableSortBy = () => (
         Header: 'Total cases',
         accessor: 'total_cases',
         disableFilters: true,
-        disableSortBy: true
+        disableSortBy: true,
       },
       {
         Header: 'Rate',
         accessor: 'rate',
         Cell: ({ value }) => `${value}%`,
-        disableSortBy: true
+        disableSortBy: true,
       },
       {
         Header: 'Province',
         accessor: 'province',
         disableFilters: true,
-        disableGlobalFilter: true
-      }
+        disableGlobalFilter: true,
+      },
     ]}
   />
 )
@@ -215,8 +215,8 @@ export const SelectionFilter = () => (
         Header: 'Province',
         accessor: 'province',
         Filter: Table.filters.SelectionFilter,
-        filter: Table.filters.SelectionFilter.filterFn
-      }
+        filter: Table.filters.SelectionFilter.filterFn,
+      },
     ]}
   />
 )
@@ -229,13 +229,13 @@ export const RangeFilter = () => (
         Header: 'New cases',
         accessor: 'new_cases',
         Filter: Table.filters.RangeFilter,
-        filter: Table.filters.RangeFilter.filterFn
+        filter: Table.filters.RangeFilter.filterFn,
       },
       {
         Header: 'Total cases',
         accessor: 'total_cases',
         Filter: Table.filters.RangeFilter,
-        filter: Table.filters.RangeFilter.filterFn
+        filter: Table.filters.RangeFilter.filterFn,
       },
       {
         Header: 'Rate',
@@ -243,9 +243,9 @@ export const RangeFilter = () => (
         Cell: ({ value }) => `${value * 100}%`,
         Filter: Table.filters.RangeFilter,
         filter: Table.filters.RangeFilter.filterFn,
-        percentage: true
+        percentage: true,
       },
-      { Header: 'Province', accessor: 'province' }
+      { Header: 'Province', accessor: 'province' },
     ]}
   />
 )
@@ -258,27 +258,27 @@ export const CusotmDateRangeFilter = () => (
         Header: 'Date',
         accessor: 'date',
         Filter: DateRangeFilter,
-        filter: filterDates
+        filter: filterDates,
       },
       {
         Header: 'New cases',
         accessor: 'new_cases',
         Filter: Table.filters.RangeFilter,
-        filter: Table.filters.RangeFilter.filterFn
+        filter: Table.filters.RangeFilter.filterFn,
       },
       {
         Header: 'Total cases',
         accessor: 'total_cases',
         Filter: Table.filters.RangeFilter,
-        filter: Table.filters.RangeFilter.filterFn
+        filter: Table.filters.RangeFilter.filterFn,
       },
       {
         Header: 'Rate',
         accessor: 'rate',
         Cell: ({ value }) => `${value}%`,
-        disableFilters: true
+        disableFilters: true,
       },
-      { Header: 'Province', accessor: 'province' }
+      { Header: 'Province', accessor: 'province' },
     ]}
   />
 )
@@ -294,12 +294,12 @@ export const tableProps = () => (
       { Header: 'New cases', accessor: 'new_cases' },
       { Header: 'Total cases', accessor: 'total_cases' },
       { Header: 'Province', accessor: 'province' },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` }
+      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
     ]}
     tableProps={{
       // any Material UI <Table> props
       stickyHeader: true,
-      size: 'small'
+      size: 'small',
     }}
   />
 )
@@ -308,7 +308,7 @@ export const rememberHidden = () => {
   const remember = {
     key: 'DEMO_REMEMBER_HIDDEN',
     ttl: 5, // remember for 5 minutes
-    hidden: true
+    hidden: true,
   }
   return (
     <>
@@ -325,8 +325,8 @@ export const rememberHidden = () => {
           {
             Header: 'Rate',
             accessor: 'rate',
-            Cell: ({ value }) => `${value}%`
-          }
+            Cell: ({ value }) => `${value}%`,
+          },
         ]}
         remember={remember}
       />
@@ -338,7 +338,7 @@ export const rememberHiddenWithInitHiddenColumns = () => {
   const remember = {
     key: 'DEMO_REMEMBER_HIDDEN2',
     ttl: 5, // remember for 5 minutes
-    hidden: true
+    hidden: true,
   }
   return (
     <>
@@ -359,7 +359,7 @@ export const rememberSortBy = () => {
   const remember = {
     key: 'DEMO_REMEMBER_SORT_BY',
     ttl: 5, // remember for 5 minutes
-    sortBy: true
+    sortBy: true,
   }
   return (
     <>

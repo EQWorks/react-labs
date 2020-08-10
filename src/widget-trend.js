@@ -11,11 +11,11 @@ const useStyles = makeStyles((theme) => {
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
-      height: '100%'
+      height: '100%',
     },
     title: {
-      padding: '8px'
-    }
+      padding: '8px',
+    },
   }
 })
 
@@ -48,13 +48,13 @@ const WidgetTrend = ({ title, value, percentage }) => {
 WidgetTrend.propTypes = {
   title: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  percentage: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  percentage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 WidgetTrend.defaultProps = {
   title: 'Untitled',
   value: 'N/A',
-  percentage: 'N/A'
+  percentage: 'N/A',
 }
 
 export default WidgetTrend

@@ -7,7 +7,7 @@ import {
   TableRow,
   TableBody,
   TableContainer,
-  TableCell
+  TableCell,
 } from '@material-ui/core'
 
 const useStyles = makeStyles(() => {
@@ -15,9 +15,9 @@ const useStyles = makeStyles(() => {
     root: { width: '100%' },
     head: {
       fontSize: 'body',
-      fontWeight: 600
+      fontWeight: 600,
     },
-    cell: { flexGrow: 1 }
+    cell: { flexGrow: 1 },
   }
 })
 
@@ -85,7 +85,7 @@ const DynamicDataTable = ({ data, isPercentage }) => {
 
 DynamicDataTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
-  isPercentage: false
+  isPercentage: false,
 }
 
 DynamicDataTable.defaultProps = { data: [] }

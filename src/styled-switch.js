@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
       height,
       padding: 0,
       margin: theme.spacing(0.5),
-      overflow: 'unset'
+      overflow: 'unset',
     },
     switchBase: {
       padding: pxToRem(gap),
@@ -27,15 +27,15 @@ const useStyles = makeStyles((theme) => {
         '& + $track': {
           backgroundColor: theme.palette.primary.main,
           opacity: 1,
-          border: 'none'
+          border: 'none',
         },
         '& $thumb': {
-          backgroundColor: '#fff'
-        }
+          backgroundColor: '#fff',
+        },
       },
       '&:disabled': {
-        backgroundColor: '#fff'
-      }
+        backgroundColor: '#fff',
+      },
     },
     track: {
       borderRadius: 40,
@@ -44,26 +44,26 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.grey[50],
       opacity: 1,
       transition: theme.transitions.create(['background-color', 'border']),
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
     },
     thumb: {
       boxShadow: 'none',
       backgroundColor: theme.palette.grey[400],
       width: size,
-      height: size
+      height: size,
     },
     checked: {},
     disabled: {
       backgroundColor: '#fff',
       '&$checked': {
         '& + $track': {
-          opacity: 0.5
+          opacity: 0.5,
         },
         '& $thumb': {
-          opacity: 0.5
-        }
-      }
-    }
+          opacity: 0.5,
+        },
+      },
+    },
   }
 })
 
@@ -73,11 +73,11 @@ const StyledSwitch = (props) => {
 }
 
 StyledSwitch.propTypes = {
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 StyledSwitch.defaultProps = {
-  disabled: false
+  disabled: false,
 }
 
 export default StyledSwitch

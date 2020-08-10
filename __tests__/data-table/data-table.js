@@ -18,11 +18,11 @@ describe('<DataTable/>', () => {
   it('should render successfully', async () => {
     let data = {
       data: [],
-      isPercentage: false
+      isPercentage: false,
     }
 
     const component = renderer.create(
-      <DataTable {...data} />
+      <DataTable {...data} />,
     )
 
     const tree = component.toJSON()
@@ -33,10 +33,10 @@ describe('<DataTable/>', () => {
   it.each([
     {}, // empty
     { data: [] }, // missing isPercentage
-    { isPercentage: false } // missing data
+    { isPercentage: false }, // missing data
   ])('Checking failing case for %p', (props) => {
     const component = renderer.create(
-      <DataTable {...props} />
+      <DataTable {...props} />,
     )
     const componentInstance = component.root
     expect(componentInstance.props).not.toEqual(props)
@@ -46,10 +46,10 @@ describe('<DataTable/>', () => {
   it.each([
     { data: [], isPercentage: true }, // data: checking empty array, isPercentage: non-default prop value
     { data: [], isPercentage: false }, // data: checking empty array, isPercentage: default prop value
-    { data: [{}], isPercentage: false } // data: checking array of obj
+    { data: [{}], isPercentage: false }, // data: checking array of obj
   ])('Checking passing case for %p', (props) => {
     const component = renderer.create(
-      <DataTable {...props} />
+      <DataTable {...props} />,
     )
     const componentInstance = component.root
     expect(componentInstance.props).toStrictEqual(props)

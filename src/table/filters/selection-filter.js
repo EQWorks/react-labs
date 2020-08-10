@@ -12,8 +12,8 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(() => ({
   list: {
     overflow: 'auto',
-    maxHeight: '60vh'
-  }
+    maxHeight: '60vh',
+  },
 }))
 
 const SelectionFilter = ({ column: { filterValue, preFilteredRows, setFilter, id } }) => {
@@ -70,7 +70,7 @@ const SelectionFilter = ({ column: { filterValue, preFilteredRows, setFilter, id
 }
 
 SelectionFilter.propTypes = {
-  column: PropTypes.object.isRequired
+  column: PropTypes.object.isRequired,
 }
 SelectionFilter.filterFn = (rows, id, filterValue) => {
   const arr = (filterValue || '').split(',')

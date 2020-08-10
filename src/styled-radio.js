@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => {
     root: {
       margin: theme.spacing(0.5),
       '&:hover': {
-        backgroundColor: 'transparent'
-      }
+        backgroundColor: 'transparent',
+      },
     },
     icon: {
       borderRadius: '50%',
@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => {
       'input:hover ~ &': {
         transition: 'all .3s',
         backgroundColor: theme.palette.action.hover,
-        borderColor: theme.palette.primary[100]
+        borderColor: theme.palette.primary[100],
       },
       'input:disabled ~ &': {
-        opacity: 0.5
-      }
+        opacity: 0.5,
+      },
     },
     checkedIcon: {
       borderRadius: '50%',
@@ -38,17 +38,17 @@ const useStyles = makeStyles((theme) => {
         width: 16,
         height: 16,
         backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
-        content: '""'
+        content: '""',
       },
       'input:hover ~ &': {
         backgroundColor: theme.palette.primary.main,
         backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`,
-        borderColor: theme.palette.action.active
+        borderColor: theme.palette.action.active,
       },
       'input:disabled ~ &': {
-        opacity: 0.5
-      }
-    }
+        opacity: 0.5,
+      },
+    },
   }
 })
 

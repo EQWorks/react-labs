@@ -8,7 +8,7 @@ module.exports = {
   settings: {
     react: {
       pragma: 'React',
-      version: '16.13'
+      version: 'detect'
     }
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
@@ -25,11 +25,11 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'comma-dangle': ['error', 'never'],
+    'comma-dangle': ['error', 'always-multiline'],
     'eol-last': ['error', 'always'],
     indent: ['error', 2],
     'object-curly-spacing': ['error', 'always'],
-    quotes: ['error', 'single'],
+    quotes: ['error', 'single', { 'avoidEscape': true }],
     semi: ['error', 'never']
   }
 }

@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '40ch',
     padding: theme.spacing(4, 2, 0, 2),
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 }))
 
 const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id, percentage } }) => {
@@ -75,7 +75,7 @@ const RangeFilter = ({ column: { filterValue, preFilteredRows, setFilter, id, pe
 }
 
 RangeFilter.propTypes = {
-  column: PropTypes.object.isRequired
+  column: PropTypes.object.isRequired,
 }
 RangeFilter.filterFn = 'between'
 

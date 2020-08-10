@@ -9,11 +9,11 @@ const useStyles = makeStyles((theme) => {
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
-      height: '100%'
+      height: '100%',
     },
     title: {
-      padding: '8px'
-    }
+      padding: '8px',
+    },
   }
 })
 
@@ -37,13 +37,13 @@ const WidgetNumber = ({ title, value, isPercentage }) => {
 WidgetNumber.propTypes = {
   title: PropTypes.string,
   value: PropTypes.number,
-  isPercentage: PropTypes.bool
+  isPercentage: PropTypes.bool,
 }
 
 WidgetNumber.defaultProps = {
   title: 'Untitled',
   value: 'N/A',
-  isPercentage: false
+  isPercentage: false,
 }
 
 export default WidgetNumber

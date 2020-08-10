@@ -13,29 +13,29 @@ const useStyles = makeStyles((theme) => {
     root: {
       fontFamily: theme.typography.fontFamily,
       'label + &': {
-        marginTop: theme.spacing(0.5)
+        marginTop: theme.spacing(0.5),
       },
       borderRadius: 4,
       border: `1px solid ${grey[300]}`,
       fontSize: theme.typography.body1,
       padding: '4px 6px',
-      transition: theme.transitions.create(['border-color', 'box-shadow'])
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
     },
     label: {
-      marginLeft: theme.spacing(1)
+      marginLeft: theme.spacing(1),
     },
     labelError: {
       marginLeft: theme.spacing(1),
-      color: '#ea0000'
+      color: '#ea0000',
     },
     inputDefault: {
       boxShadow: `${fade(theme.palette.primary[100], 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main
+      borderColor: theme.palette.primary.main,
     },
     inputError: {
       boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.error.main
-    }
+      borderColor: theme.palette.error.main,
+    },
   }
 })
 
@@ -86,7 +86,7 @@ const TextField = ({
           endAdornment
         )}
       </InputAdornment>
-    )
+    ),
   }
 
   return (
@@ -101,7 +101,7 @@ const TextField = ({
       <InputBase
         classes={{
           root: classes.root,
-          focused: error ? classes.inputError : classes.inputDefault
+          focused: error ? classes.inputError : classes.inputDefault,
         }}
         style={fullWidth ? {} : dimensions}
         label={label}
@@ -133,7 +133,7 @@ TextField.propTypes = {
   height: PropTypes.string,
   fullWidth: PropTypes.bool,
   error: PropTypes.bool,
-  multiline: PropTypes.bool
+  multiline: PropTypes.bool,
 }
 
 TextField.defaultProps = {
@@ -148,7 +148,7 @@ TextField.defaultProps = {
   height: '42px',
   fullWidth: false,
   error: false,
-  multiline: false
+  multiline: false,
 }
 
 export default TextField

@@ -11,11 +11,11 @@ const useStyles = makeStyles((theme) => {
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
-      height: '100%'
+      height: '100%',
     },
     title: {
-      padding: '8px'
-    }
+      padding: '8px',
+    },
   }
 })
 
@@ -64,7 +64,7 @@ WidgetStats.propTypes = {
   prev: PropTypes.number,
   trendInfo: PropTypes.object,
   children: PropTypes.object,
-  units: PropTypes.string
+  units: PropTypes.string,
 }
 
 WidgetStats.defaultProps = {
@@ -76,10 +76,10 @@ WidgetStats.defaultProps = {
     upIsGreen: true,
     comparedTo: '',
     up: '',
-    down: ''
+    down: '',
   },
   children: null,
-  units: ''
+  units: '',
 }
 
 export default WidgetStats

@@ -20,75 +20,75 @@ const useStyles = makeStyles((theme) => {
   return {
     font: {
       fontFamily: theme.typography.fontFamily,
-      paddingLeft: theme.spacing(3)
+      paddingLeft: theme.spacing(3),
     },
     root: {
-      padding: theme.spacing(1.25)
+      padding: theme.spacing(1.25),
     },
     backgroundColor: {
-      backgroundColor: theme.palette.secondary[50]
+      backgroundColor: theme.palette.secondary[50],
     },
     iconButton: {
       paddingLeft: theme.spacing(0),
       paddingRight: theme.spacing(1.5),
       '&:hover': {
-        backgroundColor: 'inherit'
-      }
+        backgroundColor: 'inherit',
+      },
     },
     listItemAvatar: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     listItemAvatarRightPadding: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      paddingRight: theme.spacing(1)
+      paddingRight: theme.spacing(1),
     },
     notSelected: {
       padding: theme.spacing(1.25),
-      opacity: 0.6
+      opacity: 0.6,
     },
     sm: {
       width: theme.spacing(3.5),
-      height: theme.spacing(3.5)
+      height: theme.spacing(3.5),
     },
     md: {
       width: theme.spacing(5),
-      height: theme.spacing(5)
+      height: theme.spacing(5),
     },
     lg: {
       width: theme.spacing(7),
       height: theme.spacing(7),
-      marginRight: theme.spacing(0.5)
+      marginRight: theme.spacing(0.5),
     },
     spacing: (num) => ({
       border: `1px solid ${theme.palette.secondary[300]}`,
       borderRadius: theme.spacing(0.5),
-      marginBottom: theme.spacing(num)
+      marginBottom: theme.spacing(num),
     }),
     complete: {
       color: theme.palette.success.main,
       width: theme.spacing(1.4),
-      height: theme.spacing(1.4)
+      height: theme.spacing(1.4),
     },
     inProgress: {
       color: theme.palette.error.main,
       width: theme.spacing(1.4),
-      height: theme.spacing(1.4)
+      height: theme.spacing(1.4),
     },
     linearProgressBar: {
-      borderRadius: 50
+      borderRadius: 50,
     },
     chip: {
-      borderRadius: '4px !important'
+      borderRadius: '4px !important',
     },
     timeStatus: {
       fontFamily: theme.typography.fontFamily,
       fontSize: '12px',
-      marginTop: theme.spacing(0.7)
-    }
+      marginTop: theme.spacing(0.7),
+    },
   }
 })
 
@@ -117,7 +117,7 @@ const ListItem = ({
   progressBar,
   chip,
   chipColor,
-  chipProps
+  chipProps,
 }) => {
   const classes = useStyles(spacing)
   const [open, setOpen] = useState(false)
@@ -198,7 +198,7 @@ const ListItem = ({
         className={clsx({
           [classes.root]: true,
           [classes.notSelected]: focusOnSelected && !selected,
-          [classes.backgroundColor]: open
+          [classes.backgroundColor]: open,
         })}
       >
         {!avatar && expand !== 'end' && renderIconButton()}
@@ -233,7 +233,7 @@ const ListItem = ({
                   <FiberManualRecord
                     className={clsx({
                       [classes.complete]: progress === 'complete',
-                      [classes.inProgress]: progress === 'incomplete'
+                      [classes.inProgress]: progress === 'incomplete',
                     })}
                   />
                 ) : null}
@@ -287,7 +287,7 @@ ListItem.propTypes = {
   progressBar: PropTypes.number,
   chip: PropTypes.string,
   chipColor: PropTypes.string,
-  chipProps: PropTypes.object
+  chipProps: PropTypes.object,
 }
 
 ListItem.defaultProps = {
@@ -310,7 +310,7 @@ ListItem.defaultProps = {
   progressBar: 0,
   chip: '',
   propColor: '',
-  chipProps: {}
+  chipProps: {},
 }
 
 export default ListItem

@@ -6,7 +6,7 @@ import { StyledRadio } from '../src/index'
 
 export default {
   component: StyledRadio,
-  title: 'StyledRadio'
+  title: 'StyledRadio',
 }
 
 export const Default = () => {

@@ -102,7 +102,7 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
           <Grow
             {...TransitionProps}
             style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom'
+              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
             }}
           >
             <Paper>
@@ -140,13 +140,13 @@ Download.propTypes = {
   data: PropTypes.array,
   allColumns: PropTypes.array,
   visibleColumns: PropTypes.array,
-  rows: PropTypes.array
+  rows: PropTypes.array,
 }
 Download.defaultProps = {
   data: [],
   allColumns: null,
   visibleColumns: [],
-  rows: []
+  rows: [],
 }
 
 export default Download

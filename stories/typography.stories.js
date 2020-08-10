@@ -6,14 +6,14 @@ const useStyles = makeStyles({
   container: {
     '& *': {
       display: 'block',
-      margin: '0 0 20px 0'
-    }
-  }
+      margin: '0 0 20px 0',
+    },
+  },
 })
 
 export default {
   title: 'Typography',
-  component: Typography
+  component: Typography,
 }
 
 export const Default = () => {

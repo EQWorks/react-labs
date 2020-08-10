@@ -22,7 +22,7 @@ storiesOf('WidgetStats', module)
         upIsGreen: true,
         up: 'more',
         down: 'less',
-        comparedTo: 'than yesterday'
+        comparedTo: 'than yesterday',
       }}
     />
   ))
@@ -36,7 +36,7 @@ storiesOf('WidgetStats', module)
         upIsGreen: true,
         up: 'increase',
         down: 'decrease',
-        comparedTo: 'from the day before'
+        comparedTo: 'from the day before',
       }}
     />
   ))
@@ -50,7 +50,7 @@ storiesOf('WidgetStats', module)
         upIsGreen: false,
         up: 'increase',
         down: 'decrease',
-        comparedTo: 'from yesterday'
+        comparedTo: 'from yesterday',
       }}
     />
   ))
@@ -60,7 +60,7 @@ storiesOf('WidgetStats', module)
       value={new Date(
         new Date().getFullYear(),
         new Date().getMonth() + 1,
-        0
+        0,
       ).getDate()}
     >
       🌕🌖🌗🌘🌑🌒🌓🌔🌕

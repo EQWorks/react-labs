@@ -7,16 +7,16 @@ import { DynamicButton } from '../src/index'
 const arr = [
   {
     type: 'primary',
-    size: 'large'
+    size: 'large',
   },
   {
     type: 'secondary',
-    size: 'medium'
+    size: 'medium',
   },
   {
     type: 'tertiary',
-    size: 'small'
-  }
+    size: 'small',
+  },
 ]
 
 storiesOf('DynamicButton', module)

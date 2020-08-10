@@ -10,7 +10,7 @@ const theme = createMuiTheme({
   palette,
   props,
   shadows,
-  typography
+  typography,
 })
 
 export default theme

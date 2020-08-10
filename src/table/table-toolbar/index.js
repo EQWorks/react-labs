@@ -11,11 +11,11 @@ import DefaultFilter from '../filters/default-filter'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   title: {
-    marginRight: theme.spacing(2)
-  }
+    marginRight: theme.spacing(2),
+  },
 }))
 
 const TableToolbar = ({
@@ -30,7 +30,7 @@ const TableToolbar = ({
   downloadable,
   data,
   visibleColumns,
-  rows
+  rows,
 }) => {
   const classes = useStyles()
 
@@ -67,7 +67,7 @@ TableToolbar.propTypes = {
   globalFilter: PropTypes.string.isRequired,
   setGlobalFilter: PropTypes.func.isRequired,
   ...Download.propTypes,
-  ...Toggle.propTypes
+  ...Toggle.propTypes,
 }
 
 export default TableToolbar

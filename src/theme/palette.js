@@ -1,7 +1,7 @@
 const palette = {
   common: {
     black: '#000000',
-    white: '#ffffff'
+    white: '#ffffff',
   },
   primary: {
     light: '#009AFF',
@@ -16,7 +16,7 @@ const palette = {
     600: '#008BFF',
     700: '#0075FF',
     800: '#1564EC',
-    900: '#2242CD'
+    900: '#2242CD',
   },
   secondary: {
     light: '#9E9E9E',
@@ -31,28 +31,28 @@ const palette = {
     600: '#757575',
     700: '#616161',
     800: '#424242',
-    900: '#212121'
+    900: '#212121',
   },
   error: {
     light: '#ff5533', // selected using MUI's color tool
     main: '#ea0000',
-    dark: '#af0000' // selected using MUI's color tool
+    dark: '#af0000', // selected using MUI's color tool
   },
   warning: {
     light: '#ffe24b', // selected using MUI's color tool
     main: '#f4b000',
-    dark: '#bc8100' // selected using MUI's color tool
+    dark: '#bc8100', // selected using MUI's color tool
   },
   info: {
     light: '#ae57ff', // selected using MUI's color tool
     main: '#741fff',
-    dark: '#2e00ca' // selected using MUI's color tool
+    dark: '#2e00ca', // selected using MUI's color tool
   },
   success: {
     light: '#64ff4f', // selected using MUI's color tool
     main: '#00d308',
-    dark: '#00a000' // selected using MUI's color tool
-  }
+    dark: '#00a000', // selected using MUI's color tool
+  },
 }
 
 export default palette

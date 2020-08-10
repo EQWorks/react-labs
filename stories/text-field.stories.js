@@ -29,7 +29,7 @@ storiesOf('TextField', module)
   .add('Adornment as Button', () => {
     const [values, setValues] = useState({
       show: false,
-      password: 'hello there'
+      password: 'hello there',
     })
     return (
       <TextField

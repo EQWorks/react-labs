@@ -1,7 +1,7 @@
 const props = {
   MuiButton: {
-    disableRipple: true
-  }
+    disableRipple: true,
+  },
 }
 
 export default props

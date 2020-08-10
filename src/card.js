@@ -16,21 +16,21 @@ const useStyles = makeStyles((theme) => {
       maxWidth: 200,
       height: 220,
       padding: theme.spacing(1),
-      position: 'relative'
+      position: 'relative',
     },
     md: {
       maxWidth: 500,
       height: 270,
       padding: theme.spacing(1),
-      position: 'relative'
+      position: 'relative',
     },
     actions: {
       position: 'absolute',
       bottom: 0,
       right: 0,
       left: 0,
-      padding: theme.spacing(1.2)
-    }
+      padding: theme.spacing(1.2),
+    },
   }
 })
 
@@ -47,7 +47,7 @@ const Card = ({
   actionSide,
   width,
   height,
-  styledContainerProps
+  styledContainerProps,
 }) => {
   const classes = useStyles()
   const dimensions = { maxWidth: width, height }
@@ -132,7 +132,7 @@ Card.propTypes = {
   variantTitle: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  styledContainerProps: PropTypes.object
+  styledContainerProps: PropTypes.object,
 }
 
 Card.defaultProps = {
@@ -147,7 +147,7 @@ Card.defaultProps = {
   alignContent: 'start',
   variantTitle: 'h5',
   variantContent: 'body2',
-  styledContainerProps: {}
+  styledContainerProps: {},
 }
 
 export default Card

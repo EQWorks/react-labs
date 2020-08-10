@@ -6,23 +6,23 @@ import StyledCardContainer from '../../src/styled-card-container'
 const useStyles = makeStyles((theme) => ({
   header: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '240px'
+    height: '240px',
   },
   tag: {
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   chip: {
     borderRadius: '4px',
     margin: theme.spacing(0.5),
-    backgroundColor: theme.palette.common.white
-  }
+    backgroundColor: theme.palette.common.white,
+  },
 }))
 
 /* eslint react/prop-types: 0 */
@@ -33,7 +33,7 @@ const ImageCard = ({ prop }) => {
     <StyledCardContainer
       pattern={{
         style: 3,
-        image: image
+        image: image,
       }}
     >
       <CardContent className={classes.content}>

@@ -19,7 +19,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -38,7 +38,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -60,7 +60,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -79,7 +79,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -98,7 +98,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -117,7 +117,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -153,7 +153,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -175,7 +175,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])
@@ -202,7 +202,7 @@ storiesOf('Loader', module)
     useEffect(() => {
       const timer = setInterval(
         () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800
+        800,
       )
       return () => clearInterval(timer)
     }, [])

@@ -19,21 +19,21 @@ storiesOf('List', module)
           expand: true,
           progressBar: 20,
           timeStatus: '30m',
-          progress: 'incomplete'
+          progress: 'incomplete',
         },
         { expand: 'start', timeStatus: '2h', progress: 'complete' },
         {
           expand: 'end',
           timeStatus: '30m',
           progressBar: 80,
-          progress: 'incomplete'
+          progress: 'incomplete',
         },
-        { expand: 'end', timeStatus: '4h', progress: 'complete' }
+        { expand: 'end', timeStatus: '4h', progress: 'complete' },
       ]
       const newItem = {
         ...item,
         ...newFields[i],
-        expansionDetails: 'Example expansion details written here.'
+        expansionDetails: 'Example expansion details written here.',
       }
       return newItem
     })
@@ -45,13 +45,13 @@ storiesOf('List', module)
         { expand: true },
         { avatarVariant: 'circle', expand: 'start' },
         { avatarVariant: 'square', expand: 'end' },
-        { avatarVariant: 'rounded', expand: 'end' }
+        { avatarVariant: 'rounded', expand: 'end' },
       ]
       const newItem = {
         ...item,
         ...newFields[i],
         expansionDetails: 'Example expansion details written here.',
-        avatar: <FolderIcon />
+        avatar: <FolderIcon />,
       }
       return newItem
     })
@@ -66,27 +66,27 @@ storiesOf('List', module)
             heading: 'Small',
             avatarSize: 'sm',
             chip: 'Builder',
-            chipColor: '#f2c94c'
+            chipColor: '#f2c94c',
           },
           {
             heading: 'Medium',
             avatarSize: 'md',
             chip: 'Builder',
-            chipColor: '#f2c94c'
+            chipColor: '#f2c94c',
           },
           {
             heading: 'Large',
             avatarSize: 'lg',
             chip: 'Segment',
-            chipColor: '#56ccf2'
-          }
+            chipColor: '#56ccf2',
+          },
         ]
         const newItem = {
           ...item,
           ...newFields[i],
           avatar: <FolderIcon />,
           avatarBgColor: color,
-          avatarVariant: variant
+          avatarVariant: variant,
         }
         return newItem
       })
@@ -104,7 +104,7 @@ storiesOf('List', module)
         avatarSize: 'sm',
         avatarVariant: 'rounded',
         avatarBgColor: 'green',
-        details: ''
+        details: '',
       }
       return newItem
     })
@@ -153,7 +153,7 @@ storiesOf('List', module)
         avatar: avatarLabel,
         avatarSize: 'sm',
         avatarBgColor: 'inherit',
-        details: ''
+        details: '',
       }
       return newItem
     })
@@ -162,7 +162,7 @@ storiesOf('List', module)
         { chip: 'Marketplace', chipColor: '#6fcf97', timeStatus: '30m' },
         { chip: 'Builder', chipColor: '#f2c94c', timeStatus: '2h' },
         { chip: 'Builder', chipColor: '#f2c94c', timeStatus: '30m' },
-        { chip: 'Segment', chipColor: '#56ccf2', timeStatus: '4h' }
+        { chip: 'Segment', chipColor: '#56ccf2', timeStatus: '4h' },
       ]
       const newItem = {
         ...item,
@@ -170,7 +170,7 @@ storiesOf('List', module)
         expand: true,
         expansionDetails: 'Example expansion details written here.',
         avatar: <FolderIcon />,
-        avatarVariant: 'rounded'
+        avatarVariant: 'rounded',
       }
       return newItem
     })

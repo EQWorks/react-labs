@@ -6,7 +6,7 @@ import {
   CardContent,
   Grid,
   Typography,
-  makeStyles
+  makeStyles,
 } from '@material-ui/core'
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded'
 
@@ -15,22 +15,22 @@ import { subsData, bundlesData, categoriesData } from './data/card-info'
 
 export default {
   component: StyledCardContainer,
-  title: 'StyledCardContainer'
+  title: 'StyledCardContainer',
 }
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    display: 'flex'
+    display: 'flex',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '150px'
+    height: '150px',
   },
   sub: {
-    color: theme.palette.grey[600]
-  }
+    color: theme.palette.grey[600],
+  },
 }))
 
 export const Default = () => {
@@ -88,7 +88,7 @@ export const SelectStyles = () => {
         <Grid key={i} item xs={12} sm={6} md={4}>
           <StyledCardContainer
             pattern={{
-              style: 2
+              style: 2,
             }}
           >
             <CardContent className={classes.content}>
@@ -104,22 +104,22 @@ export const SelectStyles = () => {
 const useStyles2 = makeStyles((theme) => ({
   header: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '240px'
+    height: '240px',
   },
   tag: {
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   chip: {
     borderRadius: '4px',
-    margin: theme.spacing(0.5)
-  }
+    margin: theme.spacing(0.5),
+  },
 }))
 
 export const WithImage = () => {
@@ -154,7 +154,7 @@ export const WithImage = () => {
           <StyledCardContainer
             pattern={{
               style: 3,
-              image: cardInfo.image
+              image: cardInfo.image,
             }}
           >
             <CardContent className={classes.content}>
@@ -170,15 +170,15 @@ export const WithImage = () => {
 const useStyles3 = makeStyles((theme) => ({
   header: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '150px',
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }))
 
 export const Clickable = () => {
@@ -216,30 +216,30 @@ const useStyles4 = makeStyles((theme) => {
     header: {
       display: 'flex',
       justifyContent: 'flex-end',
-      margin: theme.spacing(1)
+      margin: theme.spacing(1),
     },
     content: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
       //height: '200px',
     },
     iconDefault: {
-      color: '#9e9e9e'
+      color: '#9e9e9e',
     },
     iconSelected: {
-      color: '#0075FF'
+      color: '#0075FF',
     },
     avatar: {
       width: '96px',
       height: '96px',
       marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(2)
+      marginBottom: theme.spacing(2),
     },
     category: {
-      marginBottom: theme.spacing(3)
-    }
+      marginBottom: theme.spacing(3),
+    },
   }
 })
 
@@ -249,12 +249,12 @@ export const Selectable = () => {
     categoriesData.map((data, index) => ({
       ...data,
       selected: true,
-      key: index
-    }))
+      key: index,
+    })),
   )
   const CardOnToggle = (key) => {
     const newData = filterableData.map((data) =>
-      data.key === key ? { ...data, selected: !data.selected } : data
+      data.key === key ? { ...data, selected: !data.selected } : data,
     )
     setFilterableData(newData)
   }
@@ -267,7 +267,7 @@ export const Selectable = () => {
             selected={cardInfo.selected}
             onClick={() => CardOnToggle(index)}
             pattern={{
-              style: 1
+              style: 1,
             }}
           >
             <Grid item className={classes.header}>

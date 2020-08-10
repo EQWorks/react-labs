@@ -18,7 +18,7 @@ import {
   useSortBy,
   useGlobalFilter,
   usePagination,
-  useFilters
+  useFilters,
 } from 'react-table'
 import { cached } from 'use-cached'
 
@@ -34,17 +34,17 @@ import RangeFilter from './filters/range-filter'
 const useStyles = makeStyles((theme) => ({
   head: {
     fontWeight: theme.typography.fontWeightBold,
-    backgroundColor: theme.palette.grey[50]
+    backgroundColor: theme.palette.grey[50],
   },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
   },
-  spacer: { flex: 'inherit' }
+  spacer: { flex: 'inherit' },
 }))
 
 const getHeader = (s) => [
   s.charAt(0).toUpperCase(),
-  s.slice(1).replace(/_/g, ' ')
+  s.slice(1).replace(/_/g, ' '),
 ].join('')
 
 const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) => {
@@ -54,7 +54,7 @@ const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) =>
     if (!children && !columns) {
       return Object.keys(data[0] || {}).map((accessor) => ({
         accessor,
-        Header: getHeader(accessor)
+        Header: getHeader(accessor),
       }))
     }
     return Array.isArray(columns) && columns.length > 0
@@ -66,7 +66,7 @@ const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) =>
   // cached hidden state
   const [hidden, setHiddenCache] = cached({
     ...remember,
-    key: remember.key != null ? `${remember.key}_HIDDEN` : null
+    key: remember.key != null ? `${remember.key}_HIDDEN` : null,
   })(useState)(() => {
     const _hidden = _cols.filter((c) => c.hidden).map((c) => (typeof c.accessor === 'string') ? c.accessor : c.id)
     return _hidden.length ? _hidden : (hiddenColumns || [])
@@ -76,7 +76,7 @@ const useTableConfig = ({ data, hiddenColumns, children, columns, remember }) =>
     _cols,
     _data,
     hidden,
-    setHiddenCache
+    setHiddenCache,
   }
 }
 
@@ -89,7 +89,7 @@ const Table = ({
   tableProps,
   headerGroupProps,
   sortBy,
-  remember
+  remember,
 }) => {
   const classes = useStyles()
   // custom table config hook
@@ -97,12 +97,12 @@ const Table = ({
     _cols,
     _data,
     hidden,
-    setHiddenCache
+    setHiddenCache,
   } = useTableConfig({ data, hiddenColumns, children, columns, remember })
   // remember me
   const [cachedSortBy, setCachedSortBy] = cached({
     ...remember,
-    key: remember.key != null ? `${remember.key}_SORT_BY` : null
+    key: remember.key != null ? `${remember.key}_SORT_BY` : null,
   })(useState)(sortBy)
   // useTable
   const {
@@ -120,21 +120,21 @@ const Table = ({
     gotoPage,
     visibleColumns,
     state: { pageSize, pageIndex, globalFilter, hiddenColumns: _hidden, sortBy: _sortBy },
-    rows
+    rows,
   } = useTable(
     {
       columns: _cols,
       data: _data,
       initialState: {
         hiddenColumns: hidden,
-        sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy])
-      }
+        sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
+      },
     },
     // plugin hooks - order matters
     useGlobalFilter,
     useFilters,
     useSortBy,
-    usePagination
+    usePagination,
   )
   // remember hidden
   useEffect(() => {
@@ -213,7 +213,7 @@ const Table = ({
                       5,
                       10,
                       25,
-                      { label: 'All', value: data.length }
+                      { label: 'All', value: data.length },
                     ]}
                     colSpan={3}
                     count={rows.length}
@@ -221,7 +221,7 @@ const Table = ({
                     page={pageIndex}
                     SelectProps={{
                       inputProps: { 'aria-label': 'rows per page' },
-                      native: true
+                      native: true,
                     }}
                     onChangePage={(_, page) => { gotoPage(page) }}
                     onChangeRowsPerPage={({ target: { value } }) => {
@@ -267,8 +267,8 @@ Table.propTypes = {
     ttl: PropTypes.number,
     ttlMS: PropTypes.number,
     hidden: PropTypes.bool,
-    sortBy: PropTypes.bool
-  })
+    sortBy: PropTypes.bool,
+  }),
 }
 Table.defaultProps = {
   columns: null,
@@ -279,7 +279,7 @@ Table.defaultProps = {
   tableProps: {},
   headerGroupProps: {},
   sortBy: {},
-  remember: {}
+  remember: {},
 }
 Table.Column = TableColumn
 Table.filters = { DefaultFilter, SelectionFilter, RangeFilter }

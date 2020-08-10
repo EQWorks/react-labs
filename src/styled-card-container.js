@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         transition: 'all .3s',
         border: `1px solid ${theme.palette.grey[500]}`,
-        boxShadow: theme.shadows[2]
+        boxShadow: theme.shadows[2],
       },
       '&.selected': {
         transition: 'all .3s',
@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme) => {
         '&:hover': {
           transition: 'all .3s',
           border: `1px solid ${theme.palette.primary[800]}`,
-          boxShadow: theme.shadows[4]
-        }
-      }
+          boxShadow: theme.shadows[4],
+        },
+      },
     },
     style2: {
       width: '100%',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         transition: 'all .3s',
         border: `1px solid ${theme.palette.grey[500]}`,
-        boxShadow: theme.shadows[2]
+        boxShadow: theme.shadows[2],
       },
       '&.selected': {
         transition: 'all .3s',
@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme) => {
         '&:hover': {
           transition: 'all .3s',
           border: `1px solid ${theme.palette.primary[800]}`,
-          boxShadow: theme.shadows[4]
-        }
-      }
+          boxShadow: theme.shadows[4],
+        },
+      },
     },
     style3: {
       width: '100%',
@@ -66,9 +66,9 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         transition: 'all .6s',
         boxShadow: theme.shadows[3],
-        backgroundSize: '105% auto'
-      }
-    }
+        backgroundSize: '105% auto',
+      },
+    },
   }
 })
 
@@ -91,18 +91,18 @@ StyledCardContainer.propTypes = {
   pattern: PropTypes.object,
   children: PropTypes.node,
   checked: PropTypes.bool,
-  selected: PropTypes.bool
+  selected: PropTypes.bool,
 }
 
 StyledCardContainer.defaultProps = {
   onClick: null,
   pattern: {
     style: 1,
-    backgroundImage: 'none'
+    backgroundImage: 'none',
   },
   children: {},
   checked: false,
-  selected: false
+  selected: false,
 }
 
 export default StyledCardContainer

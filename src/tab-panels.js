@@ -10,7 +10,7 @@ const TabPanels = ({
   tabLabels,
   tabChildren,
   customTabs,
-  customTab
+  customTab,
 }) => {
   const [value, setValue] = useState(tabIndex)
   const onTabChange = (_, newVal) => setValue(newVal)
@@ -44,7 +44,7 @@ TabPanels.propTypes = {
   customTabs: PropTypes.any,
   customTab: PropTypes.any,
   tabLabels: PropTypes.array,
-  tabChildren: PropTypes.array
+  tabChildren: PropTypes.array,
 }
 
 TabPanels.defaultProps = {
@@ -52,7 +52,7 @@ TabPanels.defaultProps = {
   customTabs: null,
   customTab: null,
   tabLabels: [],
-  tabChildren: []
+  tabChildren: [],
 }
 
 export default TabPanels

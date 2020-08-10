@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => {
       textTransform: 'none',
       borderRadius: '36px',
       border: '1px solid',
-      orderColor: theme.palette.primary.main
+      orderColor: theme.palette.primary.main,
     },
     active: {
       textTransform: 'none',
@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.primary.main,
       color: 'white',
       '&:hover': {
-        backgroundColor: theme.palette.primary.main
-      }
-    }
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
   }
 })
 
@@ -43,18 +43,18 @@ const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
 QuickFilterItem.propTypes = {
   category: PropTypes.object,
   filterOnClick: PropTypes.function,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 QuickFilterItem.defaultProps = {
   category: [
     {
       label: 'Data missing',
-      isActive: false
-    }
+      isActive: false,
+    },
   ],
   filterOnClick: () => {},
-  disabled: false
+  disabled: false,
 }
 
 export default QuickFilterItem

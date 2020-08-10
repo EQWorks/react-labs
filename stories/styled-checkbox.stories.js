@@ -5,7 +5,7 @@ import { StyledCheckbox } from '../src/index'
 
 export default {
   component: StyledCheckbox,
-  title: 'StyledCheckbox'
+  title: 'StyledCheckbox',
 }
 
 export const Default = () => {

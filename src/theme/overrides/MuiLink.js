@@ -5,8 +5,8 @@ const MuiLink = {
   root: {
     color: palette.primary.main,
     fontFamily: typography.fontFamily,
-    fontSize: typography.body1.fontSize
-  }
+    fontSize: typography.body1.fontSize,
+  },
 }
 
 export default MuiLink

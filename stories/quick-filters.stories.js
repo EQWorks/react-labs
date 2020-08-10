@@ -11,7 +11,7 @@ storiesOf('QuickFilters', module).add('with data', () => {
 
   const filterOnClick = (label) => {
     const newCategoriesData = categoriesData.map((data) =>
-      data.label === label ? { ...data, isActive: !data.isActive } : data
+      data.label === label ? { ...data, isActive: !data.isActive } : data,
     )
     setCategoriesData(newCategoriesData)
   }

@@ -23,70 +23,70 @@ const subsData = [
   {
     title: 'you are currently subscribing',
     main: '6 products',
-    sub: '3 segments - 2 layers - 1 bundle'
+    sub: '3 segments - 2 layers - 1 bundle',
   },
   {
     title: 'you are paying',
     main: '$5,000',
-    sub: 'per month'
+    sub: 'per month',
   },
   {
     title: 'The next billing date is',
     main: 'Aug 1st, 2020',
-    sub: '13 days left'
-  }
+    sub: '13 days left',
+  },
 ]
 const categoriesData = [
   {
     category:'Retail',
     image: img12,
-    inventory: 56
+    inventory: 56,
   },
   {
     category:'Automotive',
     image: img3,
-    inventory: 37
+    inventory: 37,
   },
   {
     category:'Brand loyalty',
     image: img1,
-    inventory: 11
+    inventory: 11,
   },
   {
     category:'Consumer spending',
     image: img2,
-    inventory: 64
+    inventory: 64,
   },
   {
     category:'Household',
     image: img10,
-    inventory: 23
+    inventory: 23,
   },
   {
     category:'Finance',
     image: img9,
-    inventory: 12
+    inventory: 12,
   },
   {
     category:'Telecom',
     image: img13,
-    inventory: 77
+    inventory: 77,
   },
   {
     category:'EQ personas',
     image: img11,
-    inventory: 24
+    inventory: 24,
   },
   {
     category:'Census',
     image: img7,
-    inventory: 56
+    inventory: 56,
   },
   {
     category:'Custom',
     image: img8,
-    inventory: 96
-  }
+    inventory: 96,
+  },
 ]
 const bundlesData = [
   {
@@ -96,7 +96,7 @@ const bundlesData = [
     type: 'Bundle',
     price: '$250',
     category: 'Loyalty',
-    image: img1
+    image: img1,
   },
   {
     name: 'Mortgage Demographics',
@@ -105,7 +105,7 @@ const bundlesData = [
     type: 'Bundle',
     price: '$500',
     category: 'Finance',
-    image: img2
+    image: img2,
   },
   {
     name: 'Auto Intenders',
@@ -113,7 +113,7 @@ const bundlesData = [
     type: 'Bundle',
     price: '$500',
     category: 'Automotive',
-    image: img3
+    image: img3,
   },
   {
     name: 'Sport Fanatics',
@@ -122,7 +122,7 @@ const bundlesData = [
     type: 'Bundle',
     price: '$250',
     category: 'Persona',
-    image: img4
+    image: img4,
   },
   {
     name: 'Rogers',
@@ -131,7 +131,7 @@ const bundlesData = [
     type: 'Bundle',
     price: '$250',
     category: 'Telecom',
-    image: img5
+    image: img5,
   },
   {
     name: 'Telus',
@@ -140,8 +140,8 @@ const bundlesData = [
     type: 'Bundle',
     price: '$250',
     category: 'Telecom',
-    image: img6
-  }
+    image: img6,
+  },
 ]
 
 const layersData = [
@@ -152,7 +152,7 @@ const layersData = [
     type: 'Layer',
     price: '$250',
     category: 'Retail',
-    image: img14
+    image: img14,
   },
   {
     name: 'Grocery Chain: Loblaws',
@@ -161,7 +161,7 @@ const layersData = [
     type: 'Layer',
     price: '$500',
     category: 'Retail',
-    image: img15
+    image: img15,
   },
   {
     name: 'Footwear: DA',
@@ -169,7 +169,7 @@ const layersData = [
     type: 'Layer',
     price: '$500',
     category: 'Consumer spending',
-    image: img16
+    image: img16,
   },
   {
     name: 'Tim Hortons',
@@ -178,7 +178,7 @@ const layersData = [
     type: 'Layer',
     price: '$250',
     category: 'Custom',
-    image: img17
+    image: img17,
   },
   {
     name: 'Housing: DA',
@@ -187,7 +187,7 @@ const layersData = [
     type: 'Layer',
     price: '$1500',
     category: 'Consumer spending',
-    image: img18
+    image: img18,
   },
   {
     name: 'Accessories: DA',
@@ -196,8 +196,8 @@ const layersData = [
     type: 'Layer',
     price: '$350',
     category: 'Consumer spending',
-    image: img19
-  }
+    image: img19,
+  },
 ]
 
 export { subsData, categoriesData, bundlesData, layersData }

@@ -8,11 +8,11 @@ const tabsArr = ['Tab-1: children', 'Tab-2: children', '3: something here']
 
 const customTabs = {
   root: {
-    borderBottom: '2px solid #e8e8e8'
+    borderBottom: '2px solid #e8e8e8',
   },
   indicator: {
-    backgroundColor: '#1890ff'
-  }
+    backgroundColor: '#1890ff',
+  },
 }
 const customTab = () => ({
   root: {
@@ -27,13 +27,13 @@ const customTab = () => ({
       'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
+      '"Segoe UI Symbol"',
     ].join(','),
     '&:hover': {
       color: '#40a9ff',
-      opacity: 1
-    }
-  }
+      opacity: 1,
+    },
+  },
 })
 
 storiesOf('TabPanel', module)

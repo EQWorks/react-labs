@@ -11,33 +11,33 @@ const useStyles = makeStyles((theme) => {
       borderRadius: '10px',
       '&:hover': {
         transition: 'all .3s',
-        backgroundColor: theme.palette.grey[100]
-      }
+        backgroundColor: theme.palette.grey[100],
+      },
     },
     header: {
       display: 'flex',
       justifyContent: 'flex-end',
-      margin: theme.spacing(1)
+      margin: theme.spacing(1),
     },
     content: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: theme.spacing(2)
+      padding: theme.spacing(2),
     },
     avatar: {
       width: '96px',
       height: '96px',
       marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(2)
+      marginBottom: theme.spacing(2),
     },
     category: {
-      marginBottom: theme.spacing(0)
+      marginBottom: theme.spacing(0),
     },
     inventory: {
-      color: theme.palette.grey[400]
-    }
+      color: theme.palette.grey[400],
+    },
   }
 })
 

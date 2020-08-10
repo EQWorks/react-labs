@@ -19,18 +19,18 @@ const QuickFilters = ({ disabled, categories, filterOnClick }) => {
 QuickFilters.propTypes = {
   categories: PropTypes.object,
   filterOnClick: PropTypes.function,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 QuickFilters.defaultProps = {
   categories: [
     {
       label: 'Data missing',
-      isActive: false
-    }
+      isActive: false,
+    },
   ],
   filterOnClick: () => {},
-  disabled: false
+  disabled: false,
 }
 
 export default QuickFilters

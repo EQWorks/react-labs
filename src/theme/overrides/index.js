@@ -5,7 +5,7 @@ import MuiLink from './MuiLink'
 const overrides = {
   MuiButton,
   MuiCard,
-  MuiLink
+  MuiLink,
 }
 
 export default overrides

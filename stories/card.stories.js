@@ -67,7 +67,7 @@ storiesOf('Card', module)
   })
   .add('With styled wrapper', () => {
     const styledContainerProps = {
-      pattern: { style: 3 }
+      pattern: { style: 3 },
     }
     return (
       <Card
