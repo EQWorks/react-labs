@@ -3,10 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import customTheme from "../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     default: {
       textTransform: "none",
@@ -30,7 +27,6 @@ const useStyles = makeStyles(() => {
 const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
   const classes = useStyles();
   const { label, isActive } = category;
-  console.log(label, isActive);
   return (
     <Button
       variant="outlined"

@@ -6,10 +6,7 @@ import TrendingDownRoundedIcon from "@material-ui/icons/TrendingDownRounded";
 import TrendingUpRoundedIcon from "@material-ui/icons/TrendingUpRounded";
 import Typography from "@material-ui/core/Typography";
 
-import customTheme from "../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     paper: {
       padding: theme.spacing(2),

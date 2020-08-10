@@ -5,10 +5,7 @@ import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
 import { Link, Grid, Typography, IconButton } from "@material-ui/core";
 
-import customTheme from "../../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     sliderControl: {
       padding: "0px",

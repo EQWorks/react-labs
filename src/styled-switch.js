@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 
-import customTheme from "../src/theme/index";
-
 const pxToRem = (px, oneRemPx = 17) => `${px / oneRemPx}rem`;
 const borderWidth = 1;
 const width = pxToRem(56);
@@ -12,8 +10,7 @@ const height = pxToRem(34);
 const size = pxToRem(22);
 const gap = (34 - 22) / 2;
 
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       width,

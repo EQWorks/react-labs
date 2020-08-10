@@ -5,10 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { Card } from "@material-ui/core";
 
-import customTheme from "../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     style1: {
       width: "100%",

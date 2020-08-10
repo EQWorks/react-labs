@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTheme } from "@material-ui/core/styles";
 import { CardContent, Typography } from "@material-ui/core";
 
-import customTheme from "../../../src/theme/index";
 import StyledCardContainer from "../../styled-card-container";
 
 const DefaultCard = ({ content }) => {
-  const theme = customTheme;
+  const theme = useTheme();
   return (
     <StyledCardContainer>
       <CardContent style={{ padding: theme.spacing(4) }}>

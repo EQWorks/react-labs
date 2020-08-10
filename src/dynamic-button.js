@@ -4,10 +4,7 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import customTheme from "../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     primary: {
       fontFamily: theme.typography.fontFamily,

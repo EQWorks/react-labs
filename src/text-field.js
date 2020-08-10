@@ -8,10 +8,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import InputBase from "@material-ui/core/InputBase";
 import InputLabel from "@material-ui/core/InputLabel";
 
-import customTheme from "../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       fontFamily: theme.typography.fontFamily,

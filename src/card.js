@@ -8,11 +8,9 @@ import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import customTheme from "../src/theme/index";
 import { StyledCardContainer } from ".";
 
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     sm: {
       maxWidth: 200,

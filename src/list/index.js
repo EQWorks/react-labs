@@ -5,11 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import MUIList from "@material-ui/core/List";
 
-import customTheme from "../../src/theme/index";
 import ListItem from "./list-item";
 
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       borderRadius: "4px",

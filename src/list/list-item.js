@@ -16,10 +16,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
-import customTheme from "../../src/theme/index";
-
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     font: {
       fontFamily: theme.typography.fontFamily,

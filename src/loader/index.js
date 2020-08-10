@@ -8,11 +8,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Modal from "@material-ui/core/Modal";
 import Typography from "@material-ui/core/Typography";
 
-import customTheme from "../../src/theme/index";
 import ProgressWithLabel from "./progress-with-label";
 
-const useStyles = makeStyles(() => {
-  const theme = customTheme;
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       display: "flex",
