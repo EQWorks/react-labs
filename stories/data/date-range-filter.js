@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
-}));
+}))
 
 export function DateRangeFilter({ column: { filterValue, preFilteredRows, setFilter, id } }) {
   const classes = useStyles()

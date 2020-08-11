@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
-  spacer: { flex: 'inherit' }
+  spacer: { flex: 'inherit' },
 }))
 
 const getHeader = (s) => [

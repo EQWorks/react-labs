@@ -1,5 +1,5 @@
-import palette from "../palette";
-import typography from "../typography";
+import palette from '../palette'
+import typography from '../typography'
 
 const MuiLink = {
   root: {
@@ -7,6 +7,6 @@ const MuiLink = {
     fontFamily: typography.fontFamily,
     fontSize: typography.body1.fontSize,
   },
-};
+}
 
-export default MuiLink;
+export default MuiLink

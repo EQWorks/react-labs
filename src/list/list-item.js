@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
-import Collapse from "@material-ui/core/Collapse";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import MUIListItem from "@material-ui/core/ListItem";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import Chip from '@material-ui/core/Chip'
+import Collapse from '@material-ui/core/Collapse'
+import ExpandLess from '@material-ui/icons/ExpandLess'
+import ExpandMore from '@material-ui/icons/ExpandMore'
+import FiberManualRecord from '@material-ui/icons/FiberManualRecord'
+import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton'
+import MUIListItem from '@material-ui/core/ListItem'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -31,19 +31,19 @@ const useStyles = makeStyles((theme) => {
     iconButton: {
       paddingLeft: theme.spacing(0),
       paddingRight: theme.spacing(1.5),
-      "&:hover": {
-        backgroundColor: "inherit",
+      '&:hover': {
+        backgroundColor: 'inherit',
       },
     },
     listItemAvatar: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     listItemAvatarRightPadding: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       paddingRight: theme.spacing(1),
     },
     notSelected: {
@@ -82,15 +82,15 @@ const useStyles = makeStyles((theme) => {
       borderRadius: 50,
     },
     chip: {
-      borderRadius: "4px !important",
+      borderRadius: '4px !important',
     },
     timeStatus: {
       fontFamily: theme.typography.fontFamily,
-      fontSize: "12px",
+      fontSize: '12px',
       marginTop: theme.spacing(0.7),
     },
-  };
-});
+  }
+})
 
 /**
  * Renders <ListItem /> component
@@ -119,16 +119,16 @@ const ListItem = ({
   chipColor,
   chipProps,
 }) => {
-  const classes = useStyles(spacing);
-  const [open, setOpen] = useState(false);
-  const showDetails = () => setOpen(!open);
-  const buttonProps = button && { disableRipple: true };
+  const classes = useStyles(spacing)
+  const [open, setOpen] = useState(false)
+  const showDetails = () => setOpen(!open)
+  const buttonProps = button && { disableRipple: true }
 
   const listItemAvatarRootClass = () => {
-    const applyPadding = expand && expand !== "end";
-    if (applyPadding) return classes.listItemAvatarRightPadding;
-    return classes.listItemAvatar;
-  };
+    const applyPadding = expand && expand !== 'end'
+    if (applyPadding) return classes.listItemAvatarRightPadding
+    return classes.listItemAvatar
+  }
 
   const itemHeading = (heading, progressBar) => {
     return (
@@ -152,11 +152,11 @@ const ListItem = ({
           </Grid>
         )}
       </Grid>
-    );
-  };
+    )
+  }
 
   const renderIconButton = () => {
-    if (!expand) return null;
+    if (!expand) return null
     return (
       <IconButton
         disableFocusRipple
@@ -166,15 +166,15 @@ const ListItem = ({
       >
         {open ? <ExpandLess /> : <ExpandMore />}
       </IconButton>
-    );
-  };
+    )
+  }
 
   const renderAvatar = () => {
-    if (!avatar) return null;
+    if (!avatar) return null
     return (
       <ListItemAvatar classes={{ root: listItemAvatarRootClass() }}>
         <>
-          {expand !== "end" && renderIconButton()}
+          {expand !== 'end' && renderIconButton()}
           <Avatar
             variant={avatarVariant}
             className={classes[avatarSize]}
@@ -184,8 +184,8 @@ const ListItem = ({
           </Avatar>
         </>
       </ListItemAvatar>
-    );
-  };
+    )
+  }
 
   return (
     <div className={spacing && classes.spacing}>
@@ -201,7 +201,7 @@ const ListItem = ({
           [classes.backgroundColor]: open,
         })}
       >
-        {!avatar && expand !== "end" && renderIconButton()}
+        {!avatar && expand !== 'end' && renderIconButton()}
         {renderAvatar()}
         <ListItemText
           primary={itemHeading(heading, progressBar)}
@@ -232,8 +232,8 @@ const ListItem = ({
                 {progress ? (
                   <FiberManualRecord
                     className={clsx({
-                      [classes.complete]: progress === "complete",
-                      [classes.inProgress]: progress === "incomplete",
+                      [classes.complete]: progress === 'complete',
+                      [classes.inProgress]: progress === 'incomplete',
                     })}
                   />
                 ) : null}
@@ -241,7 +241,7 @@ const ListItem = ({
               </div>
             )}
           </Grid>
-          {expand === "end" && (
+          {expand === 'end' && (
             <Grid item container justify="flex-end" xs={12}>
               {renderIconButton()}
             </Grid>
@@ -264,8 +264,8 @@ const ListItem = ({
         </MUIListItem>
       </Collapse>
     </div>
-  );
-};
+  )
+}
 
 ListItem.propTypes = {
   itemSecondaryAction: PropTypes.any,
@@ -288,29 +288,29 @@ ListItem.propTypes = {
   chip: PropTypes.string,
   chipColor: PropTypes.string,
   chipProps: PropTypes.object,
-};
+}
 
 ListItem.defaultProps = {
-  itemSecondaryAction: "",
+  itemSecondaryAction: '',
   onClick: () => null,
-  avatar: "",
-  avatarVariant: "circle",
-  avatarSize: "md",
-  avatarBgColor: "",
+  avatar: '',
+  avatarVariant: 'circle',
+  avatarSize: 'md',
+  avatarBgColor: '',
   expand: false,
-  expansionDetails: "",
+  expansionDetails: '',
   spacing: 0,
   focusOnSelected: false,
-  heading: "",
-  details: "",
+  heading: '',
+  details: '',
   selected: false,
   button: false,
-  timeStatus: "",
-  progress: "",
+  timeStatus: '',
+  progress: '',
   progressBar: 0,
-  chip: "",
-  propColor: "",
+  chip: '',
+  propColor: '',
   chipProps: {},
-};
+}
 
-export default ListItem;
+export default ListItem

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<Typography>` - Story created.
 
 ### Changed
+- `Linting` - Updated ESLint configuration.
 - `<ThemeProvider>` - Moved custom theming property passing from Storybook preview to HOC in `/src/index`.
 - `<Tabe />` - lighter impl on unspecified `remember.key` prop.
 

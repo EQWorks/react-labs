@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { useRef } from "react";
+import React, { useRef } from 'react'
 import {
   Link,
   Chip,
@@ -8,70 +8,70 @@ import {
   Typography,
   makeStyles,
   IconButton,
-} from "@material-ui/core";
-import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
-import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
+} from '@material-ui/core'
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded'
+import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded'
 
-import { Carousel, StyledCardContainer } from "../src/index";
-import { bundlesData } from "./data/card-info";
+import { Carousel, StyledCardContainer } from '../src/index'
+import { bundlesData } from './data/card-info'
 
 export default {
   component: Carousel,
-  title: "Carousel",
-};
+  title: 'Carousel',
+}
 
 const useStyles = makeStyles((theme) => ({
   sliderControl: {
-    padding: "0px",
+    padding: '0px',
     marginLeft: theme.spacing(2),
   },
   textarea: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
     marginBottom: theme.spacing(1),
   },
   wrapper: {
-    display: "flex",
-    flexWrap: "nowrap",
-    overflowX: "auto",
-    "&::-webkit-scrollbar": {
-      display: "none",
+    display: 'flex',
+    flexWrap: 'nowrap',
+    overflowX: 'auto',
+    '&::-webkit-scrollbar': {
+      display: 'none',
     },
   },
   link: {
-    display: "flex",
-    alignItems: "flex-end",
+    display: 'flex',
+    alignItems: 'flex-end',
     paddingRight: theme.spacing(2),
   },
   container: {
-    width: "50px",
+    width: '50px',
   },
   header: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   content: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    height: "240px",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '240px',
   },
   tag: {
-    display: "flex",
-    justifyContent: "flex-end",
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   chip: {
-    borderRadius: "4px",
+    borderRadius: '4px',
     margin: theme.spacing(0.5),
   },
-}));
+}))
 export const Default = () => {
-  return <Carousel />;
-};
+  return <Carousel />
+}
 
 export const CustomCards = () => {
-  const customSlider = useRef();
-  const classes = useStyles();
+  const customSlider = useRef()
+  const classes = useStyles()
 
   const topSection = (
     <Grid container className={classes.textarea}>
@@ -100,7 +100,7 @@ export const CustomCards = () => {
         </IconButton>
       </Grid>
     </Grid>
-  );
+  )
 
   const cards = bundlesData.map(
     ({ name, description, type, price, category, image }, index) => (
@@ -129,8 +129,8 @@ export const CustomCards = () => {
           </Grid>
         </CardContent>
       </StyledCardContainer>
-    )
-  );
+    ),
+  )
 
   return (
     <div>
@@ -143,5 +143,5 @@ export const CustomCards = () => {
         }}
       />
     </div>
-  );
-};
+  )
+}

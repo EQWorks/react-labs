@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Avatar,
   Chip,
@@ -7,34 +7,34 @@ import {
   Grid,
   Typography,
   makeStyles,
-} from "@material-ui/core";
-import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
+} from '@material-ui/core'
+import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded'
 
-import { StyledCardContainer } from "../src/index";
-import { subsData, bundlesData, categoriesData } from "./data/card-info";
+import { StyledCardContainer } from '../src/index'
+import { subsData, bundlesData, categoriesData } from './data/card-info'
 
 export default {
   component: StyledCardContainer,
-  title: "StyledCardContainer",
-};
+  title: 'StyledCardContainer',
+}
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    display: "flex",
+    display: 'flex',
   },
   content: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    height: "150px",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '150px',
   },
   sub: {
     color: theme.palette.grey[600],
   },
-}));
+}))
 
 export const Default = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const contents = ({ title, main, sub }) => {
     return (
@@ -47,8 +47,8 @@ export const Default = () => {
           {sub}
         </Typography>
       </React.Fragment>
-    );
-  };
+    )
+  }
 
   return (
     <Grid container spacing={2}>
@@ -62,11 +62,11 @@ export const Default = () => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
 export const SelectStyles = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const contents = ({ title, main, sub }) => {
     return (
@@ -79,8 +79,8 @@ export const SelectStyles = () => {
           {sub}
         </Typography>
       </React.Fragment>
-    );
-  };
+    )
+  }
 
   return (
     <Grid container spacing={2}>
@@ -98,32 +98,32 @@ export const SelectStyles = () => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
 const useStyles2 = makeStyles((theme) => ({
   header: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   content: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    height: "240px",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '240px',
   },
   tag: {
-    display: "flex",
-    justifyContent: "flex-end",
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   chip: {
-    borderRadius: "4px",
+    borderRadius: '4px',
     margin: theme.spacing(0.5),
   },
-}));
+}))
 
 export const WithImage = () => {
-  const classes = useStyles2();
+  const classes = useStyles2()
 
   const contents = ({ name, description, type, price, category }) => {
     return (
@@ -144,8 +144,8 @@ export const WithImage = () => {
           <Typography variant="h6">{price}/mo</Typography>
         </Grid>
       </React.Fragment>
-    );
-  };
+    )
+  }
 
   return (
     <Grid container spacing={2}>
@@ -164,25 +164,25 @@ export const WithImage = () => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}
 
 const useStyles3 = makeStyles((theme) => ({
   header: {
-    display: "flex",
-    justifyContent: "space-between",
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   content: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    height: "150px",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '150px',
     padding: theme.spacing(2),
   },
-}));
+}))
 
 export const Clickable = () => {
-  const classes = useStyles3();
+  const classes = useStyles3()
 
   const content = (
     <React.Fragment>
@@ -199,65 +199,65 @@ export const Clickable = () => {
         <Typography variant="h6">$500/mo</Typography>
       </Grid>
     </React.Fragment>
-  );
+  )
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
-        <StyledCardContainer onClick={() => alert("clicked")}>
+        <StyledCardContainer onClick={() => alert('clicked')}>
           <CardContent className={classes.content}>{content}</CardContent>
         </StyledCardContainer>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
 const useStyles4 = makeStyles((theme) => {
   return {
     header: {
-      display: "flex",
-      justifyContent: "flex-end",
+      display: 'flex',
+      justifyContent: 'flex-end',
       margin: theme.spacing(1),
     },
     content: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
       //height: '200px',
     },
     iconDefault: {
-      color: "#9e9e9e",
+      color: '#9e9e9e',
     },
     iconSelected: {
-      color: "#0075FF",
+      color: '#0075FF',
     },
     avatar: {
-      width: "96px",
-      height: "96px",
+      width: '96px',
+      height: '96px',
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(2),
     },
     category: {
       marginBottom: theme.spacing(3),
     },
-  };
-});
+  }
+})
 
 export const Selectable = () => {
-  const classes = useStyles4();
+  const classes = useStyles4()
   const [filterableData, setFilterableData] = useState(
     categoriesData.map((data, index) => ({
       ...data,
       selected: true,
       key: index,
-    }))
-  );
+    })),
+  )
   const CardOnToggle = (key) => {
     const newData = filterableData.map((data) =>
-      data.key === key ? { ...data, selected: !data.selected } : data
-    );
-    setFilterableData(newData);
-  };
+      data.key === key ? { ...data, selected: !data.selected } : data,
+    )
+    setFilterableData(newData)
+  }
   return (
     <Grid container spacing={2}>
       {filterableData.map((cardInfo, index) => (
@@ -291,5 +291,5 @@ export const Selectable = () => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}

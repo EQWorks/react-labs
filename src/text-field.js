@@ -1,32 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import grey from "@material-ui/core/colors/grey";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import InputBase from "@material-ui/core/InputBase";
-import InputLabel from "@material-ui/core/InputLabel";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import grey from '@material-ui/core/colors/grey'
+import IconButton from '@material-ui/core/IconButton'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import InputBase from '@material-ui/core/InputBase'
+import InputLabel from '@material-ui/core/InputLabel'
 
 const useStyles = makeStyles((theme) => {
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
-      "label + &": {
+      'label + &': {
         marginTop: theme.spacing(0.5),
       },
       borderRadius: 4,
       border: `1px solid ${grey[300]}`,
       fontSize: theme.typography.body1,
-      padding: "4px 6px",
-      transition: theme.transitions.create(["border-color", "box-shadow"]),
+      padding: '4px 6px',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
     },
     label: {
       marginLeft: theme.spacing(1),
     },
     labelError: {
       marginLeft: theme.spacing(1),
-      color: "#ea0000",
+      color: '#ea0000',
     },
     inputDefault: {
       boxShadow: `${fade(theme.palette.primary[100], 0.25)} 0 0 0 0.2rem`,
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => {
       boxShadow: `${fade(theme.palette.error.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.error.main,
     },
-  };
-});
+  }
+})
 
 const TextField = ({
   inputProps,
@@ -54,8 +54,8 @@ const TextField = ({
   multiline,
   ...props
 }) => {
-  const classes = useStyles();
-  const dimensions = { width, height: multiline ? "auto" : height };
+  const classes = useStyles()
+  const dimensions = { width, height: multiline ? 'auto' : height }
   const inp = {
     startAdornment: (
       <InputAdornment position="start">
@@ -87,7 +87,7 @@ const TextField = ({
         )}
       </InputAdornment>
     ),
-  };
+  }
 
   return (
     <div>
@@ -118,8 +118,8 @@ const TextField = ({
         {helperText}
       </FormHelperText>
     </div>
-  );
-};
+  )
+}
 
 TextField.propTypes = {
   inputProps: PropTypes.object,
@@ -134,21 +134,21 @@ TextField.propTypes = {
   fullWidth: PropTypes.bool,
   error: PropTypes.bool,
   multiline: PropTypes.bool,
-};
+}
 
 TextField.defaultProps = {
   inputProps: {},
-  label: "Label",
-  startAdornment: "",
-  endAdornment: "",
+  label: 'Label',
+  startAdornment: '',
+  endAdornment: '',
   adornmentButton: false,
   adornmentOnClick: null,
-  helperText: "",
-  width: "380px",
-  height: "42px",
+  helperText: '',
+  width: '380px',
+  height: '42px',
   fullWidth: false,
   error: false,
   multiline: false,
-};
+}
 
-export default TextField;
+export default TextField

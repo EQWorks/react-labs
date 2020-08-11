@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react'
 
-import TopSection from "./top-section";
-import Carousel from "./carousel";
+import TopSection from './top-section'
+import Carousel from './carousel'
 
 const ImageSlider = ({ carouselContent, topSectionContent }) => {
-  const customSlider = useRef();
+  const customSlider = useRef()
   return (
     <React.Fragment>
       <TopSection
@@ -13,17 +13,17 @@ const ImageSlider = ({ carouselContent, topSectionContent }) => {
       />
       <Carousel getRef={customSlider} carouselContent={carouselContent} />
     </React.Fragment>
-  );
-};
+  )
+}
 
 ImageSlider.propTypes = {
   ...TopSection.propTypes,
   ...Carousel.propTypes,
-};
+}
 
 ImageSlider.defaultProps = {
   ...TopSection.defaultProps,
   ...Carousel.defaultProps,
-};
+}
 
-export default ImageSlider;
+export default ImageSlider

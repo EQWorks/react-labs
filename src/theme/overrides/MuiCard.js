@@ -1,20 +1,20 @@
-import palette from "../palette";
+import palette from '../palette'
 
 const MuiCard = {
   root: {
-    "&.primary": {
+    '&.primary': {
       backgroundColor: palette.primary.main,
       color: palette.common.white,
     },
-    "&.secondary": {
+    '&.secondary': {
       backgroundColor: palette.secondary.main,
       color: palette.common.white,
     },
-    "&.success": {
+    '&.success': {
       backgroundColor: palette.success.main,
       color: palette.common.black,
     },
   },
-};
+}
 
-export default MuiCard;
+export default MuiCard

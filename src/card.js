@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import MUICard from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import MUICard from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
-import { StyledCardContainer } from ".";
+import { StyledCardContainer } from '.'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -16,23 +16,23 @@ const useStyles = makeStyles((theme) => {
       maxWidth: 200,
       height: 220,
       padding: theme.spacing(1),
-      position: "relative",
+      position: 'relative',
     },
     md: {
       maxWidth: 500,
       height: 270,
       padding: theme.spacing(1),
-      position: "relative",
+      position: 'relative',
     },
     actions: {
-      position: "absolute",
+      position: 'absolute',
       bottom: 0,
       right: 0,
       left: 0,
       padding: theme.spacing(1.2),
     },
-  };
-});
+  }
+})
 
 const Card = ({
   cardTitle,
@@ -49,13 +49,13 @@ const Card = ({
   height,
   styledContainerProps,
 }) => {
-  const classes = useStyles();
-  const dimensions = { maxWidth: width, height };
+  const classes = useStyles()
+  const dimensions = { maxWidth: width, height }
   const alignTxt = (placement) => {
-    if (placement === "start") return "left";
-    if (placement === "end") return "right";
-    return placement;
-  };
+    if (placement === 'start') return 'left'
+    if (placement === 'end') return 'right'
+    return placement
+  }
   const cardBody = (
     <>
       {Object.entries(headerProps).length > 0 && (
@@ -66,7 +66,7 @@ const Card = ({
           container
           item
           xs={12}
-          justify={alignTitle === "center" ? "center" : `flex-${alignTitle}`}
+          justify={alignTitle === 'center' ? 'center' : `flex-${alignTitle}`}
         >
           <Typography
             variant={variantTitle}
@@ -81,7 +81,7 @@ const Card = ({
           item
           xs={12}
           justify={
-            alignContent === "center" ? "center" : `flex-${alignContent}`
+            alignContent === 'center' ? 'center' : `flex-${alignContent}`
           }
         >
           <Typography
@@ -98,26 +98,26 @@ const Card = ({
           className={classes.actions}
           container
           alignItems="flex-end"
-          justify={actionSide === "center" ? "center" : `flex-${actionSide}`}
+          justify={actionSide === 'center' ? 'center' : `flex-${actionSide}`}
         >
           <CardActions disableSpacing>{cardAction}</CardActions>
         </Grid>
       )}
     </>
-  );
+  )
   if (Object.entries(styledContainerProps).length > 0)
     return (
       <StyledCardContainer {...styledContainerProps}>
         {cardBody}
       </StyledCardContainer>
-    );
+    )
 
   return (
     <MUICard style={dimensions} className={classes[size]}>
       {cardBody}
     </MUICard>
-  );
-};
+  )
+}
 
 Card.propTypes = {
   cardContent: PropTypes.any.isRequired,
@@ -133,21 +133,21 @@ Card.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   styledContainerProps: PropTypes.object,
-};
+}
 
 Card.defaultProps = {
-  cardTitle: "Interesting Title",
+  cardTitle: 'Interesting Title',
   cardAction: null,
-  size: "md",
+  size: 'md',
   headerProps: {},
-  actionSide: "end",
-  width: "",
-  height: "",
-  alignTitle: "start",
-  alignContent: "start",
-  variantTitle: "h5",
-  variantContent: "body2",
+  actionSide: 'end',
+  width: '',
+  height: '',
+  alignTitle: 'start',
+  alignContent: 'start',
+  variantTitle: 'h5',
+  variantContent: 'body2',
   styledContainerProps: {},
-};
+}
 
-export default Card;
+export default Card

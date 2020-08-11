@@ -1,23 +1,23 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
   container: {
-    "& *": {
-      display: "block",
-      margin: "0 0 20px 0",
+    '& *': {
+      display: 'block',
+      margin: '0 0 20px 0',
     },
   },
-});
+})
 
 export default {
-  title: "Typography",
+  title: 'Typography',
   component: Typography,
-};
+}
 
 export const Default = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.container}>
@@ -37,5 +37,5 @@ export const Default = () => {
         overline/Open Sans/Regular/10px
       </Typography>
     </div>
-  );
-};
+  )
+}

@@ -12,14 +12,14 @@ const useStyles = makeStyles(theme => ({
       height: '5rem',
       justifyContent: 'center',
       margin: '10px',
-      width: '8rem'
-    }
-  }
+      width: '8rem',
+    },
+  },
 }))
 
 export default {
   component: Box,
-  title: 'Shadow'
+  title: 'Shadow',
 }
 
 export const Default = () => {
