@@ -3,25 +3,25 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    jest: true
+    jest: true,
   },
   settings: {
     react: {
       pragma: 'React',
-      version: 'detect'
+      version: 'detect',
     }
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['react'],
   rules: {
@@ -30,6 +30,6 @@ module.exports = {
     indent: ['error', 2],
     'object-curly-spacing': ['error', 'always'],
     quotes: ['error', 'single', { 'avoidEscape': true }],
-    semi: ['error', 'never']
-  }
+    semi: ['error', 'never'],
+  },
 }
