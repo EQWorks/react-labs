@@ -1,6 +1,5 @@
 /* eslint react/prop-types: 0 */
 import React, { useRef } from "react";
-import Carousel from "../src/image-slider/carousel";
 import {
   Link,
   Chip,
@@ -12,8 +11,10 @@ import {
 } from "@material-ui/core";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
+
+import { Carousel, StyledCardContainer } from "../src/index";
 import { bundlesData } from "./data/card-info";
-import StyledCardContainer from "../src/styled-card-container";
+
 export default {
   component: Carousel,
   title: "Carousel",
@@ -65,16 +66,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export const Default = () => {
-
-  return (
-    <Carousel/>
-  );
-}
+  return <Carousel />;
+};
 
 export const CustomCards = () => {
   const customSlider = useRef();
   const classes = useStyles();
-  
+
   const topSection = (
     <Grid container className={classes.textarea}>
       <Grid item>
@@ -137,10 +135,13 @@ export const CustomCards = () => {
   return (
     <div>
       {topSection}
-      <Carousel getRef={customSlider} carouselContent={{
-        imagesToShow: 3,
-        content: cards,
-      }}/>
+      <Carousel
+        getRef={customSlider}
+        carouselContent={{
+          imagesToShow: 3,
+          content: cards,
+        }}
+      />
     </div>
   );
 };

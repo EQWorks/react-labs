@@ -1,45 +1,31 @@
 import React from "react";
-import { Card } from "@material-ui/core";
-import { palette, typography } from "./themes";
-import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
-import clsx from 'clsx';
+import { Card } from "@material-ui/core";
 
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  };
-
+const useStyles = makeStyles((theme) => {
   return {
     style1: {
       width: "100%",
-      backgroundImage: '#fff',
+      backgroundImage: "#fff",
       border: `1px solid ${theme.palette.grey[400]}`,
-      boxShadow: theme.palette.shadow[10],
-      borderRadius: '10px',
+      boxShadow: theme.shadows[1],
+      borderRadius: "10px",
       "&:hover": {
         transition: "all .3s",
         border: `1px solid ${theme.palette.grey[500]}`,
-        boxShadow: theme.palette.shadow[20],
+        boxShadow: theme.shadows[2],
       },
       "&.selected": {
         transition: "all .3s",
         border: `1px solid ${theme.palette.primary.main}`,
-        boxShadow: theme.palette.shadow[30],
+        boxShadow: theme.shadows[3],
         "&:hover": {
           transition: "all .3s",
-          border: `1px solid ${theme.palette.shade.primary[800]}`,
-          boxShadow: theme.palette.shadow[40],
+          border: `1px solid ${theme.palette.primary[800]}`,
+          boxShadow: theme.shadows[4],
         },
       },
     },
@@ -47,37 +33,39 @@ const useStyles = makeStyles((t) => {
       width: "100%",
       backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
       border: `1px solid ${theme.palette.grey[400]}`,
-      boxShadow: theme.palette.shadow[10],
-      borderRadius: '10px',
+      boxShadow: theme.shadows[1],
+      borderRadius: "10px",
       "&:hover": {
         transition: "all .3s",
         border: `1px solid ${theme.palette.grey[500]}`,
-        boxShadow: theme.palette.shadow[20],
+        boxShadow: theme.shadows[2],
       },
       "&.selected": {
         transition: "all .3s",
         border: `1px solid ${theme.palette.primary.main}`,
-        boxShadow: theme.palette.shadow[30],
+        boxShadow: theme.shadows[3],
         "&:hover": {
           transition: "all .3s",
-          border: `1px solid ${theme.palette.shade.primary[800]}`,
-          boxShadow: theme.palette.shadow[40],
+          border: `1px solid ${theme.palette.primary[800]}`,
+          boxShadow: theme.shadows[4],
         },
       },
     },
     style3: {
       width: "100%",
       backgroundImage: (props) =>
-        `linear-gradient(${fade(theme.palette.grey[600], 0)}, #000), url(${props.image})`,
+        `linear-gradient(${fade(theme.palette.grey[600], 0)}, #000), url(${
+          props.image
+        })`,
       backgroundPosition: "center center",
       backgroundSize: "100% auto",
       transition: "background-size 0.6s ease-out",
       color: "white",
-      boxShadow: theme.palette.shadow[10],
-      borderRadius: '10px',
+      boxShadow: theme.shadows[1],
+      borderRadius: "10px",
       "&:hover": {
         transition: "all .6s",
-        boxShadow: theme.palette.shadow[30],
+        boxShadow: theme.shadows[3],
         backgroundSize: "105% auto",
       },
     },
@@ -89,7 +77,7 @@ const StyledCardContainer = ({ pattern, onClick, selected, children }) => {
   const classes = useStyles(pattern);
   return (
     <Card
-      className={clsx(classes[whichStyle], {selected})}
+      className={clsx(classes[whichStyle], { selected })}
       elevation={0}
       onClick={onClick}
     >

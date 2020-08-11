@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import StyledCheckbox  from "../src/styled-checkbox";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+
+import { StyledCheckbox } from "../src/index";
 
 export default {
   component: StyledCheckbox,
@@ -30,22 +31,12 @@ export const Disabled = () => {
   return (
     <div>
       <FormControlLabel
-        control={
-          <StyledCheckbox
-            disabled={true}
-            checked={true}
-          />
-        }
+        control={<StyledCheckbox disabled={true} checked={true} />}
         label="checkbox disabled"
       />
-      <br/>
+      <br />
       <FormControlLabel
-        control={
-          <StyledCheckbox
-            disabled={true}
-            checked={false}
-          />
-        }
+        control={<StyledCheckbox disabled={true} checked={false} />}
         label="checkbox disabled"
       />
     </div>

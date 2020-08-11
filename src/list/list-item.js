@@ -1,37 +1,22 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
-import clsx from 'clsx'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import Chip from "@material-ui/core/Chip";
+import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import MUIListItem from "@material-ui/core/ListItem";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
-import { makeStyles } from '@material-ui/core/styles'
-import MUIListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import Grid from '@material-ui/core/Grid'
-import Collapse from '@material-ui/core/Collapse'
-import Avatar from '@material-ui/core/Avatar'
-import IconButton from '@material-ui/core/IconButton'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import FiberManualRecord from '@material-ui/icons/FiberManualRecord'
-import Chip from '@material-ui/core/Chip'
-
-import { palette, typography } from '../themes'
-
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
+const useStyles = makeStyles((theme) => {
   return {
     font: {
       fontFamily: theme.typography.fontFamily,
@@ -41,29 +26,29 @@ const useStyles = makeStyles((t) => {
       padding: theme.spacing(1.25),
     },
     backgroundColor: {
-      backgroundColor: theme.palette.shade.secondary[50]
+      backgroundColor: theme.palette.secondary[50],
     },
     iconButton: {
       paddingLeft: theme.spacing(0),
       paddingRight: theme.spacing(1.5),
-      '&:hover': {
-        backgroundColor: 'inherit',
-      }
+      "&:hover": {
+        backgroundColor: "inherit",
+      },
     },
     listItemAvatar: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
     listItemAvatarRightPadding: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       paddingRight: theme.spacing(1),
     },
     notSelected: {
       padding: theme.spacing(1.25),
-      opacity: 0.6
+      opacity: 0.6,
     },
     sm: {
       width: theme.spacing(3.5),
@@ -71,15 +56,15 @@ const useStyles = makeStyles((t) => {
     },
     md: {
       width: theme.spacing(5),
-      height: theme.spacing(5)
+      height: theme.spacing(5),
     },
     lg: {
       width: theme.spacing(7),
       height: theme.spacing(7),
       marginRight: theme.spacing(0.5),
     },
-    spacing: num => ({
-      border: `1px solid ${theme.palette.shade.secondary[300]}`,
+    spacing: (num) => ({
+      border: `1px solid ${theme.palette.secondary[300]}`,
       borderRadius: theme.spacing(0.5),
       marginBottom: theme.spacing(num),
     }),
@@ -97,21 +82,21 @@ const useStyles = makeStyles((t) => {
       borderRadius: 50,
     },
     chip: {
-      borderRadius: '4px !important',
+      borderRadius: "4px !important",
     },
     timeStatus: {
       fontFamily: theme.typography.fontFamily,
-      fontSize: '12px',
+      fontSize: "12px",
       marginTop: theme.spacing(0.7),
     },
-  }
-})
+  };
+});
 
 /**
-* Renders <ListItem /> component
-* @param props
-* @param props.expand - expansion panel (Default: false, Specify: ['start', 'end'], If True: [default 'start'])
-*/
+ * Renders <ListItem /> component
+ * @param props
+ * @param props.expand - expansion panel (Default: false, Specify: ['start', 'end'], If True: [default 'start'])
+ */
 const ListItem = ({
   itemSecondaryAction,
   expand,
@@ -134,55 +119,73 @@ const ListItem = ({
   chipColor,
   chipProps,
 }) => {
-  const classes = useStyles(spacing)
-  const [open, setOpen] = useState(false)
-  const showDetails = () => setOpen(!open)
-  const buttonProps = button && { disableRipple: true }
+  const classes = useStyles(spacing);
+  const [open, setOpen] = useState(false);
+  const showDetails = () => setOpen(!open);
+  const buttonProps = button && { disableRipple: true };
 
   const listItemAvatarRootClass = () => {
-    const applyPadding = expand && expand !== 'end'
-    if (applyPadding) return classes.listItemAvatarRightPadding
-    return classes.listItemAvatar
-  }
+    const applyPadding = expand && expand !== "end";
+    if (applyPadding) return classes.listItemAvatarRightPadding;
+    return classes.listItemAvatar;
+  };
 
   const itemHeading = (heading, progressBar) => {
     return (
-      <Grid container alignItems='center' justify='flex-start' direction='row' spacing={1}>
-        <Grid item xs={12}>{heading}</Grid>
-        {progressBar > 0 &&
-          <Grid item xs={10} >
-            <LinearProgress value={progressBar} variant='determinate' className={classes.linearProgressBar}/>
-          </Grid>}
+      <Grid
+        container
+        alignItems="center"
+        justify="flex-start"
+        direction="row"
+        spacing={1}
+      >
+        <Grid item xs={12}>
+          {heading}
+        </Grid>
+        {progressBar > 0 && (
+          <Grid item xs={10}>
+            <LinearProgress
+              value={progressBar}
+              variant="determinate"
+              className={classes.linearProgressBar}
+            />
+          </Grid>
+        )}
       </Grid>
-    )
-  }
+    );
+  };
 
   const renderIconButton = () => {
-    if (!expand) return null
+    if (!expand) return null;
     return (
-      <IconButton disableFocusRipple disableRipple onClick={showDetails} classes={{ root: classes.iconButton }}>
+      <IconButton
+        disableFocusRipple
+        disableRipple
+        onClick={showDetails}
+        classes={{ root: classes.iconButton }}
+      >
         {open ? <ExpandLess /> : <ExpandMore />}
       </IconButton>
-    )
-  }
+    );
+  };
 
   const renderAvatar = () => {
-    if (!avatar) return null
+    if (!avatar) return null;
     return (
       <ListItemAvatar classes={{ root: listItemAvatarRootClass() }}>
         <>
-          {expand !== 'end' && renderIconButton()}
+          {expand !== "end" && renderIconButton()}
           <Avatar
-            variant={ avatarVariant }
-            className={ classes[avatarSize] }
+            variant={avatarVariant}
+            className={classes[avatarSize]}
             style={{ backgroundColor: avatarBgColor }}
           >
             {avatar}
           </Avatar>
         </>
       </ListItemAvatar>
-    )
-  }
+    );
+  };
 
   return (
     <div className={spacing && classes.spacing}>
@@ -198,54 +201,75 @@ const ListItem = ({
           [classes.backgroundColor]: open,
         })}
       >
-        {!avatar && expand !=='end' && renderIconButton()}
+        {!avatar && expand !== "end" && renderIconButton()}
         {renderAvatar()}
         <ListItemText
           primary={itemHeading(heading, progressBar)}
           secondary={details}
         />
         <Grid item container xs={2}>
-          <Grid item container xs={12} justify='flex-start' alignItems='flex-end' direction='column'>
-            {chip && <div>
-              <Chip
-                classes={{ root: classes.chip }}
-                style={{ backgroundColor: chipColor }}
-                label={chip}
-                size='small'
-                {...chipProps}
-              />
-            </div>}
-            {timeStatus && <div className={classes.timeStatus}>
-              {progress ? <FiberManualRecord
-                className={clsx({
-                  [classes.complete]: progress === 'complete',
-                  [classes.inProgress]: progress === 'incomplete',
-                })} /> : null}
+          <Grid
+            item
+            container
+            xs={12}
+            justify="flex-start"
+            alignItems="flex-end"
+            direction="column"
+          >
+            {chip && (
+              <div>
+                <Chip
+                  classes={{ root: classes.chip }}
+                  style={{ backgroundColor: chipColor }}
+                  label={chip}
+                  size="small"
+                  {...chipProps}
+                />
+              </div>
+            )}
+            {timeStatus && (
+              <div className={classes.timeStatus}>
+                {progress ? (
+                  <FiberManualRecord
+                    className={clsx({
+                      [classes.complete]: progress === "complete",
+                      [classes.inProgress]: progress === "incomplete",
+                    })}
+                  />
+                ) : null}
                 &nbsp;&nbsp;{timeStatus}
-            </div>}
+              </div>
+            )}
           </Grid>
-          {expand === 'end' &&
-            <Grid item container justify='flex-end' xs={12} >
+          {expand === "end" && (
+            <Grid item container justify="flex-end" xs={12}>
               {renderIconButton()}
-            </Grid>}
+            </Grid>
+          )}
         </Grid>
-        {itemSecondaryAction && <ListItemSecondaryAction>{itemSecondaryAction}</ListItemSecondaryAction>}
+        {itemSecondaryAction && (
+          <ListItemSecondaryAction>
+            {itemSecondaryAction}
+          </ListItemSecondaryAction>
+        )}
       </MUIListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit  className={ classes.backgroundColor }>
+      <Collapse
+        in={open}
+        timeout="auto"
+        unmountOnExit
+        className={classes.backgroundColor}
+      >
         <MUIListItem>
           <div className={classes.font}>{expansionDetails}</div>
         </MUIListItem>
       </Collapse>
     </div>
-  )
-}
+  );
+};
 
 ListItem.propTypes = {
   itemSecondaryAction: PropTypes.any,
-  expand: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
+  expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   expansionDetails: PropTypes.any,
   spacing: PropTypes.number,
   avatar: PropTypes.any,
@@ -264,29 +288,29 @@ ListItem.propTypes = {
   chip: PropTypes.string,
   chipColor: PropTypes.string,
   chipProps: PropTypes.object,
-}
+};
 
 ListItem.defaultProps = {
-  itemSecondaryAction: '',
+  itemSecondaryAction: "",
   onClick: () => null,
-  avatar: '',
-  avatarVariant: 'circle',
-  avatarSize: 'md',
-  avatarBgColor: '',
+  avatar: "",
+  avatarVariant: "circle",
+  avatarSize: "md",
+  avatarBgColor: "",
   expand: false,
-  expansionDetails: '',
+  expansionDetails: "",
   spacing: 0,
   focusOnSelected: false,
-  heading: '',
-  details: '',
+  heading: "",
+  details: "",
   selected: false,
   button: false,
-  timeStatus: '',
-  progress: '',
+  timeStatus: "",
+  progress: "",
   progressBar: 0,
-  chip: '',
-  propColor: '',
+  chip: "",
+  propColor: "",
   chipProps: {},
-}
+};
 
-export default ListItem
+export default ListItem;

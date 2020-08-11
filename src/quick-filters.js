@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
-import QuickFilterItem from "./quick-filter-item";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
+import QuickFilterItem from "./quick-filter-item";
 
 const QuickFilters = ({ disabled, categories, filterOnClick }) => {
   const QuickFilterList = categories.map((category) => (
@@ -27,10 +27,10 @@ QuickFilters.defaultProps = {
     {
       label: "Data missing",
       isActive: false,
-    }
+    },
   ],
   filterOnClick: () => {},
-  disabled: false
+  disabled: false,
 };
 
 export default QuickFilters;

@@ -2,14 +2,13 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Card, Grid, Typography } from "@material-ui/core";
 
-
 /* eslint react/prop-types: 0 */
 const useStyles = makeStyles((theme) => {
   return {
     container: {
       backgroundColor: theme.palette.grey[50],
       width: "100%",
-      borderRadius: '10px',
+      borderRadius: "10px",
       "&:hover": {
         transition: "all .3s",
         backgroundColor: theme.palette.grey[100],

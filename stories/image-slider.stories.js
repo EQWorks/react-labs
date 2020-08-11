@@ -1,12 +1,12 @@
 import React from "react";
-import ImageSlider from "../src/image-slider";
-import { AppBar, Toolbar, Grid, Typography } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Grid, Typography } from "@material-ui/core";
+
+import { DynamicButton, ImageSlider } from "../src/index";
 import { bundlesData, categoriesData, layersData } from "./data/card-info";
-import ImageCard from "./cards/image-card";
 import CategoryCard from "./cards/category-card";
-import DynamicButton from "../src/dynamic-button";
 import heroImage from "./assets/hero.jpg";
+import ImageCard from "./cards/image-card";
 
 export default {
   component: ImageSlider,
@@ -14,8 +14,8 @@ export default {
 };
 
 export const Default = () => {
-  return <ImageSlider/>
-}
+  return <ImageSlider />;
+};
 
 export const Bundles = () => {
   const cards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />);
@@ -28,7 +28,7 @@ export const Bundles = () => {
         button: {
           text: "View all",
           linkTo: "https://console.locus.place",
-        }
+        },
       }}
       carouselContent={{
         imagesToShow: 3,
@@ -39,7 +39,9 @@ export const Bundles = () => {
 };
 
 export const Categories = () => {
-  const cards = categoriesData.map((prop, i) => <CategoryCard key={i} prop={prop} />);
+  const cards = categoriesData.map((prop, i) => (
+    <CategoryCard key={i} prop={prop} />
+  ));
   return (
     <ImageSlider
       topSectionContent={{
@@ -47,7 +49,7 @@ export const Categories = () => {
         paragraph: "",
         button: {
           text: "Customize my feed",
-        }
+        },
       }}
       carouselContent={{
         imagesToShow: 6,
@@ -67,7 +69,7 @@ export const Layers = () => {
           "A collection of geospatial data product of selected categories.",
         button: {
           text: "View all",
-        }
+        },
       }}
       carouselContent={{
         imagesToShow: 3,
@@ -80,7 +82,7 @@ export const Layers = () => {
 const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: theme.palette.common.white,
-    boxShadow: 'none',
+    boxShadow: "none",
     border: `1px solid ${theme.palette.grey[300]}`,
   },
   hero: {
@@ -112,19 +114,22 @@ export const MultipleSliders = () => {
   const categoriesCards = categoriesData.map((prop, i) => (
     <CategoryCard key={i} prop={prop} />
   ));
-  const bundlesCards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />);
-  const layersCards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />);
+  const bundlesCards = bundlesData.map((prop, i) => (
+    <ImageCard key={i} prop={prop} />
+  ));
+  const layersCards = layersData.map((prop, i) => (
+    <ImageCard key={i} prop={prop} />
+  ));
 
   return (
     <Grid container spacing={2}>
       <AppBar position="sticky" className={classes.appbar}>
-        <Toolbar>   
-          <DynamicButton type='secondary'>My subscription</DynamicButton>
-          <DynamicButton type='tertiary'>Marketplace seller hub</DynamicButton>
+        <Toolbar>
+          <DynamicButton type="secondary">My subscription</DynamicButton>
+          <DynamicButton type="tertiary">Marketplace seller hub</DynamicButton>
         </Toolbar>
       </AppBar>
-      <Grid container item xs={12}>
-      </Grid>
+      <Grid container item xs={12}></Grid>
       <Grid container item xs={12}>
         <Grid container item xs={12} className={classes.section}>
           <Grid item xs={6}>
@@ -161,7 +166,7 @@ export const MultipleSliders = () => {
               paragraph: "",
               button: {
                 text: "Customize my feed",
-              }
+              },
             }}
             carouselContent={{
               imagesToShow: 6,
@@ -186,7 +191,7 @@ export const MultipleSliders = () => {
                 "A collection of geospatial data product of selected categories.",
               button: {
                 text: "View all",
-              }
+              },
             }}
             carouselContent={{
               imagesToShow: 4,
@@ -204,7 +209,7 @@ export const MultipleSliders = () => {
                 "Bundles are the collection of segments and layers packaged based on a specific persona.",
               button: {
                 text: "View all",
-              }
+              },
             }}
             carouselContent={{
               imagesToShow: 4,
