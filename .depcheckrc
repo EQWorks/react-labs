@@ -1,0 +1,7 @@
+ignore-dirs: ["dist", "node_modules"]
+ignores: [
+    "babel-*",
+    "eslint-*",
+    "@babel/*",
+    "@storybook/*"
+]
