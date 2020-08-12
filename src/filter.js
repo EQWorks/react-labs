@@ -7,18 +7,18 @@ import FormLabel from '@material-ui/core/FormLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
 import Popper from '@material-ui/core/Popper'
 import Paper from '@material-ui/core/Paper'
 
 import DynamicButton from './dynamic-button'
+import StyledCheckbox from './styled-checkbox'
 
 
 const useStyles = makeStyles(() => ({
   popper: { zIndex: 1 },
   formControl: { margin: '15px 15px 5px 15px' },
   formLabel: { fontWeight: 'bolder', marginBottom: '10px' },
-  checkboxRoot: { '&:hover': { backgroundColor: 'transparent' }, padding: '0px 5px 5px 10px' },
+  checkboxRoot: { padding: '5px 5px 5px 10px' },
   select: { paddingLeft: '15px' },
 }))
 
@@ -44,13 +44,13 @@ const Filter = ({
                 <div key={c}>
                   <FormControlLabel
                     control={(
-                      <Checkbox
+                      <StyledCheckbox
                         className={classes.checkboxRoot}
                         checked={filterVals[c]}
                         onChange={checkboxOnChange}
                         name={c}
-                        disableRipple
-                        color='primary'
+                        // disableRipple
+                        // color='primary'
                       />
                     )}
                     label={c}
