@@ -1,4 +1,4 @@
-ignore-dirs: ["dist", "node_modules"]
+ignore-dirs: ["dist", "node_modules", "storybook-static"]
 ignores: [
     "babel-*",
     "eslint-*",
