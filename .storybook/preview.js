@@ -1,3 +1,3 @@
-import { configure } from "@storybook/react";
-
-configure(require.context("../stories", true, /\.stories\.js$/), module);
+export const parameters = {
+  controls: { expanded: true },
+}

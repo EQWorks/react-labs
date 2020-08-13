@@ -49,6 +49,7 @@
     "react-dom": "^16.13.0"
   },
   "dependencies": {
+    "@storybook/addon-essentials": "^6.0.5",
     "classnames": "^2.2.6",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
