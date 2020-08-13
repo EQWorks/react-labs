@@ -27,27 +27,27 @@ export default {
     },
   },
   args: {
+    children: 'Button',
     size: 'medium',
-    text: 'Button',
     type: 'primary',
   },
   argTypes: {
+    children: {
+      description: '`node`',
+      type: { text: 'string', required: true },
+    },
     size: {
       control: {
         type: 'select',
-        options: ['small', 'medium', 'large'],
+        options: ['medium', 'small', 'large'],
       },
-      description: 'Size of the button.',
+      description: '`medium` | `small` | `large`',
       table: {
         defaultValue: {
           summary: 'medium',
         },
       },
       type: { type: 'select', required: false },
-    },
-    text: {
-      description: 'Text value of the button.',
-      type: { text: 'string', required: true },
     },
     type: {
       control: {
@@ -57,7 +57,7 @@ export default {
       // defaultValue is not appearing on preview. Could be result of a bug, submitted issue
       // https://github.com/storybookjs/storybook/issues/11983
       // defaultValue: 'primary',
-      description: 'Style type of button.',
+      description: '`primary` | `secondary` | `tertiary`',
       name: 'type',
       table: {
         defaultValue: {
@@ -71,13 +71,13 @@ export default {
 
 // ===
 
-const DefaultTemplate = (args) => <Button onClick={action('onClick')} {...args} />
+const DefaultTemplate = (args) => <Button onClick={action('onClick')} {...args}>{args.children}</Button>
 
 export const Default = DefaultTemplate.bind({})
 
 // ===
 
-const startIconTemplate = ({ startIcon, ...args }) => <Button onClick={action('onClick')} startIcon={selectIcon(startIcon)} {...args} />
+const startIconTemplate = ({ startIcon, ...args }) => <Button onClick={action('onClick')} startIcon={selectIcon(startIcon)} {...args}>{args.children}</Button>
 
 export const startIcon = startIconTemplate.bind({})
 
@@ -91,14 +91,14 @@ startIcon.argTypes = {
       type: 'select',
       options: ['AccountCircle', 'CloudUpload', 'VerifiedUser'],
     },
-    description: 'Left-side button icon.',
+    description: '`svg`',
     type: { text: 'string', required: true },
   },
 }
 
 // ===
 
-const endIconTemplate = ({ endIcon, ...args }) => <Button onClick={action('onClick')} endIcon={selectIcon(endIcon)} {...args} />
+const endIconTemplate = ({ endIcon, ...args }) => <Button onClick={action('onClick')} endIcon={selectIcon(endIcon)} {...args}>{args.children}</Button>
 
 export const endIcon = endIconTemplate.bind({})
 
@@ -112,7 +112,7 @@ endIcon.argTypes = {
       type: 'select',
       options: ['AccountCircle', 'CloudUpload', 'VerifiedUser'],
     },
-    description: 'Right-side button icon.',
+    description: '`svg`',
     type: { text: 'string', required: true },
   },
 }

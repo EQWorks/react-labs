@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 
-const ButtonComponent = ({ text, type, ...props }) => {
+const ButtonComponent = ({ children, type, ...props }) => {
   const styleProps = {
     color: 'primary',
     type: 'primary',
@@ -17,18 +17,18 @@ const ButtonComponent = ({ text, type, ...props }) => {
 
   return (
     <Button {...styleProps} {...props}>
-      {text}
+      {children}
     </Button>
   )
 }
 
 ButtonComponent.propTypes = {
-  text: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
 }
 
 ButtonComponent.defaultProps = {
-  text: 'Button',
+  children: 'Button',
   type: 'primary',
 }
 
