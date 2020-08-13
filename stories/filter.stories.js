@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react'
-import { Filter, DynamicButton } from '../src'
+import React from 'react'
+import { Filter } from '../src'
 
-import Grid from '@material-ui/core/Grid'
 import FilterListIcon from '@material-ui/icons/FilterList'
 
 
@@ -11,90 +10,42 @@ export default {
 }
 
 export const Default = () => {
-  const [open, setOpen] = useState(false)
-  const options = [
-    { hello: false },
-    { there: false },
-  ]
-  const ref = useRef(null)
-
+  const options = [ { hello: false }, { there: false } ]
   return (
-    <Grid container direction='column' justify='flex-start' alignItems='flex-start'>
-      <div ref={ref}>
-        <DynamicButton
-          type='tertiary'
-          startIcon={<FilterListIcon />}
-          onClick={() => setOpen(!open)}
-        >
-          Filter
-        </DynamicButton>
-      </div>
-      <Filter
-        options={options}
-        open={open}
-        anchorEl={ref.current}
-      />
-    </Grid>
+    <Filter
+      label='Filter'
+      options={options}
+      optionsLabel='Categories'
+    />
   )
 }
 
-export const Label = () => {
-  const options = [
-    { hello: false },
-    { there: false },
-  ]
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-
+export const Icon = () => {
+  const options = [ { hello: false }, { there: false } ]
   return (
-    <Grid container direction='column' justify='flex-start' alignItems='flex-start'>
-      <div ref={ref}>
-        <DynamicButton
-          type='tertiary'
-          startIcon={<FilterListIcon />}
-          onClick={() => setOpen(!open)}
-        >
-          Filter
-        </DynamicButton>
-      </div>
-      <Filter
-        options={options}
-        open={open}
-        anchorEl={ref.current}
-        formLabel='Categories'
-      />
-    </Grid>
+    <Filter
+      icon={<FilterListIcon />}
+      label='Filter'
+      options={options}
+      optionsLabel='Categories'
+    />
   )
 }
 
 export const SelectAll = () => {
-  const options = [
-    { hello: false },
-    { there: false },
-    { hi: false },
-    { bye: false },
-  ]
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-
+  const options = [ { hello: false }, { there: false }, { hi: false }, { bye: false } ]
+  const checkboxOnChange = (newFilterVals, selectedVals) => {
+    console.log('newFilters: ', newFilterVals)
+    console.log('selectedVals: ', selectedVals)
+  }
   return (
-    <Grid container direction='column' justify='flex-start' alignItems='flex-start'>
-      <div ref={ref}>
-        <DynamicButton
-          type='tertiary'
-          startIcon={<FilterListIcon />}
-          onClick={() => setOpen(!open)}
-        >
-          Filter
-        </DynamicButton>
-      </div>
-      <Filter
-        options={options}
-        open={open}
-        anchorEl={ref.current}
-        formLabel='Categories'
-        hasSelectAll
-      />
-    </Grid>
+    <Filter
+      icon={<FilterListIcon />}
+      label='Filter'
+      options={options}
+      optionsLabel='Categories'
+      hasSelectAll
+      onChange={checkboxOnChange}
+    />
   )
 }
