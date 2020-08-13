@@ -11,12 +11,11 @@ export default {
 }
 
 export const Default = () => {
-  const options = ['hello', 'there']
   const [open, setOpen] = useState(false)
-  const [filterVals, setFilterVals] = useState({
-    hello: false,
-    there: false
-  })
+  const options = [
+    { hello: false },
+    { there: false },
+  ]
   const ref = useRef(null)
 
   return (
@@ -33,21 +32,18 @@ export const Default = () => {
       <Filter
         options={options}
         open={open}
-        filterVals={filterVals}
         anchorEl={ref.current}
-        checkboxOnChange={(e) => setFilterVals({ ...filterVals, [e.target.name]: e.target.checked })}
       />
     </Grid>
   )
 }
 
 export const Label = () => {
-  const options = ['hello', 'there']
+  const options = [
+    { hello: false },
+    { there: false },
+  ]
   const [open, setOpen] = useState(false)
-  const [filterVals, setFilterVals] = useState({
-    hello: false,
-    there: false
-  })
   const ref = useRef(null)
 
   return (
@@ -64,9 +60,7 @@ export const Label = () => {
       <Filter
         options={options}
         open={open}
-        filterVals={filterVals}
         anchorEl={ref.current}
-        checkboxOnChange={(e) => setFilterVals({ ...filterVals, [e.target.name]: e.target.checked })}
         formLabel='Categories'
       />
     </Grid>
@@ -74,20 +68,14 @@ export const Label = () => {
 }
 
 export const SelectAll = () => {
-  const options = ['hello', 'there']
+  const options = [
+    { hello: false },
+    { there: false },
+    { hi: false },
+    { bye: false },
+  ]
   const [open, setOpen] = useState(false)
-  const [selectAll, setSelectAll] = useState(false)
-  const [filterVals, setFilterVals] = useState({
-    hello: false,
-    there: false
-  })
   const ref = useRef(null)
-
-  const handleSelectAll = () => {
-    const selectedVals = options.reduce((obj, opt) => ({ ...obj, [opt]: !selectAll }), {})
-    setSelectAll(!selectAll)
-    setFilterVals(selectedVals)
-  }
 
   return (
     <Grid container direction='column' justify='flex-start' alignItems='flex-start'>
@@ -103,12 +91,9 @@ export const SelectAll = () => {
       <Filter
         options={options}
         open={open}
-        selectedAll={selectAll}
-        filterVals={filterVals}
         anchorEl={ref.current}
-        checkboxOnChange={(e) => setFilterVals({ ...filterVals, [e.target.name]: e.target.checked })}
-        selectAllOnClick={handleSelectAll}
         formLabel='Categories'
+        hasSelectAll
       />
     </Grid>
   )

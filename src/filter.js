@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,15 +24,39 @@ const useStyles = makeStyles(() => ({
 
 const Filter = ({
   options,
+  hasSelectAll,
+  formLabel,
   anchorEl,
   open,
-  filterVals,
-  selectedAll,
-  checkboxOnChange,
-  selectAllOnClick,
-  formLabel,
 }) => {
   const classes = useStyles()
+  const [filterVals, setFilterVals] = useState(options)
+  const [selectAll, setSelectAll] = useState(true)
+
+  const checkboxOnChange = (e) => {
+    const newFilterVals = filterVals.map((v) => {
+      const [ filterName ] = Object.keys(v)
+      if (filterName === e.target.name) {
+        return { [e.target.name]: e.target.checked }
+      }
+      return v
+    })
+    const optionsState = newFilterVals.filter((v) => !Object.values(v)[0])
+    if (optionsState.length === 0) setSelectAll(!selectAll)
+    if (optionsState.length > 0 && !selectAll) setSelectAll(!selectAll)
+    setFilterVals(newFilterVals)
+  }
+
+  const selectAllOnClick = () => {
+    const newFilterVals = filterVals.reduce((arr, opt) => {
+      const [ name ] = Object.keys(opt)
+      arr.push({ [name]: selectAll })
+      return arr
+    }, [])
+    setFilterVals(newFilterVals)
+    setSelectAll(!selectAll)
+  }
+
   return (
     <Popper open={open} anchorEl={anchorEl} transition disablePortal className={classes.popper}>
       <Paper>
@@ -40,32 +64,33 @@ const Filter = ({
           <FormControl component='fieldset' className={classes.formControl}>
             <FormLabel component='legend' className={classes.formLabel}>{formLabel}</FormLabel>
             <FormGroup>
-              {options.map((c) => (
-                <div key={c}>
-                  <FormControlLabel
-                    control={(
-                      <StyledCheckbox
-                        className={classes.checkboxRoot}
-                        checked={filterVals[c]}
-                        onChange={checkboxOnChange}
-                        name={c}
-                        // disableRipple
-                        // color='primary'
-                      />
-                    )}
-                    label={c}
-                  />
-                </div>
-              ))}
+              {filterVals.map((val) => {
+                const [optionName, optionState] = Object.entries(val)[0]
+                return (
+                  <div key={optionName}>
+                    <FormControlLabel
+                      control={(
+                        <StyledCheckbox
+                          className={classes.checkboxRoot}
+                          checked={optionState}
+                          onChange={checkboxOnChange}
+                          name={optionName}
+                        />
+                      )}
+                      label={optionName}
+                    />
+                  </div>
+                )
+              })}
             </FormGroup>
           </FormControl>
-          {selectAllOnClick && <div className={classes.select}>
+          {hasSelectAll && <div className={classes.select}>
             <DynamicButton
               type='tertiary'
               style={{ padding: '0px', margin: '0px 0px 15px 0px' }}
               onClick={selectAllOnClick}
             >
-              {selectedAll ? 'Unselect All' : 'Select All'}
+              {selectAll ? 'Select All' : 'Reset'}
             </DynamicButton>
           </div>}
         </Grid>
@@ -76,20 +101,15 @@ const Filter = ({
 
 Filter.propTypes = {
   options: PropTypes.array.isRequired,
+  formLabel: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  checkboxOnChange: PropTypes.func.isRequired,
-  filterVals: PropTypes.object.isRequired,
   anchorEl: PropTypes.any,
-  selectAllOnClick: PropTypes.func,
-  selectedAll: PropTypes.bool,
-  formLabel: PropTypes.string,
+  hasSelectAll: PropTypes.bool,
 }
 
 Filter.defaultProps = {
   anchorEl: '',
-  selectAllOnClick: null,
-  selectedAll: false,
-  formLabel: '',
+  hasSelectAll: false,
 }
 
 export default Filter
