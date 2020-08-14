@@ -120,34 +120,101 @@ const Card = ({
 }
 
 Card.propTypes = {
-  cardContent: PropTypes.any.isRequired,
-  cardTitle: PropTypes.string,
-  cardAction: PropTypes.any,
-  size: PropTypes.string,
-  headerProps: PropTypes.object,
-  actionSide: PropTypes.string,
+  /**
+    * The vertical alignment of the action item.
+  */
+  actionSide: PropTypes.oneOf(['start', 'center', 'end']),
+  /**
+    * The vertical alignment of the title.
+  */
+  alignTitle: PropTypes.oneOf(['start', 'center', 'end']),
+  /**
+    * The vertical alignment of the content.
+  */
   alignContent: PropTypes.string,
-  alignTitle: PropTypes.string,
-  variantContent: PropTypes.string,
-  variantTitle: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+    * The action item of the component.
+  */
+  cardAction: PropTypes.any,
+  /**
+    * The content of the component.
+  */
+  cardContent: PropTypes.any.isRequired,
+  /**
+    * The title of the component.
+  */
+  cardTitle: PropTypes.string,
+  /**
+    * The properties of the component header.
+  */
+  headerProps: PropTypes.object,
+  /**
+    * The height of the component.
+  */
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+    * The size of the component.
+  */
+  size: PropTypes.oneOf(['sm', 'md']),
+  /**
+    * The properties of the component.
+  */
   styledContainerProps: PropTypes.object,
+  /**
+    * The theme typography styles to the component content.
+  */
+  variantContent: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'subtitle2',
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    'overline',
+    'srOnly',
+    'inherit',
+  ]),
+  /**
+    * The theme typography styles to the component title.
+  */
+  variantTitle: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'subtitle2',
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    'overline',
+    'srOnly',
+    'inherit',
+  ]),
+  /**
+    * The width of the component.
+  */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 Card.defaultProps = {
-  cardTitle: 'Interesting Title',
-  cardAction: null,
-  size: 'md',
-  headerProps: {},
-  actionSide: 'end',
-  width: '',
-  height: '',
-  alignTitle: 'start',
+  actionSide: 'start',
   alignContent: 'start',
-  variantTitle: 'h5',
-  variantContent: 'body2',
+  alignTitle: 'start',
+  headerProps: {},
+  size: 'md',
   styledContainerProps: {},
+  variantContent: 'body2',
+  variantTitle: 'h5',
 }
 
 export default Card

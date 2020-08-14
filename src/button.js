@@ -42,7 +42,6 @@ ButtonComponent.propTypes = {
 }
 
 ButtonComponent.defaultProps = {
-  children: 'Button',
   size: 'medium',
   type: 'primary',
 }

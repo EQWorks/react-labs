@@ -7,6 +7,7 @@ export default {
   title: 'Inputs/Button',
   component: Button,
   args: {
+    children: 'Button',
     disabled: false,
     size: 'medium',
     type: 'primary',
