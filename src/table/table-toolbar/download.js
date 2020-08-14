@@ -10,7 +10,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Badge from '@material-ui/core/Badge'
 import SaveAltIcon from '@material-ui/icons/SaveAlt'
 
-import { DynamicButton } from '../../index'
+import { Button } from '../../index'
 
 
 const saveData = ({ data, rows, allColumns, visibleColumns, visCols = false, filteredRows = false }) => {
@@ -83,8 +83,8 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
 
   return (
     <>
-      <div ref={anchorRef} aria-label='Save DynamicButton'>
-        <DynamicButton
+      <div ref={anchorRef} aria-label='Save Button'>
+        <Button
           type='tertiary'
           endIcon={
             <Badge color='secondary' variant='dot' invisible={!allowOptions}>
@@ -95,7 +95,7 @@ const Download = ({ data, allColumns, visibleColumns, rows }) => {
           aria-haspopup='menu'
         >
           Download
-        </DynamicButton>
+        </Button>
       </div>
       <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
         {({ TransitionProps, placement }) => (

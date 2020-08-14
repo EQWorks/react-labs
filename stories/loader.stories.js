@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 import Skeleton from '@material-ui/lab/Skeleton'
 
-import { DynamicButton, Loader } from '../src/index'
+import { Button, Loader } from '../src/index'
 
 const skeleton = (
   <div>
@@ -137,13 +137,13 @@ storiesOf('Loader', module)
     const [open, setOpen] = useState(false)
     return (
       <Loader open={open} action="circular">
-        <DynamicButton
+        <Button
           disabled={open}
           load={open}
           onClick={() => setOpen(true)}
         >
           Click Me
-        </DynamicButton>
+        </Button>
       </Loader>
     )
   })
@@ -159,13 +159,13 @@ storiesOf('Loader', module)
     }, [])
     return (
       <Loader open={open} action="circular determinate" progress={progress}>
-        <DynamicButton
+        <Button
           disabled={open}
           load={open}
           onClick={() => setOpen(true)}
         >
           Click Me
-        </DynamicButton>
+        </Button>
       </Loader>
     )
   })
@@ -185,13 +185,13 @@ storiesOf('Loader', module)
         action="circular determinate label"
         progress={progress}
       >
-        <DynamicButton
+        <Button
           disabled={open}
           load={open}
           onClick={() => setOpen(true)}
         >
           Click Me
-        </DynamicButton>
+        </Button>
       </Loader>
     )
   })
@@ -208,7 +208,7 @@ storiesOf('Loader', module)
     }, [])
     return (
       <Loader open={progress < 50} skeletonConfig={skeleton}>
-        <DynamicButton>Click Me</DynamicButton>
+        <Button>Click Me</Button>
       </Loader>
     )
   })

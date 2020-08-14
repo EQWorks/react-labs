@@ -3,7 +3,6 @@ import Button from './button'
 import Card from './card'
 import Carousel from './image-slider/carousel'
 import DataTable from './data-table' // deprecated by Table
-import DynamicButton from './dynamic-button'
 // export { default as DynamicDataTable } from './dynamic-data-table' // deprecated by Table
 import ImageSlider from './image-slider'
 import List from './list'
@@ -26,7 +25,6 @@ export {
   Card,
   Carousel,
   DataTable,
-  DynamicButton,
   ImageSlider,
   List,
   Loader,

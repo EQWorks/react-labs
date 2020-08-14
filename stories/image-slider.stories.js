@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Grid, Typography } from '@material-ui/core'
 
-import { DynamicButton, ImageSlider } from '../src/index'
+import { Button, ImageSlider } from '../src/index'
 import { bundlesData, categoriesData, layersData } from './data/card-info'
 import CategoryCard from './cards/category-card'
 import heroImage from './assets/hero.jpg'
@@ -125,8 +125,8 @@ export const MultipleSliders = () => {
     <Grid container spacing={2}>
       <AppBar position="sticky" className={classes.appbar}>
         <Toolbar>
-          <DynamicButton type="secondary">My subscription</DynamicButton>
-          <DynamicButton type="tertiary">Marketplace seller hub</DynamicButton>
+          <Button type="secondary">My subscription</Button>
+          <Button type="tertiary">Marketplace seller hub</Button>
         </Toolbar>
       </AppBar>
       <Grid container item xs={12}></Grid>
@@ -147,7 +147,7 @@ export const MultipleSliders = () => {
               </Typography>
             </div>
             <div className={classes.textareaItem}>
-              <DynamicButton type="secondary">Learn more</DynamicButton>
+              <Button type="secondary">Learn more</Button>
             </div>
           </Grid>
         </Grid>

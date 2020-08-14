@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import CheckIcon from '@material-ui/icons/Check'
 
-import { Card, DynamicButton, TextField } from '../src/index'
+import { Card, Button, TextField } from '../src/index'
 
 const loginContent = (
   <>
@@ -39,7 +39,7 @@ storiesOf('Card', module)
       actionSide="center"
       cardTitle="Interesting Title"
       cardContent="Some content goes here.."
-      cardAction={<DynamicButton />}
+      cardAction={<Button />}
     />
   ))
   .add('Login: example', () => {
@@ -47,7 +47,7 @@ storiesOf('Card', module)
       <Card
         cardTitle="Log in"
         cardContent={loginContent}
-        cardAction={<DynamicButton size="medium">Send</DynamicButton>}
+        cardAction={<Button size="medium">Send</Button>}
         actionSide="start"
       />
     )
