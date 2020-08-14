@@ -1,5 +1,4 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 import { makeStyles } from '@material-ui/core/styles'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
@@ -32,7 +31,7 @@ export const Default = () => {
   return (
     <div>
       {buttonTypes.map((type, index) => (
-        <Button onClick={action('onClick')} key={index} type={type}>
+        <Button key={index} type={type}>
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </Button>
       ))}
@@ -45,7 +44,6 @@ export const IconLeft = () => {
     <div>
       {buttonTypes.map((type, index) => (
         <Button
-          onClick={action('onClick')}
           key={index}
           startIcon={<CloudUploadIcon />}
           type={type}
@@ -62,7 +60,6 @@ export const IconRight = () => {
       {buttonTypes.map((type, index) => (
         <Button
           endIcon={<CloudUploadIcon />}
-          onClick={action('onClick')}
           key={index}
           type={type}
         >
@@ -82,7 +79,6 @@ export const Size = () => {
             <Button
               endIcon={<CloudUploadIcon />}
               key={sizeIndex}
-              onClick={action('onClick')}
               size={sizeType}
               type={buttonType}
             >
@@ -99,7 +95,7 @@ export const Disabled = () => {
   return (
     <div>
       {buttonTypes.map((type, index) => (
-        <Button disabled onClick={action('onClick')} key={index} type={type}>
+        <Button disabled key={index} type={type}>
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </Button>
       ))}

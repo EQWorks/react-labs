@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
 import FolderIcon from '@material-ui/icons/Folder'
 import Typography from '@material-ui/core/Typography'
 
@@ -119,7 +118,6 @@ storiesOf('List', module)
             spacing={2}
             data={modifiedData}
             button
-            onItemClick={action('clicked')}
           />
         </div>
         <div>
@@ -132,7 +130,6 @@ storiesOf('List', module)
             data={modifiedData}
             button
             focusOnSelected
-            onItemClick={action('clicked')}
           />
         </div>
       </div>
@@ -183,7 +180,6 @@ storiesOf('List', module)
             data={leftData}
             button
             focusOnSelected
-            onItemClick={action('clicked')}
           />
         </div>
         <List border divider width={700} data={rightData} />
