@@ -5,7 +5,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { Alert } from '../src/index'
 
 export default {
-  title: 'Alert',
+  title: 'Lab/Alert',
   component: Alert,
   args: {
     message: 'Message',
@@ -81,11 +81,3 @@ customIcon.argTypes = {
     },
   },
 }
-
-//   .add('Success dif icon', () => (
-//     <Alert
-//       iconMapping={{ success: <VisibilityOff fontSize="inherit" /> }}
-//       severity="success"
-//       message="Success message."
-//     />
-//   ))

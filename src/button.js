@@ -23,12 +23,27 @@ const ButtonComponent = ({ children, type, ...props }) => {
 }
 
 ButtonComponent.propTypes = {
-  children: PropTypes.node.isRequired,
+  /**
+    * The content of the button.
+  */
+  children: PropTypes.string.isRequired,
+  /**
+    * If `true`, the button will be disabled.
+  */
+  disabled: PropTypes.bool,
+  /**
+    * The size of the button.small is equivalent to the dense button styling.
+  */
+  size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+  /**
+    * The variant to use.
+  */
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
 }
 
 ButtonComponent.defaultProps = {
   children: 'Button',
+  size: 'medium',
   type: 'primary',
 }
 

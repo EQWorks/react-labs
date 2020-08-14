@@ -1,104 +1,74 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
 import { Button } from '../src/index'
 
-const useStyles = makeStyles({
-  container: {
-    '& button': {
-      margin: '0 20px 20px 0',
+export default {
+  title: 'Inputs/Button',
+  component: Button,
+  args: {
+    disabled: false,
+    size: 'medium',
+    type: 'primary',
+  },
+  argTypes: {
+    size: {
+      control: {
+        options: ['small', 'medium', 'large'],
+        type: 'select',
+      },
+      type: { name: 'select', required: true },
+    },
+    type: {
+      control: {
+        options: ['primary', 'secondary', 'tertiary'],
+        type: 'select',
+      },
+      type: { name: 'select', required: true },
     },
   },
-})
-
-const ContentWrapper = (storyFn) => {
-  const classes = useStyles()
-  return <div className={classes.container}>{storyFn()}</div>
 }
 
-const buttonTypes = ['primary', 'secondary', 'tertiary']
+const Template = (args) => (
+  <Button {...args}>
+    {args.children}
+  </Button>
+)
 
-const sizeTypes = ['small', 'medium', 'large']
+export const Default = Template.bind({})
 
-export default {
-  title: 'Button',
-  component: Button,
-  decorators: [ContentWrapper],
+// ===
+
+export const StartIcon = Template.bind({})
+
+StartIcon.args = {
+  startIcon: <CloudUploadIcon />,
 }
 
-export const Default = () => {
-  return (
-    <div>
-      {buttonTypes.map((type, index) => (
-        <Button key={index} type={type}>
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </Button>
-      ))}
-    </div>
-  )
+StartIcon.argTypes = {
+  startIcon: {
+    control: null,
+    description: 'Element placed before the children.',
+    table: {
+      type: { summary: 'node' },
+    },
+  },
 }
 
-export const IconLeft = () => {
-  return (
-    <div>
-      {buttonTypes.map((type, index) => (
-        <Button
-          key={index}
-          startIcon={<CloudUploadIcon />}
-          type={type}
-        >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </Button>
-      ))}
-    </div>
-  )
-}
-export const IconRight = () => {
-  return (
-    <div>
-      {buttonTypes.map((type, index) => (
-        <Button
-          endIcon={<CloudUploadIcon />}
-          key={index}
-          type={type}
-        >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </Button>
-      ))}
-    </div>
-  )
+// ===
+
+export const EndIcon = Template.bind({})
+
+EndIcon.args = {
+  endIcon: <CloudUploadIcon />,
 }
 
-export const Size = () => {
-  return (
-    <div>
-      {buttonTypes.map((buttonType, buttonIndex) => (
-        <div key={buttonIndex}>
-          {sizeTypes.map((sizeType, sizeIndex) => (
-            <Button
-              endIcon={<CloudUploadIcon />}
-              key={sizeIndex}
-              size={sizeType}
-              type={buttonType}
-            >
-              {sizeType.charAt(0).toUpperCase() + sizeType.slice(1)}
-            </Button>
-          ))}
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export const Disabled = () => {
-  return (
-    <div>
-      {buttonTypes.map((type, index) => (
-        <Button disabled key={index} type={type}>
-          {type.charAt(0).toUpperCase() + type.slice(1)}
-        </Button>
-      ))}
-    </div>
-  )
+EndIcon.argTypes = {
+  endIcon: {
+    control: null,
+    description: 'Element placed after the children.',
+    table: {
+      type: { summary: 'node' },
+    },
+  },
 }
