@@ -10,3 +10,7 @@ export const decorators = [
     </ThemeProvider>
   ),
 ]
+
+export const parameters = {
+  controls: { expanded: true },
+}
