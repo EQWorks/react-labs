@@ -64,24 +64,48 @@ const List = ({
 }
 
 List.propTypes = {
-  data: PropTypes.array.isRequired,
-  divider: PropTypes.bool,
+  /**
+    * Toggle a border around the component.
+  */
   border: PropTypes.bool,
-  spacing: PropTypes.number,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  focusOnSelected: PropTypes.bool,
-  onItemClick: PropTypes.func,
+  /**
+    * Toggle the list items of the component to be selectable.
+  */
   button: PropTypes.bool,
+  /**
+    * The content of the component.
+  */
+  data: PropTypes.array.isRequired,
+  /**
+    * Toggle a divider between each list item of the component.
+  */
+  divider: PropTypes.bool,
+  /**
+    * Toggle styling based on selected list item. Should be paired with `button={true}`.
+  */
+  focusOnSelected: PropTypes.bool,
+  /**
+    * The function to be executed on list item select.
+  */
+  onItemClick: PropTypes.func,
+  /**
+    * The vertical spacing between list items. Border is added to list item when value is not `0`.
+  */
+  spacing: PropTypes.number.isRequired,
+  /**
+    * The width of the component.
+  */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 List.defaultProps = {
-  onItemClick: () => null,
-  divider: false,
   border: false,
+  button: false,
+  divider: false,
+  focusOnSelected: false,
+  onItemClick: () => null,
   spacing: 0,
   width: 600,
-  focusOnSelected: false,
-  button: false,
 }
 
 export default List
