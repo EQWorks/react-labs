@@ -1,41 +1,61 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 
-const useStyles = makeStyles({
-  container: {
-    '& *': {
-      display: 'block',
-      margin: '0 0 20px 0',
+export default {
+  title: 'Data Display/Typography',
+  component: Typography,
+  args: {
+    children: 'Text',
+    variant: 'h1',
+  },
+  argTypes: {
+    children: {
+      defaultValue: '',
+      description: 'Toggle demonstration loading times for component.',
+      table: {
+        type: { summary: 'string' },
+      },
+      type: { name: 'string', required: true },
+    },
+    variant: {
+      control: {
+        options: [
+          'h1',
+          'h2',
+          'h3',
+          'h4',
+          'h5',
+          'h6',
+          'subtitle1',
+          'body1',
+          'button',
+          'caption',
+          'overline',
+        ],
+        type: 'select',
+      },
+      defaultValue: '',
+      description: 'Applies the theme typography styles.',
+      table: {
+        type: { summary: "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'body1' | 'button' | 'caption' | 'overline'" },
+      },
+      type: { name: 'select', required: true },
     },
   },
-})
-
-export default {
-  title: 'Typography',
-  component: Typography,
 }
 
-export const Default = () => {
-  const classes = useStyles()
+const Template = ({ children, variant }) => <Typography variant={variant}>{children}</Typography>
 
-  return (
-    <div className={classes.container}>
-      <Typography variant="h1">h1/Open Sans/Light/96px</Typography>
-      <Typography variant="h2">h2/Open Sans/Light/60px</Typography>
-      <Typography variant="h3">h3/Open Sans/Regular/48px</Typography>
-      <Typography variant="h4">h4/Open Sans/Regular/34px</Typography>
-      <Typography variant="h5">h5/Open Sans/Semibold/24px</Typography>
-      <Typography variant="h6">h6/Open Sans/Bold/20px</Typography>
-      <Typography variant="subtitle1">
-        subtitle1/Open Sans/Semibold/16px
-      </Typography>
-      <Typography variant="body1">body1/Open Sans/Regular/14px</Typography>
-      <Typography variant="button">button/Open Sans/Regular/14px</Typography>
-      <Typography variant="caption">caption/Open Sans/Regular/12px</Typography>
-      <Typography variant="overline">
-        overline/Open Sans/Regular/10px
-      </Typography>
-    </div>
-  )
+Template.propTypes = {
+  /**
+    * The children of the component.
+  */
+  children: PropTypes.string.isRequired,
+  /**
+    * Applies the theme typography styles.
+  */
+  variant: PropTypes.string.isRequired,
 }
+
+export const Default = Template.bind({})
