@@ -1,5 +1,4 @@
 import React from 'react'
-// import { storiesOf } from '@storybook/react'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
 import { Alert } from '../src/index'
