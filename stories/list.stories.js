@@ -1,5 +1,4 @@
 import React from 'react'
-// import { storiesOf } from '@storybook/react'
 import FolderIcon from '@material-ui/icons/Folder'
 import Typography from '@material-ui/core/Typography'
 
@@ -133,7 +132,7 @@ const rightData = defaultData.map((item, i) => {
 })
 
 export default {
-  title: 'List',
+  title: 'Data Display/List',
   component: List,
   args: {
     border: false,

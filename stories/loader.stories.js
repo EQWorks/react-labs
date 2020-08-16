@@ -1,214 +1,180 @@
 import React, { useState, useEffect } from 'react'
-import { storiesOf } from '@storybook/react'
-import Skeleton from '@material-ui/lab/Skeleton'
+import MUISkeleton from '@material-ui/lab/Skeleton'
 
 import { Button, Loader } from '../src/index'
 
-const skeleton = (
+const skeletonConfig = (
   <div>
-    <Skeleton variant="rect" width={100} height={40} />
+    <MUISkeleton variant='rect' width={100} height={40} />
   </div>
 )
 
-storiesOf('Loader', module)
-  .add('Backdrop-Circular: Default', () => (
-    <Loader open={true} backdrop action="circular" message="Loading..." />
-  ))
-  .add('Backdrop-Circular: Determinate', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={true}
-        backdrop
-        action="circular determinate"
-        message="Determinate..."
-        progress={progress}
-      />
-    )
-  })
-  .add('Backdrop-Circular: w/ Label', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={true}
-        backdrop
-        action="circular determinate label"
-        message="Determinate with label..."
-        progress={progress}
-      />
-    )
-  })
-  .add('BackDrop-Linear: Default', () => (
-    <Loader open={true} backdrop action="linear" message="Linear..." />
-  ))
-  .add('BackDrop-Linear: Determinate', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={true}
-        backdrop
-        action="linear determinate"
-        progress={progress}
-        message="Linear Determinate..."
-      />
-    )
-  })
-  .add('BackDrop-Linear: Determinate w/ Label', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={true}
-        backdrop
-        action="linear determinate label"
-        progress={progress}
-        message="Linear Determinate with label..."
-      />
-    )
-  })
-  .add('BackDrop-Linear: Buffer', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={true}
-        backdrop
-        action="linear buffer"
-        progress={progress}
-        message="Linear Buffer..."
-      />
-    )
-  })
-  .add('BackDrop-Linear: Buffer w/ Label', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={true}
-        backdrop
-        action="linear buffer label"
-        progress={progress}
-        message="Linear Buffer with label..."
-      />
-    )
-  })
+export default {
+  title: 'Feedback/Loader',
+  component: Loader,
+  args: {
+    automatic: false,
+    message: 'Loading...',
+  },
+  argTypes: {
+    automatic: {
+      defaultValue: false,
+      description: 'Toggle demonstration loading times for component.',
+      table: {
+        type: { summary: 'boolean' },
+      },
+      type: 'boolean',
+    },
+    skeletonConfig: {
+      control: null,
+    },
+  },
+}
 
-  // as loading wrapper:
-  .add('Wrapper-Button: Default', () => {
-    const [open, setOpen] = useState(false)
-    return (
-      <Loader open={open} action="circular">
-        <Button
-          disabled={open}
-          load={open}
-          onClick={() => setOpen(true)}
-        >
-          Click Me
-        </Button>
-      </Loader>
+const Template = (args) => {
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    const timer = setInterval(
+      () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
+      800,
     )
-  })
-  .add('Wrapper-Button: Determinate', () => {
-    const [open, setOpen] = useState(false)
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader open={open} action="circular determinate" progress={progress}>
-        <Button
-          disabled={open}
-          load={open}
-          onClick={() => setOpen(true)}
-        >
-          Click Me
-        </Button>
-      </Loader>
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <Loader progress={(args.automatic) ? progress : 0} {...args} />
+  )
+}
+
+const TemplateWrapper = (args) => {
+  const [open, setOpen] = useState(false)
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    const timer = setInterval(
+      () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
+      800,
     )
-  })
-  .add('Wrapper-Button: w/ Label', () => {
-    const [open, setOpen] = useState(false)
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader
-        open={open}
-        action="circular determinate label"
-        progress={progress}
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <Loader open={open} progress={(args.automatic) ? progress : 0} {...args} >
+      <Button
+        disabled={open}
+        isLoading={open}
+        onClick={() => setOpen(true)}
       >
-        <Button
-          disabled={open}
-          load={open}
-          onClick={() => setOpen(true)}
-        >
-          Click Me
-        </Button>
-      </Loader>
-    )
-  })
+        Click Me
+      </Button>
+    </Loader>
+  )
+}
 
-  // with skeleton config:
-  .add('Wrapper-Button: w/ skeleton', () => {
-    const [progress, setProgress] = useState(0)
-    useEffect(() => {
-      const timer = setInterval(
-        () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
-        800,
-      )
-      return () => clearInterval(timer)
-    }, [])
-    return (
-      <Loader open={progress < 50} skeletonConfig={skeleton}>
-        <Button>Click Me</Button>
-      </Loader>
+const TemplateSkeleton = () => {
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    const timer = setInterval(
+      () => setProgress((prev) => (prev >= 100 ? 0 : prev + 10)),
+      800,
     )
-  })
+    return () => clearInterval(timer)
+  }, [])
+  return (
+    <Loader open={progress < 50} skeletonConfig={skeletonConfig}>
+      <Button>Click Me</Button>
+    </Loader>
+  )
+}
+
+export const Circular = Template.bind({})
+
+Circular.args = {
+  action: 'circular',
+  backdrop: true,
+  open: true,
+}
+
+Circular.argTypes = {
+  action: {
+    control: {
+      options: [
+        'circular',
+        'circular determinate',
+        'circular determinate label',
+      ],
+      type: 'select',
+    },
+    type: { name: 'select', required: true },
+  },
+  children: {
+    control: null,
+  },
+}
+
+// ===
+
+export const Linear = Template.bind({})
+
+Linear.args = {
+  action: 'linear',
+  backdrop: true,
+  open: true,
+}
+
+Linear.argTypes = {
+  action: {
+    control: {
+      options: [
+        'linear',
+        'linear buffer',
+        'linear buffer label',
+        'linear determinate',
+        'linear determinate label',
+      ],
+      type: 'select',
+    },
+    type: { name: 'select', required: true },
+  },
+  children: {
+    control: null,
+  },
+}
+
+// ===
+
+export const Wrapper = TemplateWrapper.bind({})
+
+Wrapper.args = {
+  action: 'circular',
+}
+
+Wrapper.argTypes = {
+  action: {
+    control: {
+      options: [
+        'circular',
+        'circular determinate',
+        'circular determinate label',
+      ],
+      type: 'select',
+    },
+    type: { name: 'select', required: true },
+  },
+  backdrop: {
+    control: null,
+  },
+  children: {
+    control: null,
+  },
+  open: {
+    control: null,
+  },
+}
+
+// ===
+
+export const Skeleton = TemplateSkeleton.bind({})
+
+Skeleton.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
