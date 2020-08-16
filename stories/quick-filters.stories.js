@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { storiesOf } from '@storybook/react'
 
 import { QuickFilters } from '../src/index'
 import categories from './data/categories'
 
-storiesOf('QuickFilters', module).add('Default', () => <QuickFilters />)
+export default {
+  title: 'Inputs/Quick Filters',
+  component: QuickFilters,
+}
 
-storiesOf('QuickFilters', module).add('with data', () => {
+const Template = () => <QuickFilters />
+const TemplateData = () => {
   const [categoriesData, setCategoriesData] = useState(categories)
 
   const filterOnClick = (label) => {
@@ -19,4 +22,18 @@ storiesOf('QuickFilters', module).add('with data', () => {
   return (
     <QuickFilters categories={categoriesData} filterOnClick={filterOnClick} />
   )
-})
+}
+
+export const Default = Template.bind({})
+
+Default.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+export const Data = TemplateData.bind({})
+
+Data.parameters = {
+  controls: { hideNoControlsWarning: true },
+}

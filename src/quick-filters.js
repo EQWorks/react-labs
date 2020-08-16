@@ -17,9 +17,18 @@ const QuickFilters = ({ disabled, categories, filterOnClick }) => {
 }
 
 QuickFilters.propTypes = {
+  /**
+    * The categories of the component.
+  */
   categories: PropTypes.object,
-  filterOnClick: PropTypes.function,
+  /**
+    * Toggle category item between enabled and disabled.
+  */
   disabled: PropTypes.bool,
+  /**
+    * Filter component based on selection.
+  */
+  filterOnClick: PropTypes.function,
 }
 
 QuickFilters.defaultProps = {
@@ -29,8 +38,8 @@ QuickFilters.defaultProps = {
       isActive: false,
     },
   ],
-  filterOnClick: () => {},
   disabled: false,
+  filterOnClick: () => {},
 }
 
 export default QuickFilters
