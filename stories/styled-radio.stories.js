@@ -5,11 +5,51 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StyledRadio } from '../src/index'
 
 export default {
+  title: 'Inputs/StyledRadio',
   component: StyledRadio,
-  title: 'StyledRadio',
+  args: {
+    disabled: false,
+    firstItemLabel: 'First item',
+    secondItemLabel: 'First item',
+    thirdItemLabel: 'First item',
+  },
+  argTypes: {
+    disabled: {
+      description: 'If `true`, the radio will be disabled.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      type: 'boolean',
+    },
+    firstItemLabel: {
+      description: 'The label for the component.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      type: 'string',
+    },
+    secondItemLabel: {
+      description: 'The label for the component.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      type: 'string',
+    },
+    thirdItemLabel: {
+      description: 'The label for the component.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      type: 'string',
+    },
+  },
 }
 
-export const Default = () => {
+const Template = (args) => {
   const [value, setValue] = useState('firstItem')
   const checkOnChange = (e) => {
     setValue(e.target.value)
@@ -18,42 +58,25 @@ export const Default = () => {
   return (
     <RadioGroup value={value} onChange={checkOnChange}>
       <FormControlLabel
-        value="firstItem"
+        disabled={args.disabled}
+        value='firstItem'
         control={styledRadio}
-        label="First item"
+        label={args.firstItemLabel}
       />
       <FormControlLabel
-        value="secondItem"
+        disabled={args.disabled}
+        value='secondItem'
         control={styledRadio}
-        label="Second item"
+        label={args.secondItemLabel}
       />
       <FormControlLabel
-        value="thirdItem"
+        disabled={args.disabled}
+        value='thirdItem'
         control={styledRadio}
-        label="Third item"
-      />
-      <FormControlLabel
-        value="disabled"
-        disabled
-        control={styledRadio}
-        label="Fourth item"
+        label={args.thirdItemLabel}
       />
     </RadioGroup>
   )
 }
 
-export const Disabled = () => {
-  return (
-    <div>
-      <FormControlLabel
-        control={<StyledRadio disabled={true} checked={true} />}
-        label="radio disabled"
-      />
-      <br />
-      <FormControlLabel
-        control={<StyledRadio disabled={true} checked={false} />}
-        label="radio disabled"
-      />
-    </div>
-  )
-}
+export const Default = Template.bind({})
