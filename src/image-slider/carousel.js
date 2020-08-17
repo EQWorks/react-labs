@@ -52,16 +52,22 @@ const Carousel = ({ carouselContent, getRef }) => {
 }
 
 Carousel.propTypes = {
-  getRef: PropTypes.func,
   carouselContent: PropTypes.object,
+  getRef: PropTypes.func,
 }
 
 Carousel.defaultProps = {
-  getRef: null,
+  /**
+    * The content of the component.
+  */
   carouselContent: {
     imagesToShow: 4,
     content: defaultData.map((d, i) => <DefaultCard key={i} content={d} />),
   },
+  /**
+    * The reference link.
+  */
+  getRef: null,
 }
 
 export default Carousel
