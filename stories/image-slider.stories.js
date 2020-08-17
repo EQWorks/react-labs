@@ -9,8 +9,8 @@ import heroImage from './assets/hero.jpg'
 import ImageCard from './cards/image-card'
 
 export default {
-  component: ImageSlider,
   title: 'Image Slider',
+  component: ImageSlider,
 }
 
 export const Default = () => {

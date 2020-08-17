@@ -14,8 +14,8 @@ import { StyledCardContainer } from '../src/index'
 import { subsData, bundlesData, categoriesData } from './data/card-info'
 
 export default {
-  component: StyledCardContainer,
   title: 'StyledCardContainer',
+  component: StyledCardContainer,
 }
 
 const useStyles = makeStyles((theme) => ({

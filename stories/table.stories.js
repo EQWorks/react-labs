@@ -57,8 +57,8 @@ TableContainer.propTypes = { children: PropTypes.object }
 TableContainer.defaultProps = { children: null }
 
 export default {
-  component: Table,
   title: 'Table',
+  component: Table,
   decorators: [(storyFn) => <TableContainer>{storyFn()}</TableContainer>],
 }
 

@@ -16,8 +16,8 @@ import { Carousel, StyledCardContainer } from '../src/index'
 import { bundlesData } from './data/card-info'
 
 export default {
-  component: Carousel,
   title: 'Carousel',
+  component: Carousel,
 }
 
 const useStyles = makeStyles((theme) => ({
