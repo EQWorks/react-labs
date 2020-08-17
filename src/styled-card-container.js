@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => {
 })
 
 const StyledCardContainer = ({ pattern, onClick, selected, children, ...rest }) => {
-  const whichStyle = 'style' + pattern.style
+  const whichStyle = `style${pattern.style}`
   const classes = useStyles(pattern)
   
   return (

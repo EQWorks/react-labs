@@ -23,13 +23,9 @@ const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
   const classes = useStyles()
   const { isTrendPercentage, upIsGreen, comparedTo, up, down } = trendInfo
   const trendColours = upIsGreen ? ['green', 'red'] : ['red', 'green']
-  let trend = isTrendPercentage
+  const trend = ((isTrendPercentage
     ? Math.round(((value - prev) / prev) * 100)
-    : Math.round(value - prev)
-
-  if (isNaN(trend)) {
-    trend = 0
-  }
+    : Math.round(value - prev)) || 0).toLocaleString()
 
   return (
     <Paper className={classes.paper} variant='outlined'>
