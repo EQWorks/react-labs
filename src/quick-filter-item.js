@@ -1,31 +1,32 @@
-import React from "react";
-import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from 'prop-types';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { Button } from '@material-ui/core'
+import PropTypes from 'prop-types'
 
-const useStyles = makeStyles((theme) => ({
-  default: {
-    textTransform: "none",
-    borderRadius: "36px",
-    border: "1px solid",
-    orderColor: theme.palette.primary.main,
-  },
-  active: {
-    textTransform: "none",
-    borderRadius: "36px",
-    border: "hidden",
-    backgroundColor: theme.palette.primary.main,
-    color: "white",
-    "&:hover": {
-      backgroundColor: theme.palette.primary.main,
+const useStyles = makeStyles((theme) => {
+  return {
+    default: {
+      textTransform: 'none',
+      borderRadius: '36px',
+      border: '1px solid',
+      orderColor: theme.palette.primary.main,
     },
-  },
-}));
+    active: {
+      textTransform: 'none',
+      borderRadius: '36px',
+      border: 'hidden',
+      backgroundColor: theme.palette.primary.main,
+      color: 'white',
+      '&:hover': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+  }
+})
 
 const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
-  const classes = useStyles();
-  const { label, isActive } = category;
-  console.log(label, isActive);
+  const classes = useStyles()
+  const { label, isActive } = category
   return (
     <Button
       variant="outlined"
@@ -36,25 +37,24 @@ const QuickFilterItem = ({ disabled, category, filterOnClick }) => {
     >
       {label}
     </Button>
-  );
-};
+  )
+}
 
 QuickFilterItem.propTypes = {
   category: PropTypes.object,
   filterOnClick: PropTypes.function,
   disabled: PropTypes.bool,
-};
+}
 
 QuickFilterItem.defaultProps = {
   category: [
     {
-      label: "Data missing",
+      label: 'Data missing',
       isActive: false,
-    }
+    },
   ],
   filterOnClick: () => {},
-  disabled: false
-};
+  disabled: false,
+}
 
-export default QuickFilterItem;
-
+export default QuickFilterItem

@@ -1,30 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { fade, makeStyles } from '@material-ui/core/styles'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import grey from '@material-ui/core/colors/grey'
+import IconButton from '@material-ui/core/IconButton'
+import InputAdornment from '@material-ui/core/InputAdornment'
 import InputBase from '@material-ui/core/InputBase'
 import InputLabel from '@material-ui/core/InputLabel'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
-import grey from '@material-ui/core/colors/grey'
-import { fade, makeStyles } from '@material-ui/core/styles'
 
-import { palette, typography } from './themes'
-
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
-
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
@@ -32,20 +16,20 @@ const useStyles = makeStyles((t) => {
         marginTop: theme.spacing(0.5),
       },
       borderRadius: 4,
-      border:  `1px solid ${grey[300]}`,
+      border: `1px solid ${grey[300]}`,
       fontSize: theme.typography.body1,
       padding: '4px 6px',
       transition: theme.transitions.create(['border-color', 'box-shadow']),
     },
     label: {
-      marginLeft: theme.spacing(1)
+      marginLeft: theme.spacing(1),
     },
     labelError: {
       marginLeft: theme.spacing(1),
       color: '#ea0000',
     },
     inputDefault: {
-      boxShadow: `${fade(theme.palette.shade.primary[100], 0.25)} 0 0 0 0.2rem`,
+      boxShadow: `${fade(theme.palette.primary[100], 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
     inputError: {
@@ -74,28 +58,46 @@ const TextField = ({
   const dimensions = { width, height: multiline ? 'auto' : height }
   const inp = {
     startAdornment: (
-      <InputAdornment position='start'>
-        {adornmentButton && startAdornment ?
-          (<IconButton onMouseDown={(e) => e.preventDefault()} disableRipple onClick={adornmentOnClick}>
+      <InputAdornment position="start">
+        {adornmentButton && startAdornment ? (
+          <IconButton
+            onMouseDown={(e) => e.preventDefault()}
+            disableRipple
+            onClick={adornmentOnClick}
+          >
             {startAdornment}
-          </IconButton>)
-          : startAdornment}
+          </IconButton>
+        ) : (
+          startAdornment
+        )}
       </InputAdornment>
     ),
     endAdornment: (
-      <InputAdornment position='end'>
-        {adornmentButton && endAdornment ?
-          (<IconButton onMouseDown={(e) => e.preventDefault()} disableRipple onClick={adornmentOnClick}>
+      <InputAdornment position="end">
+        {adornmentButton && endAdornment ? (
+          <IconButton
+            onMouseDown={(e) => e.preventDefault()}
+            disableRipple
+            onClick={adornmentOnClick}
+          >
             {endAdornment}
-          </IconButton>)
-          : endAdornment}
+          </IconButton>
+        ) : (
+          endAdornment
+        )}
       </InputAdornment>
     ),
   }
 
   return (
     <div>
-      <InputLabel id='label' shrink className={error ? classes.labelError : classes.label}>{label}</InputLabel>
+      <InputLabel
+        id="label"
+        shrink
+        className={error ? classes.labelError : classes.label}
+      >
+        {label}
+      </InputLabel>
       <InputBase
         classes={{
           root: classes.root,
@@ -109,7 +111,12 @@ const TextField = ({
         {...inp}
         {...props}
       />
-      <FormHelperText id='helper-text' className={error ? classes.labelError : classes.label}>{helperText}</FormHelperText>
+      <FormHelperText
+        id="helper-text"
+        className={error ? classes.labelError : classes.label}
+      >
+        {helperText}
+      </FormHelperText>
     </div>
   )
 }

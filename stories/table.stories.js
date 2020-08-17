@@ -18,19 +18,11 @@ const TableContainer = ({ children }) => {
 
   const renderTable = () => {
     if (parent === 'paper') {
-      return (
-        <Paper>
-          {children}
-        </Paper>
-      )
+      return <Paper>{children}</Paper>
     }
 
     if (parent === 'card') {
-      return (
-        <Card>
-          {children}
-        </Card>
-      )
+      return <Card>{children}</Card>
     }
 
     return children
@@ -41,17 +33,19 @@ const TableContainer = ({ children }) => {
       <ToggleButtonGroup
         value={parent}
         exclusive
-        onChange={(_, parent) => { setParent(parent) }}
-        aria-label='parent container'
+        onChange={(_, parent) => {
+          setParent(parent)
+        }}
+        aria-label="parent container"
         style={{ marginBottom: '0.5rem' }}
       >
-        <ToggleButton value='bare' aria-label='bare container'>
+        <ToggleButton value="bare" aria-label="bare container">
           Bare
         </ToggleButton>
-        <ToggleButton value='paper' aria-label='paper container'>
+        <ToggleButton value="paper" aria-label="paper container">
           Paper
         </ToggleButton>
-        <ToggleButton value='card' aria-label='card container'>
+        <ToggleButton value="card" aria-label="card container">
           Card
         </ToggleButton>
       </ToggleButtonGroup>
@@ -62,16 +56,15 @@ const TableContainer = ({ children }) => {
 TableContainer.propTypes = { children: PropTypes.object }
 TableContainer.defaultProps = { children: null }
 
-
 export default {
   component: Table,
   title: 'Table',
-  decorators: [storyFn => <TableContainer>{storyFn()}</TableContainer>]
+  decorators: [(storyFn) => <TableContainer>{storyFn()}</TableContainer>],
 }
 
-export const empty = () => (<Table />)
+export const empty = () => <Table />
 
-export const normal = () => (<Table data={provinces} />)
+export const normal = () => <Table data={provinces} />
 
 export const columns = () => (
   <Table
@@ -87,19 +80,27 @@ export const columns = () => (
 
 export const columnsChildren = () => (
   <Table data={provinces}>
-    <Table.Column Header='New cases' accessor='new_cases' />
-    <Table.Column Header='Total cases' accessor='total_cases' />
-    <Table.Column Header='Province' accessor='province' />
-    <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
+    <Table.Column Header="New cases" accessor="new_cases" />
+    <Table.Column Header="Total cases" accessor="total_cases" />
+    <Table.Column Header="Province" accessor="province" />
+    <Table.Column
+      Header="Rate"
+      accessor="rate"
+      Cell={({ value }) => `${value}%`}
+    />
   </Table>
 )
 
 export const noToggle = () => (
   <Table data={provinces}>
-    <Table.Column Header='New cases' accessor='new_cases' noToggle={true} />
-    <Table.Column Header='Total cases' accessor='total_cases' />
-    <Table.Column Header='Province' accessor='province' noToggle={true} />
-    <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
+    <Table.Column Header="New cases" accessor="new_cases" noToggle={true} />
+    <Table.Column Header="Total cases" accessor="total_cases" />
+    <Table.Column Header="Province" accessor="province" noToggle={true} />
+    <Table.Column
+      Header="Rate"
+      accessor="rate"
+      Cell={({ value }) => `${value}%`}
+    />
   </Table>
 )
 
@@ -109,18 +110,42 @@ export const initialHidden = () => (
     columns={[
       { Header: 'New cases', accessor: 'new_cases', hidden: true },
       { Header: 'Total cases', accessor: 'total_cases' },
-      { Header: 'Province', accessor: 'province', hidden: true, noToggle: true },
+      {
+        Header: 'Province',
+        accessor: 'province',
+        hidden: true,
+        noToggle: true,
+      },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+      {
+        Header: 'Action',
+        id: 'action',
+        // eslint-disable-next-line react/display-name
+        Cell: () => <button onClick={null}>Edit</button>,
+        hidden: true,
+      },
     ]}
   />
 )
 
 export const initialHiddenColumns = () => (
-  <Table data={provinces} hiddenColumns={['new_cases', 'total_cases']}>
-    <Table.Column Header='New cases' accessor='new_cases' />
-    <Table.Column Header='Total cases' accessor='total_cases' />
-    <Table.Column Header='Province' accessor='province' />
-    <Table.Column Header='Rate' accessor='rate' Cell={({ value }) => `${value}%`} />
+  <Table
+    data={provinces}
+    hiddenColumns={['new_cases', 'total_cases', 'action']}
+  >
+    <Table.Column Header="New cases" accessor="new_cases" />
+    <Table.Column Header="Total cases" accessor="total_cases" />
+    <Table.Column Header="Province" accessor="province" />
+    <Table.Column
+      Header="Rate"
+      accessor="rate"
+      Cell={({ value }) => `${value}%`}
+    />
+    <Table.Column
+      Header="Action"
+      id="action"
+      Cell={() => <button onClick={null}>Edit</button>}
+    />
   </Table>
 )
 
@@ -143,7 +168,12 @@ export const disableFilters = () => (
       { Header: 'New cases', accessor: 'new_cases' },
       { Header: 'Total cases', accessor: 'total_cases', disableFilters: true },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
-      { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+      {
+        Header: 'Province',
+        accessor: 'province',
+        disableFilters: true,
+        disableGlobalFilter: true,
+      },
     ]}
   />
 )
@@ -152,9 +182,24 @@ export const disableSortBy = () => (
     data={provinces}
     columns={[
       { Header: 'New cases', accessor: 'new_cases' },
-      { Header: 'Total cases', accessor: 'total_cases', disableFilters: true, disableSortBy: true },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, disableSortBy: true },
-      { Header: 'Province', accessor: 'province', disableFilters: true, disableGlobalFilter: true },
+      {
+        Header: 'Total cases',
+        accessor: 'total_cases',
+        disableFilters: true,
+        disableSortBy: true,
+      },
+      {
+        Header: 'Rate',
+        accessor: 'rate',
+        Cell: ({ value }) => `${value}%`,
+        disableSortBy: true,
+      },
+      {
+        Header: 'Province',
+        accessor: 'province',
+        disableFilters: true,
+        disableGlobalFilter: true,
+      },
     ]}
   />
 )
@@ -166,7 +211,12 @@ export const SelectionFilter = () => (
       { Header: 'New cases', accessor: 'new_cases' },
       { Header: 'Total cases', accessor: 'total_cases' },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
-      { Header: 'Province', accessor: 'province', Filter: Table.filters.SelectionFilter, filter: Table.filters.SelectionFilter.filterFn },
+      {
+        Header: 'Province',
+        accessor: 'province',
+        Filter: Table.filters.SelectionFilter,
+        filter: Table.filters.SelectionFilter.filterFn,
+      },
     ]}
   />
 )
@@ -175,9 +225,26 @@ export const RangeFilter = () => (
   <Table
     data={provincesRange}
     columns={[
-      { Header: 'New cases', accessor: 'new_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
-      { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value * 100}%`, Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn, percentage: true },
+      {
+        Header: 'New cases',
+        accessor: 'new_cases',
+        Filter: Table.filters.RangeFilter,
+        filter: Table.filters.RangeFilter.filterFn,
+      },
+      {
+        Header: 'Total cases',
+        accessor: 'total_cases',
+        Filter: Table.filters.RangeFilter,
+        filter: Table.filters.RangeFilter.filterFn,
+      },
+      {
+        Header: 'Rate',
+        accessor: 'rate',
+        Cell: ({ value }) => `${value * 100}%`,
+        Filter: Table.filters.RangeFilter,
+        filter: Table.filters.RangeFilter.filterFn,
+        percentage: true,
+      },
       { Header: 'Province', accessor: 'province' },
     ]}
   />
@@ -188,22 +255,36 @@ export const CusotmDateRangeFilter = () => (
     data={provincesDates}
     columns={[
       {
-        Header: 'Date', accessor: 'date',
-        Filter: DateRangeFilter, filter: filterDates
+        Header: 'Date',
+        accessor: 'date',
+        Filter: DateRangeFilter,
+        filter: filterDates,
       },
-      { Header: 'New cases', accessor: 'new_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
-      { Header: 'Total cases', accessor: 'total_cases', Filter: Table.filters.RangeFilter, filter: Table.filters.RangeFilter.filterFn },
-      { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%`, disableFilters: true },
+      {
+        Header: 'New cases',
+        accessor: 'new_cases',
+        Filter: Table.filters.RangeFilter,
+        filter: Table.filters.RangeFilter.filterFn,
+      },
+      {
+        Header: 'Total cases',
+        accessor: 'total_cases',
+        Filter: Table.filters.RangeFilter,
+        filter: Table.filters.RangeFilter.filterFn,
+      },
+      {
+        Header: 'Rate',
+        accessor: 'rate',
+        Cell: ({ value }) => `${value}%`,
+        disableFilters: true,
+      },
       { Header: 'Province', accessor: 'province' },
     ]}
   />
 )
 
 export const initialSortBy = () => (
-  <Table
-    data={provinces}
-    sortBy={{ id: 'new_cases', desc: true }}
-  />
+  <Table data={provinces} sortBy={{ id: 'new_cases', desc: true }} />
 )
 
 export const tableProps = () => (
@@ -215,7 +296,8 @@ export const tableProps = () => (
       { Header: 'Province', accessor: 'province' },
       { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
     ]}
-    tableProps={{ // any Material UI <Table> props
+    tableProps={{
+      // any Material UI <Table> props
       stickyHeader: true,
       size: 'small',
     }}
@@ -230,8 +312,9 @@ export const rememberHidden = () => {
   }
   return (
     <>
-      <Typography variant='body1'>
-        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see its effect.
+      <Typography variant="body1">
+        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or
+        swich out and back to this story, to see its effect.
       </Typography>
       <Table
         data={provinces}
@@ -239,7 +322,11 @@ export const rememberHidden = () => {
           { Header: 'New cases', accessor: 'new_cases', hidden: true },
           { Header: 'Total cases', accessor: 'total_cases' },
           { Header: 'Province', accessor: 'province' },
-          { Header: 'Rate', accessor: 'rate', Cell: ({ value }) => `${value}%` },
+          {
+            Header: 'Rate',
+            accessor: 'rate',
+            Cell: ({ value }) => `${value}%`,
+          },
         ]}
         remember={remember}
       />
@@ -255,8 +342,9 @@ export const rememberHiddenWithInitHiddenColumns = () => {
   }
   return (
     <>
-      <Typography variant='body1'>
-        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see its effect.
+      <Typography variant="body1">
+        Hidden columns remembered for {remember.ttl} minutes. Refresh page, or
+        swich out and back to this story, to see its effect.
       </Typography>
       <Table
         data={provinces}
@@ -275,14 +363,33 @@ export const rememberSortBy = () => {
   }
   return (
     <>
-      <Typography variant='body1'>
-        Columns sorting order remembered for {remember.ttl} minutes. Refresh page, or swich out and back to this story, to see its effect.
+      <Typography variant="body1">
+        Columns sorting order remembered for {remember.ttl} minutes. Refresh
+        page, or swich out and back to this story, to see its effect.
       </Typography>
       <Table
         data={provinces}
         sortBy={{ id: 'new_cases', desc: true }}
         remember={remember}
       />
+    </>
+  )
+}
+export const dynamicSortBy = () => {
+  const [sort, setSort] = useState('province')
+
+  return (
+    <>
+      <Typography variant="body1">
+        SortBy changing according to the chosen button.
+      </Typography>
+      {['new_cases', 'total_cases', 'province'].map((col) => (
+        <button key={col} onClick={() => setSort(col)}>
+          {' '}
+          {col}{' '}
+        </button>
+      ))}
+      <Table data={provinces} sortBy={[{ id: sort, desc: true }]} />
     </>
   )
 }

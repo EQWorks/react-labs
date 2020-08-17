@@ -1,31 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
-
+import { makeStyles } from '@material-ui/core/styles'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import Modal from '@material-ui/core/Modal'
-import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
 
-import { palette, typography } from '../themes'
 import ProgressWithLabel from './progress-with-label'
 
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
-
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       display: 'flex',
@@ -66,7 +51,15 @@ const useStyles = makeStyles((t) => {
   }
 })
 
-const Loader = ({ open, backdrop, action, message, progress, children, skeletonConfig }) => {
+const Loader = ({
+  open,
+  backdrop,
+  action,
+  message,
+  progress,
+  children,
+  skeletonConfig,
+}) => {
   const classes = useStyles()
   const [bufferProgress, setBufferProgress] = useState(progress)
   const [buffer, setBuffer] = useState(10)
@@ -94,16 +87,39 @@ const Loader = ({ open, backdrop, action, message, progress, children, skeletonC
 
   const modalBody = (
     <>
-      {action === 'linear'
-        && <LinearProgress className={classes.linearBackdrop} />}
-      {action === 'linear determinate'
-        && <LinearProgress className={classes.linearBackdrop} variant='determinate' value={progress} />}
-      {action === 'linear buffer'
-        && <LinearProgress className={classes.linearBackdrop} variant='buffer' value={bufferProgress} valueBuffer={buffer} />}
-      {action === 'linear determinate label'
-        && <ProgressWithLabel action={action} variant='determinate' value={progress} />}
-      {action === 'linear buffer label'
-        && <ProgressWithLabel action={action} variant='buffer' value={bufferProgress} valueBuffer={buffer} />}
+      {action === 'linear' && (
+        <LinearProgress className={classes.linearBackdrop} />
+      )}
+      {action === 'linear determinate' && (
+        <LinearProgress
+          className={classes.linearBackdrop}
+          variant="determinate"
+          value={progress}
+        />
+      )}
+      {action === 'linear buffer' && (
+        <LinearProgress
+          className={classes.linearBackdrop}
+          variant="buffer"
+          value={bufferProgress}
+          valueBuffer={buffer}
+        />
+      )}
+      {action === 'linear determinate label' && (
+        <ProgressWithLabel
+          action={action}
+          variant="determinate"
+          value={progress}
+        />
+      )}
+      {action === 'linear buffer label' && (
+        <ProgressWithLabel
+          action={action}
+          variant="buffer"
+          value={bufferProgress}
+          valueBuffer={buffer}
+        />
+      )}
       <Typography className={classes.linearBackdropText}>{message}</Typography>
     </>
   )
@@ -115,13 +131,22 @@ const Loader = ({ open, backdrop, action, message, progress, children, skeletonC
     }
     return (
       <Backdrop className={classes.backdrop} open={open}>
-        <Grid container direction='column' justify='center' alignItems='center'>
-          {action === 'circular' 
-            && <CircularProgress color='inherit' />}
-          {action === 'circular determinate' 
-            && <CircularProgress color='inherit' variant='static' value={progress} />}
-          {action === 'circular determinate label'
-            && <ProgressWithLabel color='inherit' action={action} value={progress} />}
+        <Grid container direction="column" justify="center" alignItems="center">
+          {action === 'circular' && <CircularProgress color="inherit" />}
+          {action === 'circular determinate' && (
+            <CircularProgress
+              color="inherit"
+              variant="static"
+              value={progress}
+            />
+          )}
+          {action === 'circular determinate label' && (
+            <ProgressWithLabel
+              color="inherit"
+              action={action}
+              value={progress}
+            />
+          )}
           <Typography>{message}</Typography>
         </Grid>
       </Backdrop>
@@ -129,26 +154,46 @@ const Loader = ({ open, backdrop, action, message, progress, children, skeletonC
   }
 
   /* Loading as loading wrapper with skeleton */
-  if (skeletonConfig) return (
-    <div>
-      {!open && children}
-      {open && skeletonConfig}
-    </div>
-  )
+  if (skeletonConfig)
+    return (
+      <div>
+        {!open && children}
+        {open && skeletonConfig}
+      </div>
+    )
 
   /* Loading as loading wrapper */
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
         {children}
-        {open && action === 'circular' 
-          && <CircularProgress size={24} color='inherit' className={classes.centeredProgress} />}
-        {open && action === 'circular determinate'
-          && <CircularProgress size={24} color='inherit' className={classes.centeredProgress} variant='static' value={progress} />}
-        {open && action === 'circular determinate label'
-          && <span className={classes.centeredProgress}>
-            <ProgressWithLabel size={24} color='inherit' action={action} value={progress} labelStyle={{ fontSize: '50%' }} />
-          </span>}
+        {open && action === 'circular' && (
+          <CircularProgress
+            size={24}
+            color="inherit"
+            className={classes.centeredProgress}
+          />
+        )}
+        {open && action === 'circular determinate' && (
+          <CircularProgress
+            size={24}
+            color="inherit"
+            className={classes.centeredProgress}
+            variant="static"
+            value={progress}
+          />
+        )}
+        {open && action === 'circular determinate label' && (
+          <span className={classes.centeredProgress}>
+            <ProgressWithLabel
+              size={24}
+              color="inherit"
+              action={action}
+              value={progress}
+              labelStyle={{ fontSize: '50%' }}
+            />
+          </span>
+        )}
       </div>
     </div>
   )

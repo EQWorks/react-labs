@@ -1,30 +1,27 @@
-import React from "react";
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
-import { storiesOf } from "@storybook/react";
-
-import { DynamicButton } from "../src";
-
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { DynamicButton } from '../src/index'
 
 const arr = [
   {
-    type: "primary",
-    size: "large",
+    type: 'primary',
+    size: 'large',
   },
   {
-    type: "secondary",
-    size: "medium",
+    type: 'secondary',
+    size: 'medium',
   },
   {
-    type: "tertiary",
-    size: "small",
+    type: 'tertiary',
+    size: 'small',
   },
-];
+]
 
-
-storiesOf("DynamicButton", module)
-  .add("Default", () => <DynamicButton/>)
-  .add("Types", () => (
+storiesOf('DynamicButton', module)
+  .add('Default', () => <DynamicButton />)
+  .add('Types', () => (
     <div>
       {arr.map(({ type }, index) => (
         <DynamicButton key={index} type={type}>
@@ -33,7 +30,7 @@ storiesOf("DynamicButton", module)
       ))}
     </div>
   ))
-  .add("With an icon", () => (
+  .add('With an icon', () => (
     <div>
       {arr.map(({ type }, index) => (
         <DynamicButton key={index} type={type} startIcon={<CloudUploadIcon />}>
@@ -42,20 +39,16 @@ storiesOf("DynamicButton", module)
       ))}
     </div>
   ))
-  .add("With an icon on the right side", () => (
+  .add('With an icon on the right side', () => (
     <div>
       {arr.map(({ type }, index) => (
-        <DynamicButton
-          key={index}
-          type={type}
-          endIcon={<CloudUploadIcon />}
-        >
+        <DynamicButton key={index} type={type} endIcon={<CloudUploadIcon />}>
           Click
         </DynamicButton>
       ))}
     </div>
   ))
-  .add("Size", () => (
+  .add('Size', () => (
     <div>
       {arr.map(({ type, size }, index) => (
         <DynamicButton
@@ -69,12 +62,12 @@ storiesOf("DynamicButton", module)
       ))}
     </div>
   ))
-  .add("disabled", () => (
+  .add('disabled', () => (
     <div>
       {arr.map(({ type }, index) => (
         <DynamicButton
           key={index}
-          test={"this test"}
+          test={'this test'}
           type={type}
           disabled={true}
           startIcon={<CloudUploadIcon />}
@@ -84,4 +77,4 @@ storiesOf("DynamicButton", module)
         </DynamicButton>
       ))}
     </div>
-  ));
+  ))

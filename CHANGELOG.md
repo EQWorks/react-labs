@@ -6,6 +6,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `<Button>` - Story created, to eventually replace `<DynamicButton>` story.
+- `/src/theme` - Created theme override files for global styling.
+- `<Shadow>` - Story created.
+- `<Typography>` - Story created.
+
+### Changed
+- `Linting` - Updated ESLint configuration.
+- `<ThemeProvider>` - Moved custom theming property passing from Storybook preview to HOC in `/src/index`.
+- `<Tabe />` - lighter impl on unspecified `remember.key` prop.
+
+### Removed
+- `<ThemeProvider>` - Removed Material UI theme option select.
+
+### Fixed
+- `<Table />` - per-column initial hidden state on no-accessor columns.
+
+## [1.7.2] - 2020-08-07
+### Fixed
+- `<Table />` - table can now update based on dinamically sortBy
+
 ## [1.7.0] - 2020-07-22
 ### Added
 - `<ImageSlider>` - - LinkTo prop added

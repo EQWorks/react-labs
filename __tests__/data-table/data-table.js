@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import DataTable from '../../src/data-table';
+import DataTable from '../../src/data-table'
 
 
 beforeEach(() => {
@@ -18,11 +18,11 @@ describe('<DataTable/>', () => {
   it('should render successfully', async () => {
     let data = {
       data: [],
-      isPercentage: false
+      isPercentage: false,
     }
 
     const component = renderer.create(
-      <DataTable {...data} />
+      <DataTable {...data} />,
     )
 
     const tree = component.toJSON()
@@ -36,7 +36,7 @@ describe('<DataTable/>', () => {
     { isPercentage: false }, // missing data
   ])('Checking failing case for %p', (props) => {
     const component = renderer.create(
-      <DataTable {...props} />
+      <DataTable {...props} />,
     )
     const componentInstance = component.root
     expect(componentInstance.props).not.toEqual(props)
@@ -49,7 +49,7 @@ describe('<DataTable/>', () => {
     { data: [{}], isPercentage: false }, // data: checking array of obj
   ])('Checking passing case for %p', (props) => {
     const component = renderer.create(
-      <DataTable {...props} />
+      <DataTable {...props} />,
     )
     const componentInstance = component.root
     expect(componentInstance.props).toStrictEqual(props)

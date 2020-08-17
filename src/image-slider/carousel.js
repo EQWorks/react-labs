@@ -1,14 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Slider from "react-slick";
-import DefaultCard from "./cards/default-card";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "../css/carousel.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
-const defaultData = [1, 2, 3, 4, 5, 6, 7, 8];
+import DefaultCard from './cards/default-card'
+import '../css/carousel.css'
+
+const defaultData = [1, 2, 3, 4, 5, 6, 7, 8]
 const Carousel = ({ carouselContent, getRef }) => {
-  const { imagesToShow, content } = carouselContent;
+  const { imagesToShow, content } = carouselContent
   const settings = {
     dots: true,
     infinite: true,
@@ -36,10 +37,10 @@ const Carousel = ({ carouselContent, getRef }) => {
         settings: {
           slidesToShow: imagesToShow > 3 ? imagesToShow - 3 : 1,
           slidesToScroll: imagesToShow > 3 ? imagesToShow - 3 : 1,
-        }
+        },
       },
-    ]
-  };
+    ],
+  }
 
   return (
     <div>
@@ -47,13 +48,13 @@ const Carousel = ({ carouselContent, getRef }) => {
         {content}
       </Slider>
     </div>
-  );
-};
+  )
+}
 
 Carousel.propTypes = {
   getRef: PropTypes.func,
   carouselContent: PropTypes.object,
-};
+}
 
 Carousel.defaultProps = {
   getRef: null,
@@ -61,6 +62,6 @@ Carousel.defaultProps = {
     imagesToShow: 4,
     content: defaultData.map((d, i) => <DefaultCard key={i} content={d} />),
   },
-};
+}
 
-export default Carousel;
+export default Carousel

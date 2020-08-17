@@ -1,25 +1,9 @@
 import React from 'react'
-
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Radio from '@material-ui/core/Radio'
-import clsx from 'clsx'
 
-import { palette, typography } from './themes'
-
-
-const useStyles = makeStyles((t) => {
-  const theme = {
-    ...t,
-    typography: {
-      ...t.typography,
-      ...typography,
-    },
-    palette: {
-      ...t.palette,
-      ...palette,
-    },
-  }
-
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       margin: theme.spacing(0.5),
@@ -36,8 +20,8 @@ const useStyles = makeStyles((t) => {
       backgroundColor: theme.palette.grey[50],
       'input:hover ~ &': {
         transition: 'all .3s',
-        backgroundColor: theme.palette.state.hoverWhite,
-        borderColor: theme.palette.shade.primary[100],
+        backgroundColor: theme.palette.action.hover,
+        borderColor: theme.palette.primary[100],
       },
       'input:disabled ~ &': {
         opacity: 0.5,
@@ -47,7 +31,8 @@ const useStyles = makeStyles((t) => {
       borderRadius: '50%',
       backgroundColor: theme.palette.primary.main,
       borderColor: theme.palette.primary.main,
-      backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+      backgroundImage:
+        'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
       '&:before': {
         display: 'block',
         width: 16,
@@ -57,8 +42,8 @@ const useStyles = makeStyles((t) => {
       },
       'input:hover ~ &': {
         backgroundColor: theme.palette.primary.main,
-        backgroundImage: `linear-gradient(0deg, ${theme.palette.state.hoverColored}, ${theme.palette.state.hoverColored})`,
-        borderColor: theme.palette.state.hoverWhite,
+        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`,
+        borderColor: theme.palette.action.active,
       },
       'input:disabled ~ &': {
         opacity: 0.5,
@@ -67,20 +52,18 @@ const useStyles = makeStyles((t) => {
   }
 })
 
-const StyledRadio = props => {
-  const classes = useStyles();
+const StyledRadio = (props) => {
+  const classes = useStyles()
   return (
     <Radio
       className={classes.root}
       disableRipple
       color="default"
-      checkedIcon={
-        <span className={clsx(classes.icon, classes.checkedIcon)} />
-      }
+      checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       icon={<span className={classes.icon} />}
       {...props}
     />
-  );
-};
+  )
+}
 
-export default StyledRadio;
+export default StyledRadio

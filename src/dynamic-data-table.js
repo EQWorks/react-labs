@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-
-import {Table, TableHead, TableRow, TableBody, TableContainer, TableCell} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableContainer,
+  TableCell,
+} from '@material-ui/core'
 
+const useStyles = makeStyles(() => {
+  return {
+    root: { width: '100%' },
+    head: {
+      fontSize: 'body',
+      fontWeight: 600,
+    },
+    cell: { flexGrow: 1 },
+  }
+})
 
-const useStyles = makeStyles(() => ({
-  root: {width: '100%'},
-  head: {
-    fontSize: 'body',
-    fontWeight: 600,
-  },
-  cell: { flexGrow: 1 },
-}))
-
-const nameReplacer = name => {
+const nameReplacer = (name) => {
   return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ')
 }
 
@@ -27,21 +34,19 @@ const DynamicDataTable = ({ data, isPercentage }) => {
 
   useEffect(() => {
     setDynamicData(data)
-  },[data])
-  
+  }, [data])
 
-  const dynamicSort = name => {
+  const dynamicSort = (name) => {
     setOrder(!order)
-    const sorted = [...dynamicData]
-      .sort((a, b) => {
-        if(order ? a[name] < b[name] : a[name] > b[name]) {
-          return -1
-        }
-        if(order ? a[name] > b[name] : a[name] < b[name]) {
-          return 1
-        }
-        return 0
-      })
+    const sorted = [...dynamicData].sort((a, b) => {
+      if (order ? a[name] < b[name] : a[name] > b[name]) {
+        return -1
+      }
+      if (order ? a[name] > b[name] : a[name] < b[name]) {
+        return 1
+      }
+      return 0
+    })
     setDynamicData(sorted)
   }
 
@@ -49,16 +54,19 @@ const DynamicDataTable = ({ data, isPercentage }) => {
     <TableCell
       key={name}
       className={classes.head}
-      onClick={()=>dynamicSort(name)}
+      onClick={() => dynamicSort(name)}
     >
       {nameReplacer(name)}
-    </TableCell>)
-  )
+    </TableCell>
+  ))
 
   const bodyList = dynamicData.map((row, i) => (
     <TableRow key={i}>
       {Object.values(row).map((column, i) => (
-        <TableCell key={i}>{column.toLocaleString()}{`${isPercentage ? `%` : '' }`}</TableCell>
+        <TableCell key={i}>
+          {column.toLocaleString()}
+          {`${isPercentage ? '%' : ''}`}
+        </TableCell>
       ))}
     </TableRow>
   ))
@@ -66,7 +74,7 @@ const DynamicDataTable = ({ data, isPercentage }) => {
   return (
     <TableContainer className={classes.root}>
       <Table stickyHeader>
-        <TableHead >
+        <TableHead>
           <TableRow>{headList}</TableRow>
         </TableHead>
         <TableBody>{bodyList}</TableBody>
@@ -77,7 +85,7 @@ const DynamicDataTable = ({ data, isPercentage }) => {
 
 DynamicDataTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
-  isPercentage: false
+  isPercentage: false,
 }
 
 DynamicDataTable.defaultProps = { data: [] }

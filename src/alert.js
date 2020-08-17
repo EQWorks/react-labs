@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import MUIAlert from '@material-ui/lab/Alert'
 import AlertTitle from '@material-ui/lab/AlertTitle'
-
 
 const Alert = ({ severity, message, header, width, height, ...props }) => {
   const dimensions = { width, height }
@@ -12,11 +10,15 @@ const Alert = ({ severity, message, header, width, height, ...props }) => {
     <div style={dimensions}>
       {header ? (
         <MUIAlert severity={severity} {...props}>
-          <AlertTitle><strong>{header}</strong></AlertTitle>
+          <AlertTitle>
+            <strong>{header}</strong>
+          </AlertTitle>
           {message}
         </MUIAlert>
       ) : (
-        <MUIAlert severity={severity} {...props}>{message}</MUIAlert>
+        <MUIAlert severity={severity} {...props}>
+          {message}
+        </MUIAlert>
       )}
     </div>
   )

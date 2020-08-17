@@ -1,48 +1,48 @@
 const data = [
   {
-    label: "Alcohol",
+    label: 'Alcohol',
     isActive: false,
   },
   {
-    label: "Automotive",
+    label: 'Automotive',
     isActive: false,
   },
   {
-    label: "Clothing & Apparel",
+    label: 'Clothing & Apparel',
     isActive: false,
   },
   {
-    label: "Electronics",
+    label: 'Electronics',
     isActive: false,
   },
   {
-    label: "Food",
+    label: 'Food',
     isActive: false,
   },
   {
-    label: "Furniture & Home Supplies",
+    label: 'Furniture & Home Supplies',
     isActive: false,
   },
   {
-    label: "Gas Station",
+    label: 'Gas Station',
     isActive: false,
   },
   {
-    label: "Grocery & Big Box",
+    label: 'Grocery & Big Box',
     isActive: false,
   },
   {
-    label: "Medical",
+    label: 'Medical',
     isActive: false,
   },
   {
-    label: "Misc.",
+    label: 'Misc.',
     isActive: false,
   },
   {
-    label: "Tools & Industrial Supplies",
+    label: 'Tools & Industrial Supplies',
     isActive: false,
-  }
+  },
 ]
 
 export default data

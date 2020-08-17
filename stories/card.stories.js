@@ -1,11 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-
-import { Card, TextField, DynamicButton } from '../src'
-
-import CheckIcon from '@material-ui/icons/Check'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
+import CheckIcon from '@material-ui/icons/Check'
 
+import { Card, DynamicButton, TextField } from '../src/index'
 
 const loginContent = (
   <>
@@ -13,11 +11,11 @@ const loginContent = (
       Enter your email and we will send you the authentication methods
     </p>
     <TextField
-      id='success-check'
-      label='Email'
-      type='email'
-      defaultValue='john.doe@mail.com'
-      helperText='Enter your email address'
+      id="success-check"
+      label="Email"
+      type="email"
+      defaultValue="john.doe@mail.com"
+      helperText="Enter your email address"
       endAdornment={<CheckIcon style={{ color: '#00d308' }} />}
       autoFocus
     />
@@ -34,56 +32,52 @@ const subPgContent = (
 )
 
 storiesOf('Card', module)
-  .add('Default', () => (
-    <Card
-      cardContent='Some content goes here..'
-    />
-  ))
+  .add('Default', () => <Card cardContent="Some content goes here.." />)
   .add('Small', () => (
     <Card
-      size='sm'
-      actionSide='center'
-      cardTitle='Interesting Title'
-      cardContent='Some content goes here..'
+      size="sm"
+      actionSide="center"
+      cardTitle="Interesting Title"
+      cardContent="Some content goes here.."
       cardAction={<DynamicButton />}
     />
   ))
   .add('Login: example', () => {
-    return(
+    return (
       <Card
-        cardTitle='Log in'
+        cardTitle="Log in"
         cardContent={loginContent}
-        cardAction={<DynamicButton size='medium'>Send</DynamicButton>}
-        actionSide='start'
+        cardAction={<DynamicButton size="medium">Send</DynamicButton>}
+        actionSide="start"
       />
     )
   })
   .add('Home sub-page: example', () => {
-    return(
+    return (
       <Card
         width={320}
         height={190}
-        cardTitle='Recent Activities'
-        variantTitle='h6'
-        alignTitle='center'
+        cardTitle="Recent Activities"
+        variantTitle="h6"
+        alignTitle="center"
         cardContent={subPgContent}
-        alignContent='center'
+        alignContent="center"
       />
     )
   })
   .add('With styled wrapper', () => {
     const styledContainerProps = {
-      pattern: { style: 3 }
+      pattern: { style: 3 },
     }
-    return(
+    return (
       <Card
         width={320}
         height={190}
-        cardTitle='Recent Activities'
-        variantTitle='h6'
-        alignTitle='center'
+        cardTitle="Recent Activities"
+        variantTitle="h6"
+        alignTitle="center"
         cardContent={subPgContent}
-        alignContent='center'
+        alignContent="center"
         styledContainerProps={styledContainerProps}
       />
     )
