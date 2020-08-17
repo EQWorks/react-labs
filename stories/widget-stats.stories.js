@@ -1,68 +1,29 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import { WidgetStats } from '../src/index'
 
-storiesOf('WidgetStats', module)
-  .add('Default', () => <WidgetStats />)
-  .add('Number', () => (
-    <WidgetStats
-      title='Example Number'
-      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-    />
-  ))
-  .add('Trend', () => (
-    <WidgetStats
-      title='Example Trend'
-      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-      prev={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-      units='cases'
-      trendInfo={{
-        isTrendPercentage: false,
-        upIsGreen: true,
-        up: 'more',
-        down: 'less',
-        comparedTo: 'than yesterday',
-      }}
-    />
-  ))
-  .add('isPercentage', () => (
-    <WidgetStats
-      title='Example Trend Percentage'
-      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-      prev={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-      trendInfo={{
-        isTrendPercentage: true,
-        upIsGreen: true,
-        up: 'increase',
-        down: 'decrease',
-        comparedTo: 'from the day before',
-      }}
-    />
-  ))
-  .add('isPercentage (increase is red)', () => (
-    <WidgetStats
-      title='Example Trend'
-      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-      prev={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
-      trendInfo={{
-        isTrendPercentage: true,
-        upIsGreen: false,
-        up: 'increase',
-        down: 'decrease',
-        comparedTo: 'from yesterday',
-      }}
-    />
-  ))
-  .add('Children', () => (
-    <WidgetStats
-      title='This Month'
-      value={new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() + 1,
-        0,
-      ).getDate()}
-    >
-      🌕🌖🌗🌘🌑🌒🌓🌔🌕
-    </WidgetStats>
-  ))
+export default {
+  title: 'Data Display / Widget Stats',
+  component: WidgetStats,
+  args: {
+    title: 'Title',
+    units: '',
+    trendInfo: {
+      isTrendPercentage: false,
+      upIsGreen: true,
+      up: 'more',
+      down: 'less',
+      comparedTo: 'than yesterday',
+    },
+    value: (Math.random() * (100 - 1) + 1).toFixed(0),
+  },
+  argTypes: {
+    children: {
+      type: 'string',
+    },
+  },
+}
+
+const Template = (args) => <WidgetStats {...args} />
+
+export const Default = Template.bind({})

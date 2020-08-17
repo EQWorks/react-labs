@@ -6,7 +6,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import { TextField } from '../src/index'
 
 export default {
-  title: 'Text Field',
+  title: 'Inputs / Text Field',
   component: TextField,
   args: {
     autoFocus: false,
