@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - `Linting` - Updated ESLint configuration.
 - `<ThemeProvider>` - Moved custom theming property passing from Storybook preview to HOC in `/src/index`.
-- `<Tabe />` - lighter impl on unspecified `remember.key` prop.
+- `<Table />` - lighter impl on unspecified `remember.key` prop.
+- `<StyledCardContainer />` - spread operator prop added.
 
 ### Removed
 - `<ThemeProvider>` - Removed Material UI theme option select.
