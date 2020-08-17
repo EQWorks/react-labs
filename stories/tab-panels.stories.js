@@ -37,7 +37,7 @@ const customTab = () => ({
 })
 
 export default {
-  title: 'Navigation / Tab Panel',
+  title: 'Navigation/Tab Panel',
   component: TabPanels,
   args: {
     tabChildren: tabsArr,

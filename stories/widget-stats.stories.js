@@ -3,7 +3,7 @@ import React from 'react'
 import { WidgetStats } from '../src/index'
 
 export default {
-  title: 'Data Display / Widget Stats',
+  title: 'Data Display/Widget Stats',
   component: WidgetStats,
   args: {
     title: 'Title',
