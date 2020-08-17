@@ -8,6 +8,8 @@ import { Card } from '@material-ui/core'
 const useStyles = makeStyles((theme) => {
   return {
     style1: {
+      boxSizing: 'border-box',
+      height: '100%',
       width: '100%',
       backgroundImage: '#fff',
       border: `1px solid ${theme.palette.grey[400]}`,
@@ -30,6 +32,8 @@ const useStyles = makeStyles((theme) => {
       },
     },
     style2: {
+      boxSizing: 'border-box',
+      height: '100%',
       width: '100%',
       backgroundImage: `linear-gradient(#fff, ${theme.palette.grey[100]})`,
       border: `1px solid ${theme.palette.grey[400]}`,
@@ -52,6 +56,8 @@ const useStyles = makeStyles((theme) => {
       },
     },
     style3: {
+      boxSizing: 'border-box',
+      height: '100%',
       width: '100%',
       backgroundImage: (props) =>
         `linear-gradient(${fade(theme.palette.grey[600], 0)}, #000), url(${
@@ -72,14 +78,16 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const StyledCardContainer = ({ pattern, onClick, selected, children }) => {
-  const whichStyle = 'style' + pattern.style
-  const classes = useStyles(pattern)
+const StyledCardContainer = ({ pattern, onClick, selected, children, ...rest}) => {
+  const whichStyle = "style" + pattern.style;
+  const classes = useStyles(pattern);
+  
   return (
     <Card
       className={clsx(classes[whichStyle], { selected })}
       elevation={0}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </Card>
