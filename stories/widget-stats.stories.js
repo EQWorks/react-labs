@@ -7,16 +7,16 @@ storiesOf('WidgetStats', module)
   .add('Default', () => <WidgetStats />)
   .add('Number', () => (
     <WidgetStats
-      title="Example Number"
-      value={(Math.random() * (100 - 1) + 1).toFixed(0)}
+      title='Example Number'
+      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
     />
   ))
   .add('Trend', () => (
     <WidgetStats
-      title="Example Trend"
-      value={(Math.random() * (100 - 1) + 1).toFixed(0)}
-      prev={(Math.random() * (100 - 1) + 1).toFixed(0)}
-      units="cases"
+      title='Example Trend'
+      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
+      prev={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
+      units='cases'
       trendInfo={{
         isTrendPercentage: false,
         upIsGreen: true,
@@ -28,9 +28,9 @@ storiesOf('WidgetStats', module)
   ))
   .add('isPercentage', () => (
     <WidgetStats
-      title="Example Trend Percentage"
-      value={Math.random().toFixed(2)}
-      prev={Math.random().toFixed(2)}
+      title='Example Trend Percentage'
+      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
+      prev={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
       trendInfo={{
         isTrendPercentage: true,
         upIsGreen: true,
@@ -42,9 +42,9 @@ storiesOf('WidgetStats', module)
   ))
   .add('isPercentage (increase is red)', () => (
     <WidgetStats
-      title="Example Trend"
-      value={(Math.random() * (100 - 1) + 1).toFixed(0)}
-      prev={(Math.random() * (100 - 1) + 1).toFixed(0)}
+      title='Example Trend'
+      value={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
+      prev={parseInt((Math.random() * (100 - 1) + 1).toFixed(0))}
       trendInfo={{
         isTrendPercentage: true,
         upIsGreen: false,
@@ -56,7 +56,7 @@ storiesOf('WidgetStats', module)
   ))
   .add('Children', () => (
     <WidgetStats
-      title="This Month"
+      title='This Month'
       value={new Date(
         new Date().getFullYear(),
         new Date().getMonth() + 1,
