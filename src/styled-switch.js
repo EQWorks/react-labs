@@ -73,6 +73,9 @@ const StyledSwitch = (props) => {
 }
 
 StyledSwitch.propTypes = {
+  /**
+    * If `true`, the switch will be disabled.
+  */
   disabled: PropTypes.bool,
 }
 
