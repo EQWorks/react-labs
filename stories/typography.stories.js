@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 
 export default {
-  title: 'Data Display/Typography',
+  title: 'System/Typography',
   component: Typography,
   args: {
     children: 'Text',
