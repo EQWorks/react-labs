@@ -8,77 +8,6 @@ import CategoryCard from './cards/category-card'
 import heroImage from './assets/hero.jpg'
 import ImageCard from './cards/image-card'
 
-export default {
-  title: 'Image Slider',
-  component: ImageSlider,
-}
-
-export const Default = () => {
-  return <ImageSlider />
-}
-
-export const Bundles = () => {
-  const cards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />)
-  return (
-    <ImageSlider
-      topSectionContent={{
-        title: 'Bundles',
-        paragraph:
-          'Bundles are the collection of segments and layers packaged based on a specific persona.',
-        button: {
-          text: 'View all',
-          linkTo: 'https://console.locus.place',
-        },
-      }}
-      carouselContent={{
-        imagesToShow: 3,
-        content: cards,
-      }}
-    />
-  )
-}
-
-export const Categories = () => {
-  const cards = categoriesData.map((prop, i) => (
-    <CategoryCard key={i} prop={prop} />
-  ))
-  return (
-    <ImageSlider
-      topSectionContent={{
-        title: 'Categories',
-        paragraph: '',
-        button: {
-          text: 'Customize my feed',
-        },
-      }}
-      carouselContent={{
-        imagesToShow: 6,
-        content: cards,
-      }}
-    />
-  )
-}
-
-export const Layers = () => {
-  const cards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />)
-  return (
-    <ImageSlider
-      topSectionContent={{
-        title: 'Layers',
-        paragraph:
-          'A collection of geospatial data product of selected categories.',
-        button: {
-          text: 'View all',
-        },
-      }}
-      carouselContent={{
-        imagesToShow: 3,
-        content: cards,
-      }}
-    />
-  )
-}
-
 const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: theme.palette.common.white,
@@ -108,7 +37,108 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const MultipleSliders = () => {
+export default {
+  title: 'Data Display/Image Slider',
+  component: ImageSlider,
+}
+
+const Template = () => <ImageSlider />
+
+export const Default = Template.bind({})
+
+Default.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateBundles = () => {
+  const cards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />)
+  return (
+    <ImageSlider
+      topSectionContent={{
+        title: 'Bundles',
+        paragraph:
+          'Bundles are the collection of segments and layers packaged based on a specific persona.',
+        button: {
+          text: 'View all',
+          linkTo: 'https://console.locus.place',
+        },
+      }}
+      carouselContent={{
+        imagesToShow: 3,
+        content: cards,
+      }}
+    />
+  )
+}
+
+export const Bundles = TemplateBundles.bind({})
+
+Bundles.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateCategories = () => {
+  const cards = categoriesData.map((prop, i) => (
+    <CategoryCard key={i} prop={prop} />
+  ))
+  return (
+    <ImageSlider
+      topSectionContent={{
+        title: 'Categories',
+        paragraph: '',
+        button: {
+          text: 'Customize my feed',
+        },
+      }}
+      carouselContent={{
+        imagesToShow: 6,
+        content: cards,
+      }}
+    />
+  )
+}
+
+export const Categories = TemplateCategories.bind({})
+
+Categories.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateLayers = () => {
+  const cards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />)
+  return (
+    <ImageSlider
+      topSectionContent={{
+        title: 'Layers',
+        paragraph:
+          'A collection of geospatial data product of selected categories.',
+        button: {
+          text: 'View all',
+        },
+      }}
+      carouselContent={{
+        imagesToShow: 3,
+        content: cards,
+      }}
+    />
+  )
+}
+
+export const Layers = TemplateLayers.bind({})
+
+Layers.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateMultipleSliders = () => {
   const classes = useStyles()
   const theme = useTheme()
   const categoriesCards = categoriesData.map((prop, i) => (
@@ -220,4 +250,10 @@ export const MultipleSliders = () => {
       </Grid>
     </Grid>
   )
+}
+
+export const MultipleSliders = TemplateMultipleSliders.bind({})
+
+MultipleSliders.parameters = {
+  controls: { hideNoControlsWarning: true },
 }
