@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<ThemeProvider>` - Removed Material UI theme option select.
 
 ### Fixed
+- `<WidgetStats />` - Fix handling of 0/0 calculations.
 - `<Table />` - per-column initial hidden state on no-accessor columns.
 
 ## [1.7.2] - 2020-08-07
