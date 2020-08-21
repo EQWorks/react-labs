@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Popper from '@material-ui/core/Popper'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
@@ -22,19 +21,15 @@ const useStyles = makeStyles(() => ({
   select: { paddingLeft: '15px' },
 }))
 
-const Filter = ({
-  icon,
-  label,
+const SelectionGroup = ({
   options,
   optionsLabel,
   hasSelectAll,
   onChange,
 }) => {
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
   const [filterVals, setFilterVals] = useState(options)
   const [selectAll, setSelectAll] = useState(true)
-  const ref = useRef(null)
 
   const checkboxOnChange = (e) => {
     const newFilterVals = filterVals.map((v) => {
@@ -75,68 +70,56 @@ const Filter = ({
   }
 
   return (
-    <Grid container direction='column' justify='flex-start' alignItems='flex-start'>
-      <div ref={ref}>
-        <DynamicButton type='tertiary' startIcon={icon} onClick={() => setOpen(!open)}>
-          {label}
-        </DynamicButton>
-      </div>
-      <Popper open={open} anchorEl={ref.current} transition disablePortal className={classes.popper}>
-        <Paper className={hasSelectAll ? null : classes.paper}>
-          <Grid container justify='flex-start' alignItems='flex-start' direction='column'>
-            <FormControl component='fieldset' className={classes.formControl}>
-              <Typography variant='subtitle1' gutterBottom>{optionsLabel}</Typography>
-              <FormGroup>
-                {filterVals.map((val) => {
-                  const [optionName, optionState] = Object.entries(val)[0]
-                  return (
-                    <div key={optionName}>
-                      <FormControlLabel
-                        control={(
-                          <StyledCheckbox
-                            className={classes.checkboxRoot}
-                            checked={optionState}
-                            onChange={checkboxOnChange}
-                            name={optionName}
-                          />
-                        )}
-                        label={optionName}
+    <Paper className={hasSelectAll ? null : classes.paper}>
+      <Grid container justify='flex-start' alignItems='flex-start' direction='column'>
+        <FormControl component='fieldset' className={classes.formControl}>
+          <Typography variant='subtitle1' gutterBottom>{optionsLabel}</Typography>
+          <FormGroup>
+            {filterVals.map((val) => {
+              const [optionName, optionState] = Object.entries(val)[0]
+              return (
+                <div key={optionName}>
+                  <FormControlLabel
+                    control={(
+                      <StyledCheckbox
+                        className={classes.checkboxRoot}
+                        checked={optionState}
+                        onChange={checkboxOnChange}
+                        name={optionName}
                       />
-                    </div>
-                  )
-                })}
-              </FormGroup>
-            </FormControl>
-            {hasSelectAll && <div className={classes.select}>
-              <DynamicButton
-                type='tertiary'
-                style={{ padding: '0px', margin: '0px 0px 15px 0px' }}
-                onClick={selectAllOnClick}
-              >
-                {selectAll ? 'Select All' : 'Reset'}
-              </DynamicButton>
-            </div>}
-          </Grid>
-        </Paper>
-      </Popper>
-    </Grid>
+                    )}
+                    label={optionName}
+                  />
+                </div>
+              )
+            })}
+          </FormGroup>
+        </FormControl>
+        {hasSelectAll && <div className={classes.select}>
+          <DynamicButton
+            type='tertiary'
+            style={{ padding: '0px', margin: '0px 0px 15px 0px' }}
+            onClick={selectAllOnClick}
+          >
+            {selectAll ? 'Select All' : 'Reset'}
+          </DynamicButton>
+        </div>}
+      </Grid>
+    </Paper>
   )
 }
 
-Filter.propTypes = {
+SelectionGroup.propTypes = {
   options: PropTypes.array.isRequired,
   optionsLabel: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  icon: PropTypes.any,
   hasSelectAll: PropTypes.bool,
   onChange: PropTypes.func,
 }
 
-Filter.defaultProps = {
-  icon: '',
+SelectionGroup.defaultProps = {
   anchorEl: '',
   hasSelectAll: false,
   onChange: () => {},
 }
 
-export default Filter
+export default SelectionGroup

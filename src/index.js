@@ -25,7 +25,7 @@ import TextFieldComponent from './text-field'
 import WidgetStatsComponent from './widget-stats'
 // export { default as WidgetNumber } from './widget-number' // deprecated by WidgetStats
 // export { default as WidgetTrend } from './widget-trend' // deprecated by WidgetStats
-import FilterComponent from './filter'
+import SelectionGroupComponent from './selection-group'
 
 const wrapTheme = (WrappedComponent, theme = defaultTheme) => {
   class Wrapper extends React.PureComponent {
@@ -58,7 +58,7 @@ const StyledSwitch = wrapTheme(StyledSwitchComponent)
 const TabPanels = wrapTheme(TabPanelsComponent)
 const TextField = wrapTheme(TextFieldComponent)
 const WidgetStats = wrapTheme(WidgetStatsComponent)
-const Filter = wrapTheme(FilterComponent)
+const SelectionGroup = wrapTheme(SelectionGroupComponent)
 
 export {
   Alert,
@@ -79,5 +79,5 @@ export {
   TabPanels,
   TextField,
   WidgetStats,
-  Filter,
+  SelectionGroup,
 }

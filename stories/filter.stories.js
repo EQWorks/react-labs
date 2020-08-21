@@ -1,19 +1,16 @@
 import React from 'react'
-import { Filter } from '../src'
-
-import FilterListIcon from '@material-ui/icons/FilterList'
+import { SelectionGroup } from '../src'
 
 
 export default {
-  component: Filter,
+  component: SelectionGroup,
   title: 'Filter',
 }
 
 export const Default = () => {
   const options = [ { hello: false }, { there: false } ]
   return (
-    <Filter
-      label='Filter'
+    <SelectionGroup
       options={options}
       optionsLabel='Categories'
     />
@@ -23,9 +20,7 @@ export const Default = () => {
 export const Icon = () => {
   const options = [ { hello: false }, { there: false } ]
   return (
-    <Filter
-      icon={<FilterListIcon />}
-      label='Filter'
+    <SelectionGroup
       options={options}
       optionsLabel='Categories'
     />
@@ -39,9 +34,7 @@ export const SelectAll = () => {
     console.log('selectedVals: ', selectedVals)
   }
   return (
-    <Filter
-      icon={<FilterListIcon />}
-      label='Filter'
+    <SelectionGroup
       options={options}
       optionsLabel='Categories'
       hasSelectAll
