@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => {
 })
 
 const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
+  value = value || 0
+  prev = prev || 0
   const classes = useStyles()
   const { isTrendPercentage, upIsGreen, comparedTo, up, down } = trendInfo
   const trendColours = upIsGreen ? ['green', 'red'] : ['red', 'green']
