@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography'
 import DynamicButton from '../dynamic-button'
 import CheckboxGroup from './checkbox-group'
 import RadioGroup from './radio-group'
+import SwitchGroup from './switch-group'
+import SliderGroup from './slider-group'
 
 
 const useStyles = makeStyles(() => ({
@@ -22,9 +24,10 @@ const SelectionGroup = ({
   type,
   options,
   optionsLabel,
-  hasSelectAll,
   onChange,
   direction,
+  hasSelectAll,
+  sliderStep,
 }) => {
   const classes = useStyles()
   const [filterVals, setFilterVals] = useState(options)
@@ -77,16 +80,25 @@ const SelectionGroup = ({
             <CheckboxGroup filterVals={filterVals} checkboxOnChange={checkboxOnChange} direction={direction} />
           )}
           {type === 'radio' && (<RadioGroup options={options} onChange={onChange} direction={direction} />)}
+          {type === 'switch' && (
+            <SwitchGroup filterVals={filterVals} switchOnChange={checkboxOnChange} direction={direction} />
+          )}
+          {type === 'slider' && (
+            <SliderGroup direction={direction} sliderStep={sliderStep} options={options} onChange={onChange} />
+          )}
         </FormControl>
-        {hasSelectAll && type === 'checkbox' && <div className={classes.select}>
-          <DynamicButton
-            type='tertiary'
-            style={{ padding: '0px', margin: '0px 0px 15px 0px' }}
-            onClick={selectAllOnClick}
-          >
-            {selectAll ? 'Select All' : 'Reset'}
-          </DynamicButton>
-        </div>}
+        {hasSelectAll &&
+          type !== 'radio' &&
+          type !== 'slider' &&
+          <div className={classes.select}>
+            <DynamicButton
+              type='tertiary'
+              style={{ padding: '0px', margin: '0px 0px 15px 0px' }}
+              onClick={selectAllOnClick}
+            >
+              {selectAll ? 'Select All' : 'Reset'}
+            </DynamicButton>
+          </div>}
       </Grid>
     </Paper>
   )
@@ -94,18 +106,23 @@ const SelectionGroup = ({
 
 SelectionGroup.propTypes = {
   options: PropTypes.array.isRequired,
-  optionsLabel: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  optionsLabel: PropTypes.string,
   hasSelectAll: PropTypes.bool,
   onChange: PropTypes.func,
   direction: PropTypes.string,
+  sliderStep: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 }
 
 SelectionGroup.defaultProps = {
-  anchorEl: '',
   hasSelectAll: false,
   onChange: () => {},
   direction: 'column',
+  optionsLabel: '',
+  sliderStep: 1,
 }
 
 export default SelectionGroup
