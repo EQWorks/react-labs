@@ -4,28 +4,27 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
-import DynamicButton from './dynamic-button'
-import StyledCheckbox from './styled-checkbox'
+import DynamicButton from '../dynamic-button'
+import CheckboxGroup from './checkbox-group'
+import RadioGroup from './radio-group'
 
 
 const useStyles = makeStyles(() => ({
-  popper: { zIndex: 1 },
   paper: { paddingBottom: '10px' },
   formControl: { margin: '15px 15px 5px 15px' },
-  checkboxRoot: { padding: '5px 5px 5px 10px' },
   select: { paddingLeft: '15px' },
 }))
 
 const SelectionGroup = ({
+  type,
   options,
   optionsLabel,
   hasSelectAll,
   onChange,
+  direction,
 }) => {
   const classes = useStyles()
   const [filterVals, setFilterVals] = useState(options)
@@ -74,28 +73,12 @@ const SelectionGroup = ({
       <Grid container justify='flex-start' alignItems='flex-start' direction='column'>
         <FormControl component='fieldset' className={classes.formControl}>
           <Typography variant='subtitle1' gutterBottom>{optionsLabel}</Typography>
-          <FormGroup>
-            {filterVals.map((val) => {
-              const [optionName, optionState] = Object.entries(val)[0]
-              return (
-                <div key={optionName}>
-                  <FormControlLabel
-                    control={(
-                      <StyledCheckbox
-                        className={classes.checkboxRoot}
-                        checked={optionState}
-                        onChange={checkboxOnChange}
-                        name={optionName}
-                      />
-                    )}
-                    label={optionName}
-                  />
-                </div>
-              )
-            })}
-          </FormGroup>
+          {type === 'checkbox' && (
+            <CheckboxGroup filterVals={filterVals} checkboxOnChange={checkboxOnChange} direction={direction} />
+          )}
+          {type === 'radio' && (<RadioGroup options={options} onChange={onChange} direction={direction} />)}
         </FormControl>
-        {hasSelectAll && <div className={classes.select}>
+        {hasSelectAll && type === 'checkbox' && <div className={classes.select}>
           <DynamicButton
             type='tertiary'
             style={{ padding: '0px', margin: '0px 0px 15px 0px' }}
@@ -112,14 +95,17 @@ const SelectionGroup = ({
 SelectionGroup.propTypes = {
   options: PropTypes.array.isRequired,
   optionsLabel: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   hasSelectAll: PropTypes.bool,
   onChange: PropTypes.func,
+  direction: PropTypes.string,
 }
 
 SelectionGroup.defaultProps = {
   anchorEl: '',
   hasSelectAll: false,
   onChange: () => {},
+  direction: 'column',
 }
 
 export default SelectionGroup
