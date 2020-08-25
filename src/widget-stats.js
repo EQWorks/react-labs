@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => {
 
 const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
   value = value || 0
-  prev = prev || 0
+  prev = prev || null
   const classes = useStyles()
   const { isTrendPercentage, upIsGreen, comparedTo, up, down } = trendInfo
   const trendColours = upIsGreen ? ['green', 'red'] : ['red', 'green']
@@ -66,7 +66,7 @@ WidgetStats.propTypes = {
   /**
     * The children of the component.
   */
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   /**
     * The previous value of the component. Include with `current` to display a 'Trend' style.
   */
