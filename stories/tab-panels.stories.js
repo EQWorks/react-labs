@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import { TabPanels } from '../src/index'
 
@@ -14,6 +13,7 @@ const customTabs = {
     backgroundColor: '#1890ff',
   },
 }
+
 const customTab = () => ({
   root: {
     textTransform: 'none',
@@ -36,15 +36,38 @@ const customTab = () => ({
   },
 })
 
-storiesOf('TabPanel', module)
-  .add('Default', () => (
-    <TabPanels tabLabels={labelArr} tabChildren={tabsArr} />
-  ))
-  .add('CustomStyling Example', () => (
-    <TabPanels
-      customTabs={customTabs}
-      customTab={customTab}
-      tabLabels={labelArr}
-      tabChildren={tabsArr}
-    />
-  ))
+export default {
+  title: 'Navigation/Tab Panel',
+  component: TabPanels,
+  args: {
+    tabChildren: tabsArr,
+    tabLabels: labelArr,
+  },
+  argTypes: {
+    customTab: {
+      control: null,
+    },
+    customTabs: {
+      control: null,
+    },
+    tabChildren: {
+      control: null,
+    },
+    tabLabels: {
+      control: null,
+    },
+  },
+}
+
+const Template = (args) => <TabPanels {...args} />
+
+export const Default = Template.bind({})
+
+// ===
+
+export const Alternate = Template.bind({})
+
+Alternate.args = {
+  customTab: customTab,
+  customTabs: customTabs,
+}

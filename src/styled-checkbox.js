@@ -72,15 +72,24 @@ const StyledCheckbox = ({ checked, ...rest }) => {
 }
 
 StyledCheckbox.propTypes = {
+  /**
+    * If `true`, the component is checked.
+  */
   checked: PropTypes.bool,
-  onChange: PropTypes.func,
+  /**
+    * If `true`, the checkbox will be disabled.
+  */
   disabled: PropTypes.bool,
+  /**
+    * _event:_ The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
+  */
+  onChange: PropTypes.func,
 }
 
 StyledCheckbox.defaultProps = {
   checked: false,
-  onChange: null,
   disabled: false,
+  onChange: null,
 }
 
 export default StyledCheckbox

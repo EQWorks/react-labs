@@ -122,33 +122,82 @@ const TextField = ({
 }
 
 TextField.propTypes = {
-  inputProps: PropTypes.object,
-  label: PropTypes.string,
-  startAdornment: PropTypes.any,
-  endAdornment: PropTypes.any,
+  /**
+    * If `true`, the ardornment component will be treated as a `Button` component.
+  */
   adornmentButton: PropTypes.bool,
+  /**
+    * The function executed on selecting the adornment component.
+  */
   adornmentOnClick: PropTypes.func,
-  helperText: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  fullWidth: PropTypes.bool,
+  /**
+    * If `true`, the input element will be focused during the first mount.
+  */
+  autoFocus: PropTypes.bool,
+  /**
+    * The end adornment (item after input value) of the component.
+  */
+  endAdornment: PropTypes.any,
+  /**
+    * If `true`, the label will be displayed in an error state.
+  */
   error: PropTypes.bool,
+  /**
+    * Set the style of the component to be the full width of parent.
+  */
+  fullWidth: PropTypes.bool,
+  /**
+    * The height of the component.
+  */
+  height: PropTypes.string,
+  /**
+    * The content of the helperText component.
+  */
+  helperText: PropTypes.string,
+  /**
+    * The inputProps of the component.
+  */
+  inputProps: PropTypes.object,
+  /**
+    * The text label of the component.
+  */
+  label: PropTypes.string.isRequired,
+  /**
+    * If `true`, a textarea element will be rendered instead of an input.
+  */
   multiline: PropTypes.bool,
+  /**
+    * The short hint displayed in the input before the user enters a value.
+  */
+  placeholder: PropTypes.string,
+  /**
+    * Number of rows to display when multiline option is set to true. Only activated when `multiline` is set to `true`.
+  */
+  rows: PropTypes.number,
+  /**
+    * The start adornment (item before input value) of the component.
+  */
+  startAdornment: PropTypes.any,
+  /**
+    * The width of the component.
+  */
+  width: PropTypes.string,
 }
 
 TextField.defaultProps = {
-  inputProps: {},
-  label: 'Label',
-  startAdornment: '',
-  endAdornment: '',
   adornmentButton: false,
   adornmentOnClick: null,
-  helperText: '',
-  width: '380px',
-  height: '42px',
-  fullWidth: false,
+  autoFocus: false,
+  endAdornment: '',
   error: false,
+  fullWidth: false,
+  height: '42px',
+  helperText: '',
+  inputProps: {},
+  label: 'Label',
   multiline: false,
+  startAdornment: '',
+  width: '380px',
 }
 
 export default TextField

@@ -80,7 +80,13 @@ const DataTable = ({ data, isPercentage }) => {
 }
 
 DataTable.propTypes = {
+  /**
+    * The content of the table.
+  */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+    * The data of the table is percentage-based.
+  */
   isPercentage: PropTypes.bool.isRequired,
 }
 

@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => {
 })
 
 const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
+  value = value || 0
+  prev = prev || null
   const classes = useStyles()
   const { isTrendPercentage, upIsGreen, comparedTo, up, down } = trendInfo
   const trendColours = upIsGreen ? ['green', 'red'] : ['red', 'green']
@@ -61,18 +63,36 @@ const WidgetStats = ({ title, value, prev, units, children, trendInfo }) => {
 }
 
 WidgetStats.propTypes = {
-  title: PropTypes.string,
-  value: PropTypes.number,
+  /**
+    * The children of the component.
+  */
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  /**
+    * The previous value of the component. Include with `current` to display a 'Trend' style.
+  */
   prev: PropTypes.number,
+  /**
+    * The title of the component.
+  */
+  title: PropTypes.string,
+  /**
+    * The details of the trend of value of the component.
+  */
   trendInfo: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  /**
+    * The unit of value of the component.
+  */
   units: PropTypes.string,
+  /**
+    * The current value of the component.
+  */
+  value: PropTypes.number,
 }
 
 WidgetStats.defaultProps = {
-  title: 'Untitled',
-  value: 0,
+  children: null,
   prev: null,
+  title: '',
   trendInfo: {
     isTrendPercentage: false,
     upIsGreen: true,
@@ -80,8 +100,8 @@ WidgetStats.defaultProps = {
     up: '',
     down: '',
   },
-  children: null,
   units: '',
+  value: 0,
 }
 
 export default WidgetStats

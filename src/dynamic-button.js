@@ -88,15 +88,24 @@ const DynamicButton = ({ type, children, load, ...rest }) => {
 }
 
 DynamicButton.propTypes = {
-  type: PropTypes.string,
+  /**
+    * The content of the component.
+  */
   children: PropTypes.node,
+  /**
+    * Toggle loading style of component.
+  */
   load: PropTypes.bool,
+  /**
+    * The variant to use.
+  */
+  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
 }
 
 DynamicButton.defaultProps = {
-  type: 'primary',
   children: 'Call to action',
   load: false,
+  type: 'primary',
 }
 
 export default DynamicButton

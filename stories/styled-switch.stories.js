@@ -1,32 +1,45 @@
 import React from 'react'
-import { FormControlLabel, FormGroup } from '@material-ui/core'
+import { FormControlLabel } from '@material-ui/core'
 
 import { StyledSwitch } from '../src/index'
 
 export default {
+  title: 'Inputs/StyledSwitch',
   component: StyledSwitch,
-  title: 'StyledSwitch',
+  args: {
+    control: <StyledSwitch />,
+    label: 'Switch',
+    value: 'firstItem',
+  },
+  argTypes: {
+    control: {
+      control: null,
+      description: 'The switch component.',
+      table: {
+        type: { summary: 'node' },
+        defaultValue: { summary: '<StyledSwitch />' },
+      },
+      type: 'node',
+    },
+    label: {
+      description: 'The display label of the component.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'false' },
+      },
+      type: 'string',
+    },
+    value: {
+      description: 'The value of the component.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      type: 'string',
+    },
+  },
 }
 
-export const Default = () => {
-  return (
-    <FormGroup>
-      <FormControlLabel
-        value="firstItem"
-        control={<StyledSwitch />}
-        label="Default"
-      />
-      <FormControlLabel
-        value="firstItem"
-        control={<StyledSwitch checked={true} disabled />}
-        label="Checked + Disabled"
-      />
+const Template = (args) => <FormControlLabel {...args} />
 
-      <FormControlLabel
-        value="firstItem"
-        control={<StyledSwitch checked={false} disabled />}
-        label="Unchecked + Disabled"
-      />
-    </FormGroup>
-  )
-}
+export const Default = Template.bind({})

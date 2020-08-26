@@ -14,7 +14,7 @@ import Badge from '@material-ui/core/Badge'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { DynamicButton } from '../../index'
+import { Button } from '../../index'
 
 
 const useStyles = makeStyles(() => ({
@@ -47,7 +47,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
   return (
     <>
       <div aria-label='Edit button' ref={anchorRef}>
-        <DynamicButton
+        <Button
           type='tertiary'
           endIcon={
             <Badge
@@ -62,7 +62,7 @@ const Toggle = ({ allColumns, toggleHideColumn }) => {
           aria-haspopup='menu'
         >
           Edit table
-        </DynamicButton>
+        </Button>
       </div>
       <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition>
         {({ TransitionProps, placement }) => (

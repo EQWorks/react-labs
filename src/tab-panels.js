@@ -40,19 +40,34 @@ const TabPanels = ({
 }
 
 TabPanels.propTypes = {
-  tabIndex: PropTypes.number,
-  customTabs: PropTypes.any,
+  /**
+    * The styling of the component tab.
+  */
   customTab: PropTypes.any,
-  tabLabels: PropTypes.array,
+  /**
+    * The styling of the component tabs.
+  */
+  customTabs: PropTypes.any,
+  /**
+    * The content of the component tabs.
+  */
   tabChildren: PropTypes.array,
+  /**
+    * The selected tab of the component.
+  */
+  tabIndex: PropTypes.number,
+  /**
+    * The tab labels of the component tabs.
+  */
+  tabLabels: PropTypes.array,
 }
 
 TabPanels.defaultProps = {
-  tabIndex: 0,
-  customTabs: null,
   customTab: null,
-  tabLabels: [],
+  customTabs: null,
   tabChildren: [],
+  tabIndex: 0,
+  tabLabels: [],
 }
 
 export default TabPanels

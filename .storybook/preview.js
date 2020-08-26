@@ -1,3 +1,16 @@
-import { configure } from "@storybook/react";
+import React from 'react'
+import { ThemeProvider } from '@material-ui/core/styles'
 
-configure(require.context("../stories", true, /\.stories\.js$/), module);
+import theme from '../src/theme/index'
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={theme}>
+      <Story />
+    </ThemeProvider>
+  ),
+]
+
+export const parameters = {
+  controls: { expanded: true },
+}

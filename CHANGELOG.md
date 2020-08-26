@@ -7,15 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
 - `<Button>` - Story created, to eventually replace `<DynamicButton>` story.
 - `/src/theme` - Created theme override files for global styling.
 - `<Shadow>` - Story created.
 - `<Typography>` - Story created.
 
 ### Changed
+- `README` - Updated with details on installation and usage.
+- `Storybook` - Updated dependencies, and added Story controls to all components.
 - `Linting` - Updated ESLint configuration.
-- `<ThemeProvider>` - Moved custom theming property passing from Storybook preview to HOC in `/src/index`.
 - `<Table />` - lighter impl on unspecified `remember.key` prop.
 - `<StyledCardContainer />` - spread operator prop added.
 

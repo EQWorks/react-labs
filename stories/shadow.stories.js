@@ -11,27 +11,49 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       height: '5rem',
       justifyContent: 'center',
-      margin: '10px',
-      width: '8rem',
     },
   },
 }))
 
 export default {
+  title: 'System/Shadow',
   component: Box,
-  title: 'Shadow',
+  args: {
+    boxShadow: 1,
+    text: 'Shadow',
+  },
+  argTypes: {
+    boxShadow: {
+      control: {
+        options: [0, 1, 2, 3, 4],
+        type: 'select',
+      },
+      defaultValue: 0,
+      description: 'The relative depth, or distance, between two surfaces along the z-axis.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 0 },
+      },
+    },
+    text: {
+      description: 'Demonstration text.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      type: 'string',
+    },
+  },
 }
 
-export const Default = () => {
+const Template = (args) => {
   const classes = useStyles()
 
   return (
     <div className={classes.container}>
-      <Box boxShadow={0}><Typography variant='body1'>Shadow 0</Typography></Box>
-      <Box boxShadow={1}><Typography variant='body1'>Shadow 1</Typography></Box>
-      <Box boxShadow={2}><Typography variant='body1'>Shadow 2</Typography></Box>
-      <Box boxShadow={3}><Typography variant='body1'>Shadow 3</Typography></Box>
-      <Box boxShadow={4}><Typography variant='body1'>Shadow 4</Typography></Box>
+      <Box {...args}><Typography variant='body1'>{args.text}</Typography></Box>
     </div>
   )
 }
+
+export const Default = Template.bind({})

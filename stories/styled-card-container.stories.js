@@ -13,11 +13,6 @@ import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutline
 import { StyledCardContainer } from '../src/index'
 import { subsData, bundlesData, categoriesData } from './data/card-info'
 
-export default {
-  component: StyledCardContainer,
-  title: 'StyledCardContainer',
-}
-
 const useStyles = makeStyles((theme) => ({
   header: {
     display: 'flex',
@@ -33,7 +28,79 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const Default = () => {
+const useStyles2 = makeStyles((theme) => ({
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '240px',
+  },
+  tag: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  chip: {
+    borderRadius: '4px',
+    margin: theme.spacing(0.5),
+  },
+}))
+
+const useStyles3 = makeStyles((theme) => ({
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '150px',
+    padding: theme.spacing(2),
+  },
+}))
+
+const useStyles4 = makeStyles((theme) => {
+  return {
+    header: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      margin: theme.spacing(1),
+    },
+    content: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      //height: '200px',
+    },
+    iconDefault: {
+      color: '#9e9e9e',
+    },
+    iconSelected: {
+      color: '#0075FF',
+    },
+    avatar: {
+      width: '96px',
+      height: '96px',
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(2),
+    },
+    category: {
+      marginBottom: theme.spacing(3),
+    },
+  }
+})
+
+export default {
+  title: 'Data Display/StyledCardContainer',
+  component: StyledCardContainer,
+}
+
+const Template = () => {
   const classes = useStyles()
 
   const contents = ({ title, main, sub }) => {
@@ -65,7 +132,15 @@ export const Default = () => {
   )
 }
 
-export const SelectStyles = () => {
+export const Default = Template.bind({})
+
+Default.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateSelectStyles = () => {
   const classes = useStyles()
 
   const contents = ({ title, main, sub }) => {
@@ -101,28 +176,15 @@ export const SelectStyles = () => {
   )
 }
 
-const useStyles2 = makeStyles((theme) => ({
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '240px',
-  },
-  tag: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  chip: {
-    borderRadius: '4px',
-    margin: theme.spacing(0.5),
-  },
-}))
+export const SelectStyles = TemplateSelectStyles.bind({})
 
-export const WithImage = () => {
+SelectStyles.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateWithImage = () => {
   const classes = useStyles2()
 
   const contents = ({ name, description, type, price, category }) => {
@@ -167,21 +229,15 @@ export const WithImage = () => {
   )
 }
 
-const useStyles3 = makeStyles((theme) => ({
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '150px',
-    padding: theme.spacing(2),
-  },
-}))
+export const WithImage = TemplateWithImage.bind({})
 
-export const Clickable = () => {
+WithImage.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateClickable = () => {
   const classes = useStyles3()
 
   const content = (
@@ -211,39 +267,15 @@ export const Clickable = () => {
   )
 }
 
-const useStyles4 = makeStyles((theme) => {
-  return {
-    header: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      margin: theme.spacing(1),
-    },
-    content: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      //height: '200px',
-    },
-    iconDefault: {
-      color: '#9e9e9e',
-    },
-    iconSelected: {
-      color: '#0075FF',
-    },
-    avatar: {
-      width: '96px',
-      height: '96px',
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(2),
-    },
-    category: {
-      marginBottom: theme.spacing(3),
-    },
-  }
-})
+export const Clickable = TemplateClickable.bind({})
 
-export const Selectable = () => {
+Clickable.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateSelectable = () => {
   const classes = useStyles4()
   const [filterableData, setFilterableData] = useState(
     categoriesData.map((data, index) => ({
@@ -293,3 +325,11 @@ export const Selectable = () => {
     </Grid>
   )
 }
+
+export const Selectable = TemplateSelectable.bind({})
+
+Selectable.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===

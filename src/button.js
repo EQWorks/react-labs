@@ -1,8 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
-const ButtonComponent = ({ children, type, ...props }) => {
+const useStyles = makeStyles(() => {
+  return {
+    label: {
+      color: 'rgba(0, 0, 0, 0.0) !important',
+    },
+  }
+})
+
+const ButtonComponent = ({ children, isLoading, type, ...props }) => {
+  const classes = useStyles()
+
   const styleProps = {
     color: 'primary',
     type: 'primary',
@@ -16,19 +27,38 @@ const ButtonComponent = ({ children, type, ...props }) => {
   }
 
   return (
-    <Button {...styleProps} {...props}>
+    <Button className={(isLoading) ? `${classes.label}` : null } {...styleProps} {...props}>
       {children}
     </Button>
   )
 }
 
 ButtonComponent.propTypes = {
-  children: PropTypes.node.isRequired,
+  /**
+    * The content of the button.
+  */
+  children: PropTypes.string.isRequired,
+  /**
+    * If `true`, the button will be disabled.
+  */
+  disabled: PropTypes.bool,
+  /**
+    * Toggle loading style of component.
+  */
+  isLoading: PropTypes.bool,
+  /**
+    * The size of the button.small is equivalent to the dense button styling.
+  */
+  size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+  /**
+    * The variant to use.
+  */
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
 }
 
 ButtonComponent.defaultProps = {
-  children: 'Button',
+  isLoading: false,
+  size: 'medium',
   type: 'primary',
 }
 

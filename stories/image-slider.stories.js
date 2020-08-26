@@ -2,82 +2,11 @@ import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Grid, Typography } from '@material-ui/core'
 
-import { DynamicButton, ImageSlider } from '../src/index'
+import { Button, ImageSlider } from '../src/index'
 import { bundlesData, categoriesData, layersData } from './data/card-info'
 import CategoryCard from './cards/category-card'
 import heroImage from './assets/hero.jpg'
 import ImageCard from './cards/image-card'
-
-export default {
-  component: ImageSlider,
-  title: 'Image Slider',
-}
-
-export const Default = () => {
-  return <ImageSlider />
-}
-
-export const Bundles = () => {
-  const cards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />)
-  return (
-    <ImageSlider
-      topSectionContent={{
-        title: 'Bundles',
-        paragraph:
-          'Bundles are the collection of segments and layers packaged based on a specific persona.',
-        button: {
-          text: 'View all',
-          linkTo: 'https://console.locus.place',
-        },
-      }}
-      carouselContent={{
-        imagesToShow: 3,
-        content: cards,
-      }}
-    />
-  )
-}
-
-export const Categories = () => {
-  const cards = categoriesData.map((prop, i) => (
-    <CategoryCard key={i} prop={prop} />
-  ))
-  return (
-    <ImageSlider
-      topSectionContent={{
-        title: 'Categories',
-        paragraph: '',
-        button: {
-          text: 'Customize my feed',
-        },
-      }}
-      carouselContent={{
-        imagesToShow: 6,
-        content: cards,
-      }}
-    />
-  )
-}
-
-export const Layers = () => {
-  const cards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />)
-  return (
-    <ImageSlider
-      topSectionContent={{
-        title: 'Layers',
-        paragraph:
-          'A collection of geospatial data product of selected categories.',
-        button: {
-          text: 'View all',
-        },
-      }}
-      carouselContent={{
-        imagesToShow: 3,
-        content: cards,
-      }}
-    />
-  )
-}
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
@@ -108,7 +37,108 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const MultipleSliders = () => {
+export default {
+  title: 'Data Display/Image Slider',
+  component: ImageSlider,
+}
+
+const Template = () => <ImageSlider />
+
+export const Default = Template.bind({})
+
+Default.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateBundles = () => {
+  const cards = bundlesData.map((prop, i) => <ImageCard key={i} prop={prop} />)
+  return (
+    <ImageSlider
+      topSectionContent={{
+        title: 'Bundles',
+        paragraph:
+          'Bundles are the collection of segments and layers packaged based on a specific persona.',
+        button: {
+          text: 'View all',
+          linkTo: 'https://console.locus.place',
+        },
+      }}
+      carouselContent={{
+        imagesToShow: 3,
+        content: cards,
+      }}
+    />
+  )
+}
+
+export const Bundles = TemplateBundles.bind({})
+
+Bundles.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateCategories = () => {
+  const cards = categoriesData.map((prop, i) => (
+    <CategoryCard key={i} prop={prop} />
+  ))
+  return (
+    <ImageSlider
+      topSectionContent={{
+        title: 'Categories',
+        paragraph: '',
+        button: {
+          text: 'Customize my feed',
+        },
+      }}
+      carouselContent={{
+        imagesToShow: 6,
+        content: cards,
+      }}
+    />
+  )
+}
+
+export const Categories = TemplateCategories.bind({})
+
+Categories.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateLayers = () => {
+  const cards = layersData.map((prop, i) => <ImageCard key={i} prop={prop} />)
+  return (
+    <ImageSlider
+      topSectionContent={{
+        title: 'Layers',
+        paragraph:
+          'A collection of geospatial data product of selected categories.',
+        button: {
+          text: 'View all',
+        },
+      }}
+      carouselContent={{
+        imagesToShow: 3,
+        content: cards,
+      }}
+    />
+  )
+}
+
+export const Layers = TemplateLayers.bind({})
+
+Layers.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateMultipleSliders = () => {
   const classes = useStyles()
   const theme = useTheme()
   const categoriesCards = categoriesData.map((prop, i) => (
@@ -125,8 +155,8 @@ export const MultipleSliders = () => {
     <Grid container spacing={2}>
       <AppBar position="sticky" className={classes.appbar}>
         <Toolbar>
-          <DynamicButton type="secondary">My subscription</DynamicButton>
-          <DynamicButton type="tertiary">Marketplace seller hub</DynamicButton>
+          <Button type="secondary">My subscription</Button>
+          <Button type="tertiary">Marketplace seller hub</Button>
         </Toolbar>
       </AppBar>
       <Grid container item xs={12}></Grid>
@@ -147,7 +177,7 @@ export const MultipleSliders = () => {
               </Typography>
             </div>
             <div className={classes.textareaItem}>
-              <DynamicButton type="secondary">Learn more</DynamicButton>
+              <Button type="secondary">Learn more</Button>
             </div>
           </Grid>
         </Grid>
@@ -220,4 +250,10 @@ export const MultipleSliders = () => {
       </Grid>
     </Grid>
   )
+}
+
+export const MultipleSliders = TemplateMultipleSliders.bind({})
+
+MultipleSliders.parameters = {
+  controls: { hideNoControlsWarning: true },
 }

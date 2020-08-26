@@ -1,80 +1,78 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
 import { DynamicButton } from '../src/index'
 
-const arr = [
-  {
+export default {
+  title: 'Deprecated/DynamicButton',
+  component: DynamicButton,
+  args: {
+    children: 'Call to action',
+    load: false,
     type: 'primary',
-    size: 'large',
   },
-  {
-    type: 'secondary',
-    size: 'medium',
+  argTypes: {
+    children: {
+      type: 'string',
+    },
+    disabled: {
+      defaultValue: false,
+      description: 'If `true`, the button will be disabled.',
+      table: {
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+      type: 'boolean',
+    },
+    load: {
+      type: 'boolean',
+    },
+    type: {
+      control: {
+        options: ['primary', 'secondary', 'tertiary'],
+        type: 'select',
+      },
+      type: { name: 'select', required: true },
+    },
   },
-  {
-    type: 'tertiary',
-    size: 'small',
-  },
-]
+}
 
-storiesOf('DynamicButton', module)
-  .add('Default', () => <DynamicButton />)
-  .add('Types', () => (
-    <div>
-      {arr.map(({ type }, index) => (
-        <DynamicButton key={index} type={type}>
-          {type}
-        </DynamicButton>
-      ))}
-    </div>
-  ))
-  .add('With an icon', () => (
-    <div>
-      {arr.map(({ type }, index) => (
-        <DynamicButton key={index} type={type} startIcon={<CloudUploadIcon />}>
-          Click
-        </DynamicButton>
-      ))}
-    </div>
-  ))
-  .add('With an icon on the right side', () => (
-    <div>
-      {arr.map(({ type }, index) => (
-        <DynamicButton key={index} type={type} endIcon={<CloudUploadIcon />}>
-          Click
-        </DynamicButton>
-      ))}
-    </div>
-  ))
-  .add('Size', () => (
-    <div>
-      {arr.map(({ type, size }, index) => (
-        <DynamicButton
-          key={index}
-          type={type}
-          startIcon={<CloudUploadIcon />}
-          size={size}
-        >
-          Click
-        </DynamicButton>
-      ))}
-    </div>
-  ))
-  .add('disabled', () => (
-    <div>
-      {arr.map(({ type }, index) => (
-        <DynamicButton
-          key={index}
-          test={'this test'}
-          type={type}
-          disabled={true}
-          startIcon={<CloudUploadIcon />}
-          size="large"
-        >
-          Click
-        </DynamicButton>
-      ))}
-    </div>
-  ))
+const Template = (args) => <DynamicButton {...args}></DynamicButton>
+
+export const Default = Template.bind({})
+
+// ===
+
+export const StartIcon = Template.bind({})
+
+StartIcon.args = {
+  startIcon: <CloudUploadIcon />,
+}
+
+StartIcon.argTypes = {
+  startIcon: {
+    control: null,
+    description: 'Element placed before the children.',
+    table: {
+      type: { summary: 'node' },
+    },
+  },
+}
+
+// ===
+
+export const EndIcon = Template.bind({})
+
+EndIcon.args = {
+  endIcon: <CloudUploadIcon />,
+}
+
+EndIcon.argTypes = {
+  endIcon: {
+    control: null,
+    description: 'Element placed after the children.',
+    table: {
+      type: { summary: 'node' },
+    },
+  },
+}

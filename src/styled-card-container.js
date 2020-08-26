@@ -95,21 +95,36 @@ const StyledCardContainer = ({ pattern, onClick, selected, children, ...rest }) 
 }
 
 StyledCardContainer.propTypes = {
-  onClick: PropTypes.func,
-  pattern: PropTypes.object,
-  children: PropTypes.node,
+  /**
+    * If `true`, the card is selected.
+  */
   checked: PropTypes.bool,
+  /**
+    * The children of the component.
+  */
+  children: PropTypes.node,
+  /**
+    * The function executed on card select.
+  */
+  onClick: PropTypes.func,
+  /**
+    * The styling pattern of the component.
+  */
+  pattern: PropTypes.object,
+  /**
+    * The selected card item.
+  */
   selected: PropTypes.bool,
 }
 
 StyledCardContainer.defaultProps = {
+  checked: false,
+  children: {},
   onClick: null,
   pattern: {
     style: 1,
     backgroundImage: 'none',
   },
-  children: {},
-  checked: false,
   selected: false,
 }
 

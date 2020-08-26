@@ -200,21 +200,50 @@ const Loader = ({
 }
 
 Loader.propTypes = {
-  open: PropTypes.bool.isRequired,
-  action: PropTypes.string,
-  message: PropTypes.string,
+  /**
+    * The type of loader component.
+  */
+  action: PropTypes.oneOf([
+    'circular',
+    'circular determinate',
+    'circular determinate label',
+    'linear buffer',
+    'linear buffer label',
+    'linear determinate',
+    'linear determinate label',
+  ]).isRequired,
+  /**
+    * Toggle full screen loading backdrop styling.
+  */
   backdrop: PropTypes.bool,
-  progress: PropTypes.number,
+  /**
+    * The children of the component message.
+  */
   children: PropTypes.node,
+  /**
+    * The component message.
+  */
+  message: PropTypes.string,
+  /**
+    * Toggle the component on or off.
+  */
+  open: PropTypes.bool.isRequired,
+  /**
+    * The amount of component completion. Must be used with `determinate`.
+  */
+  progress: PropTypes.number,
+  /**
+    * The loading skeleton configuration.
+  */
   skeletonConfig: PropTypes.node,
 }
 
 Loader.defaultProps = {
-  action: '',
-  message: '',
+  action: 'circular',
   backdrop: false,
-  progress: 0,
   children: null,
+  message: '',
+  progress: 0,
   skeletonConfig: null,
 }
 

@@ -15,11 +15,6 @@ import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounde
 import { Carousel, StyledCardContainer } from '../src/index'
 import { bundlesData } from './data/card-info'
 
-export default {
-  component: Carousel,
-  title: 'Carousel',
-}
-
 const useStyles = makeStyles((theme) => ({
   sliderControl: {
     padding: '0px',
@@ -65,38 +60,64 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0.5),
   },
 }))
-export const Default = () => {
-  return <Carousel />
+
+export default {
+  title: 'Data Display/Carousel',
+  component: Carousel,
+  argTypes: {
+    carouselContent: {
+      description: 'The content of the component.',
+      table: {
+        type: { summary: 'object' },
+      },
+    },
+    getRef: {
+      description: 'The reference link',
+      table: {
+        type: { summary: 'node' },
+      },
+    },
+  },
 }
 
-export const CustomCards = () => {
+const Template = () => <Carousel />
+
+export const Default = Template.bind({})
+
+Default.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
+// ===
+
+const TemplateCustom = () => {
   const customSlider = useRef()
   const classes = useStyles()
 
   const topSection = (
     <Grid container className={classes.textarea}>
       <Grid item>
-        <Typography variant="subtitle1">Bundles</Typography>
-        <Typography variant="body1">
+        <Typography variant='subtitle1'>Bundles</Typography>
+        <Typography variant='body1'>
           Bundles are the collection of segments and layers packaged based on a
           specific persona.
         </Typography>
       </Grid>
       <Grid item className={classes.link}>
-        <Link href="#" variant="body1" color="primary">
+        <Link href='#' variant='body1' color='primary'>
           View all
         </Link>
         <IconButton
           classes={{ root: classes.sliderControl }}
           onClick={() => customSlider.current.slickPrev()}
         >
-          <ArrowBackIosRoundedIcon fontSize="small" />
+          <ArrowBackIosRoundedIcon fontSize='small' />
         </IconButton>
         <IconButton
           classes={{ root: classes.sliderControl }}
           onClick={() => customSlider.current.slickNext()}
         >
-          <ArrowForwardIosRoundedIcon fontSize="small" />
+          <ArrowForwardIosRoundedIcon fontSize='small' />
         </IconButton>
       </Grid>
     </Grid>
@@ -114,18 +135,18 @@ export const CustomCards = () => {
         <CardContent className={classes.content}>
           <Grid item>
             <Grid item className={classes.tag}>
-              <Chip className={classes.chip} size="small" label={type} />
-              <Chip className={classes.chip} size="small" label={category} />
+              <Chip className={classes.chip} size='small' label={type} />
+              <Chip className={classes.chip} size='small' label={category} />
             </Grid>
           </Grid>
           <Grid item>
             <Grid item className={classes.header}>
-              <Typography variant="subtitle1">{name}</Typography>
+              <Typography variant='subtitle1'>{name}</Typography>
             </Grid>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant='body1' gutterBottom>
               {description}
             </Typography>
-            <Typography variant="h6">{price}/mo</Typography>
+            <Typography variant='h6'>{price}/mo</Typography>
           </Grid>
         </CardContent>
       </StyledCardContainer>
@@ -144,4 +165,10 @@ export const CustomCards = () => {
       />
     </div>
   )
+}
+
+export const Custom = TemplateCustom.bind({})
+
+Custom.parameters = {
+  controls: { hideNoControlsWarning: true },
 }

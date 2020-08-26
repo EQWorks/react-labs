@@ -1,9 +1,8 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import CheckIcon from '@material-ui/icons/Check'
 
-import { Card, DynamicButton, TextField } from '../src/index'
+import { Card, Button, TextField } from '../src/index'
 
 const loginContent = (
   <>
@@ -31,54 +30,191 @@ const subPgContent = (
   </>
 )
 
-storiesOf('Card', module)
-  .add('Default', () => <Card cardContent="Some content goes here.." />)
-  .add('Small', () => (
-    <Card
-      size="sm"
-      actionSide="center"
-      cardTitle="Interesting Title"
-      cardContent="Some content goes here.."
-      cardAction={<DynamicButton />}
-    />
-  ))
-  .add('Login: example', () => {
-    return (
-      <Card
-        cardTitle="Log in"
-        cardContent={loginContent}
-        cardAction={<DynamicButton size="medium">Send</DynamicButton>}
-        actionSide="start"
-      />
-    )
-  })
-  .add('Home sub-page: example', () => {
-    return (
-      <Card
-        width={320}
-        height={190}
-        cardTitle="Recent Activities"
-        variantTitle="h6"
-        alignTitle="center"
-        cardContent={subPgContent}
-        alignContent="center"
-      />
-    )
-  })
-  .add('With styled wrapper', () => {
-    const styledContainerProps = {
-      pattern: { style: 3 },
-    }
-    return (
-      <Card
-        width={320}
-        height={190}
-        cardTitle="Recent Activities"
-        variantTitle="h6"
-        alignTitle="center"
-        cardContent={subPgContent}
-        alignContent="center"
-        styledContainerProps={styledContainerProps}
-      />
-    )
-  })
+const styledContainerProps = {
+  pattern: { style: 3 },
+}
+
+export default {
+  title: 'Surfaces/Card',
+  component: Card,
+  args: {
+    actionSide: 'start',
+    alignContent: 'start',
+    alignTitle: 'start',
+    cardContent: 'Card content.',
+    cardTitle: 'Card Title',
+    size: 'md',
+    variantContent: 'body2',
+    variantTitle: 'h5',
+  },
+  argTypes: {
+    actionSide: {
+      control: {
+        options: ['start', 'center', 'end'],
+        type: 'select',
+      },
+    },
+    alignContent: {
+      control: {
+        options: ['start', 'center', 'end'],
+        type: 'select',
+      },
+    },
+    alignTitle: {
+      control: {
+        options: ['start', 'center', 'end'],
+        type: 'select',
+      },
+    },
+    cardAction: {
+      control: null,
+    },
+    headerProps: {
+      control: null,
+    },
+    size: {
+      control: {
+        options: ['sm', 'md'],
+        type: 'select',
+      },
+    },
+    styledContainerProps: {
+      control: null,
+    },
+    variantContent: {
+      control: {
+        options: [
+          'h1',
+          'h2',
+          'h3',
+          'h4',
+          'h5',
+          'h6',
+          'subtitle1',
+          'subtitle2',
+          'body1',
+          'body2',
+          'caption',
+          'button',
+          'overline',
+          'srOnly',
+          'inherit',
+        ],
+        type: 'select',
+      },
+    },
+    variantTitle: {
+      control: {
+        options: [
+          'h1',
+          'h2',
+          'h3',
+          'h4',
+          'h5',
+          'h6',
+          'subtitle1',
+          'subtitle2',
+          'body1',
+          'body2',
+          'caption',
+          'button',
+          'overline',
+          'srOnly',
+          'inherit',
+        ],
+        type: 'select',
+      },
+    },
+  },
+}
+
+const Template = (args) => <Card {...args} />
+
+export const Default = Template.bind({})
+
+// ===
+
+export const Action = Template.bind({})
+
+Action.args = {
+  actionSide: 'center',
+  cardAction: <Button>Button</Button>,
+}
+
+Action.argTypes = {
+  cardAction: {
+    control: null,
+  },
+}
+
+// === 
+
+export const Login = Template.bind({})
+
+Login.args = {
+  actionSide: 'start',
+  cardAction: <Button>Send</Button>,
+  cardContent: loginContent,
+}
+
+Login.argTypes = {
+  cardAction: {
+    control: null,
+  },
+  cardContent: {
+    control: null,
+  },
+}
+
+// === 
+
+export const HomeSubPage = Template.bind({})
+
+HomeSubPage.args = {
+  alignContent: 'center',
+  alignTitle: 'center',
+  cardContent: subPgContent,
+  cardTitle: 'Recent Activities',
+  height: 190,
+  variantTitle: 'h6',
+  width: 320,
+}
+
+HomeSubPage.argTypes = {
+  cardContent: {
+    control: null,
+  },
+  height: {
+    control: null,
+  },
+  width: {
+    control: null,
+  },
+}
+
+// === 
+
+export const Wrapper = Template.bind({})
+
+Wrapper.args = {
+  alignContent: 'center',
+  alignTitle: 'center',
+  cardContent: subPgContent,
+  cardTitle: 'Recent Activities',
+  height: 190,
+  styledContainerProps: styledContainerProps,
+  variantTitle: 'h6',
+  width: 320,
+}
+
+Wrapper.argTypes = {
+  cardContent: {
+    control: null,
+  },
+  height: {
+    control: null,
+  },
+  width: {
+    control: null,
+  },
+}
