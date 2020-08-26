@@ -16,8 +16,7 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       '&:hover': {
-        backgroundColor: theme.palette.primary.main,
-        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`,
+        backgroundColor: theme.palette.primary[800],
       },
       '&:disabled': {
         color: theme.palette.common.white,
@@ -34,8 +33,7 @@ const useStyles = makeStyles((theme) => {
       border: 'solid 1px',
       color: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary[50],
       },
       '&:disabled': {
         opacity: 0.5,
@@ -53,8 +51,7 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: 'rgba(255,255,255,0)',
       color: theme.palette.primary.main,
       '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary[50],
       },
       '&:disabled': {
         opacity: 0.5,
