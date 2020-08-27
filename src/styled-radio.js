@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => {
       },
       'input:hover ~ &': {
         backgroundColor: theme.palette.primary.main,
-        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`,
-        borderColor: theme.palette.action.active,
+        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.hover}, ${theme.palette.action.hover})`,
+        borderColor: theme.palette.action.hover,
       },
       'input:disabled ~ &': {
         opacity: 0.5,

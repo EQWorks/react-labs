@@ -17,8 +17,7 @@ const useStyles = makeStyles((theme) => {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       '&:hover': {
-        backgroundColor: theme.palette.primary.main,
-        backgroundImage: `linear-gradient(0deg, ${theme.palette.action.active}, ${theme.palette.action.active})`,
+        backgroundColor: theme.palette.primary[800],
       },
       '&:disabled': {
         color: theme.palette.common.white,
