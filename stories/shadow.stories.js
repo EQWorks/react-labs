@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default {
-  title: 'System/Shadow',
+  title: 'Theme/Shadow',
   component: Box,
   args: {
     boxShadow: 1,
@@ -48,7 +48,6 @@ export default {
 
 const Template = (args) => {
   const classes = useStyles()
-
   return (
     <div className={classes.container}>
       <Box {...args}><Typography variant='body1'>{args.text}</Typography></Box>
