@@ -11,6 +11,7 @@ export default {
     disabled: false,
     size: 'medium',
     type: 'primary',
+    noSpacing: false,
   },
   argTypes: {
     size: {

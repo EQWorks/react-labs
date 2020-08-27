@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 const useStyles = makeStyles((theme) => {
   return {
     primary: {
+      boxSizing: 'border-box',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.body1,
       margin: theme.spacing(0.5),
@@ -24,24 +25,26 @@ const useStyles = makeStyles((theme) => {
       },
     },
     secondary: {
+      boxSizing: 'border-box',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.body1,
       margin: theme.spacing(0.5),
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
       textTransform: 'none',
-      border: 'solid 1px',
+      border: `1px solid ${theme.palette.primary.main}`,
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: theme.palette.primary[50],
+        color: theme.palette.primary.main,
       },
       '&:disabled': {
         opacity: 0.5,
-        border: 'solid 1px',
-        color: theme.palette.primary.main,
+        border: `1px solid ${theme.palette.primary.main}`,
       },
     },
     tertiary: {
+      boxSizing: 'border-box',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.body1,
       margin: theme.spacing(0.5),
@@ -52,34 +55,28 @@ const useStyles = makeStyles((theme) => {
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: theme.palette.primary[50],
+        color: theme.palette.primary.main,
       },
       '&:disabled': {
         opacity: 0.5,
         color: theme.palette.primary.main,
       },
     },
-    loadPrimary: {
-      color: theme.palette.primary.main,
+    noSpacing: {
+      margin: theme.spacing(0),
+      padding: theme.spacing(0),
     },
-    loadSecondary: {
-      color: 'rgba(255,255,255,0)',
+    load: {
+      color: 'rgba(0, 0, 0, 0.0) !important',
     },
   }
 })
 
-const DynamicButton = ({ type, children, load, ...rest }) => {
+const DynamicButton = ({ type, children, load, noSpacing, ...rest }) => {
   const classes = useStyles()
-
   return (
-    <Button className={classes[type]} disableRipple disableElevation {...rest}>
-      <div
-        className={clsx({
-          [classes.loadPrimary]: load && type === 'primary',
-          [classes.loadSecondary]: load && type !== 'primary',
-        })}
-      >
-        {children}
-      </div>
+    <Button className={clsx(classes[type], { [classes.noSpacing]: noSpacing, [classes.load]: load })} disableRipple disableElevation {...rest}>
+      {children}
     </Button>
   )
 }
@@ -97,12 +94,18 @@ DynamicButton.propTypes = {
     * The variant to use.
   */
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
+  /**
+    * If `true`, margin/padding property of the button will be set to 0. Recommended for tertiary buttons. 
+   */
+  noSpacing: PropTypes.bool,
+
 }
 
 DynamicButton.defaultProps = {
   children: 'Call to action',
   load: false,
   type: 'primary',
+  noSpacing: false,
 }
 
 export default DynamicButton

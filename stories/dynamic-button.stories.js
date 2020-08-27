@@ -10,6 +10,7 @@ export default {
     children: 'Call to action',
     load: false,
     type: 'primary',
+    noSpacing: false,
   },
   argTypes: {
     children: {
