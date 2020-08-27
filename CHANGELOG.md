@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Linting` - Updated ESLint configuration.
 - `<Table />` - lighter impl on unspecified `remember.key` prop.
 - `<StyledCardContainer />` - spread operator prop added.
+- `<DynamicButton>` - hover state color changed.
+- `<StyledRadio>` - hover state color changed.
 
 ### Removed
 - `<ThemeProvider>` - Removed Material UI theme option select.

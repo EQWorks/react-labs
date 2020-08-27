@@ -59,6 +59,7 @@ StartIcon.argTypes = {
   },
 }
 
+
 // ===
 
 export const EndIcon = Template.bind({})
@@ -75,4 +76,13 @@ EndIcon.argTypes = {
       type: { summary: 'node' },
     },
   },
+}
+
+export const Link = Template.bind({})
+
+Link.args = {
+  href: 'https://www.eqworks.com',
+  target: '_blank',
+  rel: 'noopener noreferrer',
+  children: 'View EQ Works website',
 }
