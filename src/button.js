@@ -2,16 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import clsx from 'clsx'
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme) => {
   return {
     label: {
       color: 'rgba(0, 0, 0, 0.0) !important',
     },
+    noSpacing: {
+      padding: theme.spacing(0),
+    },
   }
 })
 
-const ButtonComponent = ({ children, isLoading, type, ...props }) => {
+const ButtonComponent = ({ children, isLoading, type, noSpacing, ...props }) => {
   const classes = useStyles()
 
   const styleProps = {
@@ -27,7 +31,9 @@ const ButtonComponent = ({ children, isLoading, type, ...props }) => {
   }
 
   return (
-    <Button className={(isLoading) ? `${classes.label}` : null } {...styleProps} {...props}>
+    <Button className={clsx({ [classes.label]: isLoading,
+      [classes.noSpacing]: noSpacing,
+    })} {...styleProps} {...props} >
       {children}
     </Button>
   )
@@ -54,10 +60,16 @@ ButtonComponent.propTypes = {
     * The variant to use.
   */
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
+  /**
+    * If `true`, margin/padding property of the button will be set to 0. Recommended for tertiary buttons. 
+   */
+  noSpacing: PropTypes.bool,
+
 }
 
 ButtonComponent.defaultProps = {
   isLoading: false,
+  noSpacing: false,
   size: 'medium',
   type: 'primary',
 }

@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `/src/theme` - Created theme override files for global styling.
 - `<Shadow>` - Story created.
 - `<Typography>` - Story created.
+- `<Button>` - noSpacing prop added.
+- `<DynamicButton>` - noSpacing prop added.
 
 ### Changed
 - `README` - Updated with details on installation and usage.
