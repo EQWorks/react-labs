@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `<Typography>` - Story created.
 - `<Button>` - noSpacing prop added.
 - `<DynamicButton>` - noSpacing prop added.
+- `theme/color` - Story created. 
 
 ### Changed
 - `README` - Updated with details on installation and usage.
