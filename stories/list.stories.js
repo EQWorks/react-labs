@@ -110,6 +110,7 @@ const leftData = defaultData.map((item, i) => {
     avatarSize: 'sm',
     avatarBgColor: 'inherit',
     details: '',
+    selectedColor: '#BAE0FF',
   }
   return newItem
 })
