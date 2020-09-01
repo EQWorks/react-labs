@@ -33,7 +33,7 @@ const ButtonComponent = ({ children, isLoading, type, noSpacing, ...props }) => 
   return (
     <Button className={clsx({ [classes.label]: isLoading,
       [classes.noSpacing]: noSpacing,
-    })} {...styleProps} {...props} >
+    })} data-testid='button' {...styleProps} {...props} >
       {children}
     </Button>
   )
@@ -64,7 +64,6 @@ ButtonComponent.propTypes = {
     * If `true`, margin/padding property of the button will be set to 0. Recommended for tertiary buttons. 
    */
   noSpacing: PropTypes.bool,
-
 }
 
 ButtonComponent.defaultProps = {

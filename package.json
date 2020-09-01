@@ -22,12 +22,13 @@
     "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"]
   },
   "scripts": {
-    "test": "yarn jest --testPathPattern=__tests__/",
+    "build": "babel src --out-dir dist --copy-files",
     "lint": "eslint src stories __tests__",
     "lint:watch:fix": "esw --fix --watch src stories __tests__",
-    "build": "babel src --out-dir dist --copy-files",
     "prepublishOnly": "yarn eslint src/ && yarn test && yarn build",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "test": "yarn jest --testPathPattern=__tests__/",
+    "test-watch": "yarn jest --testPathPattern=__tests__/ --watchAll"
   },
   "dependencies": {
     "clsx": "^1.1.1",
