@@ -14,7 +14,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ### Changed
 - `<Table />` - lighter impl on unspecified `remember.key` prop.
-- `<StyledCardContainer />` - spread operator prop added.
+- `<StyledCardContainer />` - spread operator prop added, which enables component styling externally.
 - `<DynamicButton>` - hover state color changed.
 - `<StyledRadio>` - hover state color changed.
 
