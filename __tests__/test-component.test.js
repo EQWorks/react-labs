@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import TestEvents from '../src/test-component'
@@ -14,7 +13,6 @@ it('increments counter', () => {
 
   fireEvent.click(getByTestId('button-up'))
 
-  // expect(getByTestId('counter').textContent).toBe('1')
   expect(getByTestId('counter')).toHaveTextContent('1')
 })
 
@@ -23,6 +21,5 @@ it('decrements counter', () => {
 
   fireEvent.click(getByTestId('button-down'))
 
-  // expect(getByTestId('counter').textContent).toBe('-1')
-  expect(getByTestId('counter').toHaveTextContent('-1'))
+  expect(getByTestId('counter')).toHaveTextContent('-1')
 })

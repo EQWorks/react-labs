@@ -18,6 +18,9 @@
       "limit": "100 KB"
     }
   ],
+  "jest": {
+    "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"]
+  },
   "scripts": {
     "test": "yarn jest --testPathPattern=__tests__/",
     "lint": "eslint src stories __tests__",
