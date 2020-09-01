@@ -9,8 +9,8 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 ## [Unreleased]
 
 ### Added
-- `<Button>` - `noSpacing` prop added.
-- `<DynamicButton>` - `noSpacing` prop added.
+- `<Button>` - `noSpacing` prop added, which removes paddings from its base when `true`.
+- `<DynamicButton>` - `noSpacing` prop added, which removes paddings from its base when `true`.
 
 ### Changed
 - `<Table />` - lighter impl on unspecified `remember.key` prop.
