@@ -3,13 +3,13 @@ import { render, fireEvent } from '@testing-library/react'
 
 import TestEvents from '../src/test-component'
 
-it('Render is OK', () => {
+it('Button renders ok', () => {
   const { baseElement } = render(<TestEvents />)
 
   expect(baseElement).toBeTruthy()
 })
 
-it('increments counter', () => {
+it('Button size props renders ok', () => {
   const { getByTestId } = render(<TestEvents />)
 
   fireEvent.click(getByTestId('button-up'))
