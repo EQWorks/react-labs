@@ -4,32 +4,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
+
 ## [Unreleased]
 
 ### Added
-- `<Button>` - Story created, to eventually replace `<DynamicButton>` story.
-- `/src/theme` - Created theme override files for global styling.
-- `<Shadow>` - Story created.
-- `<Typography>` - Story created.
-- `<Button>` - noSpacing prop added.
-- `<DynamicButton>` - noSpacing prop added.
-- `theme/color` - Story created. 
+- `<Button>` - `noSpacing` prop added, which removes paddings from its base when `true`.
+- `<DynamicButton>` - `noSpacing` prop added, which removes paddings from its base when `true`.
 
 ### Changed
-- `README` - Updated with details on installation and usage.
-- `Storybook` - Updated dependencies, and added Story controls to all components.
-- `Linting` - Updated ESLint configuration.
 - `<Table />` - lighter impl on unspecified `remember.key` prop.
-- `<StyledCardContainer />` - spread operator prop added.
+- `<StyledCardContainer />` - spread operator prop added, which enables component styling externally.
 - `<DynamicButton>` - hover state color changed.
 - `<StyledRadio>` - hover state color changed.
-
-### Removed
-- `<ThemeProvider>` - Removed Material UI theme option select.
 
 ### Fixed
 - `<WidgetStats />` - Fix handling of 0/0 calculations.
 - `<Table />` - per-column initial hidden state on no-accessor columns.
+
+### Non-Core
+
+#### Added
+- `<Button>` - Story created, to eventually replace `<DynamicButton>` story.
+- `/src/theme` - Created theme override files for global styling.
+- `<Shadow>` - Story created.
+- `<Typography>` - Story created.
+- `theme/color` - Story created. 
+
+#### Changed
+- `README` - Updated with details on installation and usage.
+- `Storybook` - Updated dependencies, and added Story controls to all components.
+- `Linting` - Updated ESLint configuration.
+
+#### Removed
+- `<ThemeProvider>` - Removed Material UI theme option select.
 
 ## [1.7.2] - 2020-08-07
 ### Fixed
