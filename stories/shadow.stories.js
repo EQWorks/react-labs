@@ -70,9 +70,6 @@ const Template = (args) => {
         </div>
       </div>
     </>
-    // <div className={classes.container}>
-    //   <Box {...args}><Typography variant='body1'>{args.text}</Typography></Box>
-    // </div>
   )
 }
 
