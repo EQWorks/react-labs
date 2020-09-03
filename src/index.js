@@ -16,6 +16,7 @@ import StyledSwitch from './styled-switch'
 import Table from './table'
 import TabPanels from './tab-panels'
 import TextField from './text-field'
+import Typography from './typography'
 import WidgetStats from './widget-stats'
 // export { default as WidgetNumber } from './widget-number' // deprecated by WidgetStats
 // export { default as WidgetTrend } from './widget-trend' // deprecated by WidgetStats
@@ -38,5 +39,6 @@ export {
   Table,
   TabPanels,
   TextField,
+  Typography,
   WidgetStats,
 }
