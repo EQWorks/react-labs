@@ -1,17 +1,22 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { Box, Divider } from '@material-ui/core'
+import Typography from '../src/typography'
 
 const useStyles = makeStyles(theme => ({
   container: {
     '& *': {
+      margin: theme.spacing(2,0),
+      borderRadius: 10,
       alignItems: 'center',
       backgroundColor: theme.palette.common.white,
       display: 'flex',
       height: '5rem',
       justifyContent: 'center',
     },
+  },
+  divider: {
+    margin: theme.spacing(4,0),
   },
 }))
 
@@ -20,7 +25,6 @@ export default {
   component: Box,
   args: {
     boxShadow: 1,
-    text: 'Shadow',
   },
   argTypes: {
     boxShadow: {
@@ -35,23 +39,37 @@ export default {
         defaultValue: { summary: 0 },
       },
     },
-    text: {
-      description: 'Demonstration text.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-      type: 'string',
-    },
   },
 }
+const shadows = [1,2,3,4]
 
 const Template = (args) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const shadowLists = shadows.map((shadow, i) => (
+    <Box key={i} boxShadow={shadow}><Typography>{`Shadow ${shadow}0`}</Typography></Box>
+  ))
   return (
-    <div className={classes.container}>
-      <Box {...args}><Typography variant='body1'>{args.text}</Typography></Box>
-    </div>
+    <>
+      <div style={{ margin: theme.spacing(8, 4) }}>
+        <Typography variant="h5" marginBottom={2}>
+          Shadows
+        </Typography>
+        <Divider className={classes.divider}/>
+        <div className={classes.container}>
+          {shadowLists}
+        </div>
+      </div>
+      <div style={{ margin: theme.spacing(8, 4) }}>
+        <Typography variant="h5" marginBottom={2}>
+          Playground
+        </Typography>
+        <Divider className={classes.divider}/>
+        <div className={classes.container}>
+          <Box {...args}><Typography variant='body1'>Shadow</Typography></Box>
+        </div>
+      </div>
+    </>
   )
 }
 

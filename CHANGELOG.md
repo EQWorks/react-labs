@@ -12,7 +12,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ### Non-Core
 - theme - Typography story shows all variants.
-
+- theme - Shadow story shows all variants.
 
 ## [1.8.0] - 2020-09-02
 ### Added
