@@ -14,6 +14,17 @@ export default {
     noSpacing: false,
   },
   argTypes: {
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+      description: 'If `true`, the button will be disabled.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
     size: {
       control: {
         options: ['small', 'medium', 'large'],

@@ -20,7 +20,7 @@ const Button = ({ children, isLoading, noSpacing, type, ...props }) => {
 
   const styleProps = {
     color: 'primary',
-    type: type,
+    type,
   }
 
   if (type === 'tertiary') {
@@ -45,10 +45,6 @@ Button.propTypes = {
     * The content of the button.
   */
   children: PropTypes.string.isRequired,
-  /**
-    * If `true`, the button will be disabled.
-  */
-  disabled: PropTypes.bool,
   /**
     * Toggle loading style of component.
   */
