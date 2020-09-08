@@ -22,18 +22,6 @@ describe('render', () => {
   })
 })
 
-describe('disabled state', () => {
-  it('should not be disabled', () => {
-    const { getByTestId } = render(<Button disabled={false}>My Button</Button>)
-    expect(getByTestId('button')).not.toBeDisabled()
-  })
-
-  it('should be disabled', () => {
-    const { getByTestId } = render(<Button disabled={true}>My Button</Button>)
-    expect(getByTestId('button')).toBeDisabled()
-  })
-})
-
 describe('loading state', () => {
   it('should not be loading', () => {
     const { getByTestId } = render(<Button isLoading={false}>My Button</Button>)
