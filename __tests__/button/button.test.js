@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
-import Button from '../src/button'
+import Button from '../../src/button'
 
 describe('render', () => {
   it('should render ok with no props passed', () => {
