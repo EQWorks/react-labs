@@ -22,19 +22,19 @@ describe('render', () => {
   })
 })
 
-describe('loading state', () => {
-  it('should not be loading', () => {
-    const { getByTestId } = render(<Button isLoading={false}>My Button</Button>)
-    expect(getByTestId('button')).toHaveStyle('color: #FFFFFF')
-  })
-
+describe('isLoading', () => {
   it('should be loading', () => {
     const { getByTestId } = render(<Button isLoading={true}>My Button</Button>)
     expect(getByTestId('button').firstChild).toHaveStyle('color: rgba(0, 0, 0, 0.0) !important')
   })
+  
+  it('should not be loading', () => {
+    const { getByTestId } = render(<Button isLoading={false}>My Button</Button>)
+    expect(getByTestId('button')).toHaveStyle('color: #FFFFFF')
+  })
 })
 
-describe('no spacing style', () => {
+describe('noSpacing', () => {
   // DOES NOT WORK | BUTTON PADDING SHOWS AS `padding: 0px;`
   // it('should have spacing', () => {
   //   const { getByTestId } = render(<Button noSpacing={false}>My Button</Button>)
@@ -47,39 +47,29 @@ describe('no spacing style', () => {
   })
 })
 
-describe('sizes', () => {
-  it('should be small', () => {
-    const { getByTestId } = render(<Button size='small'>My Button</Button>)
-
-    expect(getByTestId('button')).toHaveClass('MuiButton-sizeSmall')
-  })
-
-  it('should be medium', () => {
+describe('size', () => {
+  it('should be "medium"', () => {
     const { getByTestId } = render(<Button size='medium'>My Button</Button>)
 
     expect(getByTestId('button')).not.toHaveClass('MuiButton-sizeSmall', 'MuiButton-sizeLarge')
   })
 
-  it('should be large', () => {
-    const { getByTestId } = render(<Button size='large'>My Button</Button>)
-
-    expect(getByTestId('button')).toHaveClass('MuiButton-sizeLarge')
+  it.each([
+    ['small', 'MuiButton-sizeSmall'],
+    ['large', 'MuiButton-sizeLarge'],
+  ])('should be %p', (size, muiClass) => {
+    const { getByTestId } = render(<Button size={size}>My Button</Button>) 
+    expect(getByTestId('button')).toHaveClass(muiClass)
   })
 })
 
-describe('types', () => {
-  it('should be primary', () => {
-    const { getByTestId } = render(<Button type='primary'>My Button</Button>)
-    expect(getByTestId('button')).toHaveAttribute('type', 'primary')
-  })
-
-  it('should be secondary', () => {
-    const { getByTestId } = render(<Button type='secondary'>My Button</Button>)
-    expect(getByTestId('button')).toHaveAttribute('type', 'secondary')
-  })
-
-  it('should be tertiary', () => {
-    const { getByTestId } = render(<Button type='tertiary'>My Button</Button>)
-    expect(getByTestId('button')).toHaveAttribute('type', 'tertiary')
+describe('type', () => {
+  it.each([
+    ['primary'],
+    ['secondary'],
+    ['tertiary'],
+  ])('should be %p', (type) => {
+    const { getByTestId } = render(<Button type={type}>My Button</Button>)
+    expect(getByTestId('button')).toHaveAttribute('type', type)
   })
 })
