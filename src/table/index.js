@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   spacer: { flex: 'inherit' },
+  root: { overflow: 'visible' },
 }))
 
 const getHeader = (s) => [
@@ -227,7 +228,7 @@ const Table = ({
                     onChangeRowsPerPage={({ target: { value } }) => {
                       setPageSize(Number(value))
                     }}
-                    classes={{ spacer: classes.spacer }}
+                    classes={{ spacer: classes.spacer, root: classes.root }}
                   />
                 </TableRow>
               </TableFooter>
