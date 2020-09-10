@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
 ## [Unreleased]
+
+## [1.8.1] - 2020-09-10
 ### Added
 - `Theme` - Added theme config export.
 - `<Typography>` - Added component with `marginBottom`.
