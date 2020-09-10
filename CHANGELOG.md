@@ -8,11 +8,12 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [Unreleased]
 ### Added
-- `<Typography>` - component with marginBottom added.
+- `Theme` - Added theme config export.
+- `<Typography>` - Added component with `marginBottom`.
 
 ### Non-Core
-- theme - Typography story shows all variants.
-- theme - Shadow story shows all variants.
+- `Theme` - Typography story shows all variants.
+- `Theme` - Shadow story shows all variants.
 
 ## [1.8.0] - 2020-09-02
 ### Added
