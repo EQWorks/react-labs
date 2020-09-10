@@ -10,6 +10,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [1.8.1] - 2020-09-10
 ### Added
+- `Peer Dependency` - Added `@material-ui` as a peer dependency.
 - `Theme` - Added theme config export.
 - `<Typography>` - Added component with `marginBottom`.
 
