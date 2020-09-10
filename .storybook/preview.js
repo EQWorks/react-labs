@@ -1,11 +1,11 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/core/styles'
 
-import theme from '../src/theme/index'
+import { Theme } from '../src/index'
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme}>
       <Story />
     </ThemeProvider>
   ),

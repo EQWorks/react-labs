@@ -1,44 +1,28 @@
-import Alert from './alert'
-import Button from './button'
-import Card from './card'
-import Carousel from './image-slider/carousel'
-import DataTable from './data-table' // deprecated by Table
-import DynamicButton from './dynamic-button'
+// theme
+export { default as Theme } from './theme/index'
+
+// components
+export { default as Alert } from './alert'
+export { default as Button } from './button'
+export { default as Card } from './card'
+export { default as Carousel } from './image-slider/carousel'
+export { default as DataTable } from './data-table' // deprecated by Table
+export { default as DynamicButton } from './dynamic-button'
+export { default as ImageSlider } from './image-slider'
+export { default as List } from './list'
+export { default as Loader } from './loader'
+export { default as QuickFilters } from './quick-filters'
+export { default as StyledCardContainer } from './styled-card-container'
+export { default as StyledCheckbox } from './styled-checkbox'
+export { default as StyledRadio } from './styled-radio'
+export { default as StyledSwitch } from './styled-switch'
+export { default as Table } from './table'
+export { default as TabPanels } from './tab-panels'
+export { default as TextField } from './text-field'
+export { default as Typography } from './typography'
+export { default as WidgetStats } from './widget-stats'
+
+// deprecated
 // export { default as DynamicDataTable } from './dynamic-data-table' // deprecated by Table
-import ImageSlider from './image-slider'
-import List from './list'
-import Loader from './loader'
-import QuickFilters from './quick-filters'
-import StyledCardContainer from './styled-card-container'
-import StyledCheckbox from './styled-checkbox'
-import StyledRadio from './styled-radio'
-import StyledSwitch from './styled-switch'
-import Table from './table'
-import TabPanels from './tab-panels'
-import TextField from './text-field'
-import Typography from './typography'
-import WidgetStats from './widget-stats'
 // export { default as WidgetNumber } from './widget-number' // deprecated by WidgetStats
 // export { default as WidgetTrend } from './widget-trend' // deprecated by WidgetStats
-
-export {
-  Alert,
-  Button,
-  Card,
-  Carousel,
-  DataTable,
-  DynamicButton,
-  ImageSlider,
-  List,
-  Loader,
-  QuickFilters,
-  StyledCardContainer,
-  StyledCheckbox,
-  StyledRadio,
-  StyledSwitch,
-  Table,
-  TabPanels,
-  TextField,
-  Typography,
-  WidgetStats,
-}
