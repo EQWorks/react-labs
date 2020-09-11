@@ -130,6 +130,17 @@ const Table = ({
         hiddenColumns: hidden,
         sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
       },
+      sortTypes: {
+        caseInsensitive: (row1, row2, columnName) => {
+          if(row1.original[columnName].toLowerCase() > row2.original[columnName].toLowerCase()){
+            return 1
+          } else if (row2.original[columnName].toLowerCase() > row1.original[columnName].toLowerCase()) {
+            return -1
+          } else {
+            return 0
+          }
+        },
+      },
     },
     // plugin hooks - order matters
     useGlobalFilter,

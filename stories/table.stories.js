@@ -472,3 +472,33 @@ export const dynamicSortBy = () => {
 dynamicSortBy.parameters = {
   controls: { hideNoControlsWarning: true },
 }
+export const caseInsensitiveSort = () => {
+  const _provinces = provinces.map((p) => {
+    if (p.province.startsWith('B')) p.province =  p.province.toLowerCase()
+    return { ...p }
+  })
+  return (
+    <>
+      <Typography variant="body1">
+        SortBy to be case insensitive.
+      </Typography>
+      <Table
+        data={_provinces}
+        columns={[
+          { Header: 'New cases', accessor: 'new_cases', hidden: true },
+          { Header: 'Total cases', accessor: 'total_cases' },
+          { Header: 'Province', accessor: 'province', sortType: 'caseInsensitive' },
+          {
+            Header: 'Rate',
+            accessor: 'rate',
+            Cell: ({ value }) => `${value}%`,
+          },
+        ]}
+      />
+    </>
+  )
+}
+
+dynamicSortBy.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
