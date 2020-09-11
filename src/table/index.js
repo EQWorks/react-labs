@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   spacer: { flex: 'inherit' },
+  root: { overflow: 'visible' },
 }))
 
 const getHeader = (s) => [
@@ -128,6 +129,17 @@ const Table = ({
       initialState: {
         hiddenColumns: hidden,
         sortBy: useMemo(() => Array.isArray(cachedSortBy) ? cachedSortBy : [cachedSortBy], [cachedSortBy]),
+      },
+      sortTypes: {
+        caseInsensitive: (row1, row2, columnName) => {
+          if(row1.original[columnName].toLowerCase() > row2.original[columnName].toLowerCase()){
+            return 1
+          } else if (row2.original[columnName].toLowerCase() > row1.original[columnName].toLowerCase()) {
+            return -1
+          } else {
+            return 0
+          }
+        },
       },
     },
     // plugin hooks - order matters
@@ -227,7 +239,7 @@ const Table = ({
                     onChangeRowsPerPage={({ target: { value } }) => {
                       setPageSize(Number(value))
                     }}
-                    classes={{ spacer: classes.spacer }}
+                    classes={{ spacer: classes.spacer, root: classes.root }}
                   />
                 </TableRow>
               </TableFooter>

@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
 ## [Unreleased]
+
+## [1.9.0] - 2020-09-11
+### Added
+- `<Table />` - sortTypes to be case insensitive by using `sortType: 'caseInsensitive'` in columns object
+
 ### Fixed
+- `<Table />` - `overflow: 'visible` override pagination style to avoid horizontal scroll
 - `Peer Dependency` - Fixed missing `@material-ui` as a peer dependency.
 
 ## [1.8.1] - 2020-09-10
@@ -41,7 +47,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 - `/src/theme` - Created theme override files for global styling.
 - `<Shadow>` - Story created.
 - `<Typography>` - Story created.
-- `theme/color` - Story created. 
+- `theme/color` - Story created.
 
 #### Changed
 - `README` - Updated with details on installation and usage.
