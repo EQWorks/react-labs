@@ -12,7 +12,7 @@ const Typography = ({ marginBottom, children, ...rest }) => {
 
 Typography.propTypes = { 
   marginBottom: PropTypes.number,
-  children: PropTypes.string.required,
+  children: PropTypes.string.isRequired,
 }
 Typography.defaultProps = { marginBottom: 0 }
 
