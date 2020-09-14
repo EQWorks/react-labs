@@ -13,7 +13,7 @@ npm i @eqworks/react-labs
 
 2. Install the required peer dependencies, run:
 ```
-npm i @material-ui/core @material-ui/lab @material-ui/icons react react-dom
+npm i @material-ui/core @material-ui/icons @material-ui/lab react react-dom
 ```
 
 ---
@@ -26,19 +26,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from '@material-ui/core/styles'
 
-import { theme } from '@eqworks/react-labs'
+import { Theme } from '@eqworks/react-labs'
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={Theme}>
     <App />
   </ThemeProvider>,
   document.getElementById('root'),
 )
 ```
 
-2. Import any component into your project:
+2. Import any component(s) into your project:
 ```jsx
-import { Button } from '@eqworks/react-labs'
+import { Button, Typography } from '@eqworks/react-labs'
 ```
 
 3. Render the component in the DOM:
@@ -46,7 +46,7 @@ import { Button } from '@eqworks/react-labs'
 export default function MyComponent() {
   return (
     <div>
-      <h1>This is a button</h1>
+      <Typography variant='h1'>This is a button</Typography>
       <Button size='medium' type='primary'>By Button</Button>
     </div>
   )
