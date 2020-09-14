@@ -2,53 +2,40 @@
 
 ![Master](https://github.com/EQWorks/react-labs/workflows/Master/badge.svg)
 
-`react-labs` is a collection of common React components that builds off of the [Material-UI](https://material-ui.com/) design system.
+A [React](https://reactjs.org/) user interface kit built with [Material-UI](https://material-ui.com/).
 
-## Installation
+## Getting started
 
-1. Install `react-labs`, run:
+Firstly, install `react-labs`:
 ```
 npm i @eqworks/react-labs
 ```
 
-2. Install the required peer dependencies, run:
+Next, install the required peer dependencies:
 ```
 npm i @material-ui/core @material-ui/icons @material-ui/lab react react-dom
 ```
 
----
-
-## Usage
-
-1. Wrap your application inside a <ThemeProvider> component using the `react-labs` theme, as such:
+Once you have installed all the required packages, wrap your application in a "`<ThemeProvider>` provided by `@material-ui/core`" using the `Theme` object provided by `react-labs` as the `theme` property:
 ```jsx
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/core';
+import { Theme } from '@eqworks/react-labs';
 
-import { Theme } from '@eqworks/react-labs'
-
-ReactDOM.render(
+const MyApp = () => (
   <ThemeProvider theme={Theme}>
-    <App />
-  </ThemeProvider>,
-  document.getElementById('root'),
+    Hello world!
+  </ThemeProvider>
 )
 ```
 
-2. Import any component(s) into your project:
+Now, you can start using `react-labs` components:
 ```jsx
 import { Button, Typography } from '@eqworks/react-labs'
-```
 
-3. Render the component in the DOM:
-```jsx
-export default function MyComponent() {
-  return (
-    <div>
-      <Typography variant='h1'>This is a button</Typography>
-      <Button size='medium' type='primary'>By Button</Button>
-    </div>
-  )
-}
+const MyApp = () => (
+  <ThemeProvider theme={Theme}>
+    <Typography variant='h1'>Hello world!</Typography>
+    <Button type='primary'>Click me!</Button>
+  </ThemeProvider>
+)
 ```
