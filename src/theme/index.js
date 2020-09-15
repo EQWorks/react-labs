@@ -9,7 +9,7 @@ import props from './props'
 import shadows from './shadows'
 import typography from './typography'
 
-export const DefaultTheme = createMuiTheme({
+const DefaultTheme = createMuiTheme({
   overrides,
   palette,
   props,
@@ -29,3 +29,5 @@ ThemeProvider.propTypes = {
   children: PropTypes.node,
   theme: PropTypes.object,
 }
+
+export default DefaultTheme
