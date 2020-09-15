@@ -1,4 +1,5 @@
 // theme
+export { ThemeProvider } from '@material-ui/core/styles'
 export { default as Theme } from './theme/index'
 
 // components
