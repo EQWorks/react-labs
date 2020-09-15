@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Theme, ThemeProvider } from '../src/index'
+import { ThemeProvider } from '../src/index'
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider theme={Theme}>
+    <ThemeProvider>
       <Story />
     </ThemeProvider>
   ),

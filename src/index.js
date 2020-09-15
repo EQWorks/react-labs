@@ -1,6 +1,22 @@
 // theme
-export { ThemeProvider } from '@material-ui/core/styles'
-export { default as Theme } from './theme/index'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles'
+import DefaultTheme from './theme'
+
+export { DefaultTheme }
+export const ThemeProvider = ({ children, theme = DefaultTheme }) => {
+  return (
+    <MUIThemeProvider theme={theme}>
+      {children}
+    </MUIThemeProvider>
+  )
+}
+
+ThemeProvider.propTypes = {
+  children: PropTypes.node,
+  theme: PropTypes.object,
+}
 
 // components
 export { default as Alert } from './alert'

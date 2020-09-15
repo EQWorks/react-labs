@@ -16,12 +16,12 @@ Next, install the required peer dependencies:
 npm i @material-ui/core @material-ui/icons @material-ui/lab react react-dom
 ```
 
-Once you have installed all the required dependencies, wrap your application in a `<ThemeProvider>` using the default `Theme` object provided by `react-labs` as the `theme` property:
+Once you have installed all the required dependencies, wrap your application in a `<ThemeProvider>`:
 ```jsx
-import { Theme, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@eqworks/react-labs';
 
 const MyApp = () => (
-  <ThemeProvider theme={Theme}>
+  <ThemeProvider>
     Hello world!
   </ThemeProvider>
 )
@@ -31,12 +31,12 @@ Now, you can start using `react-labs` components:
 ```jsx
 import { Button, Typography } from '@eqworks/react-labs'
 
-const MyApp = () => (
-  <ThemeProvider theme={Theme}>
+const MyComponent = () => (
+  <div>
     <Typography variant='h1'>Hello world!</Typography>
     <Button type='primary'>Click me!</Button>
-  </ThemeProvider>
+  </div>
 )
 ```
 
-> Note: You can override the react-labs default theme by passing a `theme` prop to `<ThemeProvider>`.<br />[Click here to find out how to create your own theme using Material UI's `createMuiTheme` method](https://material-ui.com/customization/theming/#api).
+> **Note:** You can override the `react-labs` default theme by passing a `theme` prop to `<ThemeProvider>`.<br />[Click here to find out how to create your own theme using Material UI's `createMuiTheme` method](https://material-ui.com/customization/theming/#api).
