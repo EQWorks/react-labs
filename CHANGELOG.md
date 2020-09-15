@@ -8,6 +8,9 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [Unreleased]
 
+### Fixed
+- `<Typography />` - Fixed children prop-type typo.
+
 ## [1.9.0] - 2020-09-11
 ### Added
 - `<Table />` - sortTypes to be case insensitive by using `sortType: 'caseInsensitive'` in columns object
