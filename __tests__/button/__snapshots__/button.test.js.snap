@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should render ok with no props passed 1`] = `
+<button
+  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+  data-testid="button"
+  tabindex="0"
+  type="primary"
+>
+  <span
+    class="MuiButton-label"
+  >
+    My Button
+  </span>
+  <span
+    class="MuiTouchRipple-root"
+  />
+</button>
+`;

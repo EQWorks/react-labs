@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+import MUIButton from '@material-ui/core/Button'
 import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => {
@@ -15,13 +15,14 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const ButtonComponent = ({ children, isLoading, type, noSpacing, ...props }) => {
+const Button = ({ children, isLoading, noSpacing, type, ...props }) => {
   const classes = useStyles()
 
   const styleProps = {
     color: 'primary',
-    type: 'primary',
+    type,
   }
+
   if (type === 'tertiary') {
     props.variant = 'text'
   } else if (type === 'secondary') {
@@ -31,27 +32,27 @@ const ButtonComponent = ({ children, isLoading, type, noSpacing, ...props }) => 
   }
 
   return (
-    <Button className={clsx({ [classes.label]: isLoading,
+    <MUIButton className={clsx({ [classes.label]: isLoading,
       [classes.noSpacing]: noSpacing,
-    })} {...styleProps} {...props} >
+    })} data-testid='button' {...styleProps} {...props} >
       {children}
-    </Button>
+    </MUIButton>
   )
 }
 
-ButtonComponent.propTypes = {
+Button.propTypes = {
   /**
     * The content of the button.
   */
   children: PropTypes.string.isRequired,
   /**
-    * If `true`, the button will be disabled.
-  */
-  disabled: PropTypes.bool,
-  /**
     * Toggle loading style of component.
   */
   isLoading: PropTypes.bool,
+  /**
+    * If `true`, margin/padding property of the button will be set to 0. Recommended for tertiary buttons. 
+   */
+  noSpacing: PropTypes.bool,
   /**
     * The size of the button.small is equivalent to the dense button styling.
   */
@@ -60,18 +61,13 @@ ButtonComponent.propTypes = {
     * The variant to use.
   */
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']).isRequired,
-  /**
-    * If `true`, margin/padding property of the button will be set to 0. Recommended for tertiary buttons. 
-   */
-  noSpacing: PropTypes.bool,
-
 }
 
-ButtonComponent.defaultProps = {
+Button.defaultProps = {
   isLoading: false,
   noSpacing: false,
   size: 'medium',
   type: 'primary',
 }
 
-export default ButtonComponent
+export default Button
