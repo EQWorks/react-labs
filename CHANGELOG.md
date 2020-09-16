@@ -8,6 +8,9 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [Unreleased]
 
+### Added
+- `<ThemeProvider>` - Added custom `ThemeProvider` that uses `react-labs` theme by default.
+
 ### Fixed
 - `<Typography />` - Fixed children prop-type typo.
 

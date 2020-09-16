@@ -1,5 +1,5 @@
 // theme
-export { default as Theme } from './theme/index'
+export { DefaultTheme, ThemeProvider } from './theme'
 
 // components
 export { default as Alert } from './alert'

@@ -2,53 +2,41 @@
 
 ![Master](https://github.com/EQWorks/react-labs/workflows/Master/badge.svg)
 
-`react-labs` is a collection of common React components that builds off of the [Material-UI](https://material-ui.com/) design system.
+A [React](https://reactjs.org/) user interface kit built with [Material-UI](https://material-ui.com/).
 
-## Installation
+## Getting started
 
-1. Install `react-labs`, run:
+Firstly, install `react-labs`:
 ```
 npm i @eqworks/react-labs
 ```
 
-2. Install the required peer dependencies, run:
+Next, install the required peer dependencies:
 ```
-npm i @material-ui/core @material-ui/lab @material-ui/icons react react-dom
+npm i @material-ui/core @material-ui/icons @material-ui/lab react react-dom
 ```
 
----
-
-## Usage
-
-1. Wrap your application inside a <ThemeProvider> component using the `react-labs` theme, as such:
+Once you have installed all the required dependencies, wrap your application in a `<ThemeProvider>`:
 ```jsx
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@eqworks/react-labs';
 
-import { theme } from '@eqworks/react-labs'
-
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>,
-  document.getElementById('root'),
+const MyApp = () => (
+  <ThemeProvider>
+    Hello world!
+  </ThemeProvider>
 )
 ```
 
-2. Import any component into your project:
+Now, you can start using `react-labs` components:
 ```jsx
-import { Button } from '@eqworks/react-labs'
+import { Button, Typography } from '@eqworks/react-labs'
+
+const MyComponent = () => (
+  <div>
+    <Typography variant='h1'>Hello world!</Typography>
+    <Button type='primary'>Click me!</Button>
+  </div>
+)
 ```
 
-3. Render the component in the DOM:
-```jsx
-export default function MyComponent() {
-  return (
-    <div>
-      <h1>This is a button</h1>
-      <Button size='medium' type='primary'>By Button</Button>
-    </div>
-  )
-}
-```
+> **Note:** You can override the `react-labs` default theme by passing a `theme` prop to `<ThemeProvider>`.<br />[Click here to find out how to create your own theme using Material UI's `createMuiTheme` method](https://material-ui.com/customization/theming/#api).
