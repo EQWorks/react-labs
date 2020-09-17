@@ -9,7 +9,7 @@ describe('render', () => {
     const button = getByTestId('button')
     // snapshot
     expect(button).toMatchSnapshot()
-    // renders ok
+    // text content matches
     expect(button.textContent).toBe('My Button')
     // not loading
     expect(button).toHaveStyle('color: #FFFFFF')
