@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should render ok with least props passed 1`] = `
+<div
+  class="MuiPaper-root MuiCard-root makeStyles-md-2 MuiPaper-elevation1 MuiPaper-rounded"
+  data-testid="card"
+>
+  <div
+    class="MuiCardContent-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-alignLeft"
+      />
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-alignLeft"
+      >
+        My Card Content
+      </span>
+    </div>
+  </div>
+</div>
+`;

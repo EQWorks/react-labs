@@ -113,7 +113,7 @@ const Card = ({
     )
 
   return (
-    <MUICard style={dimensions} className={classes[size]}>
+    <MUICard data-testid='card' style={dimensions} className={classes[size]}>
       {cardBody}
     </MUICard>
   )

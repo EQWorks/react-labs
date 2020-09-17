@@ -218,3 +218,15 @@ Wrapper.argTypes = {
     control: null,
   },
 }
+
+// ===
+
+export const Test = () => {
+  return (
+    <Card
+      actionSide='center'
+      cardAction={<p>My Card Action</p>}
+      cardContent='My Card Content'
+    />
+  )
+}
