@@ -90,7 +90,7 @@ const RefetchData = ({ fetchUrl }) => {
 
 RefetchData.propTypes = {
   /**
-    * The url to fetch data from.
+    * The API URL that uses a GET request to return JSON formatted data.
   */
   fetchUrl: PropTypes.string.isRequired,
 }
