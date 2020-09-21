@@ -52,11 +52,11 @@ const useStyles = makeStyles((theme) => {
 const RefetchData = ({ fetchUrl }) => {
   const [isFetchingData, setIsFetchingData] = useState(false)
   const classes = useStyles()
-  const { data, refetch, status } = useQuery('data', async () => {
+  const { refetch, status } = useQuery('data', async () => {
     setIsFetchingData(true)
     const { data } = await axios.get(fetchUrl)
     setIsFetchingData(false)
-    console.log(data) // WHAT DO I DO HERE?
+    console.log(data)
     return data
   })
 

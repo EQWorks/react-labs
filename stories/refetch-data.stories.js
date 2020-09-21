@@ -2,7 +2,6 @@ import React from 'react'
 
 import { RefetchData } from '../src/index'
 
-
 export default {
   title: 'Lab/Refetch Data',
   component: RefetchData,
