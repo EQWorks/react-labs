@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => {
       justifyContent: 'center',
       padding: '5px',
     },
+    containerLoading: {
+      color: 'red',
+    },
     button: {
       alignItems: 'center',
       backgroundColor: theme.palette.secondary[900],
@@ -132,7 +135,7 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
           width="100%"
         />
       )}
-      {(status === 'loading') && (
+      {(status === 'error') && (
         <Alert
           className={classes.alert}
           message="Error loading data."
