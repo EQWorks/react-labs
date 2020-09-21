@@ -132,7 +132,7 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
           width="100%"
         />
       )}
-      {(status === 'error') && (
+      {(status === 'loading') && (
         <Alert
           className={classes.alert}
           message="Error loading data."
