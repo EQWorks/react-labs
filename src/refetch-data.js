@@ -25,9 +25,6 @@ const useStyles = makeStyles((theme) => {
       padding: '5px',
       width: '50px',
     },
-    containerLoading: {
-      color: 'red',
-    },
     button: {
       alignItems: 'center',
       backgroundColor: theme.palette.secondary[900],
@@ -54,6 +51,7 @@ const useStyles = makeStyles((theme) => {
 
 const RefetchData = ({ fetchUrl }) => {
   const [isFetchingData, setIsFetchingData] = useState(false)
+  const classes = useStyles()
   const { data, refetch, status } = useQuery('data', async () => {
     setIsFetchingData(true)
     const { data } = await axios.get(fetchUrl)
@@ -61,7 +59,6 @@ const RefetchData = ({ fetchUrl }) => {
     console.log(data) // WHAT DO I DO HERE?
     return data
   })
-  const classes = useStyles()
 
   return (
     <div>
