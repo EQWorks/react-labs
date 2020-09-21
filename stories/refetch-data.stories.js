@@ -7,7 +7,7 @@ export default {
   title: 'Lab/Refetch Data',
   component: RefetchData,
   args: {
-    fetchUrl: 'https://api.github.com/repos/tannerlinsley/react-query',
+    fetchUrl: 'http://slowwly.robertomurray.co.uk/delay/3000/url/https://jsonplaceholder.typicode.com/users/1',
   },
   argTypes: {},
 }

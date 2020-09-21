@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import PropTypes from 'prop-types'
@@ -6,8 +6,16 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
+import { Alert } from '../src/index'
+
 const useStyles = makeStyles((theme) => {
   return {
+    alert: {
+      left: '50%',
+      position: 'absolute',
+      top: '0',
+      transform: 'translate(-50%, 0)',
+    },
     container: {
       alignItems: 'center',
       boxSizing: 'border-box',
@@ -16,6 +24,9 @@ const useStyles = makeStyles((theme) => {
       justifyContent: 'center',
       padding: '5px',
       width: '50px',
+    },
+    containerLoading: {
+      color: 'red',
     },
     button: {
       alignItems: 'center',
@@ -42,29 +53,39 @@ const useStyles = makeStyles((theme) => {
 })
 
 const RefetchData = ({ fetchUrl }) => {
-  // const [intervalMs] = useState(300000) // 5 minutes
-  // const cache = useQueryCache()
-  const classes = useStyles()
-  const { data, error, refetch, status } = useQuery('data', async () => {
+  const [isFetchingData, setIsFetchingData] = useState(false)
+  const { data, refetch, status } = useQuery('data', async () => {
+    setIsFetchingData(true)
     const { data } = await axios.get(fetchUrl)
-    console.log(data)
+    setIsFetchingData(false)
+    console.log(data) // WHAT DO I DO HERE?
     return data
   })
-
-  if (status === 'loading') return <h1>Loading...</h1>
-  if (status === 'error') return <span>Error: {error.message}</span>
+  const classes = useStyles()
 
   return (
     <div>
-      <h1>Test hook</h1>
+      {(isFetchingData) && (
+        <Alert
+          className={classes.alert}
+          message="Loading data..."
+          severity="info"
+          variant="standard"
+          width="100%"
+        />
+      )}
+      {(status === 'error') && (
+        <Alert
+          className={classes.alert}
+          message="Error loading data."
+          severity="error"
+          variant="standard"
+          width="100%"
+        />
+      )}
       <div className={classes.container}>
         <button className={classes.button} onClick={() => refetch()}><RefreshIcon /></button>
       </div>
-      <h1>{data.name}</h1>
-      <p>{data.description}</p>
-      <strong>👀 {data.subscribers_count}</strong>
-      <strong>✨ {data.stargazers_count}</strong>
-      <strong>🍴 {data.forks_count}</strong>
       <ReactQueryDevtools initialIsOpen />
     </div>
   )
