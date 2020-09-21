@@ -6,7 +6,11 @@ export default {
   title: 'Lab/Refetch Data',
   component: RefetchData,
   args: {},
-  argTypes: {},
+  argTypes: {
+    update: {
+      control: null,
+    },
+  },
 }
 
 const Template = (args) => (
