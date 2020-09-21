@@ -1,8 +1,5 @@
-import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import { ReactQueryDevtools } from 'react-query-devtools'
+import React from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
@@ -49,20 +46,12 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const RefetchData = ({ fetchUrl }) => {
-  const [isFetchingData, setIsFetchingData] = useState(false)
+const RefetchData = ({ status, update }) => {
   const classes = useStyles()
-  const { refetch, status } = useQuery('data', async () => {
-    setIsFetchingData(true)
-    const { data } = await axios.get(fetchUrl)
-    setIsFetchingData(false)
-    console.log(data)
-    return data
-  })
 
   return (
-    <div>
-      {(isFetchingData) && (
+    <>
+      {(status === 'loading') && (
         <Alert
           className={classes.alert}
           message="Loading data..."
@@ -71,7 +60,7 @@ const RefetchData = ({ fetchUrl }) => {
           width="100%"
         />
       )}
-      {(status === 'error') && (
+      {(status === 'loading') && (
         <Alert
           className={classes.alert}
           message="Error loading data."
@@ -81,18 +70,21 @@ const RefetchData = ({ fetchUrl }) => {
         />
       )}
       <div className={classes.container}>
-        <button className={classes.button} onClick={() => refetch()}><RefreshIcon /></button>
+        <button className={classes.button} onClick={update}><RefreshIcon /></button>
       </div>
-      <ReactQueryDevtools initialIsOpen />
-    </div>
+    </>
   )
 }
 
 RefetchData.propTypes = {
   /**
-    * The API URL that uses a GET request to return JSON formatted data.
+    * The request status.
   */
-  fetchUrl: PropTypes.string.isRequired,
+  status: PropTypes.oneOf(['loading', 'error']),
+  /**
+    * The request method.
+  */
+  update: PropTypes.function,
 }
 
 export default RefetchData
