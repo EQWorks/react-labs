@@ -130,6 +130,7 @@ Template.propTypes = {
    */
   variant: PropTypes.string.isRequired,
   marginBottom: PropTypes.number.isRequired,
+  secondary: PropTypes.number.isRequired,
 }
 
 export const Default = Template.bind({})
