@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
@@ -59,12 +59,11 @@ const useStyles = makeStyles((theme) => {
       boxSizing: 'border-box',
       height: '100%',
       width: '100%',
-      backgroundImage: (props) =>
-        `linear-gradient(${fade(theme.palette.grey[600], 0)}, #000), url(${
-          props.image
+      backgroundImage: ({ pattern }) =>
+        `linear-gradient(${fade(theme.palette.grey[600], 0)}, #000), url(${pattern.image
         })`,
       backgroundPosition: 'center center',
-      backgroundSize: '100% auto',
+      backgroundSize: ({ ratio }) => ratio ? '100% auto' : 'auto 100%',
       transition: 'background-size 0.6s ease-out',
       color: 'white',
       boxShadow: theme.shadows[1],
@@ -72,22 +71,34 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         transition: 'all .6s',
         boxShadow: theme.shadows[3],
-        backgroundSize: '105% auto',
+        backgroundSize: ({ ratio }) => ratio ? '105% auto' : 'auto 105% ',
       },
     },
   }
 })
 
 const StyledCardContainer = ({ pattern, onClick, selected, children, ...rest }) => {
+  const [ratio, setRatio] = useState(0)
+  const ref = useRef(0)
+  useLayoutEffect(() => {
+    const { clientWidth, clientHeight } = ref.current
+    const img = new Image()
+    img.src = pattern.image
+    const { width: imgWidth, height: imgHeight } = img
+    const width = clientWidth/imgWidth
+    const height = clientHeight/imgHeight
+    setRatio(width >= height)
+  }, [ref])
   const whichStyle = `style${pattern.style}`
-  const classes = useStyles(pattern)
-  
+  const classes = useStyles({ pattern, ratio })
+
   return (
     <Card
       className={clsx(classes[whichStyle], { selected })}
       elevation={0}
       onClick={onClick}
       {...rest}
+      ref={ref}
     >
       {children}
     </Card>
