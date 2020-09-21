@@ -31,7 +31,9 @@ export default {
           'h5',
           'h6',
           'subtitle1',
+          'subtitle2',
           'body1',
+          'body2',
           'button',
           'caption',
           'overline',
@@ -43,7 +45,7 @@ export default {
       table: {
         type: {
           summary:
-            "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'body1' | 'button' | 'caption' | 'overline'",
+            "'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'button' | 'caption' | 'overline'",
         },
       },
       type: { name: 'select', required: true },
@@ -56,6 +58,14 @@ export default {
       defaultValue: 0,
       description: 'adds margin at the bottom.',
     },
+    secondary: {
+      control: {
+        options: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900],
+        type: 'select',
+      },
+      defaultValue: undefined,
+      description: 'apply secondary color palettes.',
+    },
   },
 }
 const variants = [
@@ -66,13 +76,15 @@ const variants = [
   'h5',
   'h6',
   'subtitle1',
+  'subtitle2',
   'body1',
+  'body2',
   'button',
   'caption',
   'overline',
 ]
 
-const Template = ({ variant, children, marginBottom }) => {
+const Template = ({ variant, children, marginBottom, secondary }) => {
   
   const theme = useTheme()
   const typoLists = variants.map((variant, i) => (
@@ -99,7 +111,7 @@ const Template = ({ variant, children, marginBottom }) => {
           Playground
         </Typography>
         <div style={{ backgroundColor: theme.palette.secondary[100], display: 'inline-block' }}>
-          <Typography variant={variant} marginBottom={marginBottom}>
+          <Typography variant={variant} marginBottom={marginBottom} secondary={secondary}>
             {children}
           </Typography>
         </div>

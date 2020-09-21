@@ -9,7 +9,15 @@ const typography = {
   subtitle1: {
     fontWeight: 600,
   },
+  subtitle2: {
+    fontWeight: 400,
+    fontSize: '1rem',
+  },
   body1: {
+    fontSize: '0.875rem', // 14px
+  },
+  body2: {
+    fontWeight: 600,
     fontSize: '0.875rem', // 14px
   },
   button: {
