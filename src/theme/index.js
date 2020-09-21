@@ -30,6 +30,4 @@ ThemeProvider.propTypes = {
   theme: PropTypes.object,
 }
 
-export {
-  DefaultTheme,
-}
+export default DefaultTheme
