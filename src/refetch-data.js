@@ -123,22 +123,22 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
 
   return (
     <>
-      {(status === 'loading') && (
+      {(status === 'error') && (
         <Alert
           className={classes.alert}
-          message="Loading data..."
-          severity="info"
-          variant="standard"
-          width="100%"
+          message='Error loading data.'
+          severity='error'
+          variant='standard'
+          width='100%'
         />
       )}
       {(status === 'loading') && (
         <Alert
           className={classes.alert}
-          message="Error loading data."
-          severity="error"
-          variant="standard"
-          width="100%"
+          message='Loading data...'
+          severity='info'
+          variant='standard'
+          width='100%'
         />
       )}
       <div className={classes.container} tabIndex='-1'>
