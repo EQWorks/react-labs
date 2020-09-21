@@ -21,9 +21,6 @@ const useStyles = makeStyles((theme) => {
       justifyContent: 'center',
       padding: '5px',
     },
-    containerLoading: {
-      color: 'red',
-    },
     button: {
       alignItems: 'center',
       backgroundColor: theme.palette.secondary[900],
