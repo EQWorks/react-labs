@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => {
         `linear-gradient(${fade(theme.palette.grey[600], 0)}, #000), url(${pattern.image
         })`,
       backgroundPosition: 'center center',
-      backgroundSize: ({ ratio }) => ratio >= 1 ? ' 100% auto' : 'auto 100%',
+      backgroundSize: ({ backgroundKey }) => backgroundKey ? 'auto 100%' : '100% auto',
       transition: 'background-size 0.6s ease-out',
       color: 'white',
       boxShadow: theme.shadows[1],
@@ -72,21 +72,49 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         transition: 'all .6s',
         boxShadow: theme.shadows[3],
-        backgroundSize: ({ ratio }) => ratio >= 1 ? ' 105% auto': 'auto 105% ',
+        backgroundSize: ({ backgroundKey }) => backgroundKey ? 'auto 105%' : '105% auto',
       },
     },
   }
 })
 
 const StyledCardContainer = ({ pattern, onClick, selected, children, ...rest }) => {
-  const [ratio, setRatio] = useState(0)
+  const [backroundKey, setBackgroundKey] = useState(null)
   const ref = useRef(0)
+  
   useLayoutEffect(() => {
+    const img = new Image();
+    img.src = pattern.image;  
+    
     const { clientWidth, clientHeight } = ref.current
-    setRatio(clientWidth / clientHeight)
+    const containerRatio = clientWidth / clientHeight
+    
+    const { width, height } = img;
+    const imageRatio = width/height;
+    debugger;
+
+    if(containerRatio > 1 && imageRatio > 1) {
+      setBackgroundKey(true);
+    }
+
+    else if(containerRatio > 1 && imageRatio < 1) {
+      setBackgroundKey(true);
+    }
+
+    else if(containerRatio < 1 && imageRatio > 1) {
+      setBackgroundKey(false);
+    }
+
+    else if(containerRatio < 1 && imageRatio < 1) {
+      setBackgroundKey(false);
+    }
+
   }, [ref])
+  
+  
   const whichStyle = `style${pattern.style}`
-  const classes = useStyles({ pattern, ratio })
+  const classes = useStyles({ pattern, backroundKey })
+
 
   return (
     <Card
