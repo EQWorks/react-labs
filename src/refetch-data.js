@@ -47,6 +47,14 @@ const useStyles = makeStyles((theme) => {
         backgroundColor: theme.palette.secondary[500],
         cursor: 'default',
       },
+      '&:focus': {
+        backgroundColor: theme.palette.secondary[500],
+        border: `2px solid ${theme.palette.primary.main}`,
+        outline: 'none',
+      },
+      '&:hover': {
+        backgroundColor: theme.palette.secondary[700],
+      },
       '& svg': {
         color: theme.palette.common.white,
         outline: 'none',
@@ -123,7 +131,7 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
 
   return (
     <>
-      {(status === 'error') && (
+      {(status === 'error' && !hideAlert) && (
         <Alert
           className={classes.alert}
           message='Error loading data.'
