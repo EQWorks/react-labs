@@ -10,9 +10,11 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ### Added
 - `<ThemeProvider>` - Added custom `ThemeProvider` that uses `react-labs` theme by default.
-
+- `Theme` - Subtitle and body variations added.
 ### Fixed
 - `<Typography />` - Fixed children prop-type typo.
+- `<Typography />` - secondary color configuration prop added.
+- `Theme` - DefaultTheme not found warning fixed.
 
 ## [1.9.0] - 2020-09-11
 ### Added
