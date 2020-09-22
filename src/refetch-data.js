@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
+import Tooltip from '@material-ui/core/Tooltip'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
 import { Alert } from '../src/index'
@@ -17,10 +18,8 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
       boxSizing: 'border-box',
       display: 'inline-flex',
-      height: '50px',
       justifyContent: 'center',
       padding: '5px',
-      width: '50px',
     },
     button: {
       alignItems: 'center',
@@ -29,10 +28,10 @@ const useStyles = makeStyles((theme) => {
       borderRadius: '100%',
       cursor: 'pointer',
       display: 'inline-flex',
-      height: '100%',
+      height: '50px',
       justifyContent: 'center',
       transition: 'background-color 0.25s ease-out',
-      width: '100%',
+      width: '50px',
       '&:active': {
         backgroundColor: theme.palette.secondary[500],
       },
@@ -52,12 +51,16 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const RefetchData = ({ fetchDataFunction, status }) => {
+const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
   const [hideAlert, setHideAlert] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [lastUpdatedDisplay, setLastUpdatedDisplay] = useState(false)
   const buttonRef = useRef()
   const classes = useStyles()
 
   useEffect(() => {
+    displayLastUpdated()
+
     const timer = setTimeout(() => {
       if (status === 'error') {
         setHideAlert(true)
@@ -67,7 +70,7 @@ const RefetchData = ({ fetchDataFunction, status }) => {
       setHideAlert(false)
       clearTimeout(timer)
     }
-  }, [status])
+  }, [status, lastUpdated])
 
   const handleClick = () => {
     fetchDataFunction()
@@ -79,6 +82,32 @@ const RefetchData = ({ fetchDataFunction, status }) => {
       fetchDataFunction()
     } else {
       buttonRef.current.blur()
+    }
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleOpen = () => {
+    if (lastUpdatedDisplay) {
+      setOpen(true)
+    }
+  }
+
+  const displayLastUpdated = () => {
+    if (lastUpdated) {
+      const startTime = lastUpdated
+      const currentTime = new Date(Date.now())
+      const timeDifference = currentTime.getTime() - startTime.getTime()
+      const resultInMinutes = Math.round(timeDifference / 60000)
+      if (resultInMinutes < 1) {
+        setLastUpdatedDisplay('Updated just now')
+      } else if (resultInMinutes < 60) {
+        setLastUpdatedDisplay(`Updated ${resultInMinutes} mins ago`)
+      } else {
+        setLastUpdatedDisplay('Updated more than an hour ago')
+      }
     }
   }
 
@@ -103,15 +132,24 @@ const RefetchData = ({ fetchDataFunction, status }) => {
         />
       )}
       <div className={classes.container} tabIndex='-1'>
-        <button
-          aria-label='Refresh data'
-          className={classes.button}
-          onKeyDown={handleKey}
-          onMouseUp={handleClick}
-          ref={buttonRef}
+        <Tooltip
+          aria-label={lastUpdatedDisplay}
+          arrow
+          onClose={handleClose}
+          onOpen={handleOpen}
+          open={open}
+          title={lastUpdatedDisplay}
         >
-          <RefreshIcon tabIndex='-1' />
-        </button>
+          <button
+            aria-label='Refresh data'
+            className={classes.button}
+            onKeyDown={handleKey}
+            onMouseUp={handleClick}
+            ref={buttonRef}
+          >
+            <RefreshIcon tabIndex='-1' />
+          </button>
+        </Tooltip>
       </div>
     </>
   )
@@ -126,6 +164,10 @@ RefetchData.propTypes = {
     * The request method.
   */
   fetchDataFunction: PropTypes.func,
+  /**
+    * The date and time of the most recent return of data.
+  */
+  lastUpdated: PropTypes.instanceOf(Date),
 }
 
 export default RefetchData
