@@ -23,9 +23,7 @@ export const Default = () => {
     const { data } = await axios.get('https://jsonplaceholder.typicode.com/users/1')
     window.setTimeout(() => {
       setFetchStatus('none')
-      const oldDate = new Date(Date.now())
-      oldDate.setTime(oldDate.getTime() - (0 * 60 * 1000)) // first number is difference in minutes
-      setLastUpdated(oldDate)
+      setLastUpdated(new Date(Date.now()))
       console.log(data)
       return data
     }, 1000)

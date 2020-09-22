@@ -61,14 +61,20 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
   useEffect(() => {
     displayLastUpdated()
 
-    const timer = setTimeout(() => {
+    const hideAlertTimer = setTimeout(() => {
       if (status === 'error') {
         setHideAlert(true)
       }
     }, 2000)
+
+    const updateLastUpdatedTimer = setInterval(() => {
+      displayLastUpdated()
+    }, 60 * 1000)
+
     return () => {
       setHideAlert(false)
-      clearTimeout(timer)
+      clearTimeout(hideAlertTimer)
+      clearInterval(updateLastUpdatedTimer)
     }
   }, [status, lastUpdated])
 
