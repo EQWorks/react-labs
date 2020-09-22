@@ -59,6 +59,7 @@ Default.parameters = {
 
 export const Success = () => {
   const [fetchStatus, setFetchStatus] = useState('none')
+  const [lastUpdated, setLastUpdated] = useState(undefined)
 
   const fetchData = async () => {
     setFetchStatus('loading')
