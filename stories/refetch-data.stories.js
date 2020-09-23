@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { RefetchData } from '../src/index'
+import { RefetchData, Typography } from '../src/index'
 
 export default {
   title: 'Lab/Refetch Data',
@@ -15,6 +15,7 @@ export default {
 }
 
 export const Default = () => {
+  const [fetchedData, setFetchedData] = useState(false)
   const [fetchStatus, setFetchStatus] = useState('none')
   const [lastUpdated, setLastUpdated] = useState(undefined)
 
@@ -24,8 +25,7 @@ export const Default = () => {
     window.setTimeout(() => {
       setFetchStatus('none')
       setLastUpdated(new Date(Date.now()))
-      console.log(data)
-      return data
+      setFetchedData(data)
     }, 1000)
   }
 
@@ -33,11 +33,21 @@ export const Default = () => {
     setFetchStatus('error')
   }
 
-  return <RefetchData
-    status={fetchStatus}
-    fetchDataFunction={fetchData}
-    lastUpdated={lastUpdated}
-  />
+  return (
+    <>
+      <RefetchData
+        status={fetchStatus}
+        fetchDataFunction={fetchData}
+        lastUpdated={lastUpdated}
+      />
+      {(fetchedData) && (
+        <div>
+          <Typography variant='body1'>Name: {fetchedData.name}</Typography>
+          <Typography variant='body1'>Email: {fetchedData.email}</Typography>
+        </div>
+      )}
+    </>
+  )
 }
 
 Default.parameters = {
