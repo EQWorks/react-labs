@@ -1,125 +1,94 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import MUIChip from '@material-ui/core/Chip'
 import clsx from 'clsx'
 
-import { palette } from './themes'
-
 const useStyles = makeStyles((theme) => ({
   chip: {
+    backgroundColor: (styleProps) => theme.palette[styleProps.backgroundColor].main,
+    color: (styleProps) => styleProps.color,
     margin: theme.spacing(1),
-    textTransform: 'lowercase',
   },
-  deletable: {
-    backgroundColor: '#FFFFFF',
-    border: `1px solid ${theme.palette.shade.secondary[400]}`,
-    color: theme.palette.shade.secondary[900],
-    '&:hover': {
-      backgroundColor: theme.palette.state.hoverWhite,
-      border: `1px solid ${theme.palette.primary.main}`,
-      color: theme.palette.primary.main,
-    },
-    '&:focus': {
-      backgroundColor: '#FFFFFF',
-      border: `1px solid ${theme.palette.shade.secondary[400]}`,
-      color: theme.palette.shade.secondary[900],
+  clickable: {
+    '&:hover, &:focus': {
+      backgroundColor: (styleProps) => fade(theme.palette[styleProps.backgroundColor].main, 0.75),
     },
   },
-  toggle: {
-    backgroundColor: '#FFFFFF',
-    border: `1px solid ${theme.palette.shade.secondary[400]}`,
-    color: theme.palette.shade.secondary[900],
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      color: '#FFFFFF',
-      border: `1px solid ${theme.palette.primary.main}`,
+  onDelete: {
+    '&:hover, &:focus': {
+      backgroundColor: (styleProps) => `${fade(theme.palette[styleProps.backgroundColor].main, 0.15)} !important`,
     },
-    '&:hover': {
-      backgroundColor: theme.palette.state.hoverWhite,
-      border: `1px solid ${theme.palette.primary.main}`,
-      color: theme.palette.primary.main,
+  },
+  outlined: {
+    backgroundColor: `${theme.palette.common.white} !important`,
+    border: (styleProps) => `1px solid ${theme.palette[styleProps.backgroundColor].main}`,
+    color: (styleProps) => `${theme.palette[styleProps.backgroundColor].main} !important`,
+  },
+  outlinedClickable: {
+    '&:hover, &:focus': {
+      backgroundColor: (styleProps) => `${fade(theme.palette[styleProps.backgroundColor].main, 0.15)} !important`,
     },
+  },
+  rectangle: {
+    borderRadius: '4px',
   },
 }))
 
-const Chip = ({ backgroundColor, clickable, label, rectangle, type, ...rest }) => {
-  const classes = useStyles()
-
-  const determineBackgroundColor = (inputBackgroundColor) => {
-    if (inputBackgroundColor === 'error') {
-      return palette.error.main
-    } else if (inputBackgroundColor === 'primary' || !inputBackgroundColor.includes('#')) {
-      return palette.primary.main
-    } else {
-      return inputBackgroundColor
-    }
+const Chip = ({ clickable, color, onDelete, rectangle, variant, ...props }) => {
+  const theme = useTheme()
+  const styleProps = {
+    backgroundColor: color,
+    color: (['primary', 'success', 'warning'].includes(color))
+      ? theme.palette.common.black : theme.palette.common.white,
   }
-
-  const determineColor = (inputBackgroundColor) => {
-    if (!inputBackgroundColor.includes('#')) {
-      return '#FFFFFF'
-    }
-
-    const backgroundColorRGB = hexToRgb(inputBackgroundColor)
-    const backgroundColorLuminance = luminance(backgroundColorRGB.r, backgroundColorRGB.g, backgroundColorRGB.b)
-    const colorLuminance = luminance(255, 255, 255)
-    const ratio = colorLuminance > backgroundColorLuminance
-      ? ((backgroundColorLuminance + 0.05) / (colorLuminance + 0.05))
-      : ((colorLuminance + 0.05) / (backgroundColorLuminance + 0.05))
-    return (ratio < 1 / 4.5) ? '#FFFFFF' : '#000000'
-  }
-
-  const hexToRgb = (hex) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
-    } : null
-  }
-
-  const luminance = (r, g, b) => {
-    var a = [r, g, b].map(function (v) {
-      v /= 255
-      return v <= 0.03928
-        ? v / 12.92
-        : Math.pow((v + 0.055) / 1.055, 2.4)
-    })
-    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722
-  }
+  const classes = useStyles(styleProps)
 
   return <MUIChip
     className={clsx({
       [classes.chip]: true,
-      [classes.toggle]: type === 'toggle',
-      [classes.deletable]: type === 'deletable',
+      [classes.clickable]: clickable,
+      [classes.onDelete]: onDelete,
+      [classes.outlined]: (variant === 'outlined'),
+      [classes.outlinedClickable]: (variant === 'outlined' && clickable),
+      [classes.rectangle]: rectangle,
     })}
     clickable={clickable}
-    label={label}
-    style={{
-      borderRadius: (rectangle) ? '4px' : null,
-      color: (type === 'default') ? determineColor(backgroundColor) : null,
-      backgroundColor: (type === 'default') ? determineBackgroundColor(backgroundColor) : null,
-    }}
-    {...rest}
+    onDelete={onDelete}
+    variant={variant}
+    {...props}
   />
 }
 
 Chip.propTypes = {
-  backgroundColor: PropTypes.string,
+  /**
+    * If true, the chip will appear clickable.
+  */
   clickable: PropTypes.bool,
-  isToggle: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  /**
+    * The color of the element.
+  */
+  color: PropTypes.oneOf(['primary', 'secondary', 'success', 'error', 'warning', 'info']).isRequired,
+  /**
+    * Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.
+  */
+  onDelete: PropTypes.func,
+  /**
+    * If true, the element shape will be rectangular.
+  */
   rectangle: PropTypes.bool,
-  type: PropTypes.string,
+  /**
+    * The variant to use.
+  */
+  variant: PropTypes.oneOf(['default', 'outlined']),
 }
 
 Chip.defaultProps = {
   clickable: false,
-  label: 'chip',
+  color: 'primary',
   rectangle: false,
-  type: 'default',
+  variant: 'outlined',
 }
 
 export default Chip

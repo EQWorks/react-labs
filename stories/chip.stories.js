@@ -1,100 +1,47 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 
-import Chip from '../src/chip'
-
-const defaultOptions = [
-  {
-    backgroundColor: '#f2c94c',
-    label: 'item',
-  },
-  {
-    backgroundColor: '#eb5757',
-    label: 'item',
-  },
-  {
-    backgroundColor: '#6fcf97',
-    label: 'item',
-  },
-  {
-    backgroundColor: '#828282',
-    label: 'item',
-  },
-]
+import { Chip } from '../src/index'
 
 export default {
+  title: 'Lab/Chip',
   component: Chip,
-  title: 'Chip',
-  excludeStories: /.*Data$/,
+  args: {
+    label: 'chip',
+  },
+  argTypes: {
+    label: {
+      description: 'The content of the label.',
+      table: {
+        type: { summary: 'string' },
+      },
+      type: { name: 'string', required: true },
+    },
+    onDelete: {
+      control: null,
+    },
+  },
 }
 
-export const Default = () => {
-  return (
-    <div>
-      {defaultOptions.map((option, index) => (
-        <Chip
-          backgroundColor={option.backgroundColor}
-          key={index}
-          label={option.label}
-        />
-      ))}
-    </div>
-  )
+const Template = (args) => (
+  <Chip {...args} />
+)
+
+export const Default = Template.bind({})
+
+// ===
+
+export const Delete = Template.bind({})
+
+Delete.args = {
+  onDelete: () => console.log('onDelete()'),
 }
 
-export const Rectangular = () => {
-  return (
-    <div>
-      {defaultOptions.map((option, index) => (
-        <Chip
-          backgroundColor={option.backgroundColor}
-          key={index}
-          label={option.label}
-          rectangle={true}
-        />
-      ))}
-    </div>
-  )
-}
-
-export const Toggle = () => {
-  return (
-    <div>
-      <Chip
-        clickable={true}
-        disableRipple
-        label='item'
-        onClick={action('onClick')}
-        type='toggle'
-      />
-    </div>
-  )
-}
-
-export const ToggleRectangular = () => {
-  return (
-    <div>
-      <Chip
-        clickable={true}
-        disableRipple
-        label='item'
-        onClick={action('onClick')}
-        rectangle={true}
-        type='toggle'
-      />
-    </div>
-  )
-}
-
-export const Deletable = () => {
-  return (
-    <div>
-      <Chip
-        disableRipple
-        label='item'
-        onDelete={action('onDelete')}
-        type='deletable'
-      />
-    </div>
-  )
-}
+// Delete.argTypes = {
+//   onDelete: {
+//     description: 'Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.',
+//     table: {
+//       type: { summary: 'function' },
+//     },
+//     type: { name: 'function', required: true },
+//   },
+// }
