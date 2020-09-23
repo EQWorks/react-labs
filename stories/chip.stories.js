@@ -6,26 +6,26 @@ import Chip from '../src/chip'
 const defaultOptions = [
   {
     backgroundColor: '#f2c94c',
-    label: 'item'
+    label: 'item',
   },
   {
     backgroundColor: '#eb5757',
-    label: 'item'
+    label: 'item',
   },
   {
     backgroundColor: '#6fcf97',
-    label: 'item'
+    label: 'item',
   },
   {
     backgroundColor: '#828282',
-    label: 'item'
+    label: 'item',
   },
 ]
 
 export default {
   component: Chip,
   title: 'Chip',
-  excludeStories: /.*Data$/
+  excludeStories: /.*Data$/,
 }
 
 export const Default = () => {
