@@ -55,6 +55,7 @@ const Chip = ({ clickable, color, onDelete, rectangle, variant, ...props }) => {
       [classes.rectangle]: rectangle,
     })}
     clickable={clickable}
+    data-testid='chip'
     onDelete={onDelete}
     variant={variant}
     {...props}
