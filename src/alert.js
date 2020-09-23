@@ -7,7 +7,7 @@ const Alert = ({ severity, message, header, width, ...props }) => {
   const dimensions = { height: 'auto', width }
 
   return (
-    <div style={dimensions}>
+    <div data-testid='alert' style={dimensions}>
       {header ? (
         <MUIAlert severity={severity} {...props}>
           <AlertTitle>
