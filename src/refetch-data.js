@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         backgroundColor: theme.palette.secondary[700],
       },
+      '&:disabled': {
+        backgroundColor: theme.palette.secondary[500],
+        cursor: 'default',
+      },
       '& svg': {
         color: theme.palette.common.white,
         outline: 'none',
@@ -149,6 +153,7 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
           <button
             aria-label='Refresh data'
             className={classes.button}
+            disabled={(status === 'loading')}
             onKeyDown={handleKey}
             onMouseUp={handleClick}
             ref={buttonRef}
