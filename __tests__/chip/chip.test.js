@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
-import Chip from '../../src/chip'
+import { Chip } from '../../src/index'
 
 describe('render', () => {
   it('should render ok with minimal props passed', () => {

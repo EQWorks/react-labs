@@ -19,8 +19,18 @@
     }
   ],
   "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/style-mock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/file-mock.js"
+    },
+    "setupFiles": [
+      "<rootDir>/__tests__/tests.setup.js"
+    ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/tests.setup.js"
     ]
   },
   "scripts": {
