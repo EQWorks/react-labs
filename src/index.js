@@ -6,8 +6,6 @@ export { default as Alert } from './alert'
 export { default as Button } from './button'
 export { default as Card } from './card'
 export { default as Carousel } from './image-slider/carousel'
-export { default as Chip } from './chip'
-export { default as DataTable } from './data-table' // deprecated by Table
 export { default as DynamicButton } from './dynamic-button'
 export { default as ImageSlider } from './image-slider'
 export { default as List } from './list'
@@ -24,6 +22,7 @@ export { default as Typography } from './typography'
 export { default as WidgetStats } from './widget-stats'
 
 // deprecated
-// export { default as DynamicDataTable } from './dynamic-data-table' // deprecated by Table
-// export { default as WidgetNumber } from './widget-number' // deprecated by WidgetStats
-// export { default as WidgetTrend } from './widget-trend' // deprecated by WidgetStats
+export { default as DataTable } from './deprecated/data-table' // deprecated by Table
+export { default as DynamicDataTable } from './deprecated/dynamic-data-table' // deprecated by Table
+export { default as WidgetNumber } from './deprecated/widget-number' // deprecated by WidgetStats
+export { default as WidgetTrend } from './deprecated/widget-trend' // deprecated by WidgetStats
