@@ -6,6 +6,7 @@ export { default as Alert } from './alert'
 export { default as Button } from './button'
 export { default as Card } from './card'
 export { default as Carousel } from './image-slider/carousel'
+export { default as Chip } from './chip'
 export { default as DataTable } from './data-table' // deprecated by Table
 export { default as DynamicButton } from './dynamic-button'
 export { default as ImageSlider } from './image-slider'

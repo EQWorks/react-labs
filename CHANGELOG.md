@@ -11,6 +11,8 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 ### Added
 - `<ThemeProvider>` - Added custom `ThemeProvider` that uses `react-labs` theme by default.
 - `Theme` - Subtitle and body variations added.
+- `<Chip>` - Added component.
+
 ### Fixed
 - `<DefaultTheme>` - Fixed theme object export.
 - `<Typography />` - Fixed children prop-type typo.

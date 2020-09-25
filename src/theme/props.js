@@ -1,5 +1,5 @@
 const props = {
-  MuiButton: {
+  MuiButtonBase: {
     disableRipple: true,
   },
 }

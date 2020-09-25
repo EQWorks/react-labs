@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should render ok with minimal props passed 1`] = `
+<div
+  class="MuiChip-root makeStyles-chip-1 makeStyles-chip-10"
+  data-testid="chip"
+>
+  <span
+    class="MuiChip-label"
+  >
+    My Chip
+  </span>
+</div>
+`;
