@@ -9,6 +9,9 @@ export default {
     label: 'chip',
   },
   argTypes: {
+    custom: {
+      control: 'color',
+    },
     label: {
       description: 'The content of the label.',
       table: {
@@ -35,13 +38,3 @@ export const Delete = Template.bind({})
 Delete.args = {
   onDelete: () => console.log('onDelete()'),
 }
-
-// Delete.argTypes = {
-//   onDelete: {
-//     description: 'Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.',
-//     table: {
-//       type: { summary: 'function' },
-//     },
-//     type: { name: 'function', required: true },
-//   },
-// }
