@@ -3,7 +3,7 @@ import React from 'react'
 import { Checkbox } from '../src/index'
 
 export default {
-  title: 'Lab/Checkbox',
+  title: 'Inputs/Checkbox',
   component: Checkbox,
   args: {
     label: 'Item',

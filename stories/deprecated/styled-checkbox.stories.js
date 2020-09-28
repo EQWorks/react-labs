@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-import { StyledCheckbox } from '../src/index'
+import { StyledCheckbox } from '../../src/index'
 
 export default {
-  title: 'Inputs/StyledCheckbox',
+  title: 'Deprecated/StyledCheckbox',
   component: StyledCheckbox,
   args: {
     checked: true,
