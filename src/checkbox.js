@@ -78,6 +78,7 @@ const Checkbox = ({ checked, disabled, id, label }) => {
           onChange={checkOnChange}
         />
       }
+      data-testid='checkbox'
       htmlFor={id}
       label={label}
     />

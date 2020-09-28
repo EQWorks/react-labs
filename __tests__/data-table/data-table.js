@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import DataTable from '../../src/data-table'
+import DataTable from '../../src/deprecated/data-table'
 
 
 beforeEach(() => {
