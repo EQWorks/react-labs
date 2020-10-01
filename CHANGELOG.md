@@ -8,6 +8,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [Unreleased]
 
+## [1.10.0] - 2020-10-01
 ### Added
 - `<ThemeProvider>` - Added custom `ThemeProvider` that uses `react-labs` theme by default.
 - `Theme` - Subtitle and body variations added.
@@ -18,6 +19,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 - `<Typography />` - Fixed children prop-type typo.
 - `<Typography />` - secondary color configuration prop added.
 - `Theme` - DefaultTheme not found warning fixed.
+- `<StyledCardContainer/>` - Fixed backgorund image ratio to adjust to any type of image.
 
 ## [1.9.0] - 2020-09-11
 ### Added
