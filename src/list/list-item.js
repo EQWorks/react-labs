@@ -214,7 +214,7 @@ const ListItem = ({
           primary={itemHeading(heading, progressBar)}
           secondary={details}
         />
-        <Grid item container xs={2}>
+        <Grid item container>
           <Grid
             item
             container

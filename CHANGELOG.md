@@ -8,6 +8,10 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [Unreleased]
 
+## [1.10.1] - 2020-10-07
+### Fixed
+- `<ListItem>` - Fixed status alignment style for small items.
+
 ## [1.10.0] - 2020-10-01
 ### Added
 - `<ThemeProvider>` - Added custom `ThemeProvider` that uses `react-labs` theme by default.

@@ -24,7 +24,7 @@ jobs:
 
       - name: Generate tag associated release notes
         if: ${{ success() }}
-        run: npx @eqworks/release notes -v --head ${GITHUB_REF##*/} --github
+        run: npx @eqworks/release notes -v --head ${GITHUB_REF##*/} --github --skip alpha
         env:
           GITHUB_OWNER: EQWorks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
