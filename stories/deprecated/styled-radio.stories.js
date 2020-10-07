@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-import { StyledRadio } from '../src/index'
+import { StyledRadio } from '../../src/index'
 
 export default {
   title: 'Inputs/StyledRadio',

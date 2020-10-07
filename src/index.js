@@ -1,6 +1,9 @@
 // untouched material-ui
+export { default as FormControl } from '@material-ui/core/FormControl'
 export { default as FormControlLabel } from '@material-ui/core/FormControlLabel'
 export { default as FormGroup } from '@material-ui/core/FormGroup'
+export { default as FormLabel } from '@material-ui/core/FormLabel'
+export { default as RadioGroup } from '@material-ui/core/RadioGroup'
 
 // theme
 export { DefaultTheme, ThemeProvider } from './theme'
@@ -16,8 +19,8 @@ export { default as ImageSlider } from './image-slider'
 export { default as List } from './list'
 export { default as Loader } from './loader'
 export { default as QuickFilters } from './quick-filters'
+export { default as Radio } from './radio'
 export { default as StyledCardContainer } from './styled-card-container'
-export { default as StyledRadio } from './styled-radio'
 export { default as StyledSwitch } from './styled-switch'
 export { default as Table } from './table'
 export { default as TabPanels } from './tab-panels'
@@ -28,6 +31,7 @@ export { default as WidgetStats } from './widget-stats'
 // deprecated
 export { default as DataTable } from './deprecated/data-table' // deprecated by Table
 export { default as DynamicDataTable } from './deprecated/dynamic-data-table' // deprecated by Table
+export { default as StyledRadio } from './deprecated/styled-radio' // deprecated by Radio
 export { default as StyledCheckbox } from './deprecated/styled-checkbox' // deprecated by Checkbox
 export { default as WidgetNumber } from './deprecated/widget-number' // deprecated by WidgetStats
 export { default as WidgetTrend } from './deprecated/widget-trend' // deprecated by WidgetStats
