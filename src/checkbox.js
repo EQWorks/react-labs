@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import MUICheckbox from '@material-ui/core/Checkbox'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 const CHECKMARK =
   'url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3E%3Cpath' +
@@ -56,31 +55,25 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const Checkbox = ({ checked, disabled, id, label }) => {
+const Checkbox = ({ checked, disabled, ...props }) => {
   const classes = useStyles()
   const [checkedState, setCheckedState] = useState(checked)
   const checkOnChange = (e) => {
     setCheckedState(e.target.checked)
   }
   return (
-    <FormControlLabel
-      control={
-        <MUICheckbox
-          disabled={disabled}
-          disableRipple
-          checked={checkedState}
-          checkedIcon={
-            <span className={checkedState ? classes.checkedIcon : classes.icon} />
-          }
-          className={classes.root}
-          icon={<span className={classes.icon} />}
-          id={id}
-          onChange={checkOnChange}
-        />
-      }
+    <MUICheckbox
       data-testid='checkbox'
-      htmlFor={id}
-      label={label}
+      disabled={disabled}
+      disableRipple
+      checked={checkedState}
+      checkedIcon={
+        <span className={checkedState ? classes.checkedIcon : classes.icon} />
+      }
+      className={classes.root}
+      icon={<span className={classes.icon} />}
+      onChange={checkOnChange}
+      {...props}
     />
   )
 }
@@ -98,14 +91,6 @@ Checkbox.propTypes = {
     * The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   */
   onChange: PropTypes.func,
-  /**
-    * The id of the element.
-  */
-  id: PropTypes.string,
-  /**
-    * The text to be used in an enclosing label element.
-  */
-  label: PropTypes.string,
 }
 
 Checkbox.defaultProps = {
