@@ -1,30 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render should render ok with no props passed 1`] = `
-<label
-  class="MuiFormControlLabel-root"
+<span
+  aria-disabled="false"
+  class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-4 MuiCheckbox-root MuiCheckbox-colorSecondary makeStyles-root-1 MuiIconButton-colorSecondary"
   data-testid="checkbox"
 >
   <span
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-4 MuiCheckbox-root MuiCheckbox-colorSecondary makeStyles-root-1 MuiIconButton-colorSecondary"
+    class="MuiIconButton-label"
   >
+    <input
+      class="PrivateSwitchBase-input-7"
+      data-indeterminate="false"
+      type="checkbox"
+      value=""
+    />
     <span
-      class="MuiIconButton-label"
-    >
-      <input
-        class="PrivateSwitchBase-input-7"
-        data-indeterminate="false"
-        type="checkbox"
-        value=""
-      />
-      <span
-        class="makeStyles-icon-2"
-      />
-    </span>
+      class="makeStyles-icon-2"
+    />
   </span>
-  <span
-    class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
-  />
-</label>
+</span>
 `;

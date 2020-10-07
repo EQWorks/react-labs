@@ -15,8 +15,6 @@ describe('render', () => {
     expect(checkbox.firstChild).not.toHaveClass('Mui-checked')
     // not disabled
     expect(checkbox).not.toHaveClass('Mui-disabled')
-    // no id
-    expect(getByTestId('checkbox')).not.toHaveAttribute('for')
   })
 })
 
@@ -28,7 +26,7 @@ describe('checked', () => {
 
   it('should be checked', () => {
     const { getByTestId } = render(<Checkbox checked />)
-    expect(getByTestId('checkbox').firstChild).toHaveClass('Mui-checked')
+    expect(getByTestId('checkbox')).toHaveClass('Mui-checked')
   })
 })
 
@@ -44,38 +42,14 @@ describe('disabled', () => {
   })
 })
 
-describe('id', () => {
-  it('should not have an id', () => {
-    const { getByTestId } = render(<Checkbox />)
-    expect(getByTestId('checkbox')).not.toHaveAttribute('for')
-  })
-
-  it('should have an id', () => {
-    const { getByTestId } = render(<Checkbox id='my-id' />)
-    expect(getByTestId('checkbox')).toHaveAttribute('for', 'my-id')
-  })
-})
-
-describe('label', () => {
-  it('should not have a label', () => {
-    const { getByTestId } = render(<Checkbox />)
-    expect(getByTestId('checkbox').textContent).toBeFalsy()
-  })
-
-  it('should have a label', () => {
-    const { getByTestId } = render(<Checkbox label='my label' />)
-    expect(getByTestId('checkbox').textContent).toBe('my label')
-  })
-})
-
 describe('interaction', () => {
   it('should toggle checked status on input selection', () => {
     const { getByTestId } = render(<Checkbox />)
     const checkbox = getByTestId('checkbox')
 
-    fireEvent.click(checkbox)
-    expect(checkbox.firstChild).toHaveClass('Mui-checked')
-    fireEvent.click(checkbox)
-    expect(checkbox.firstChild).not.toHaveClass('Mui-checked')
+    fireEvent.click(checkbox.firstChild.firstChild)
+    expect(checkbox).toHaveClass('Mui-checked')
+    fireEvent.click(checkbox.firstChild.firstChild)
+    expect(checkbox).not.toHaveClass('Mui-checked')
   })
 })
