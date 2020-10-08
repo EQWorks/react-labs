@@ -18,6 +18,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 
 const useStyles = makeStyles((theme) => {
   return {
+    item: { flex: 0 },
     font: {
       fontFamily: theme.typography.fontFamily,
       paddingLeft: theme.spacing(3),
@@ -214,12 +215,12 @@ const ListItem = ({
           primary={itemHeading(heading, progressBar)}
           secondary={details}
         />
-        <Grid item container>
+        <Grid item container className={classes.item}>
           <Grid
             item
             container
             xs={12}
-            justify="flex-start"
+            justify="flex-end"
             alignItems="flex-end"
             direction="column"
           >
