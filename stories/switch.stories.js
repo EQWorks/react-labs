@@ -1,13 +1,13 @@
 import React from 'react'
 import { FormControlLabel } from '@material-ui/core'
 
-import { StyledSwitch } from '../src/index'
+import { Switch } from '../src/index'
 
 export default {
-  title: 'Inputs/StyledSwitch',
-  component: StyledSwitch,
+  title: 'Lab/Switch',
+  component: Switch,
   args: {
-    control: <StyledSwitch />,
+    control: <Switch />,
     label: 'Switch',
     value: 'firstItem',
   },

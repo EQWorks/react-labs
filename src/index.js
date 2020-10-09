@@ -21,7 +21,7 @@ export { default as Loader } from './loader'
 export { default as QuickFilters } from './quick-filters'
 export { default as Radio } from './radio'
 export { default as StyledCardContainer } from './styled-card-container'
-export { default as StyledSwitch } from './styled-switch'
+export { default as Switch } from './switch'
 export { default as Table } from './table'
 export { default as TabPanels } from './tab-panels'
 export { default as TextField } from './text-field'
@@ -31,7 +31,8 @@ export { default as WidgetStats } from './widget-stats'
 // deprecated
 export { default as DataTable } from './deprecated/data-table' // deprecated by Table
 export { default as DynamicDataTable } from './deprecated/dynamic-data-table' // deprecated by Table
-export { default as StyledRadio } from './deprecated/styled-radio' // deprecated by Radio
 export { default as StyledCheckbox } from './deprecated/styled-checkbox' // deprecated by Checkbox
+export { default as StyledRadio } from './deprecated/styled-radio' // deprecated by Radio
+export { default as StyledSwitch } from './deprecated/styled-switch' // deprecated by Switch
 export { default as WidgetNumber } from './deprecated/widget-number' // deprecated by WidgetStats
 export { default as WidgetTrend } from './deprecated/widget-trend' // deprecated by WidgetStats
