@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => {
 
 const StyledSwitch = (props) => {
   const classes = useStyles(props)
-  return <Switch classes={classes} disableRipple {...props} />
+  return <Switch classes={classes} data-testid='switch' disableRipple {...props} />
 }
 
 StyledSwitch.propTypes = {
