@@ -58,7 +58,8 @@ const Radio = (props) => {
     <MUIRadio
       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       className={classes.root}
-      color="default"
+      color='default'
+      data-testid='radio'
       disableRipple
       icon={<span className={classes.icon} />}
       {...props}
