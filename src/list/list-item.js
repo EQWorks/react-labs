@@ -15,6 +15,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Typography from '../typography'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -119,6 +120,7 @@ const ListItem = ({
   heading,
   details,
   timeStatus,
+  timeStatusStyle,
   progress,
   progressBar,
   chip,
@@ -240,14 +242,22 @@ const ListItem = ({
             {timeStatus && (
               <div className={classes.timeStatus}>
                 {progress ? (
-                  <FiberManualRecord
-                    className={clsx({
-                      [classes.complete]: progress === 'complete',
-                      [classes.inProgress]: progress === 'incomplete',
-                    })}
-                  />
+                  <>
+                    <FiberManualRecord
+                      className={clsx({
+                        [classes.complete]: progress === 'complete',
+                        [classes.inProgress]: progress === 'incomplete',
+                      })}
+                    />
+                  &nbsp;&nbsp;
+                  </>
                 ) : null}
-                &nbsp;&nbsp;{timeStatus}
+                <Typography
+                  component={'span'}
+                  {...timeStatusStyle}
+                >
+                  {timeStatus}
+                </Typography>
               </div>
             )}
           </Grid>
@@ -273,7 +283,7 @@ const ListItem = ({
           <div className={classes.font}>{expansionDetails}</div>
         </MUIListItem>
       </Collapse>
-    </div>
+    </div >
   )
 }
 
@@ -293,6 +303,7 @@ ListItem.propTypes = {
   selected: PropTypes.bool,
   button: PropTypes.bool,
   timeStatus: PropTypes.string,
+  timeStatusStyle: PropTypes.object,
   progress: PropTypes.string,
   progressBar: PropTypes.number,
   chip: PropTypes.string,
@@ -318,6 +329,7 @@ ListItem.defaultProps = {
   selected: false,
   button: false,
   timeStatus: '',
+  timeStatusStyle: {},
   progress: '',
   progressBar: 0,
   chip: '',

@@ -116,10 +116,10 @@ const leftData = defaultData.map((item, i) => {
 })
 const rightData = defaultData.map((item, i) => {
   const newFields = [
-    { chip: 'Marketplace', chipColor: '#6fcf97', timeStatus: '30m' },
-    { chip: 'Builder', chipColor: '#f2c94c', timeStatus: '2h' },
-    { chip: 'Builder', chipColor: '#f2c94c', timeStatus: '30m' },
-    { chip: 'Segment', chipColor: '#56ccf2', timeStatus: '4h' },
+    { chip: 'Marketplace', chipColor: '#6fcf97', timeStatus: '30m', progress: 'incomplete' },
+    { chip: 'Builder', chipColor: '#f2c94c', timeStatus: '2h', progress: 'complete' },
+    { chip: 'Builder', chipColor: '#f2c94c', timeStatus: '30m', timeStatusStyle: { style: { color: 'red', textDecoration: 'line-through' } } },
+    { chip: 'Segment', chipColor: '#56ccf2', timeStatus: '4h', timeStatusStyle: { variant: 'subtitle1', style: { textDecoration: 'underline overline', fontWeight: 'bold' } } },
   ]
   const newItem = {
     ...item,
