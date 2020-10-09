@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
 ## [Unreleased]
+### Fixed
+- `<ListItem>` - Another fix in timeStatus alignment/style for small items in harmony with the typography
+
+### Added
+- `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside
+
+```
+<Typography
+  component={'span'}
+  {...timeStatusStyle}
+>
+  {timeStatus}
+</Typography>
+```
 
 ## [1.10.1] - 2020-10-07
 ### Fixed
