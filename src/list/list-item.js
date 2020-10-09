@@ -18,7 +18,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 
 const useStyles = makeStyles((theme) => {
   return {
-    item: { flex: 0 },
+    item: { flex: 1 },
+    itemText: { flex: '2 1 0%' },
     font: {
       fontFamily: theme.typography.fontFamily,
       paddingLeft: theme.spacing(3),
@@ -214,8 +215,9 @@ const ListItem = ({
         <ListItemText
           primary={itemHeading(heading, progressBar)}
           secondary={details}
+          classes={{ root: classes.itemText }}
         />
-        <Grid item container className={classes.item}>
+        <Grid item container classes={{ item: classes.item }}>
           <Grid
             item
             container
