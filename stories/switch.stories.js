@@ -1,45 +1,30 @@
-import React from 'react'
-import { FormControlLabel } from '@material-ui/core'
+import React, { useState } from 'react'
+// import { FormControlLabel } from '@material-ui/core'
 
 import { Switch } from '../src/index'
 
 export default {
   title: 'Lab/Switch',
   component: Switch,
-  args: {
-    control: <Switch />,
-    label: 'Switch',
-    value: 'firstItem',
-  },
-  argTypes: {
-    control: {
-      control: null,
-      description: 'The switch component.',
-      table: {
-        type: { summary: 'node' },
-        defaultValue: { summary: '<StyledSwitch />' },
-      },
-      type: 'node',
-    },
-    label: {
-      description: 'The display label of the component.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'false' },
-      },
-      type: 'string',
-    },
-    value: {
-      description: 'The value of the component.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-      type: 'string',
-    },
-  },
+  args: {},
+  argTypes: {},
 }
 
-const Template = (args) => <FormControlLabel {...args} />
+const Template = () => {
+  const [state, setState] = useState({ checkedA: true })
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked })
+  }
+
+  return (
+    <Switch
+      checked={state.checkedA}
+      inputProps={{ 'aria-label': 'checkbox' }}
+      name="checkedA"
+      onChange={handleChange}
+    />
+  )
+}
 
 export const Default = Template.bind({})

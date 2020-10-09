@@ -4,31 +4,56 @@ import { makeStyles } from '@material-ui/core/styles'
 import Switch from '@material-ui/core/Switch'
 
 const useStyles = makeStyles((theme) => {
+  const borderRadius = 3
   const thumbHeight = 15
   const thumbWidth = 7
   const inputPadding = 4
+
   return {
+    checked: {
+      '& $thumb': {
+        color: theme.palette.common.white,
+      },
+    },
     root: {
-      borderRadius: '3px',
-      height: `calc(${thumbHeight}px + ${inputPadding * 2}px)`,
+      backgroundColor: theme.palette.common.white,
+      border: props => props.checked ? `1px solid ${theme.palette.primary.main}` : `1px solid ${theme.palette.grey[400]}`,
+      borderRadius: `${borderRadius}px`,
+      height: `calc(2px + ${thumbHeight}px + ${inputPadding * 2}px)`,
       margin: '0 10px',
       padding: 0,
-      width: `calc(27px + ${inputPadding * 2}px)`,
+      transition: `all 150ms ${theme.transitions.easing.easeInOut}`,
+      width: `calc(29px + ${inputPadding * 2}px)`,
+      '&:hover': {
+        backgroundColor: theme.palette.common.white,
+        border: `1px solid ${theme.palette.primary.main}`,
+        '& $switchBase': {
+          backgroundColor: 'transparent',
+          padding: `${inputPadding}px`,
+        },
+      },
     },
     switchBase: {
-      borderRadius: '4px',
       margin: 0,
       padding: `${inputPadding}px`,
+      '&$checked': {
+        '& + $track': {
+          backgroundColor: theme.palette.primary.main,
+          opacity: 1,
+        },
+      },
     },
     thumb: {
-      borderRadius: '3px',
+      borderRadius: `${borderRadius}px`,
+      color: theme.palette.grey[400],
       height: `${thumbHeight}px`,
       margin: 0,
       padding: 0,
       width: `${thumbWidth}px`,
     },
     track: {
-      borderRadius: '3px',
+      backgroundColor: theme.palette.common.white,
+      borderRadius: 0,
       margin: 0,
       padding: 0,
     },
@@ -36,11 +61,15 @@ const useStyles = makeStyles((theme) => {
 })
 
 const StyledSwitch = (props) => {
-  const classes = useStyles()
+  const classes = useStyles(props)
   return <Switch classes={classes} disableRipple {...props} />
 }
 
 StyledSwitch.propTypes = {
+  /**
+    * If true, the component is checked.
+  */
+  checked: PropTypes.bool,
   /**
     * If `true`, the switch will be disabled.
   */
