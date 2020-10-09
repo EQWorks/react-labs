@@ -7,11 +7,21 @@ export default {
   title: 'Lab/Switch',
   component: Switch,
   args: {},
-  argTypes: {},
+  argTypes: {
+    checked: {
+      control: null,
+      type: { name: 'boolean', required: false },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 }
 
-const Template = () => {
-  const [state, setState] = useState({ checkedA: true })
+const Template = (args) => {
+  const [state, setState] = useState({ checkedA: false })
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked })
@@ -23,6 +33,7 @@ const Template = () => {
       inputProps={{ 'aria-label': 'checkbox' }}
       name="checkedA"
       onChange={handleChange}
+      {...args}
     />
   )
 }

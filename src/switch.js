@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => {
     checked: {},
     root: {
       backgroundColor: theme.palette.common.white,
-      border: props => props.checked ? `1px solid ${theme.palette.primary.main}` : `1px solid ${theme.palette.grey[400]}`,
+      border: props => (props.checked && !props.disabled) ? `1px solid ${theme.palette.primary.main}` : `1px solid ${theme.palette.grey[400]}`,
       borderRadius: `${borderRadius}px`,
       height: `calc(2px + ${thumbHeight}px + ${inputPadding * 2}px)`,
       margin: '0 10px',
@@ -57,6 +57,16 @@ const useStyles = makeStyles((theme) => {
       margin: 0,
       padding: 0,
     },
+    disabled: {
+      '&$checked': {
+        '& + $track': {
+          opacity: 0.5,
+        },
+        '& $thumb': {
+          opacity: 0.5,
+        },
+      },
+    },
   }
 })
 
@@ -77,6 +87,7 @@ StyledSwitch.propTypes = {
 }
 
 StyledSwitch.defaultProps = {
+  checked: false,
   disabled: false,
 }
 
