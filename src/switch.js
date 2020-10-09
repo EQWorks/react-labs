@@ -10,11 +10,7 @@ const useStyles = makeStyles((theme) => {
   const inputPadding = 4
 
   return {
-    checked: {
-      '& $thumb': {
-        color: theme.palette.common.white,
-      },
-    },
+    checked: {},
     root: {
       backgroundColor: theme.palette.common.white,
       border: props => props.checked ? `1px solid ${theme.palette.primary.main}` : `1px solid ${theme.palette.grey[400]}`,
@@ -31,6 +27,9 @@ const useStyles = makeStyles((theme) => {
           backgroundColor: 'transparent',
           padding: `${inputPadding}px`,
         },
+        '& $thumb': {
+          color: props => props.checked ? theme.palette.common.white : theme.palette.primary.main,
+        },
       },
     },
     switchBase: {
@@ -45,10 +44,11 @@ const useStyles = makeStyles((theme) => {
     },
     thumb: {
       borderRadius: `${borderRadius}px`,
-      color: theme.palette.grey[400],
+      color: props => props.checked ? theme.palette.common.white : theme.palette.grey[400],
       height: `${thumbHeight}px`,
       margin: 0,
       padding: 0,
+      transition: `all 150ms ${theme.transitions.easing.easeInOut}`,
       width: `${thumbWidth}px`,
     },
     track: {
