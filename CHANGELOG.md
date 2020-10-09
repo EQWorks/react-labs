@@ -22,6 +22,21 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 </Typography>
 ```
 
+### Added
+- `<Checkbox>` - Added to replace `<StyledCheckbox>`.
+- `<Radio>` - Added to replace `<StyledRadio>`.
+- `<Switch>` - Added to replace `<StyledSwitch>`.
+- `<FormControl>`, `<FormControlLabel>`, `<FormGroup>`, `<FormLabel>`, and `<RadioGroup>` components added from `material-ui` library.
+
+### Deprecated
+- `<DataTable>` - Replaced by `<Table>`.
+- `<DynamicDataTable>` - Replaced by `<Table>`.
+- `<StyledCheckbox>` - Replaced by `<Checkbox>`.
+- `<StyledRadio>` - Replaced by `<Radio>`.
+- `<StyledSwitch>` - Replaced by `<Switch>`.
+- `<WidgetNumber>` - Replaced by `<WidgetStats>`.
+- `<WidgetTrend>` - Replaced by `<WidgetStats>`.
+
 ## [1.10.1] - 2020-10-07
 ### Fixed
 - `<ListItem>` - Fixed status alignment style for small items.

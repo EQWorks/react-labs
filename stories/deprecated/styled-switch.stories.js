@@ -4,7 +4,7 @@ import { FormControlLabel } from '@material-ui/core'
 import { StyledSwitch } from '../../src/index'
 
 export default {
-  title: 'Lab/StyledSwitch',
+  title: 'Deprecated/StyledSwitch',
   component: StyledSwitch,
   args: {
     control: <StyledSwitch />,

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FormControlLabel, Switch } from '../src/index'
 
 export default {
-  title: 'Lab/Switch',
+  title: 'Inputs/Switch',
   component: Switch,
   args: {
     label: 'Item',

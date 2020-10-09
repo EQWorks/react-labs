@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { StyledRadio } from '../../src/index'
 
 export default {
-  title: 'Inputs/StyledRadio',
+  title: 'Deprecated/StyledRadio',
   component: StyledRadio,
   args: {
     disabled: false,

@@ -3,7 +3,7 @@ import React from 'react'
 import { Chip } from '../src/index'
 
 export default {
-  title: 'Lab/Chip',
+  title: 'Data Display/Chip',
   component: Chip,
   args: {
     label: 'chip',
