@@ -153,6 +153,7 @@ const RefetchData = ({ fetchDataFunction, status, lastUpdated }) => {
           <button
             aria-label='Refresh data'
             className={classes.button}
+            data-testid='refetch-data'
             disabled={(status === 'loading')}
             onKeyDown={handleKey}
             onMouseUp={handleClick}
