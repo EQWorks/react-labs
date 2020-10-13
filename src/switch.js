@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Switch from '@material-ui/core/Switch'
 
@@ -73,17 +72,6 @@ const useStyles = makeStyles((theme) => {
 const StyledSwitch = (props) => {
   const classes = useStyles(props)
   return <Switch classes={classes} data-testid='switch' disableRipple {...props} />
-}
-
-StyledSwitch.propTypes = {
-  /**
-    * If true, the component is checked.
-  */
-  checked: PropTypes.bool,
-  /**
-    * If `true`, the switch will be disabled.
-  */
-  disabled: PropTypes.bool,
 }
 
 StyledSwitch.defaultProps = {

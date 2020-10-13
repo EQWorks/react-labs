@@ -5,18 +5,25 @@ import { FormControlLabel, Switch } from '../src/index'
 export default {
   title: 'Inputs/Switch',
   component: Switch,
-  args: {
-    label: 'Item',
-  },
+  args: {},
   argTypes: {
     checked: {
-      control: null,
+      description: 'If true, the component is checked.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
       type: { name: 'boolean', required: false },
     },
     disabled: {
-      control: {
-        type: 'boolean',
+      description: 'If true, the component will be disabled.',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
+      type: { name: 'boolean', required: false },
     },
   },
 }
@@ -61,6 +68,10 @@ export const Default = Template.bind({})
 // ===
 
 export const ControlLabel = TemplateControlLabel.bind({})
+
+ControlLabel.args = {
+  label: 'Item',
+}
 
 ControlLabel.argTypes = {
   label: {
