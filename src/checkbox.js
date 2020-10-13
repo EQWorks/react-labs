@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-const Checkbox = ({ checked, disabled, ...props }) => {
+const Checkbox = ({ checked, ...props }) => {
   const classes = useStyles()
   const [checkedState, setCheckedState] = useState(checked)
   const checkOnChange = (e) => {
@@ -71,7 +71,6 @@ const Checkbox = ({ checked, disabled, ...props }) => {
   return (
     <MUICheckbox
       data-testid="checkbox"
-      disabled={disabled}
       disableRipple
       checked={checkedState}
       checkedIcon={
@@ -90,10 +89,6 @@ Checkbox.propTypes = {
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
-  /**
-   * If `true`, the checkbox will be disabled.
-   */
-  disabled: PropTypes.bool,
   /**
    * The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */

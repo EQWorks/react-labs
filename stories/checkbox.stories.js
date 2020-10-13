@@ -6,7 +6,19 @@ export default {
   title: 'Inputs/Checkbox',
   component: Checkbox,
   args: {},
-  argTypes: {},
+  argTypes: {
+    disabled: {
+      type: { name: 'boolean', required: false },
+      description: 'If `true`, the checkbox will be disabled.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 }
 
 const Template = (args) => (
