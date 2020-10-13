@@ -18,6 +18,16 @@ export default {
         type: 'boolean',
       },
     },
+    onChange: {
+      type: { name: 'func', required: false },
+      description: 'The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).',
+      table: {
+        type: { summary: 'func' },
+      },
+      control: {
+        type: null,
+      },
+    },
   },
 }
 

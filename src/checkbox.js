@@ -89,10 +89,6 @@ Checkbox.propTypes = {
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
-  /**
-   * The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
-   */
-  onChange: PropTypes.func,
 }
 
 Checkbox.defaultProps = {
