@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render should render ok with no props passed 1`] = `
+<span
+  aria-disabled="false"
+  class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-9 MuiSwitch-switchBase makeStyles-switchBase-3 MuiSwitch-colorSecondary"
+  data-testid="switch"
+>
+  <span
+    class="MuiIconButton-label"
+  >
+    <input
+      class="PrivateSwitchBase-input-12 MuiSwitch-input"
+      type="checkbox"
+      value=""
+    />
+    <span
+      class="MuiSwitch-thumb makeStyles-thumb-4 makeStyles-thumb-8"
+    />
+  </span>
+</span>
+`;

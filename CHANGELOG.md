@@ -7,12 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
 ## [Unreleased]
-### Fixed
-- `<ListItem>` - Another fix in timeStatus alignment/style for small items in harmony with the typography
-
 ### Added
-- `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside
-
+- `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside:
 ```
 <Typography
   component={'span'}
@@ -21,6 +17,22 @@ All non-core API/package changes (i.e. changes that do not affect the package de
   {timeStatus}
 </Typography>
 ```
+- `<Checkbox>` - Added to replace `<StyledCheckbox>`.
+- `<Radio>` - Added to replace `<StyledRadio>`.
+- `<Switch>` - Added to replace `<StyledSwitch>`.
+- `<FormControl>`, `<FormControlLabel>`, `<FormGroup>`, `<FormLabel>`, and `<RadioGroup>` components added from `material-ui` library.
+
+### Deprecated
+- `<DataTable>` - Replaced by `<Table>`.
+- `<DynamicDataTable>` - Replaced by `<Table>`.
+- `<StyledCheckbox>` - Replaced by `<Checkbox>`.
+- `<StyledRadio>` - Replaced by `<Radio>`.
+- `<StyledSwitch>` - Replaced by `<Switch>`.
+- `<WidgetNumber>` - Replaced by `<WidgetStats>`.
+- `<WidgetTrend>` - Replaced by `<WidgetStats>`.
+
+### Fixed
+- `<ListItem>` - Another fix in timeStatus alignment/style for small items in harmony with the typography
 
 ## [1.10.1] - 2020-10-07
 ### Fixed

@@ -1,7 +1,7 @@
 import React from 'react'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
-import { DynamicButton } from '../src/index'
+import { DynamicButton } from '../../src/index'
 
 export default {
   title: 'Deprecated/DynamicButton',

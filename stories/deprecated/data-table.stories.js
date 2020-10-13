@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { DataTable } from '../src/index'
-import province from './data/provinces'
+import { DataTable } from '../../src/index'
+import province from '../data/provinces'
 
 export default {
   title: 'Deprecated/DataTable',
