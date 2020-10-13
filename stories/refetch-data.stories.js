@@ -21,16 +21,17 @@ export const Default = () => {
 
   const fetchData = async () => {
     setFetchStatus('loading')
-    const { data } = await axios.get('https://jsonplaceholder.typicode.com/users/1')
-    window.setTimeout(() => {
-      setFetchStatus('none')
-      setLastUpdated(new Date(Date.now()))
-      setFetchedData(data)
-    }, 1000)
-  }
-
-  if (status === 'error') {
-    setFetchStatus('error')
+    try {
+      const { data } = await axios.get('https://jsonplaceholder.typicode.com/users/1')
+      window.setTimeout(() => {
+        setFetchStatus('none')
+        setLastUpdated(new Date(Date.now()))
+        setFetchedData(data)
+      }, 1000)
+    } catch (error) {
+      console.log(error)
+      setFetchStatus('error')
+    }
   }
 
   return (
@@ -53,6 +54,26 @@ export const Default = () => {
 Default.parameters = {
   controls: { hideNoControlsWarning: true },
 }
+
+// ===
+
+export const Success = () => {
+  const [fetchStatus, setFetchStatus] = useState('none')
+
+  const fetchData = async () => {
+    setFetchStatus('loading')
+    window.setTimeout(() => {
+      setFetchStatus('none')
+    }, 1000)
+  }
+
+  return <RefetchData status={fetchStatus} fetchDataFunction={fetchData} />
+}
+
+Success.parameters = {
+  controls: { hideNoControlsWarning: true },
+}
+
 
 // ===
 
