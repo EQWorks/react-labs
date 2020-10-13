@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { RefetchData, Typography } from '../src/index'
+import { RefetchData, Typography } from '../src'
 
 export default {
   title: 'Lab/Refetch Data',
