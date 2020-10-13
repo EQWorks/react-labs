@@ -8,7 +8,8 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 
 ## [Unreleased]
 ### Added
-- `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside:
+- `<RefetchData>` - Added component to display data-fetching statuses and last updated fetch.
+- `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside.
 ```
 <Typography
   component={'span'}
@@ -43,6 +44,7 @@ All non-core API/package changes (i.e. changes that do not affect the package de
 - `<ThemeProvider>` - Added custom `ThemeProvider` that uses `react-labs` theme by default.
 - `Theme` - Subtitle and body variations added.
 - `<Chip>` - Added component.
+- `<RefetchData>` - Added component to display data-fetching statuses and last updated fetch.
 
 ### Fixed
 - `<DefaultTheme>` - Fixed theme object export.
