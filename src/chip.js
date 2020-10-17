@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     backgroundColor: (styleProps) => theme.palette[styleProps.backgroundColor].main,
     color: (styleProps) => styleProps.color,
-    margin: theme.spacing(1),
+    margin: ({ margin }) => theme.spacing(margin),
   },
   clickable: {
     '&:hover, &:focus': {
@@ -51,7 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Chip = ({ clickable, color, custom, onDelete, rectangle, variant, ...props }) => {
+const determineColor = backgroundColor => {
+  const ratioToWhite = getContrastRatio(backgroundColor, '#FFF')
+  const ratioToBlack = getContrastRatio(backgroundColor, '#000')
+  return ratioToWhite >= ratioToBlack ? '#FFF' : '#000'
+}
+
+const Chip = ({ clickable, color, custom, onDelete, rectangle, variant, margin, ...props }) => {
   const theme = useTheme()
 
   const checkValidColor = (color) => {
@@ -69,12 +75,6 @@ const Chip = ({ clickable, color, custom, onDelete, rectangle, variant, ...props
     return true
   }
 
-  const determineColor = backgroundColor => {
-    const ratioToWhite = getContrastRatio(backgroundColor, '#FFF')
-    const ratioToBlack = getContrastRatio(backgroundColor, '#000')
-    return ratioToWhite >= ratioToBlack ? '#FFF' : '#000'
-  }
-
   const customColor = (checkValidColor(custom)) ? custom : theme.palette.primary.main
 
   const styleProps = {
@@ -85,7 +85,9 @@ const Chip = ({ clickable, color, custom, onDelete, rectangle, variant, ...props
       backgroundColor: customColor,
       color: determineColor(customColor),
     },
+    margin: margin,
   }
+
   const classes = useStyles(styleProps)
 
   return <MUIChip
@@ -133,6 +135,10 @@ Chip.propTypes = {
     * The variant to use.
   */
   variant: PropTypes.oneOf(['default', 'outlined']),
+  /**
+    * determines the margin size around the component 1 = 8px
+  */
+  margin: PropTypes.number,
 }
 
 Chip.defaultProps = {
@@ -140,6 +146,7 @@ Chip.defaultProps = {
   color: 'primary',
   rectangle: false,
   variant: 'default',
+  margin: 0,
 }
 
 export default Chip

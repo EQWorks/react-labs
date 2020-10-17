@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
 ## [Unreleased]
+### Changed
+- `<Chip>` - flexible margin control added.
+
 ### Added
 - `<RefetchData>` - Added component to display data-fetching statuses and last updated fetch.
 - `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside.

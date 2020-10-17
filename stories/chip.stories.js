@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Chip } from '../src/index'
 
 export default {
@@ -21,6 +20,12 @@ export default {
     },
     onDelete: {
       control: null,
+    },
+    margin: {
+      control: {
+        options: [0, 1, 2],
+        type: 'select',
+      },
     },
   },
 }
