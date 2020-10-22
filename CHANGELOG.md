@@ -6,37 +6,89 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
-## [Unreleased]
-### Changed
-- `<Chip>` - flexible margin control added.
+## [v1.11.0] - 2020-10-22
 
-### Added
-- `<RefetchData>` - Added component to display data-fetching statuses and last updated fetch.
-- `<ListItem>` - `timeStatusStyle` key:value can be added to `data` param to apply style to the timeStatus element, now inside.
-```
-<Typography
-  component={'span'}
-  {...timeStatusStyle}
->
-  {timeStatus}
-</Typography>
-```
-- `<Checkbox>` - Added to replace `<StyledCheckbox>`.
-- `<Radio>` - Added to replace `<StyledRadio>`.
-- `<Switch>` - Added to replace `<StyledSwitch>`.
-- `<FormControl>`, `<FormControlLabel>`, `<FormGroup>`, `<FormLabel>`, and `<RadioGroup>` components added from `material-ui` library.
+### FEATURES
 
-### Deprecated
-- `<DataTable>` - Replaced by `<Table>`.
-- `<DynamicDataTable>` - Replaced by `<Table>`.
-- `<StyledCheckbox>` - Replaced by `<Checkbox>`.
-- `<StyledRadio>` - Replaced by `<Radio>`.
-- `<StyledSwitch>` - Replaced by `<Switch>`.
-- `<WidgetNumber>` - Replaced by `<WidgetStats>`.
-- `<WidgetTrend>` - Replaced by `<WidgetStats>`.
+* chip - update changelog.md (c5061a1 by DoParkEQ)
+* chip - margin control added (943cd3d by DoParkEQ)
+* refetchdata/Tests - Add rendering test w/ snapshot (7ae78fa by Sam Sverko)
+* refetchdata/Stories - Added fetch error handling. (f702664 by Sam Sverko)
+        * Add success story.
+* refetchbutton - Add disabled state on `loading`. - Story - Add data visuals on successful fetch. (107e72a by Sam Sverko)
+* refetchdata - Add interval to update lastUpdated. - Remove testing date story data. - Update CHANGELOG. (a566d4e by Sam Sverko)
+* refetchdata - Add Tooltip display of last updated. - Update story to generate time difference. (0909bc6 by Sam Sverko)
+* refetchdata - Handle mouse and key press. - Add sample story methods to visualize fetch data statuses. - Provide a11y visuals for focus and hover states. (bccdcaf by Sam Sverko)
+* refetchdata - Remove `update` prop control [build] - Update CHANGELOG. (f96b22a by Sam Sverko)
+* refetchdata - Remove get-data functionality. - Storybook - Remove react-query devtools. (1bb8c9b by Sam Sverko)
+* refetchdata - Add visuals to loading & error state - Use slow mock http request url for testing. (722797e by Sam Sverko)
+* deps - Add axios dep. - Add react-query-devtools to Storybook app wrapper. (70c86b8 by Sam Sverko)
+* refetchdata/Stories - Added fetch error handling. (664b15c by Sam Sverko)
+        * Add success story.
+* refetchbutton - Add disabled state on `loading`. - Story - Add data visuals on successful fetch. (2de56a7 by Sam Sverko)
+* refetchdata - Add interval to update lastUpdated. - Remove testing date story data. - Update CHANGELOG. (b2a3979 by Sam Sverko)
+* refetchdata - Add Tooltip display of last updated. - Update story to generate time difference. (7c16d62 by Sam Sverko)
+* refetchdata - Handle mouse and key press. - Add sample story methods to visualize fetch data statuses. - Provide a11y visuals for focus and hover states. (e586a09 by Sam Sverko)
+* refetchdata - Remove `update` prop control [build] - Update CHANGELOG. (9a9719f by Sam Sverko)
+* refetchdata - Remove get-data functionality. - Storybook - Remove react-query devtools. (f95926d by Sam Sverko)
+* refetchdata - Update test API URL. [build] (cc6fb18 by Sam Sverko)
+* refetchdata - Update `fetchUrl` prop description. (a7fb7d8 by Sam Sverko)
+* refetchdata - Add visuals to loading & error state - Use slow mock http request url for testing. (0ff3266 by Sam Sverko)
+* refetchdata - Move component to `src`. - Export component from `index`. - Update story to reflect import from `index`. (25bca4e by Sam Sverko)
+* refetchdata - Begin building component. (f7f9400 by Sam Sverko)
+* deps - Add axios dep. - Add react-query-devtools to Storybook app wrapper. (5a5ee69 by Sam Sverko)
+* refetchdata - Begin story to build component. (9a6053a by Sam Sverko)
+* deps - Add react-query & devtools deps. (9f3eb25 by Sam Sverko)
+* deps - Upgrade all minor & patch versions [build]. (26e9eff by Sam Sverko)
+* changelog - Reorganize unreleased notes. (03f2e25 by Sam Sverko)
+* switch - Remove prop validations [build]. (d1dfbca by Sam Sverko)
+        * Update story to include controls for checked and disabled states.
+* changelog - Update with input additions [build]. - Update story categories for Switch, Chip, StyledRadio, & StyledSwitch. (b5b1b80 by Sam Sverko)
+* chip - Re-add export in index [build]. (6ba5828 by Sam Sverko)
+* switch/Tests - Write rendering test [build]. (9fcc113 by Sam Sverko)
+* switch - Update story to include input label. (f12eea3 by Sam Sverko)
+* switch - Add disabled state styling. (bf4352c by Sam Sverko)
+* switch - Update styles to match Zeplin designs. - Update story. (285cd66 by Sam Sverko)
+* switch - Create component and begin styling. - StyledSwitch - Move to deprecated status. (bda52c3 by Sam Sverko)
+* radio - Add test-id. - Tests/Radio - Add basic rendering test. (fe14f2e by Sam Sverko)
+* radio - Create component. - Deprecate StyledRadio. - Update stories. - Export FormControl, FormLabel, and RadioGroup from MUI. (a97d15a by Sam Sverko)
+* checkbox - Begin build with custom styles. (3e1edac by Sam Sverko)
+* components - Move deprecated to separate folders. (1db0988 by Sam Sverko)
+* changelog - update (8e750fb by Tamires Lowande)
+* list/list-item - add the option to style timeStatus typography (f021349 by Tamires Lowande)
+* list/list-item - override default style for small items (640b7b6 by Tamires Lowande)
+* devops/package - update tag v1.10.2-alpha (b4484f9 by Tamires)
+* list/list-item - adjust style for elements to work together on small items (a877d62 by Tamires Lowande)
 
-### Fixed
-- `<ListItem>` - Another fix in timeStatus alignment/style for small items in harmony with the typography
+### UNKNOWN
+
+* deps - Remove unused react-query packages. (d064e43 by Sam Sverko)
+* refetchdata - Remove test styling. (076453f by Sam Sverko)
+* refetchdata - Remove test styling. (f638756 by Sam Sverko)
+* checkbox - Remove `onChange` prop type validation. (a8baca4 by Sam Sverko)
+        * Update story to include control details for `onChange` prop.
+* checkbox - Remove redundant `disabled` prop type. (d78a59f by Sam Sverko)
+        * Update story to include `disabled` state control.
+
+### CORRECTIVE
+
+* refetchdata - Fix Alert import. (8403132 by Sam Sverko)
+        * Fix story components import
+* theme - Fix object export. (678845f by Sam Sverko)
+* theme - Fix theme object export. (dcacab5 by Sam Sverko)
+* theme - Fix object export. (2d8a648 by Sam Sverko)
+* theme - Fix theme object export. (a7ae916 by Sam Sverko)
+* switch - Fix styling on hover. (b37d74d by Sam Sverko)
+* checkbox - Fix styling. - Update Story. (aa8ed51 by Sam Sverko)
+
+### PERFECTIVE
+
+* refetchdata - Remove unused variable. [build] (8d6ea29 by Sam Sverko)
+* checkbox - Extract checkmark SVG for easier use. (18a48af by Sam Sverko)
+* tests - Checkbox - Update to reflect component (59b643e by Sam Sverko)
+* checkbox - Remove redundant FormControlLabel. - Index - Export FormControlLabel and FormGroup from MUI. - Checkbox Stories - Update to show FormControl and FormGroup scenarios. (3c968d0 by Sam Sverko)
+* checkbox/Tests - Write tests for component. - Checkbox - Add `testid` to component. - Update `data-table` test source. (24008fc by Sam Sverko)
+* styledcheckbox - Move to deprecated status. - Checkbox - Move Story to Inputs section. (ba6f169 by Sam Sverko)
 
 ## [1.10.1] - 2020-10-07
 ### Fixed
