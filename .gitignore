@@ -93,6 +93,3 @@ typings/
 
 # vscode
 .vscode/
-
-# prettier
-.prettierignore
