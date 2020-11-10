@@ -1,14 +1,25 @@
+import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 import DefaultCard from './cards/default-card'
-import '../css/carousel.css'
+
+const useStyles = makeStyles(() => {
+  return {
+    root: {
+      '& .slick-slide': {
+        boxSizing: 'border-box',
+        paddingRight: '16px',
+      },
+    },
+  }
+})
 
 const defaultData = [1, 2, 3, 4, 5, 6, 7, 8]
 const Carousel = ({ carouselContent, getRef }) => {
+  const classes = useStyles()
+
   const { imagesToShow, content } = carouselContent
   const settings = {
     dots: true,
@@ -44,7 +55,7 @@ const Carousel = ({ carouselContent, getRef }) => {
 
   return (
     <div>
-      <Slider {...settings} ref={getRef}>
+      <Slider className={classes.root} {...settings} ref={getRef}>
         {content}
       </Slider>
     </div>
