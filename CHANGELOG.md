@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 All non-core API/package changes (i.e. changes that do not affect the package delivery to the end users) will be noted under the **Non-Core** category.
 
+## [v1.12.0] - 2020-11-12
+
+### CHANGED
+
+* package - Add newline at end of file. (30df869 by Sam Sverko)
+* package - Update to v1.12.0 (309e450 by Sam Sverko)
+* carousel - Remove imports of CSS. (93ac308 by Sam Sverko)
+* Convert carousel.css to MUI makeStyles.
+* Move react-slick CSS imports to app-level.
+* README - Update with required CSS import.
+
+### ADDED
+
+* prettier - Include ignore config. (ae9c1b1 by Sam Sverko)
+
 ## [v1.11.0] - 2020-10-22
 
 ### FEATURES
