@@ -2,8 +2,8 @@
 
 exports[`render should render ok with least props passed 1`] = `
 <div
+  class="makeStyles-root-1 makeStyles-root-2"
   data-testid="alert"
-  style="height: auto; width: 100%;"
 >
   <div
     class="MuiPaper-root MuiAlert-root MuiAlert-standardSuccess MuiPaper-elevation0"
