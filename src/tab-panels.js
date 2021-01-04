@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { Tab, Tabs } from '@material-ui/core'
+
+
+const useStyles = makeStyles({
+  vertical: {
+    flexGrow: 1,
+    display: 'flex',
+  },
+})
 
 const TabPanel = ({ children, value, index }) => value === index && children
 
@@ -14,22 +23,23 @@ const TabPanels = ({
   TabsProps,
   TabProps,
 }) => {
+  const classes = useStyles()
   const [value, setValue] = useState(tabIndex)
   const onTabChange = (_, newVal) => setValue(newVal)
   let TabsComponent = Tabs
   let TabComponent = Tab
 
-  if (customTabs) TabsComponent = withStyles(customTabs)((props) => <Tabs {...props} />)
+  if (customTabs) TabsComponent = withStyles(customTabs)(Tabs)
   if (customTab)
     TabComponent = withStyles(customTab)((props) => (
       <Tab disableRipple {...props} />
     ))
 
   return (
-    <>
+    <div className={classes[TabsProps.orientation]}>
       <TabsComponent value={value} onChange={onTabChange} {...TabsProps}>
         {tabLabels.length > 0 &&
-          tabLabels.map((label) => <TabComponent key={label} label={label} {...TabProps} />)}
+          tabLabels.map((label, i) => <TabComponent key={`${label}-${i}`} label={label} {...TabProps} />)}
       </TabsComponent>
       {tabChildren.length > 0 &&
         tabChildren.map((child, i) => (
@@ -37,7 +47,7 @@ const TabPanels = ({
             {child.content || child}
           </TabPanel>
         ))}
-    </>
+    </div>
   )
 }
 

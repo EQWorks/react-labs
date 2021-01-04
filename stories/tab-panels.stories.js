@@ -1,9 +1,17 @@
 import React from 'react'
 
+import BuildIcon from '@material-ui/icons/Build'
+import BookmarksIcon from '@material-ui/icons/Bookmarks'
+
 import { TabPanels } from '../src/index'
 
 const labelArr = ['Tab-1', 'Tab-2', 'Tab-3']
 const tabsArr = ['Tab-1: children', 'Tab-2: children', '3: something here']
+
+const labelVerArr = [
+  <BuildIcon key='Views' onClick={() => console.log('Clicked Views.')} />,
+  <BookmarksIcon key='Saved' onClick={() => console.log('Clicked Saved.')} />,
+]
 
 const customTabs = {
   root: {
@@ -36,25 +44,13 @@ const customTab = () => ({
   },
 })
 
-const customVerTab = () => ({
+const customVerTabs = () => ({
   root: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontFamily: [
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
-    },
+    borderRight: '2px solid #e8e8e8',
+    maxWidth: 100,
+  },
+  indicator: {
+    backgroundColor: '#1890ff',
   },
 })
 
@@ -97,7 +93,8 @@ Alternate.args = {
 }
 
 Vertical.args = {
-  customTab: customVerTab,
-  customTabs,
+  customTab,
+  customTabs: customVerTabs,
   TabsProps: { orientation: 'vertical' },
+  tabLabels: labelVerArr,
 }
