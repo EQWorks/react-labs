@@ -36,6 +36,28 @@ const customTab = () => ({
   },
 })
 
+const customVerTab = () => ({
+  root: {
+    textTransform: 'none',
+    minWidth: 72,
+    fontFamily: [
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:hover': {
+      color: '#40a9ff',
+      opacity: 1,
+    },
+  },
+})
+
 export default {
   title: 'Navigation/Tab Panel',
   component: TabPanels,
@@ -67,7 +89,15 @@ export const Default = Template.bind({})
 
 export const Alternate = Template.bind({})
 
+export const Vertical = Template.bind({})
+
 Alternate.args = {
   customTab: customTab,
   customTabs: customTabs,
+}
+
+Vertical.args = {
+  customTab: customVerTab,
+  customTabs,
+  TabsProps: { orientation: 'vertical' },
 }

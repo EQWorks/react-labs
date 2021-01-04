@@ -11,13 +11,15 @@ const TabPanels = ({
   tabChildren,
   customTabs,
   customTab,
+  TabsProps,
+  TabProps,
 }) => {
   const [value, setValue] = useState(tabIndex)
   const onTabChange = (_, newVal) => setValue(newVal)
   let TabsComponent = Tabs
   let TabComponent = Tab
 
-  if (customTabs) TabsComponent = withStyles(customTabs)(Tabs)
+  if (customTabs) TabsComponent = withStyles(customTabs)((props) => <Tabs {...props} />)
   if (customTab)
     TabComponent = withStyles(customTab)((props) => (
       <Tab disableRipple {...props} />
@@ -25,9 +27,9 @@ const TabPanels = ({
 
   return (
     <>
-      <TabsComponent value={value} onChange={onTabChange}>
+      <TabsComponent value={value} onChange={onTabChange} {...TabsProps}>
         {tabLabels.length > 0 &&
-          tabLabels.map((label) => <TabComponent key={label} label={label} />)}
+          tabLabels.map((label) => <TabComponent key={label} label={label} {...TabProps} />)}
       </TabsComponent>
       {tabChildren.length > 0 &&
         tabChildren.map((child, i) => (
@@ -60,6 +62,8 @@ TabPanels.propTypes = {
     * The tab labels of the component tabs.
   */
   tabLabels: PropTypes.array,
+  TabsProps: PropTypes.object,
+  TabProps: PropTypes.object,
 }
 
 TabPanels.defaultProps = {
@@ -68,6 +72,8 @@ TabPanels.defaultProps = {
   tabChildren: [],
   tabIndex: 0,
   tabLabels: [],
+  TabsProps: {},
+  TabProps: {},
 }
 
 export default TabPanels
