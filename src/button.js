@@ -44,7 +44,7 @@ Button.propTypes = {
   /**
     * The content of the button.
   */
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   /**
     * Toggle loading style of component.
   */
