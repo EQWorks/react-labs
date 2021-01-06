@@ -22,7 +22,8 @@ const TabPanels = ({
   customTab,
   TabsProps,
   TabProps,
-  onChange,
+  onChange: controlledOnChange,
+  value: controlledValue,
 }) => {
   const classes = useStyles()
   const [value, setValue] = useState(tabIndex)
@@ -39,10 +40,10 @@ const TabPanels = ({
   return (
     <div className={classes[TabsProps.orientation]}>
       <TabsComponent
-        value={value}
+        value={controlledValue !== null ? controlledValue: value}
         onChange={(e, newVal) => {
           onTabChange(e, newVal)
-          onChange(e, newVal)
+          controlledOnChange(e, newVal)
         }}
         {...TabsProps}
       >
@@ -83,6 +84,10 @@ TabPanels.propTypes = {
   TabsProps: PropTypes.object,
   TabProps: PropTypes.object,
   onChange: PropTypes.func,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 }
 
 TabPanels.defaultProps = {
@@ -94,6 +99,7 @@ TabPanels.defaultProps = {
   TabsProps: {},
   TabProps: {},
   onChange: () => {},
+  value: null,
 }
 
 export default TabPanels
