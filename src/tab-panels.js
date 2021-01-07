@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { Tab, Tabs } from '@material-ui/core'
+
+
+const useStyles = makeStyles({
+  vertical: {
+    flexGrow: 1,
+    display: 'flex',
+  },
+})
 
 const TabPanel = ({ children, value, index }) => value === index && children
 
@@ -11,7 +20,12 @@ const TabPanels = ({
   tabChildren,
   customTabs,
   customTab,
+  TabsProps,
+  TabProps,
+  onChange: controlledOnChange,
+  value: controlledValue,
 }) => {
+  const classes = useStyles()
   const [value, setValue] = useState(tabIndex)
   const onTabChange = (_, newVal) => setValue(newVal)
   let TabsComponent = Tabs
@@ -24,18 +38,25 @@ const TabPanels = ({
     ))
 
   return (
-    <>
-      <TabsComponent value={value} onChange={onTabChange}>
+    <div className={classes[TabsProps.orientation]}>
+      <TabsComponent
+        value={controlledValue !== null ? controlledValue: value}
+        onChange={(e, newVal) => {
+          onTabChange(e, newVal)
+          controlledOnChange(e, newVal)
+        }}
+        {...TabsProps}
+      >
         {tabLabels.length > 0 &&
-          tabLabels.map((label) => <TabComponent key={label} label={label} />)}
+          tabLabels.map((label, i) => <TabComponent key={`${label}-${i}`} label={label} {...TabProps} />)}
       </TabsComponent>
       {tabChildren.length > 0 &&
         tabChildren.map((child, i) => (
-          <TabPanel key={i} value={value} index={i}>
+          <TabPanel key={i} value={controlledValue !== null ? controlledValue: value} index={i}>
             {child.content || child}
           </TabPanel>
         ))}
-    </>
+    </div>
   )
 }
 
@@ -60,6 +81,13 @@ TabPanels.propTypes = {
     * The tab labels of the component tabs.
   */
   tabLabels: PropTypes.array,
+  TabsProps: PropTypes.object,
+  TabProps: PropTypes.object,
+  onChange: PropTypes.func,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 }
 
 TabPanels.defaultProps = {
@@ -68,6 +96,10 @@ TabPanels.defaultProps = {
   tabChildren: [],
   tabIndex: 0,
   tabLabels: [],
+  TabsProps: {},
+  TabProps: {},
+  onChange: () => {},
+  value: null,
 }
 
 export default TabPanels
