@@ -10,10 +10,15 @@ const useStyles = makeStyles({
     flexGrow: 1,
     display: 'flex',
   },
+  horizontal: { position: 'relative' },
 })
 
 const TabPanel = ({ children, value, index }) => value === index && children
 
+/**
+ * can be used with `withRef` HOC to append a drawer to the tabChild | used in ML
+ * the `forwardRef` prop needs to be an array of references of the same size as the the tabChildren array
+*/
 const TabPanels = ({
   tabIndex,
   tabLabels,
@@ -24,6 +29,7 @@ const TabPanels = ({
   TabProps,
   onChange: controlledOnChange,
   value: controlledValue,
+  forwardRef: tabsRefs,
 }) => {
   const classes = useStyles()
   const [value, setValue] = useState(tabIndex)
@@ -52,9 +58,11 @@ const TabPanels = ({
       </TabsComponent>
       {tabChildren.length > 0 &&
         tabChildren.map((child, i) => (
-          <TabPanel key={i} value={controlledValue !== null ? controlledValue: value} index={i}>
-            {child.content || child}
-          </TabPanel>
+          <div key={i} ref={tabsRefs[i]} className={classes.horizontal}>
+            <TabPanel value={controlledValue !== null ? controlledValue: value} index={i}>
+              {child.content || child}
+            </TabPanel>
+          </div>
         ))}
     </div>
   )
@@ -88,6 +96,7 @@ TabPanels.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
+  forwardRef: PropTypes.array,
 }
 
 TabPanels.defaultProps = {
@@ -100,6 +109,7 @@ TabPanels.defaultProps = {
   TabProps: {},
   onChange: () => {},
   value: null,
+  forwardRef: [],
 }
 
 export default TabPanels

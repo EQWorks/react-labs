@@ -1,3 +1,8 @@
+import withRef from './with-ref'
+import TabPanels from './tab-panels'
+
+const TabPanelsWithRef = withRef(TabPanels)
+
 // untouched material-ui
 export { default as FormControl } from '@material-ui/core/FormControl'
 export { default as FormControlLabel } from '@material-ui/core/FormControlLabel'
@@ -29,6 +34,8 @@ export { default as TabPanels } from './tab-panels'
 export { default as TextField } from './text-field'
 export { default as Typography } from './typography'
 export { default as WidgetStats } from './widget-stats'
+export { default as withRef } from './with-ref'
+export { TabPanelsWithRef }
 
 // deprecated
 export { default as DataTable } from './deprecated/data-table' // deprecated by Table
