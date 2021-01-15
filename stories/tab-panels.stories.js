@@ -115,8 +115,6 @@ export default {
 }
 
 const Template = (args) => <TabPanels {...args} />
-const TemplateRef = (args) => <TabPanelsWithRef {...args} /> // const TabPanelsWithRef = withRef(TabPanels)
-
 export const Default = Template.bind({})
 
 // ===
@@ -125,7 +123,15 @@ export const Alternate = Template.bind({})
 
 export const Vertical = Template.bind({})
 
-export const WithRef = TemplateRef.bind({})
+// const TabPanelsWithRef = withRef(TabPanels)
+export const WithRef = () => (<TabPanelsWithRef
+  {...{ customTab,
+    customTabs: customTabs,
+    tabChildren: tabsWithRefArr,
+    tabLabels: labelArr,
+  }}
+  ref={tabsRefs}
+/>)
 
 Alternate.args = {
   customTab: customTab,
@@ -137,11 +143,4 @@ Vertical.args = {
   customTabs: customVerTabs,
   TabsProps: { orientation: 'vertical' },
   tabLabels: labelVerArr,
-}
-
-WithRef.args = {
-  customTab,
-  customTabs: customTabs,
-  forwardRef: tabsRefs || [],
-  tabChildren: tabsWithRefArr,
 }
