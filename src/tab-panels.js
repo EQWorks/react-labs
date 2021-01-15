@@ -16,8 +16,8 @@ const useStyles = makeStyles({
 const TabPanel = ({ children, value, index }) => value === index && children
 
 /**
- * can be used with `withRef` HOC to append a drawer to the tabChild | used in ML
- * the `forwardRef` prop needs to be an array of references of the same size as the the tabChildren array
+ * can be used with `withRef` HOC to append a drawer to the tabChild | used in ML.
+ * The `forwardRef` prop needs to be an array of references of the same size as the the tabChildren array
 */
 const TabPanels = ({
   tabIndex,

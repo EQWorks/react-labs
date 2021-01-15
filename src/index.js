@@ -2,6 +2,7 @@ import withRef from './with-ref'
 import TabPanels from './tab-panels'
 
 const TabPanelsWithRef = withRef(TabPanels)
+TabPanelsWithRef.displayName= 'TabPanelsWithRef'
 
 // untouched material-ui
 export { default as FormControl } from '@material-ui/core/FormControl'
