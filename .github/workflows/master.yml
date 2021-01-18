@@ -109,3 +109,27 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: npx depcheck
+  
+  release:
+    name: Trigger a release
+    runs-on: ubuntu-latest
+    needs: [lint, test, build, depcheck]
+    if: contains(github.event_name, 'push')
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          fetch-depth: 0
+      
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      
+      - name: Create auto-tag
+        if: ${{ success() }}
+        run: npx @eqworks/release tag --github -v
+        env:
+          GITHUB_OWNER: EQWorks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
