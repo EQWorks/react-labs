@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@eqworks'
+          always-auth: true
 
       - name: Cache Node Modules
         uses: actions/cache@v1
@@ -28,6 +31,9 @@ jobs:
             ${{ runner.os }}-
 
       - run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.CD_GITHUB_TOKEN }}
+
       - name: Deploy
         run: yarn storybook-to-ghpages --ci
         env:

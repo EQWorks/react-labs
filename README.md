@@ -15,7 +15,7 @@ npm i @eqworks/react-labs
 2. Install the required peer dependencies:
 
 ```shell
-npm i @material-ui/core @material-ui/icons @material-ui/lab react react-dom
+npm i @eqworks/lumen-ui @material-ui/core @material-ui/icons @material-ui/lab react react-dom
 ```
 
 ## Usage

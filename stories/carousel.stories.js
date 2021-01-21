@@ -12,8 +12,9 @@ import {
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded'
 import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded'
 
-import { Carousel, StyledCardContainer } from '../src/index'
+import { Carousel, StyledCardContainer } from '../src'
 import { bundlesData } from './data/card-info'
+
 
 const useStyles = makeStyles((theme) => ({
   sliderControl: {

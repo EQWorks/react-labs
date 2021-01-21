@@ -22,6 +22,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: https://npm.pkg.github.com/
+          scope: '@eqworks'
+          always-auth: true
 
       - name: Cache Node Modules
         uses: actions/cache@v1
@@ -35,6 +38,8 @@ jobs:
             ${{ runner.OS }}-
 
       - run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.CD_GITHUB_TOKEN }}
       - run: yarn lint
 
   # test:
@@ -78,6 +83,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: https://npm.pkg.github.com/
+          scope: '@eqworks'
+          always-auth: true
 
       - name: Cache Node Modules
         uses: actions/cache@v1
@@ -91,6 +99,8 @@ jobs:
             ${{ runner.OS }}-
 
       - run: yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.CD_GITHUB_TOKEN }}
       - run: yarn build
       - run: yarn size-limit
 
@@ -126,6 +136,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@eqworks'
+          always-auth: true
 
       - name: Create auto-tag
         if: ${{ success() }}

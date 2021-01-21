@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { getContrastRatio } from '@material-ui/core/styles/colorManipulator'
-import Button from '../src/button'
-import { Box, Tooltip, Typography } from '@material-ui/core'
+import { Box, Tooltip } from '@material-ui/core'
+import { Button, Typography } from '@eqworks/lumen-ui'
+
+
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     display: 'flex',
@@ -51,7 +54,7 @@ const Template = () => {
   const [open, setOpen] = useState(false)
   const defaultMessage = 'Click to copy to clipboard'
   const [alert, setAlert] = useState(defaultMessage)
-  
+
   const primaryColors = shades.map((shade) => ({
     color: theme.palette.primary[shade],
     label: shade,

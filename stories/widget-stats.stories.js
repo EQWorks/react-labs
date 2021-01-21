@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { WidgetStats } from '../src/index'
+import { WidgetStats } from '../src'
+
 
 export default {
   title: 'Data Display/Widget Stats',

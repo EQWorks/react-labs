@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import RefreshIcon from '@material-ui/icons/Refresh'
 
-import { Alert } from '.'
+import { Alert } from '@eqworks/lumen-ui'
+
 
 const useStyles = makeStyles((theme) => {
   return {
