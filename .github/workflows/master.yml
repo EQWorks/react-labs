@@ -132,4 +132,4 @@ jobs:
         run: npx @eqworks/release tag --github -v
         env:
           GITHUB_OWNER: EQWorks
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CD_GITHUB_TOKEN }}
