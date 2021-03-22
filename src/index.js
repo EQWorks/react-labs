@@ -37,6 +37,7 @@ export { default as Typography } from './typography'
 export { default as WidgetStats } from './widget-stats'
 export { default as withRef } from './with-ref'
 export { TabPanelsWithRef }
+export { default as Modal } from './modal'
 
 // deprecated
 export { default as DataTable } from './deprecated/data-table' // deprecated by Table
