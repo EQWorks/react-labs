@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(() => ({
   root: {
+    maxWidth: ({ maxWidth }) => maxWidth,
     width: '80%',
     background: '#fff',
     borderRadius: 10,
@@ -14,8 +15,9 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const ModalContainer = ({ children }) => {
-  const classes = useStyles()
+
+const ModalContainer = ({ maxWidth, children }) => {
+  const classes = useStyles({ maxWidth })
   return (
     <div className={classes.root}>
       {children}
@@ -25,6 +27,11 @@ const ModalContainer = ({ children }) => {
 
 ModalContainer.propTypes = {
   children: PropTypes.node.isRequired,
+  maxWidth: PropTypes.string,
+}
+
+ModalContainer.defaultProps = {
+  maxWidth: 768,
 }
 
 export default ModalContainer

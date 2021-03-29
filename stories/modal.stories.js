@@ -11,12 +11,12 @@ const Template = () => {
   const [modalOpen, setModalOpen] = useState(false)
   return (
     <>
-      <Modal 
+      <Modal
         open={modalOpen}
-        onClose={() => setModalOpen(false)}      
+        onClose={() => setModalOpen(false)}
       >
-        <ModalContainer>
-          <Typography>This is a modal with a styled modal container</Typography>          
+        <ModalContainer >
+          <Typography>This is a modal with a styled modal container</Typography>
         </ModalContainer>
       </Modal>
       <Button onClick={() => setModalOpen(true)}>Click</Button>
@@ -28,12 +28,12 @@ const Template2 = () => {
   const [modalOpen, setModalOpen] = useState(false)
   return (
     <>
-      <Modal 
+      <Modal
         open={modalOpen}
-        onClose={() => setModalOpen(false)}      
+        onClose={() => setModalOpen(false)}
       >
         <div style={{ backgroundColor: '#00d455', border: '2px solid #7500DF', width: '100%', padding: 36 }}>
-          <Typography>You can also style your own with div tags</Typography>               
+          <Typography>You can also style your own with div tags</Typography>
         </div>
       </Modal>
       <Button onClick={() => setModalOpen(true)}>Click</Button>
