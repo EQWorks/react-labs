@@ -11,6 +11,6 @@ export { default as QuickFilters } from './quick-filters'
 export { default as RefetchData } from './refetch-data'
 export { default as StyledCardContainer } from './styled-card-container'
 export { default as WidgetStats } from './widget-stats'
-export { default as withRef } from './with-ref'
+
 export { default as Modal } from './modal'
 export { default as ModalContainer } from './modal-container'
