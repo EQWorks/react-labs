@@ -1,12 +1,15 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import { AppBar, Toolbar, Grid, Typography } from '@material-ui/core'
 
-import { Button, ImageSlider } from '../src/index'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Grid } from '@material-ui/core'
+import { Button, Typography } from '@eqworks/lumen-ui'
+
 import { bundlesData, categoriesData, layersData } from './data/card-info'
 import CategoryCard from './cards/category-card'
 import heroImage from './assets/hero.jpg'
 import ImageCard from './cards/image-card'
+import { ImageSlider } from '../src'
+
 
 const useStyles = makeStyles((theme) => ({
   appbar: {

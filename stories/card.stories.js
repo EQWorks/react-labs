@@ -2,7 +2,9 @@ import React from 'react'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import CheckIcon from '@material-ui/icons/Check'
 
-import { Card, Button, TextField } from '../src/index'
+import { Button, TextField } from '@eqworks/lumen-ui'
+import { Card } from '../src/index'
+
 
 const loginContent = (
   <>
@@ -147,7 +149,7 @@ Action.argTypes = {
   },
 }
 
-// === 
+// ===
 
 export const Login = Template.bind({})
 
@@ -166,7 +168,7 @@ Login.argTypes = {
   },
 }
 
-// === 
+// ===
 
 export const HomeSubPage = Template.bind({})
 
@@ -192,7 +194,7 @@ HomeSubPage.argTypes = {
   },
 }
 
-// === 
+// ===
 
 export const Wrapper = Template.bind({})
 

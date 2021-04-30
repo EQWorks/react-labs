@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import { StyledCardContainer } from '.'
+import { StyledCardContainer } from './styled-card-container'
 
 const useStyles = makeStyles((theme) => {
   return {

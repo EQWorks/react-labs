@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
-import { QuickFilters } from '../src/index'
+import { QuickFilters } from '../src'
 import categories from './data/categories'
+
 
 export default {
   title: 'Inputs/Quick Filters',

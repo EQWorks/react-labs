@@ -2,16 +2,16 @@
 import React, { useState } from 'react'
 import {
   Avatar,
-  Chip,
   CardContent,
   Grid,
-  Typography,
   makeStyles,
 } from '@material-ui/core'
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded'
+import { Chip, Typography } from '@eqworks/lumen-ui'
 
-import { StyledCardContainer } from '../src/index'
+import { StyledCardContainer } from '../src'
 import { subsData, bundlesData, categoriesData } from './data/card-info'
+
 
 const useStyles = makeStyles((theme) => ({
   header: {

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { RefetchData, Typography } from '../src'
+import { Typography } from '@eqworks/lumen-ui'
+import { RefetchData } from '../src'
+
 
 export default {
   title: 'Lab/Refetch Data',

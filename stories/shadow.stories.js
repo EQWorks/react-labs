@@ -1,7 +1,9 @@
 import React from 'react'
+
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { Box, Divider } from '@material-ui/core'
-import Typography from '../src/typography'
+import { Typography } from '@eqworks/lumen-ui'
+
 
 const useStyles = makeStyles(theme => ({
   container: {
