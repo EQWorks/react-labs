@@ -37,6 +37,7 @@ const TextField = withStyles((theme) => ({
 }))(InputBase)
 
 const useStyles = makeStyles((theme) => ({
+  root: ({ width }) => ({ width }),
   label: {
     marginTop: theme.spacing(1),
     marginLeft: theme.spacing(1.2),
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Tree = (props) => {
-  const classes = useStyles()
+  const classes = useStyles({ width: props.width })
   const { label, menuOptions } = props
   const { ref, menuIsOpen, setMenuIsOpen } = useMenuIsOpen()
   const {
@@ -74,7 +75,7 @@ const Tree = (props) => {
   } = useMenuChange({ ...props, menuIsOpen, setMenuIsOpen })
 
   return (
-    <FormControl>
+    <FormControl className={classes.root}>
       {label && <Typography variant='caption' className={classes.label}>{label}</Typography>}
       <div ref={ref}>
         <TextField
@@ -102,10 +103,15 @@ Tree.propTypes = {
   label: PropTypes.string,
   menuOptions: PropTypes.array.isRequired,
   onSearchMenuChange: PropTypes.func,
+  width: PropTypes.oneOf([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 }
 Tree.defaultProps = {
   label: '',
   onSearchMenuChange: () => {},
+  width: '100%',
 }
 
 export default Tree

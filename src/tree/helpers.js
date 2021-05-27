@@ -7,7 +7,7 @@ export const findNodes = (options = [], targetID, parents = []) => (
   })).flat()
 
 const findSimilarNodes = (options = [], value) => (options.map(({ id, name, children }) => {
-  if ((name.toLowerCase()).includes(value.toLowerCase())) {
+  if ((name.toLowerCase()).search(value.toLowerCase()) !== -1) {
     return id
   }
   return findSimilarNodes(children, value)
