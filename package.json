@@ -48,7 +48,8 @@
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-slick": "^0.26.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "use-debounce": "^6.0.1"
   },
   "peerDependencies": {
     "@eqworks/lumen-ui": "^1.0.0",
